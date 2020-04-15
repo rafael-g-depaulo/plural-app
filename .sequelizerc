@@ -1,0 +1,5 @@
+const { resolve } = require("path");
+
+module.exports = {
+  config: resolve(__dirname, "server", "database", "database.js"),
+};
