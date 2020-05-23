@@ -6,7 +6,7 @@ function SignIn() {
   return (
     <div className="sign-in-container">
       <FacebookLoginButton></FacebookLoginButton>
-      <GoogleLoginButton></GoogleLoginButton>
+      <GoogleLoginButton></GoogleLoginButton> 
     </div>
   )
 }
