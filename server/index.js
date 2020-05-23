@@ -71,6 +71,30 @@ if (NODE_ENV === "production") {
   })
 }
 
+const passport = require("passport");
+
+const PassportConfig = require("./config/passport.js");
+
+// Setup passport module with facebook config
+PassportConfig.FacebookAuth(passport);
+
+app.get(
+  "/auth/facebook",
+  passport.authenticate("facebook")
+);
+
+// Handle callback after the user gets authenticated
+app.get(
+  "/auth/facebook/callback",
+  passport.authenticate("facebook", {
+    failureRedirect: "/",
+  }),
+  (req, res) => {
+    return res
+      .status(204).json({message: "Succesfully logged in with Facebook."})
+  }
+);
+
 // make the server listen to requests
 app.listen(PORT, () => {
   console.log(`Server running at: http://localhost:${PORT}/`)
