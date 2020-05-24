@@ -31,7 +31,7 @@ const verifyCallback = async (token, refreshToken, profile, done) => {
   const providerId = profile.id;
   const provider = profile.provider;
 
-  let user = await getUserByProviderId(providerId);
+  let user = await getUserByProviderId(providerId); 
 
   if (user != null) {
     return done(null, user);
