@@ -61,7 +61,10 @@ app.use(passport.session())
 // Setup passport module with facebook config
 PassportConfig.FacebookAuth(passport);
 
-app.get("/api/auth/facebook", passport.authenticate("facebook", {session: false}));
+app.get(
+  "/api/auth/facebook",
+  passport.authenticate("facebook", { session: false })
+);
 
 // Handle callback after the user gets authenticated
 app.get(
