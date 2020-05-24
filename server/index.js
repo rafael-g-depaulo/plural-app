@@ -1,13 +1,13 @@
 // import express (after npm install express)
-import express from 'express'
-import path from 'path'
-import dotenv from 'dotenv'
+import express from "express";
+import path from "path";
+import dotenv from "dotenv";
 
 // use .env config file
-dotenv.config()
+dotenv.config();
 
 // create new express app and save it as "app"
-const app = express()
+const app = express();
 
 //! setup middlewares
 // to allow cors from desirable origins
@@ -15,19 +15,16 @@ import cors from "Middlewares/cors"
 app.use(cors)
 
 // To parse cookies from the HTTP Request
-import cookieParser from 'cookie-parser'
-app.use(cookieParser())
+import cookieParser from "cookie-parser";
+app.use(cookieParser());
 
 // body parser to parse http requests' bodies
-import bodyParser from 'body-parser'
-app.use(bodyParser.json({ extended: true }))
-app.use(bodyParser.urlencoded({ extended: true }))
+import bodyParser from "body-parser";
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //! server configuration
-const {
-  PORT = "8000",
-  NODE_ENV = "development",
-} = process.env
+const { PORT = "8000", NODE_ENV = "development" } = process.env;
 
 //! setup routes
 import Router from 'Routes'
@@ -56,27 +53,32 @@ const passport = require("passport");
 
 const PassportConfig = require("./config/passport.js");
 
+app.use(passport.initialize())
+app.use(passport.session());
+
 // Setup passport module with facebook config
 PassportConfig.FacebookAuth(passport);
 
-app.get(
-  "/auth/facebook",
-  passport.authenticate("facebook")
-);
+app.get("/api/auth/facebook", passport.authenticate("facebook", {session: false}));
 
 // Handle callback after the user gets authenticated
 app.get(
-  "/auth/facebook/callback",
+  "/api/auth/facebook/callback",
   passport.authenticate("facebook", {
     failureRedirect: "/",
+    session: false
   }),
   (req, res) => {
     return res
-      .status(204).json({message: "Succesfully logged in with Facebook."})
+      .status(200)
+      .cookie("jwt", "test", {
+        httpOnly: true,
+      })
+      .redirect(process.env.CLIENT_URL);
   }
 );
 
 // make the server listen to requests
 app.listen(PORT, () => {
-  console.log(`Server running at: http://localhost:${PORT}/`)
-})
+  console.log(`Server running at: http://localhost:${PORT}/`);
+});
