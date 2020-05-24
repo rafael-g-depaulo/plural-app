@@ -8,7 +8,7 @@ class User extends Model {
         provider: DataTypes.STRING,
       },
       { sequelize }
-    );
+    ); 
   }
 }
 
