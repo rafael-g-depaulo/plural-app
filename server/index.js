@@ -3,6 +3,8 @@ import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 
+require("./database/connection");
+
 // use .env config file
 dotenv.config();
 
@@ -75,20 +77,23 @@ const passport = require("passport");
 
 const PassportConfig = require("./config/passport.js");
 
-app.use(passport.initialize())
+app.use(passport.initialize());
 app.use(passport.session());
 
 // Setup passport module with facebook config
 PassportConfig.FacebookAuth(passport);
 
-app.get("/api/auth/facebook", passport.authenticate("facebook", {session: false}));
+app.get(
+  "/api/auth/facebook",
+  passport.authenticate("facebook", { session: false })
+);
 
 // Handle callback after the user gets authenticated
 app.get(
   "/api/auth/facebook/callback",
   passport.authenticate("facebook", {
     failureRedirect: "/",
-    session: false
+    session: false,
   }),
   (req, res) => {
     return res
