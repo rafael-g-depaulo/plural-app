@@ -9,7 +9,10 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      facebook_id: {
+      provider_id: {
+        type: Sequelize.STRING,
+      },
+      provider: {
         type: Sequelize.STRING,
       },
       created_at: {

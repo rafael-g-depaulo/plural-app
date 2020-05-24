@@ -4,7 +4,8 @@ class User extends Model {
   static init(sequelize) {
     super.init(
       {
-        facebook_id: DataTypes.STRING,
+        provider_id: DataTypes.STRING,
+        provider: DataTypes.STRING,
       },
       { sequelize }
     );
