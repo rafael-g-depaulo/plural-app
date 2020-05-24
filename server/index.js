@@ -55,16 +55,13 @@ const passport = require("passport");
 
 const PassportConfig = require("./config/passport.js");
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Setup passport module with facebook config
 PassportConfig.FacebookAuth(passport);
 
-app.get(
-  "/api/auth/facebook",
-  passport.authenticate("facebook", { session: false })
-);
+app.get("/api/auth/facebook", passport.authenticate("facebook", {session: false}));
 
 // Handle callback after the user gets authenticated
 app.get(
