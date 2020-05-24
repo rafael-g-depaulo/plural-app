@@ -1,18 +1,21 @@
 var FacebookStrategy = require("passport-facebook").Strategy;
 const User = require("../models/User");
 
-async function createUserFromProvider(facebookId) {
-  const user = await User.create({ facebook_id: facebookId });
+async function createUserFromProvider(providerId, provider) {
+  const user = await User.create({
+    provider_id: providerId,
+    provider: provider,
+  });
 
   console.log(`Created user: ${JSON.stringify(user)}`);
 
   return user;
 }
 
-async function getUserByProviderId(facebookId) {
-  console.log(`\nSearching for user with id: ${facebookId}\n`);
+async function getUserByProviderId(providerId) {
+  console.log(`\nSearching for user with id: ${providerId}\n`);
 
-  const user = await User.findOne({ where: { facebook_id: facebookId } });
+  const user = await User.findOne({ where: { provider_id: providerId } });
 
   user == null
     ? console.log("\nNo records found.\n")
@@ -24,13 +27,16 @@ async function getUserByProviderId(facebookId) {
 const verifyCallback = async (token, refreshToken, profile, done) => {
   console.log(profile);
 
-  let user = await getUserByProviderId(profile.id);
+  const providerId = profile.id;
+  const provider = profile.provider;
+
+  let user = await getUserByProviderId(providerId);
 
   if (user != null) {
     return done(null, user);
   }
 
-  user = await createUserFromProvider(profile.id);
+  user = await createUserFromProvider(providerId, provider);
 
   return done(null, user);
 };
