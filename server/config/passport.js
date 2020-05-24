@@ -3,7 +3,7 @@ var FacebookStrategy = require("passport-facebook").Strategy;
 const verifyCallback = (token, refreshToken, profile, done) => {
   console.log(profile);
 
-  done(profile);
+  done(null, profile);
 };
 
 module.exports = {
