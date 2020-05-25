@@ -105,6 +105,28 @@ app.get(
   }
 );
 
+app.get(
+  "/api/auth/google",
+  passport.authenticate("google", { session: false })
+);
+
+// Handle callback after the user gets authenticated
+app.get(
+  "/api/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/",
+    session: false,
+  }),
+  (req, res) => {
+    return res
+      .status(200)
+      .cookie("jwt", "test", {
+        httpOnly: true,
+      })
+      .redirect(process.env.CLIENT_URL);
+  }
+);
+
 // make the server listen to requests
 app.listen(PORT, () => {
   console.log(`Server running at: http://localhost:${PORT}/`);
