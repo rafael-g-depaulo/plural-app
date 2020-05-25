@@ -105,9 +105,17 @@ app.get(
   }
 );
 
+PassportConfig.GoogleAuth(passport);
+
 app.get(
   "/api/auth/google",
-  passport.authenticate("google", { session: false })
+  passport.authenticate("google", {
+    session: false,
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+  })
 );
 
 // Handle callback after the user gets authenticated
