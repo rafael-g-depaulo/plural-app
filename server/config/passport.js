@@ -1,4 +1,5 @@
 var FacebookStrategy = require("passport-facebook").Strategy;
+var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const User = require("../models/User");
 
 async function createUserFromProvider(providerId, provider) {
@@ -54,4 +55,16 @@ module.exports = {
       )
     );
   },
+  GoogleAuth(passport) {
+    passport.use(
+      new GoogleStrategy(
+        {
+          clientID: process.env.GOOGLE_APP_ID,
+          clientSecret: process.env.GOOGLE_APP_SECRET,
+          callbackURL: process.env.GOOGLE_CALLBACK_URL,
+        },
+        verifyCallback
+      )
+    );
+  }
 };
