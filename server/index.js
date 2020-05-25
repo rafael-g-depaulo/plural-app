@@ -87,7 +87,7 @@ PassportConfig.GoogleAuth(passport);
 
 app.get(
   "/api/auth/google",
-  passport.authenticate("google", {
+  passport.authenticate("google", { 
     session: false,
     scope: [
       "https://www.googleapis.com/auth/userinfo.profile",
