@@ -34,6 +34,7 @@
   "devDependencies": {
     "@babel/core": "^7.8",
     "@babel/node": "^7.8",
+    "babel-plugin-module-resolver": "^4.0.0",
     "nodemon": "^2.0.2",
     "sequelize-cli": "^5.5.1"
   }
