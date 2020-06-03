@@ -9,4 +9,13 @@ module.exports = {
       },
     ],
   ],
+  plugins: [
+    [
+      "module-resolver",
+      {
+        root: ["./server"],
+        alias: {},
+      },
+    ],
+  ],
 }
