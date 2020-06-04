@@ -6,9 +6,12 @@ import FacebookRouter from "./FacebookRouter"
 import BlogRouter from './BlogRouter'
 import EventRouter from './EventRouter'
 
+import User from '../models/User'
+
 // use dependency injection in module
 export default ({ passport }, config = { mergeParams: true }) => express.Router(config)
   .use("/auth/facebook", FacebookRouter({ PassportConfig, passport }, config))
   .use("/auth/google", GoogleRouter({ PassportConfig, passport }, config))
   .use(/\/blogs?/, BlogRouter({}, config))
   .use(/\/events?/, EventRouter({}, config))
+  .use('/', MappingRouter({User}, config))
