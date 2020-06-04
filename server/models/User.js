@@ -6,6 +6,12 @@ class User extends Model {
       {
         provider_id: DataTypes.STRING,
         provider: DataTypes.STRING,
+        email: DataTypes.STRING,
+        password: DataTypes.STRING,
+        birthdate: DataTypes.DATE,
+        city: DataTypes.STRING,
+        phone_number: DataTypes.STRING,
+        name: DataTypes.STRING,
       },
       { sequelize }
     ); 
