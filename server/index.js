@@ -49,10 +49,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //! server configuration
 const { PORT = "8000", NODE_ENV = "development" } = process.env;
 
+// Handle user authentication
+const passport = require("passport");
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 //! setup routes
 import Router from "./Routes";
 
-app.use("/api", Router({}));
+app.use("/api", Router({passport}));
 
 // create a route for the app
 app.get("/api", (req, res) => {
@@ -72,68 +78,6 @@ if (NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "../client/build", "index.html"));
   });
 }
-
-const passport = require("passport");
-
-const PassportConfig = require("./config/passport.js");
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Setup passport module with facebook config
-PassportConfig.FacebookAuth(passport);
-
-app.get(
-  "/api/auth/facebook",
-  passport.authenticate("facebook", { session: false })
-);
-
-// Handle callback after the user gets authenticated
-app.get(
-  "/api/auth/facebook/callback",
-  passport.authenticate("facebook", {
-    failureRedirect: "/",
-    session: false,
-  }),
-  (req, res) => {
-    return res
-      .status(200)
-      .cookie("jwt", "test", {
-        httpOnly: true,
-      })
-      .redirect(process.env.CLIENT_URL);
-  }
-);
-
-PassportConfig.GoogleAuth(passport);
-
-app.get(
-  "/api/auth/google",
-  passport.authenticate("google", {
-    session: false,
-    scope: [
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/userinfo.email",
-    ],
-  })
-);
-
-// Handle callback after the user gets authenticated
-app.get(
-  "/api/auth/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: "/",
-    session: false,
-  }),
-  (req, res) => {
-    return res
-      .status(200)
-      .cookie("jwt", "test", {
-        httpOnly: true,
-      })
-      .redirect(process.env.CLIENT_URL);
-  }
-);
 
 // make the server listen to requests
 app.listen(PORT, () => {
