@@ -4,8 +4,6 @@ const PassportConfig = require("../config/passport");
 import GoogleRouter from "./GoogleRouter";
 import FacebookRouter from "./FacebookRouter";
 
-// import EmailRouter from './email'
-
 // use dependency injection in module
 export default ({ passport }, config = { mergeParams: true }) =>
   express
