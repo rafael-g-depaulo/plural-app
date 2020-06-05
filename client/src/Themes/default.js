@@ -1,0 +1,1 @@
+export const mediumFontSize = "14px"
