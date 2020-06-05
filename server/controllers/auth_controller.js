@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const Utils = require("../utils");
 
 async function getUserFromEmail(email) {
   console.log(`\nSearching for user with email: ${email}\n`);
@@ -41,23 +42,24 @@ module.exports = {
       return res.status(401).json({ error: errorMessage });
     }
 
-    jwt.sign(
-      { user: { id: userId, email } },
-      process.env.TOKEN_SECRET_KEY,
-      { expiresIn: parseInt(process.env.TOKEN_EXPIRATION_TIME) },
-      (error, token) => {
-        const successMessage =
-          "The credentials provided are valid. Succesfully logged in.";
+    const token = await Utils.signToken(userId, email);
 
-        console.log("[SUCCESS]", successMessage);
+    if (token == null) {
+      res
+        .status(500)
+        .json({ error: "An internal error has occurred. Try again." });
+    }
 
-        return res
-          .status(200)
-          .cookie("token", token, {
-            httpOnly: true,
-          })
-          .json({ message: successMessage });
-      }
-    );
-  }
+    const successMessage =
+      "The credentials provided are valid. Succesfully logged in.";
+
+    console.log("[SUCCESS]", successMessage);
+
+    return res
+      .status(200)
+      .cookie("token", token, {
+        httpOnly: true,
+      })
+      .json({ message: successMessage });
+  },
 };
