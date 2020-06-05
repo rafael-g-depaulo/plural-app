@@ -1,16 +1,15 @@
 const esClient = require("../client");
 
-const insertUser = async function (_id, jobs) {
+export async function insertUser(_id, jobs) {
   return await esClient.index({
     index: "user",
     type: "userjobs",
     id: _id,
     body: jobs,
   });
-};
-module.exports = insertUser;
+}
 
-const searchUsers = async function (jobs) {
+export async function searchUsers(jobs) {
   return await esClient.search({
     index: "user",
     type: "userjobs",
@@ -20,8 +19,7 @@ const searchUsers = async function (jobs) {
       },
     },
   });
-};
-module.exports = searchUsers;
+}
 
 /*
   Exemplo de busca: GET
