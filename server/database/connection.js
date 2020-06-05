@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const dbConfig = require("./database");
 
 const User = require("../models/User");
-const Mapping= require("../models/Mapping");
+const Mapping = require("../models/Mapping");
 
 const connection = new Sequelize(dbConfig);
 
