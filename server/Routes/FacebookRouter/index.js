@@ -1,8 +1,6 @@
 import { Router } from "express";
 
-export default ({ PassportConfig, passport }, options) => {
-  PassportConfig.FacebookAuth(passport);
-
+export default ({ passport }, options) => {
   return Router(options)
     .get("/", passport.authenticate("facebook", { session: false }))
     .get(
@@ -14,7 +12,7 @@ export default ({ PassportConfig, passport }, options) => {
       (req, res) => {
         return res
           .status(200)
-          .cookie("jwt", "test", {
+          .cookie("token", req.token, {
             httpOnly: true,
           })
           .redirect(process.env.CLIENT_URL);
