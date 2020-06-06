@@ -21,6 +21,7 @@ module.exports = {
 
       res.status(200).send({ message: "The user was successfully created." });
     } catch (error) {
+      console.log(error);
       res.status(422).send({
         error: "An error occurred while registering.",
       });

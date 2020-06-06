@@ -1,11 +1,11 @@
 const esClient = require("../client");
 
-export async function insertUser(_id, jobs) {
+export async function insertUser(id, data) {
+  console.log("insertUser", id, data);
   return await esClient.index({
-    index: "user",
-    type: "userjobs",
-    id: _id,
-    body: jobs,
+    index: "mapping",
+    id: id,
+    body: data,
   });
 }
 

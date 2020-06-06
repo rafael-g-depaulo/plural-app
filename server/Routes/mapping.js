@@ -31,7 +31,12 @@ export default ({ User }, config) => {
       user_id,
     });
 
-    insertUser(user_id, professional);
+    const data = {
+      user_id,
+      professional,
+    };
+
+    insertUser(user_id, data);
 
     return res.json(mapping);
   });
