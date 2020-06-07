@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import GostariadeParticipar from "./gostariadeparticipar_site_fundo.png"
 import Description from "./Description";
 
 const Background = styled.div`
-    background-color: #c0c0c0;
+    background-image: url(${GostariadeParticipar});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     width: 100vw;
     height: 100vh;
 `;
