@@ -19,7 +19,7 @@ const Form = styled.form`
 const Title = styled.h2`
   margin: 0;
   padding: 0 30px 47px;
-  font-family: Town10Display;
+  font-family: Town Display;
   font-size: 24.5px;
   font-weight: 500;
   font-stretch: normal;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Label = styled.label`
   padding: 0 30px 10px;
-  font-family: Town80Text;
+  font-family: Town Text;
   font-size: 24.5px;
   font-weight: normal;
   font-stretch: normal;

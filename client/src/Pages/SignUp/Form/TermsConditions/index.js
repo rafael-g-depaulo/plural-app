@@ -17,7 +17,7 @@ const Label = styled.label`
   position: relative;
   padding-left: 35px;
   cursor: pointer;
-  font-family: Town80Text;
+  font-family: Town Text;
   font-size: 24.5px;
   font-weight: normal;
   font-stretch: normal;

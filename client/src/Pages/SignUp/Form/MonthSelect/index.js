@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledSelect = styled.select`
   padding: 20px 30px;
-  font-family: Town80Text;
+  font-family: Town Text;
   font-size: 24.5px;
   font-weight: normal;
   font-stretch: normal;

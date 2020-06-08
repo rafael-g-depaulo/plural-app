@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledInput = styled.input.attrs({ type: "submit" })`
   padding: 20px 0;
-  font-family: Town10Display;
+  font-family: Town Display;
   font-size: 24.5px;
   font-weight: 500;
   font-stretch: normal;
