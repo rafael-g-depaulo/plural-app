@@ -40,5 +40,9 @@
     "@babel/node": "^7.8",
     "nodemon": "^2.0.2",
     "sequelize-cli": "^5.5.1"
+  },
+  "engines": {
+    "node": "14.x",
+    "yarn": "1.x"
   }
 }
