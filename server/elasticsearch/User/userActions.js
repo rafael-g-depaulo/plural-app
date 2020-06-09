@@ -9,17 +9,30 @@ export async function insertUser(id, data) {
   });
 }
 
-export async function searchUsers(jobs) {
+export async function searchUsers(job) {
   return await esClient.search({
-    index: "user",
-    type: "userjobs",
-    query: {
-      match_phrase_prefix: {
-        job: job,
-      },
-    },
+    index: "mapping",
+    body: job,
   });
 }
+
+// async function test() {
+//   const body = {
+//     query: {
+//       match_phrase_prefix: {
+//         professional: "Fotografo",
+//       },
+//     },
+//   };
+//   try {
+//     const resp = await searchUsers(body);
+//     console.log(JSON.stringify(resp));
+//   } catch (e) {
+//     console.log(e);
+//   }
+// }
+
+// test();
 
 /*
   Exemplo de busca: GET
