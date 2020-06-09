@@ -1,6 +1,6 @@
 import Router from "express";
 import Mapping from "../models/Mapping";
-import { insertUser } from "../elasticsearch/User/userActions";
+import { insertUser, searchUsers } from "../elasticsearch/User/userActions";
 
 export default ({ User }, config) => {
   return Router(config).post("/users/:user_id/mapping", async (req, res) => {
@@ -36,7 +36,18 @@ export default ({ User }, config) => {
       professional,
     };
 
-    insertUser(user_id, data);
+    await insertUser(user_id, data);
+
+    const body = {
+      query: {
+        match_phrase_prefix: {
+          professional: "Fotografo",
+        },
+      },
+    };
+    const response = await searchUsers(body);
+    const jobs = response.hits.hits.map((job) => job._source);
+    console.log(jobs[1].user_id, jobs[1].professional);
 
     return res.json(mapping);
   });
