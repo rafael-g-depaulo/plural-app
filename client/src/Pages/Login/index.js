@@ -1,10 +1,13 @@
 import React from 'react'
+import Display from './Display'
 
 export const Login = ({
   ...props
 }) => {
   return (
-    <div></div>
+    <Display
+      {...props}
+    />
   )
 }
 
