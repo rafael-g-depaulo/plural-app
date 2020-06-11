@@ -7,6 +7,7 @@ import EventRouter from './EventRouter'
 import UserRouter from "./UserRouter";
 import AuthRouter from "./AuthRouter";
 import MappingRouter from "./MappingRouter/createMapping";
+import SearchMappingRouter from "./MappingRouter/searchUserMapping";
 
 import User from "models/User";
 
@@ -19,3 +20,4 @@ export default ({ passport }, config = { mergeParams: true }) => express.Router(
   .use(/\/blogs?/, BlogRouter({}, config))
   .use(/\/events?/, EventRouter({}, config))
   .use("/", MappingRouter({ User }, config))
+  .use("/search", SearchMappingRouter({}, config));

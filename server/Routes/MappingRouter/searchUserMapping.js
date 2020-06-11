@@ -1,20 +1,27 @@
 import Router from "express";
-import Mapping from "../models/Mapping";
-import { searchUsers } from "../elasticsearch/User/userActions";
+import { searchUsers } from "../../elasticsearch/User/userActions";
 
 export default ({}, config) => {
-  return Router(config).post("/users/search/jobs", async (req, res) => {
-    const body = {
-      query: {
-        match_phrase_prefix: {
-          professional: "Fotogr",
-        },
-      },
-    };
-    const response = await searchUsers(body);
-    const jobs = response.hits.hits.map((job) => job._source);
-    console.log(jobs);
+  return Router(config).post("/users/jobs", async (req, res) => {
+    var allJobs = req.body.jobs;
 
-    return res.json(mapping);
+    const users = allJobs.map((job) =>
+      searchUsers({
+        query: {
+          match_phrase_prefix: {
+            professional: job,
+          },
+        },
+      })
+    );
+
+    const results = await Promise.all(users);
+    const resultMap = results
+      .flatMap((result) => result.hits.hits)
+      .map((result) => result._source.user_id);
+
+    const ids = [...new Set(resultMap)];
+
+    return res.json({ user_ids: ids });
   });
 };
