@@ -14,7 +14,7 @@ const Box = styled.div`
         width:40%;
         height:auto;
         font-size:3em;
-        margin-top: 20%;
+        margin-top: 10%;
     }
 
 `
