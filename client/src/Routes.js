@@ -1,16 +1,16 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-export const Routes = ({
-  ...props
-}) => {
+import Mapping from "./Pages/Mapping";
 
+export const Routes = ({ ...props }) => {
   return (
     <Router basename="/">
       <Switch>
+        <Route path="/mapping" component={Mapping}></Route>
       </Switch>
     </Router>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;
