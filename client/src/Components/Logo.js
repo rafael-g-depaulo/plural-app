@@ -5,11 +5,12 @@ import img from './plural_logo.png'
 const PluralLogo = styled.img`
     width: 245px;
     height: 76px;
+
 `;
 
-function Logo(){
+function Logo(props){
     return(
-        <PluralLogo src={img} />
+        <PluralLogo className={props.className} src={img} />
     )
 }
 
