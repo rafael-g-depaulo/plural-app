@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Login from 'Pages/Login'
+import Confirmation from 'Pages/Confirmation'
 
 export const Routes = ({
   ...props
@@ -9,8 +9,8 @@ export const Routes = ({
   return (
     <Router basename="/">
       <Switch>
-        <Route path="/login">
-          <Login />
+        <Route path="/">
+          <Confirmation />
         </Route>
       </Switch>
     </Router>
