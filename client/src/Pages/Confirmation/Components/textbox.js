@@ -11,7 +11,7 @@ const Box = styled.div`
     margin-top: -10%;
 
     @media(min-width: 2500px){
-        width:30%;
+        width:40%;
         height:auto;
         font-size:3em;
         margin-top: 20%;
