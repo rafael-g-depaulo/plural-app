@@ -12,12 +12,13 @@ const Back = styled.div`
     margin: 0 auto;
     background-image: url(${img});
     background-size:cover;
+
 `
 
 export const Background = ({
     ...props
   }) => {
-      const altura = useHeight;
+      const altura = useHeight();
       console.log(altura + "px");
     return (
         <Back height={altura}>
