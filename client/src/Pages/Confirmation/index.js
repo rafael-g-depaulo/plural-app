@@ -1,10 +1,10 @@
 import React from 'react'
-import Background from './Components/background'
+import Background from './background'
 import styled from 'styled-components';
-import PluralLogo from './../../Components/PluralLogo'
-import TextBox from './Components/textbox'
-import Title from './Components/title'
-import TextField from './Components/text'
+import PluralLogo from 'Components/PluralLogo'
+import TextBox from './textbox'
+import Title from './title'
+import TextField from './text'
 
 
 const GridLateral = styled.div`
@@ -59,23 +59,23 @@ const LogoDiv = styled.div`
 
 export const Confirmation = ({
     ...props
-  }) => {
+}) => {
     return (
-      <Background>
-          <GridLateral/>
-          <Grid>
-              <LogoDiv>
-                <StyleLogo/>
+        <Background>
+            <GridLateral />
+            <Grid>
+                <LogoDiv>
+                    <StyleLogo />
                 </LogoDiv>
                 <TextBox>
                     <Title>OI, MONA</Title><br />
-                    <TextField>CONFIRME SEU EMAIL <br />PRA FINALIZAR A CRIAÇÃO <br />DO SEU CADASTRO</TextField>                 
+                    <TextField>CONFIRME SEU EMAIL <br />PRA FINALIZAR A CRIAÇÃO <br />DO SEU CADASTRO</TextField>
 
                 </TextBox>
-              </Grid>
-          <GridLateral/>
+            </Grid>
+            <GridLateral />
 
-          </Background>
+        </Background>
     )
-  }
+}
 export default Confirmation
