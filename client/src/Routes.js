@@ -1,15 +1,12 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Login from 'Pages/Login'
 import AreYou from "Pages/AreYouLGBTQIA"
 import Home from "Pages/Home"
 import MappingQuestion from "Pages/MappingQuestion"
 
-export const Routes = ({
-  ...props
-}) => {
-
+export const Routes = ({ ...props }) => {
   return (
     <Router basename="/"> 
       <Switch>
@@ -29,7 +26,7 @@ export const Routes = ({
         <Route path="/" component={Home} /> 
       </Switch>
     </Router>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;
