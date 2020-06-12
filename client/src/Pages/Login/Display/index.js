@@ -1,10 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faGooglePlus } from '@fortawesome/free-brands-svg-icons'
+
 import { accentFontSize } from 'Themes/default'
 import PluralLogo from 'Components/PluralLogo'
 import Input from './Input'
 import Label from './Label'
+import Parceiros from './Parceiros'
 import Button from './Button'
 
 import bgDesktop from './bg_desktop.png'
@@ -18,8 +22,12 @@ const Container = styled.div`
 
   display: grid;
   grid-template-columns: minmax(8%, auto) minmax(300px, 380px) minmax(8%, auto);
-  grid-template-rows: auto;
-  grid-template-areas: ". content .";
+  grid-template-rows: minmax(0, 3fr) auto minmax(0, 1fr);
+  grid-template-areas:
+    ".    .    ."
+    ". content ."
+    ".    .    ."
+  ;
 
   @media (max-width: 399px) {
     /* styles para mobile */
@@ -87,17 +95,48 @@ const Text = styled.span`
 `
 
 const SocialButton = styled(Button)`
-  width: 45%;
+  width: 48%;
   background-color: ${props => props.color};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: ${props => props.hcolor};
+  }
+  &:active {
+    background-color: ${props => props.acolor};
+  }
 `
 
 const Social = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 `
+
+const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const Icon = styled(FontAwesomeIcon)`
+  font-size: 18px;
+  margin-top: 2px;
+  margin-left: 5px;
+`
+
 
 export const Display = ({
   LinkComponent = "span",
+  email = "",
+  onChangeEmail = () => {},
+  pwd = "",
+  onChangePwd = () => {}, 
+  onSubmit = () => {},
+  facebookLogin = () => {},
+  googleLogin = () => {},
   ...props
 }) => {
   return (
@@ -105,20 +144,25 @@ export const Display = ({
       <Content>
         {/* conteúdo do display da página de login */}
         <Logo />
-        <Label for="email">EMAIL</Label>
-        <MyInput name="email" />
-        <Label for="email">EMAIL</Label>
-        <MyInput name="email" />
-        <Links>
-          <LinkComponent>Cadastre-se</LinkComponent>
-          <LinkComponent>Esqueci a minha senha</LinkComponent>
-        </Links>
-        <MyButton>ENTRAR</MyButton>
-        <Text>OU ENTRE COM<br/>SUAS REDES SOCIAIS</Text>
+        {/* <form onSubmit={onSubmit}> */}
+        <Content as="form" onSubmit={onSubmit}>
+          <Label htmlFor="email">EMAIL</Label>
+          <MyInput value={email} onChange={onChangeEmail} name="email" type="email" autoComplete="username" />
+          <Label htmlFor="pwd">SENHA</Label>
+          <MyInput value={pwd} onChange={onChangePwd} name="pwd" type="password" autoComplete="current-password"/>
+          <Links>
+            <LinkComponent>Cadastre-se</LinkComponent>
+            <LinkComponent>Esqueci a minha senha</LinkComponent>
+          </Links>
+          <MyButton type="submit">ENTRAR</MyButton>
+        </Content>
+        {/* </form> */}
+        <Text>OU ENTRE COM<br/>SUAS REDES SOCIAIS:</Text>
         <Social>
-          <SocialButton color="#003172">Entre com F</SocialButton>
-          <SocialButton color="#9f005d">Entre com F</SocialButton>
+          <SocialButton onClick={facebookLogin} color="#003172" hcolor="#004db3" acolor="#0060de"><Box>Entre com <Icon icon={faFacebook} /></Box></SocialButton>
+          <SocialButton onClick={googleLogin} color="#9f005d" hcolor="#c50073" acolor="#d4007c"><Box>Entre com <Icon icon={faGooglePlus} /></Box></SocialButton>
         </Social>
+        <Parceiros />
       </Content>
     </Container>
   )
