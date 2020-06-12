@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import img from './confirmar_background.png';
+import img2 from './confirmar_app.png';
 import useHeight from 'Hooks/useWindowHeight';
 
 const Back = styled.div`
@@ -12,6 +13,14 @@ const Back = styled.div`
     margin: 0 auto;
     background-image: url(${img});
     background-size:cover;
+
+
+    @media(max-width:780px){
+        background-image: url(${img2});
+        grid-template-columns: 16% 64% 20%;
+
+            
+        }
 
 `
 
