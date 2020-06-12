@@ -5,7 +5,8 @@ import styled from 'styled-components'
 
 const Text = styled.text`
   font-weight: ${props => props.weight ?? "400"};
-  font-size: ${props => props.size ?? "33px"};
+  font-size: ${props => props.size ?? "1em"};
+
 
 
 `
