@@ -12,6 +12,10 @@ const MyInput = styled.input`
 
   padding-left: 10px;
   font-size: ${inputFontSize}px;
+
+  &:hover {
+    background-color: #111111;
+  }
 `
 
 export const Input = ({

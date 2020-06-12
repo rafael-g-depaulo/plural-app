@@ -11,6 +11,13 @@ const MyButton = styled.button`
   height: 30px;
   font-size: ${buttonFontSize}px;
   text-align: center;
+  
+  &:hover {
+    background-color: #111111;
+  }
+  &:active {
+    background-color: #222222;
+  }
 `
 
 export const Button = ({
