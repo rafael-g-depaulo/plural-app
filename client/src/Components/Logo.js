@@ -1,17 +1,23 @@
-import React from "react"
-import styled from 'styled-components';
-import img from './plural_logo.png'
+import React from 'react'
+import styled from 'styled-components'
 
-const PluralLogo = styled.img`
-    width: 245px;
-    height: 76px;
+import WhiteLogo from './white.png'
 
-`;
-
-function Logo(props){
-    return(
-        <PluralLogo className={props.className} src={img} />
-    )
+const Logo = styled.img`
+  object-fit: contain;
+  object-position: center;
+  width: ${props => props.width ?? "200px"};
+  height: ${props => props.height ?? "70px"};
+`
+export const PluralLogo = ({
+  ...props
+}) => {
+  return (
+    <Logo 
+      src={WhiteLogo}
+      {...props}
+    />
+  )
 }
 
-export default Logo;
+export default PluralLogo
