@@ -13,7 +13,6 @@ const Background = styled.div`
     margin: 0 auto;
     background-image: url(${img});
     overflow: hidden;
-    min-height: 800px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
