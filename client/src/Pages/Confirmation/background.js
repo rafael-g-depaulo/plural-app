@@ -9,7 +9,7 @@ const Back = styled.div`
     grid-template-columns: 20% 60% 20%;
     width: 100%;
     height:${props => props.height}px;
-    min-height: 800px;
+    min-height: ${props => props.height}px;
     margin: 0 auto;
     background-image: url(${img});
     background-size:cover;

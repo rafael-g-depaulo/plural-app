@@ -22,7 +22,7 @@ const Box = styled.div`
             font-size:1.3em;
             line-height:1.4em;
             margin-top:0;
-            margin-bottom: 130%;
+            margin-bottom: 90%;
         }
 
         @media(min-width:400px) and (max-width:767px){
@@ -30,7 +30,7 @@ const Box = styled.div`
             font-size:1.5em;
             line-height:1.4em;
             margin-top:0;
-            margin-bottom: 130%;
+            margin-bottom: 90%;
         }
         @media(min-width: 800px) and (max-width:1040px){
             font-size: 2.4em;
