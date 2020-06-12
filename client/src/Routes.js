@@ -1,6 +1,7 @@
 import React, { lazy } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import AsyncComponent from 'Components/AsyncComponent'
+import Confirmation from 'Pages/Confirmation'
 
 const Home = lazy(() => import("Pages/Home"))
 const SignUp = lazy(() => import("Pages/SignUp"))
@@ -60,6 +61,10 @@ export const Routes = ({ ...props }) => {
           <AsyncComponent>
             <Home />
           </AsyncComponent>
+        </Route>
+        
+        <Route path="/">
+          <Confirmation />
         </Route>
       </Switch>
     </Router>
