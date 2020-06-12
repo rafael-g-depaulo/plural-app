@@ -17,6 +17,25 @@ const Box = styled.div`
         margin-top: 10%;
     }
 
+    @media(max-width:400px){
+            width: 100%;
+            font-size:1.3em;
+            line-height:1.4em;
+            margin-top:0;
+            margin-bottom: 130%;
+        }
+
+        @media(min-width:400px) and (max-width:767px){
+            width: 100%;
+            font-size:1.5em;
+            line-height:1.4em;
+            margin-top:0;
+            margin-bottom: 130%;
+        }
+        @media(min-width: 800px) and (max-width:1040px){
+            font-size: 2.4em;
+    }
+
 `
 
 export const TextBox = ({

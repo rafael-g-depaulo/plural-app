@@ -11,6 +11,7 @@ const GridLateral = styled.div`
     width: 100%;
     min-height: 800px;
     margin: 0 auto;
+
 `
 const Grid = styled.div`
     width: 100%;
@@ -19,12 +20,20 @@ const Grid = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    @media(max-width:780px){
+        justify-content:left;
+
+    }
 `
 
 const StyleLogo = styled(PluralLogo)`
 
     @media(min-width: 2500px){
         width:30%;
+        height:auto;
+    }
+    @media(min-width: 760px) and (max-width:1040px){
+        width:60%;
         height:auto;
     }
 `
@@ -34,6 +43,15 @@ const LogoDiv = styled.div`
     width: 100%;
     display: flex;
     justify-content:center;
+
+    @media(max-width:780px){
+        justify-content:left;
+
+    }
+
+    @media(max-width:760px) {
+        margin-top:40%;
+    }
 
 `
 
