@@ -1,24 +1,16 @@
 import React from "react"
 import styled from 'styled-components';
-import img from './site_plural_page001_fundo.png'
-import Mask from './Components/mask';
+import Mask from './mask';
 import PluralLogo from '../../Components/Logo';
-import Backg from './Components/background.js';
+import Backg from './background';
 
 const LogoDiv = styled.div`
     position: relative;
-    top: 600px;
+    top: 580px;
     left: 43%;
     width: auto;
     height: auto;
-    
-        /* @media (min-height: 600px) {
-            top: 80%;
-            width: auto;
-        } */
-        /* @media(min-width: 1400px){
-            left: 40%;
-        } */
+
         /*Considero Mobile a partir de tablet 768*/
         @media(min-width:300px)and (max-width:767px){
             top: 50%;   
@@ -29,19 +21,14 @@ const LogoDiv = styled.div`
            top: 70%;  
             left: 25%;
         }
-
-        /* @media(min-width:390px) and (max-width:768px){
-            top: 65%;   
-            left: 30%;
-        } */
-
-        /* @media(min-width:1020px) and (max-height:1400px){
-            top:597px;
-            left:40%;
-        } */
         @media(min-width:2500px) and (max-height:1400px){
-            top:95%;
+            top:75%;
             left:40%;
+        }
+
+        @media(min-width:1023px) and (max-height:590px){
+            top:75%;
+ 
         }
 `;
 
@@ -62,8 +49,6 @@ const StyleLogo = styled(PluralLogo)`
 
 
 `;
-
-
 
 function Loading(){
     return( 
