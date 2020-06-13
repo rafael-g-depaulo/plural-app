@@ -2,15 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import img from './confirmar_background.png';
 import img2 from './confirmar_app.png';
-import useHeight from 'Hooks/useWindowHeight';
+import useHeight from '../../Hooks/useWindowHeight';
 
 const Back = styled.div`
     display:inline-grid;
     grid-template-columns: 20% 60% 20%;
     width: 100%;
-    height:${props => props.height}px;
-    min-height: ${props => props.height}px;
-    margin: 0 auto;
+    height:100%;
+    overflow-y:hidden;
+    /* min-height: ${props => props.height}px; */
+    margin: 0;
     background-image: url(${img});
     background-size:cover;
 
@@ -28,7 +29,6 @@ export const Background = ({
     ...props
   }) => {
       const altura = useHeight();
-      console.log(altura + "px");
     return (
         <Back height={altura}>
             {props.children}

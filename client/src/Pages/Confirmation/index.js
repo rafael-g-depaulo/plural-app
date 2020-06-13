@@ -5,15 +5,22 @@ import PluralLogo from 'Components/PluralLogo'
 import TextBox from './textbox'
 import TextField from './text'
 
+const MainDiv = styled.div`
+    height:100vh;
+    overflow-y:hidden;
 
+
+`
 const GridLateral = styled.div`
     width: 100%;
-    margin: 0 auto;
+    height:100%;
+    margin: 0;
 
 `
 const Grid = styled.div`
     width: 100%;
-    margin: 0 auto;
+    height:100%;
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -58,6 +65,7 @@ export const Confirmation = ({
     ...props
 }) => {
     return (
+        <MainDiv>
         <Background>
             <GridLateral />
             <Grid>
@@ -72,6 +80,7 @@ export const Confirmation = ({
             <GridLateral />
 
         </Background>
+        </MainDiv>
     )
 }
 export default Confirmation
