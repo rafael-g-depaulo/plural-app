@@ -20,7 +20,7 @@ export const Routes = ({ ...props }) => {
         <Route path="/areyouLGBTQIA" component={AreYou} />
 
         {/* página que pergunta se um usuário quer participar do mapeamento */}
-        <Route path="/participar-mapeamento" component={MappingQuestion} />
+        <Route path="/participar-mapeamento" component={MappingQuestion} /> 
 
         {/* Home page */}
         <Route path="/" component={Home} /> 
