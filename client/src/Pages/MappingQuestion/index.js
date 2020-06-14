@@ -1,39 +1,16 @@
 import React from "react";
-import styled from "styled-components";
-import GostariadeParticipar from "./gostariadeparticipar_site_fundo.png";
-import GostariadeParticipar_App from "./gostariadeparticipar_fundo.png";
-import Description from "./Description";
+import Background from "./Background";
 import Button from "./Button";
-
-const Background = styled.div`
-  background-image: url(${GostariadeParticipar_App});
-  background-repeat: no-repeat;
-  background-position: center;
-  object-fit: cover;
-  background-size: cover;
-  width: 100vw;
-  min-height: 100vh;
-
-  @media (min-width: 1024px) {
-    background-image: url(${GostariadeParticipar});
-  }
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+import Description from "./Description";
+import Logo from "./Logo";
 
 export const MappingQuestion = ({ ...props }) => {
   return (
     <>
-      <Background>
-        <Container>
-          <Description />
-          <Button />
-        </Container>
-      </Background>
+      <Background />
+      <Logo />
+      <Description />
+      <Button />
     </>
   );
 };
