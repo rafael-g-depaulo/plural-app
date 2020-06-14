@@ -3,32 +3,41 @@ import styled from "styled-components";
 
 const Text = styled.h1`
   position: absolute;
-  width: 70vw;
-  height: 50vh;
   font-family: Town Text;
-  font-size: 2em;
   font-weight: 900;
-  font-stretch: normal;
   font-style: normal;
   line-height: 0.91;
   letter-spacing: normal;
   text-align: justify;
   color: #ffffff;
   text-transform: uppercase;
-  margin: 34vh 12vw 16vh 18vw;
+
+  @media (max-width: 599px) {
+    width: 65vw;
+    height: 28.6vh;
+    font-size: 2em;
+    margin: 33.3vh 18.9vw 38.1vh 16.1vw;
+  }
+
+  @media (min-width: 600px) and (max-width: 1023px) {
+    width: 50vw;
+    height: 50vh;
+    font-size: 2.9em;
+    margin: 37vh 25.9vw 19vh 24.1vw;
+  }
 
   @media (min-width: 1024px) {
     width: 35vw;
     height: 50vh;
-    font-size: 2.8em;
-    margin: 28vh 32vw 22vh 33vw;
+    font-size: 3em;
+    margin: 32vh 32vw 24vh 35.2vw;
   }
 
-  @media (min-height: 800px) {
+  @media (max-height: 650px) {
     width: 35vw;
     height: 50vh;
-    font-size: 3em;
-    margin: 32vh 32vw 24vh 33vw;
+    font-size: 2.8em;
+    margin: 29vh 32vw 27vh 35.2vw;
   }
 `;
 
