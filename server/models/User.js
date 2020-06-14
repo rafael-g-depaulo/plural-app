@@ -12,6 +12,7 @@ class User extends Model {
         city: DataTypes.STRING,
         phone_number: DataTypes.STRING,
         name: DataTypes.STRING,
+        active: DataTypes.BOOLEAN
       },
       { sequelize }
     ); 
