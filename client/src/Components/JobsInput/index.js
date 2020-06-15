@@ -46,12 +46,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Mapping() {
+export default function Mapping({
+  setJobs
+}) {
   const [newJob, setNewJob] = useState("");
   const classes = useStyles();
   const [chipData, setChipData] = useState([]);
+  const [ nextId, setNextId ] = useState(0)
 
-  useEffect(() => {}, [chipData]);
+  // whenever chipData updates, set jobs
+  useEffect(() => { setJobs(chipData.map(({ label }) => label)) }, [chipData, setJobs]);
 
   const handleDelete = (chipToDelete) => () => {
     setChipData((chips) =>
@@ -66,9 +70,9 @@ export default function Mapping() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    setChipData([...chipData, { key: 6, label: newJob }]);
-    setNewJob("");
-    console.log(chipData);
+    setChipData([...chipData, { key: nextId, label: newJob }]);
+    setNextId(id => id+1)
+    setNewJob("")
   }
 
   return (
@@ -78,16 +82,14 @@ export default function Mapping() {
           let icon;
 
           return (
-            <>
-              <li key={data.key}>
-                <Chip
-                  icon={icon}
-                  label={data.label}
-                  onDelete={handleDelete(data)}
-                  className={classes.chip}
-                />
-              </li>
-            </>
+            <li key={data.key}>
+              <Chip
+                icon={icon}
+                label={data.label}
+                onDelete={handleDelete(data)}
+                className={classes.chip}
+              />
+            </li>
           );
         })}
       </Paper>
