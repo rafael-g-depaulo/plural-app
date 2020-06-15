@@ -42,6 +42,12 @@ module.exports = {
       return res.status(401).json({ error: errorMessage });
     }
 
+    // Verify if user is already verified.
+    if(user.active !== true)
+    {
+      return res.status(401).json({error: "The user must verify its account."})
+    }
+
     const token = await Utils.signToken(userId, email);
 
     if (token == null) {
