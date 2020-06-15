@@ -59,7 +59,7 @@ export default function Mapping() {
     );
   };
 
-  function handleInputChange(e) {
+  function handleInputChange(e) { 
     setNewJob(e.target.value);
   }
 
