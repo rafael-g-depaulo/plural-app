@@ -23,7 +23,7 @@ export const Routes = ({ ...props }) => {
         <Route path="/participar-mapeamento" component={MappingQuestion} /> 
 
         {/* Home page */}
-        <Route path="/" component={Home} /> 
+        <Route path="/" component={Home} />
       </Switch>
     </Router>
   );
