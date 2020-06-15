@@ -1,26 +1,31 @@
 import React from "react";
 import styled from "styled-components";
+import { inputFontSize } from "Themes/default";
 
 const StyledSelect = styled.select`
-  padding: 20px 30px;
+  padding: 15px 20px;
   font-family: Town Text;
-  font-size: 24.5px;
+  font-size: ${inputFontSize}px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
   text-align: justify;
-  color: #ffffff;
   background: #000000;
   border: 2px solid #ffffff;
   border-radius: 50px;
   appearance: none;
 
+  color: ${(props) => props.color || "#ffffff"};
   width: ${(props) => props.width || "100%"};
 
   &:focus {
     outline: none;
+  }
+
+  @media (min-width: 500px) {
+    padding: 15px 30px;
   }
 `;
 
@@ -42,7 +47,7 @@ const months = [
 export const Select = ({ ...props }) => {
   return (
     <StyledSelect {...props} defaultValue="">
-      <option disabled value=""></option>
+      <option disabled value="" hidden />
       {months.map((monthName, index) => (
         <option value={index} key={index}>
           {monthName}

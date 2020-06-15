@@ -7,7 +7,7 @@ const Container = styled.div`
   padding-right: 30px;
   padding-top: 20px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 500px) {
     padding-right: 42px;
   }
 `;
@@ -18,7 +18,7 @@ const Label = styled.label`
   padding-left: 35px;
   cursor: pointer;
   font-family: Town Text;
-  font-size: 24.5px;
+  font-size: 20px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -27,8 +27,13 @@ const Label = styled.label`
   text-align: left;
   user-select: none;
   color: #ffffff;
+
+  @media (min-width: 500px) {
+    font-size: 24.5px;
+  }
 `;
 
+//Custom checkbox
 const Input = styled.input.attrs({ type: "checkbox" })`
   position: absolute;
   top: 0;
@@ -51,7 +56,7 @@ const StyledCheckbox = styled.span`
   border-radius: 50%;
 
   ${Label}:hover & {
-    background-color: #333333;
+    background-color: #222222;
   }
 
   //Checked dot

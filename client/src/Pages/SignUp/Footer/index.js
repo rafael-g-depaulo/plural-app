@@ -15,11 +15,9 @@ const Img = styled.img`
 
 export const Footer = ({ ...props }) => {
   return (
-    <>
-      <Container>
-        <Img src={computer} alt="Computador" />
-      </Container>
-    </>
+    <Container>
+      <Img src={computer} alt="Computador" />
+    </Container>
   );
 };
 

@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import FormattedInput from "react-number-format";
 import Input from "./Input";
-import MonthSelect from "./MonthSelect";
 import InputLabel from "./InputLabel";
+import InputError from "./InputError";
+import MonthSelect from "./MonthSelect";
 import TermsConditions from "./TermsConditions";
 import SubmitButton from "./SubmitButton";
 
@@ -11,16 +13,16 @@ const Form = styled.form`
   flex-direction: column;
   padding-bottom: 30px;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 500px) {
     padding-bottom: 50px;
   }
 `;
 
 const Title = styled.h2`
   margin: 0;
-  padding: 0 30px 47px;
+  padding: 0 100px 47px 20px;
   font-family: Town Display;
-  font-size: 24.5px;
+  font-size: 20px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -28,6 +30,11 @@ const Title = styled.h2`
   letter-spacing: normal;
   text-align: justify;
   color: #f26522;
+
+  @media (min-width: 500px) {
+    padding: 0 100px 47px 30px;
+    font-size: 24.5px;
+  }
 `;
 
 const Group = styled.div`
@@ -41,14 +48,22 @@ const Row = styled.div`
   justify-content: space-between;
 `;
 
-export const Display = ({ updateUser, ...props }) => {
+export const Display = ({
+  user,
+  errors,
+  onSubmit,
+  updateUser,
+  updateUserFormattedInput,
+  ...props
+}) => {
   return (
-    <Form>
+    <Form onSubmit={onSubmit} autocomplete="off">
       <Title>CADASTRO</Title>
 
       <Group>
         <InputLabel htmlFor="email">Qual seu email?</InputLabel>
         <Input id="email" name="email" type="email" onInput={updateUser} />
+        {errors.email && <InputError>{errors.email}</InputError>}
       </Group>
 
       <Group>
@@ -59,6 +74,9 @@ export const Display = ({ updateUser, ...props }) => {
           type="email"
           onInput={updateUser}
         />
+        {errors.email_confirm && (
+          <InputError>{errors.email_confirm}</InputError>
+        )}
       </Group>
 
       <Group>
@@ -69,6 +87,7 @@ export const Display = ({ updateUser, ...props }) => {
           type="password"
           onInput={updateUser}
         />
+        {errors.password && <InputError>{errors.password}</InputError>}
       </Group>
 
       <Group>
@@ -79,6 +98,9 @@ export const Display = ({ updateUser, ...props }) => {
           type="password"
           onInput={updateUser}
         />
+        {errors.password_confirm && (
+          <InputError>{errors.password_confirm}</InputError>
+        )}
       </Group>
 
       <Group>
@@ -96,37 +118,58 @@ export const Display = ({ updateUser, ...props }) => {
       <Group>
         <InputLabel>Qual da data do seu nascimento?</InputLabel>
         <Row>
-          <Input
+          <FormattedInput
+            customInput={Input}
+            onValueChange={(values) => {
+              const { formattedValue } = values;
+              updateUserFormattedInput("day", formattedValue);
+            }}
+            format="##"
+            isNumericString={true}
             id="day"
             name="day"
-            type="text"
-            maxlength="2"
-            pattern="((0?[1-9])|([12][0-9])|(3[01]))"
+            type="tel"
             width="28%"
-            onInput={updateUser}
           />
           <MonthSelect
             id="month"
             name="month"
-            width="40%"
             onInput={updateUser}
+            width="40%"
           />
-          <Input
+          <FormattedInput
+            customInput={Input}
+            onValueChange={(values) => {
+              const { formattedValue } = values;
+              updateUserFormattedInput("year", formattedValue);
+            }}
+            format="####"
+            isNumericString={true}
             id="year"
             name="year"
-            type="text"
-            maxlength="4"
-            pattern="(19[0-9]{2})|(200)[0-4]"
-            step="1"
+            type="tel"
             width="28%"
-            onInput={updateUser}
           />
         </Row>
+        {errors.day && <InputError>{errors.day}</InputError>}
+        {errors.year && <InputError>{errors.year}</InputError>}
       </Group>
 
       <Group>
         <InputLabel htmlFor="phone">Quer nos passar seu Whatsapp?</InputLabel>
-        <Input id="phone" name="phone" type="tel" onInput={updateUser} />
+        <FormattedInput
+          customInput={Input}
+          onValueChange={(values) => {
+            const { formattedValue } = values;
+            updateUserFormattedInput("phone", formattedValue);
+          }}
+          format="(##) #####-####"
+          isNumericString={true}
+          mask="_"
+          id="phone"
+          name="phone"
+          type="tel"
+        />
       </Group>
 
       <TermsConditions />

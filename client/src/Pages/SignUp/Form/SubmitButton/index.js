@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { buttonFontSize } from "Themes/default";
 
 const StyledInput = styled.input.attrs({ type: "submit" })`
-  padding: 20px 0;
+  padding: 15px 0;
   font-family: Town Display;
-  font-size: 24.5px;
+  font-size: ${buttonFontSize}px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -18,6 +19,14 @@ const StyledInput = styled.input.attrs({ type: "submit" })`
 
   &:focus {
     outline: none;
+  }
+
+  &:hover {
+    background-color: #222222;
+  }
+
+  &:active {
+    background-color: #222222;
   }
 `;
 

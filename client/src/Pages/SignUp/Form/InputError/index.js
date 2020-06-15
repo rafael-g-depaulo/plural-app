@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { labelFontSize } from "Themes/default";
 
-const Label = styled.label`
-  padding: 0 20px 10px;
+const Error = styled.span`
+  padding: 5px 30px;
   font-family: Town Text;
   font-size: ${labelFontSize}px;
   font-weight: normal;
@@ -12,15 +12,15 @@ const Label = styled.label`
   line-height: normal;
   letter-spacing: normal;
   text-align: justify;
-  color: #ffffff;
+  color: #aaaaaa;
 
   @media (min-width: 500px) {
-    padding: 0 30px 10px;
+    padding: 5px 30px;
   }
 `;
 
-export const InputLabel = ({ ...props }) => {
-  return <Label {...props}>{props.children}</Label>;
+export const InputError = ({ ...props }) => {
+  return <Error {...props}>{props.children}</Error>;
 };
 
-export default InputLabel;
+export default InputError;

@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { inputFontSize } from "Themes/default";
 
 const StyledInput = styled.input`
-  padding: 20px 30px;
+  padding: 15px 20px;
   font-family: Town Text;
-  font-size: 24.5px;
+  font-size: ${inputFontSize}px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -20,6 +21,10 @@ const StyledInput = styled.input`
 
   &:focus {
     outline: none;
+  }
+
+  @media (min-width: 500px) {
+    padding: 15px 30px;
   }
 `;
 

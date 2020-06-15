@@ -11,18 +11,18 @@ const BackgroundImage = styled.div`
   object-fit: cover;
   background-size: cover;
   min-height: 100vh;
+  min-width: fit-content;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 500px) {
     background-image: url(${bg_site});
   }
 `;
 
 const Container = styled.div`
-  max-width: 590px;
-  margin: 0 80px;
+  margin: 0 8%;
 
-  @media (min-width: 768px) {
-    max-width: 450px;
+  @media (min-width: 500px) {
+    max-width: 440px;
     margin: 0 auto;
   }
 `;
