@@ -8,9 +8,9 @@ const Mascarade = styled.div`
     background-image: url(${img});
     margin: 0 auto;
     object-fit: contain;
-    background-position: top center;
+    background-position: 0% 0%;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 95%;
     grid-template-columns: 10% 80% 10%;
     grid-template-rows: 40% 40% 20%;
     display: inline-grid;
@@ -27,41 +27,27 @@ const Mascarade = styled.div`
         background-position: 54% 0%;
 
     }
-    @media(min-width:781px) and (max-height:810px){
+    @media(min-width:781px) and (max-width:810px){
         grid-template-rows: 60% 15% 25%;
     }
         
 
-    @media(min-width:812px)and(max-width:1020px){
+    @media(min-width:812px)and (max-width:1020px){
         grid-template-rows: 20% 25% 55%;
     }
 
-    @media(min-width:1024px)and(max-width:1300px){
-        grid-template-rows: 40% 10% 50%;
+    @media (min-width:1022px) and (max-width:1260px){
+        grid-template-rows: 5% 10% 85%;
     }
 
     @media (min-width:1680px) {
         background-size: 55%;
+        background-position: 45% 0%;
         grid-template-rows: 45% 20% 35%;
     }
 
-
-
-
-
-
 `;
-// const Mascarade = styled.img`
-//     position: relative;
-//     width:100%;
-//     right: 0;
 
-//     @media (max-width: 1300px){
-//         width: 200%;
-//         right: 50%;
-//     }
-
-// `;
 
 function Mask(props){
 
