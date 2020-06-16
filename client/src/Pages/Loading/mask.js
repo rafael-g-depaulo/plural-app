@@ -11,15 +11,42 @@ const Mascarade = styled.div`
     background-position: top center;
     background-repeat: no-repeat;
     background-size: 100%;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 40% 40% 20%;
+    display: inline-grid;
 
-    @media(max-width: 780px){
-        background-size: 200%;
+    @media(max-width:680px){
+        background-size:200%;
+        grid-template-rows: 10% 0% 90%;
+        background-position: 54% 0%;
+    }
+
+    @media(min-width:681px) and (max-width:780px){
+        background-size:200%;
+        grid-template-rows: 70% 15% 15%;
+        background-position: 54% 0%;
 
     }
-    @media(max-width:1300px){
-        /* background-size: 200%; */
-        background-position: top center;
+    @media(min-width:781px) and (max-height:810px){
+        grid-template-rows: 60% 15% 25%;
     }
+        
+
+    @media(min-width:812px)and(max-width:1020px){
+        grid-template-rows: 20% 25% 55%;
+    }
+
+    @media(min-width:1024px)and(max-width:1300px){
+        grid-template-rows: 40% 10% 50%;
+    }
+
+    @media (min-width:1680px) {
+        background-size: 55%;
+        grid-template-rows: 45% 20% 35%;
+    }
+
+
+
 
 
 
