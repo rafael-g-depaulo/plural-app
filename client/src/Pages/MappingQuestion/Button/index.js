@@ -10,26 +10,28 @@ const Container = styled.div`
   position: absolute;
 
   @media (max-width: 599px) {
-    width: 55vw;
+    width: 52vw;
     height: 6vh;
-    margin: 69vh 29.1vw 25.1vh 15.9vw;
+    margin-top: 69vh;
+    margin-left: 15.9vw;
   }
 
   @media (min-width: 600px) and (max-width: 1023px) {
     width: 41vw;
     height: 7vh;
-    margin: 73.1vh 25.1vw 19.9vh 23.9vw;
+    margin-top: 73.1vh;
+    margin-left: 23.9vw;
   }
 
   @media (min-width: 1024px) {
-    width: 25.5vw;
+    width: 22vw;
     height: 7.3vh;
-    margin: 76.1vh 39.3vw 16.6vh 35.2vw;
-  }
+    margin-top: 78.1vh;
+    margin-left: 35.2vw;
 
-  @media (max-height: 650px) {
-    width: 23vw;
-    margin: 84vh 41.8vw 14.5vh 35.2vw;
+    @media (max-height: 650px) {
+      margin-top: 84.1vh;
+    }
   }
 `;
 
@@ -37,7 +39,7 @@ const ButtonBox = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-radius: 30px;
+  border-radius: 5rem;
   font-family: Town Text;
   font-weight: 700;
   text-transform: uppercase;
@@ -49,7 +51,7 @@ const ButtonBox = styled(Link)`
   color: #ffffff;
 
   @media (max-width: 599px) {
-    width: 22vw;
+    width: 20vw;
     height: 6vh;
     border: 1px #fffdfd solid;
     font-size: 1.2em;
@@ -63,15 +65,10 @@ const ButtonBox = styled(Link)`
   }
 
   @media (min-width: 1024px) {
-    width: 10vw;
-    height: 7.5vh;
+    width: 8.7vw;
+    height: 100%;
     border: 2px #fffdfd solid;
-    font-size: 1.5em;
-  }
-
-  @media (max-height: 650px) {
-    width: 8.5vw;
-    height: 9vh;
+    font-size: 1.6em;
   }
 `;
 
