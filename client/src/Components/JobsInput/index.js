@@ -3,12 +3,6 @@ import styled from "styled-components";
 
 import ChipInput from "material-ui-chip-input";
 
-const Group = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 20px;
-`;
-
 export default function Mapping() {
   const [newJob, setNewJob] = useState();
 
@@ -23,14 +17,10 @@ export default function Mapping() {
   }
 
   return (
-    <>
-      <Group>
-        <ChipInput
-          onChange={(chips) => handleSubmit(chips)}
-          onDelete={(chips) => handleDelete(chips)}
-          newChipKeyCodes={[32, 13]}
-        />
-      </Group>
-    </>
+    <ChipInput
+      onChange={(chips) => handleSubmit(chips)}
+      onDelete={(chips) => handleDelete(chips)}
+      newChipKeyCodes={[32, 13]}
+    />
   );
 }
