@@ -11,6 +11,7 @@ module.exports = {
       },
       provider_id: {
         type: Sequelize.STRING,
+        unique: true
       },
       provider: {
         type: Sequelize.STRING,

@@ -6,6 +6,7 @@ module.exports = {
       queryInterface.addColumn("users", "email", {
         type: Sequelize.STRING,
         allowNull: true,
+        unique: true
       }),
       queryInterface.addColumn("users", "password", {
         type: Sequelize.STRING,
@@ -14,6 +15,7 @@ module.exports = {
       queryInterface.addColumn("users", "phone_number", {
         type: Sequelize.STRING,
         allowNull: true,
+        unique: true
       }),
       queryInterface.addColumn("users", "birthdate", {
         type: Sequelize.DATE,
