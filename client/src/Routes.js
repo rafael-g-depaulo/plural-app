@@ -6,8 +6,6 @@ import AreYou from "Pages/AreYouLGBTQIA"
 import Home from "Pages/Home"
 import MappingQuestion from "Pages/MappingQuestion"
 
-import Mapping from "Components/JobsInput/";
-
 export const Routes = ({ ...props }) => {
   return (
     <Router basename="/"> 
