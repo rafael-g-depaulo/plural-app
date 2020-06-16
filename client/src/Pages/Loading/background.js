@@ -16,8 +16,9 @@ const Background = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
 
-    @media(max-width:790px){
+    @media(max-width:760px){
         background-image: url(${imgMobile});
 
     }
