@@ -13,31 +13,32 @@ const Text = styled.h1`
   text-transform: uppercase;
 
   @media (max-width: 599px) {
-    width: 65vw;
-    height: 28.6vh;
     font-size: 2em;
-    margin: 33.3vh 18.9vw 38.1vh 16.1vw;
+    margin-top: 33.3vh;
+    margin-left: 16.1vw;
   }
 
   @media (min-width: 600px) and (max-width: 1023px) {
-    width: 50vw;
-    height: 50vh;
-    font-size: 2.9em;
-    margin: 37vh 25.9vw 19vh 24.1vw;
+    font-size: 3em;
+    margin-top: 37vh;
+    margin-left: 24.1vw;
   }
 
   @media (min-width: 1024px) {
-    width: 35vw;
-    height: 50vh;
-    font-size: 3em;
-    margin: 32vh 32vw 24vh 35.2vw;
+    font-size: 3.1em;
+    margin-top: 33vh;
+    margin-left: 35.2vw;
+
+    @media (max-height: 650px) {
+      font-size: 2.9em;
+      margin-top: 30vh;
+    }
   }
 
-  @media (max-height: 650px) {
-    width: 35vw;
-    height: 50vh;
-    font-size: 2.8em;
-    margin: 29vh 32vw 27vh 35.2vw;
+  @media (min-width: 1300px) and (min-height: 820px) {
+    font-size: 3.5em;
+    margin-top: 31vh;
+    margin-left: 35.2vw;
   }
 `;
 
