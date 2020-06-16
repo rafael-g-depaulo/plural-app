@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import ChipInput from "material-ui-chip-input";
@@ -27,7 +27,7 @@ export default function Mapping() {
       <Group>
         <ChipInput
           onChange={(chips) => handleSubmit(chips)}
-          onDelete={(newJob) => handleDelete(newJob)}
+          onDelete={(chips) => handleDelete(chips)}
           newChipKeyCodes={[32, 13]}
         />
       </Group>
