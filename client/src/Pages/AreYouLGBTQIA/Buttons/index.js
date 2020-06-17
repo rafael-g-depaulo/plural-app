@@ -10,21 +10,31 @@ const Container = styled.div`
   justify-content: space-between;
 
   @media (max-width: 599px) {
-    width: 39.4vw;
+    width: 37.4vw;
     height: 17.4vh;
-    margin: 61.5vh 30.3vw 21.1vh 30.3vw;
+    margin-top: 61.5vh;
+    margin-left: 31.3vw;
   }
 
   @media (min-width: 600px) and (max-width: 1023px) {
-    width: 25vw;
+    width: 29vw;
     height: 19vh;
-    margin: 62vh 37.5vw 19vh 37.5vw;
+    margin-top: 59vh;
+    margin-left: 35.5vw;
   }
 
   @media (min-width: 1024px) {
-    width: 16.4vw;
-    height: 21.1vh;
-    margin: 63.6vh 41.7vw 20vh 41.9vw;
+    width: 16vw;
+    height: 23vh;
+    margin-top: 62.6vh;
+    margin-left: 42vw;
+  }
+
+  @media (min-width: 1300px) and (min-height: 700px) {
+    width: 18vw;
+    height: 23vh;
+    margin-top: 62.2vh;
+    margin-left: 41vw;
   }
 `;
 
@@ -41,27 +51,29 @@ const ButtonBox = styled(Link)`
   text-transform: uppercase;
   text-align: center;
   color: #ffffff;
+  border-radius: 5rem;
+  width: 100%;
 
   @media (max-width: 599px) {
-    width: 37.4vw;
     height: 5.8vh;
-    border-radius: 30px;
     font-size: 1.2em;
     border: solid 1px #fffdfd;
   }
 
   @media (min-width: 600px) and (max-width: 1023px) {
-    width: 25vw;
     height: 6.1vh;
-    border-radius: 30px;
     font-size: 1.5em;
     border: solid 2px #fffdfd;  
   }
 
   @media (min-width: 1024px) {
-    width: 16.4vw;
-    height: 7vh;
-    border-radius: 30px;
+    height: 7.5vh;
+    font-size: 1.7em;
+    border: solid 2px #fffdfd;
+  }
+
+  @media (min-width: 1300px) and (min-height: 700px) {
+    height: 7.8vh;
     font-size: 1.7em;
     border: solid 2px #fffdfd;
   }

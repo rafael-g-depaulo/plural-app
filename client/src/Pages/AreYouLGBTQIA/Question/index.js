@@ -5,21 +5,23 @@ const Container = styled.div`
   position: absolute;
 
   @media (max-width: 599px) {
-    width: 64.3vw;
-    height: 13.6vh;
-    margin: 34.5vh 19.7vw 52.9vh 16vw;
+    margin-top: 34.5vh;
+    margin-left: 16vw;
   }
 
   @media (min-width: 600px) and (max-width: 1023px) {
-    width: 40vw;
-    height: 17vh;
-    margin: 32vh 36vw 51vh 24vw;
+    margin-top: 32vh;
+    margin-left: 29vw;
   }
 
   @media (min-width: 1024px) {
-    width: 28.3vw;
-    height: 21.2vh;
-    margin: 32vh 36.6vw 50.8vh 35.2vw;
+    margin-top: 28vh;
+    margin-left: 38.2vw;
+  }
+
+  @media (min-width: 1300px) and (min-height: 700px) {
+    margin-top: 28.5vh;
+    margin-left: 37.2vw;
   }
 `;
 
@@ -43,11 +45,15 @@ const Text = styled.h1`
   }
 
   @media (min-width: 600px) and (max-width: 1023px) {
-    font-size: 3.6em;
+    font-size: 4em;
   }
 
   @media (min-width: 1024px) {
-    font-size: 4em;
+    font-size: 4.2em;
+  }
+
+  @media (min-width: 1300px) and (min-height: 700px) {
+    font-size: 4.6em;
   }
 `;
 
