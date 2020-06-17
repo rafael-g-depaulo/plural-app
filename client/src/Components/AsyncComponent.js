@@ -3,12 +3,13 @@ import Loading from "../Pages/Loading/index"
 
 function AsyncComponent({
     component,
+    children,
     ...props
 }){
 
     return(
         <Suspense fallback={<Loading />}{...props}>
-            {component}
+            {component ?? children}
         </Suspense>
     )
 }
