@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import AsyncComponent from 'Components/AsyncComponent'
 
-import Home from "Pages/Home"
-import SignUp from "Pages/SignUp"
-import Login from 'Pages/Login'
-import AreYou from "Pages/AreYouLGBTQIA"
-import MappingQuestion from "Pages/MappingQuestion"
+const Home = lazy(() => import("Pages/Home"))
+const SignUp = lazy(() => import("Pages/SignUp"))
+const Login = lazy(() => import("Pages/Login"))
+const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
+const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
 
 export const Routes = ({ ...props }) => {
   return (
@@ -14,23 +15,37 @@ export const Routes = ({ ...props }) => {
 
         {/* página de login */}
         <Route path="/login">
-          <Login />
+          <AsyncComponent>
+            <Login />
+          </AsyncComponent>
         </Route>
 
         {/* página de cadastro */}
         <Route  path="/signup">
-          <SignUp />
+          <AsyncComponent>
+            <SignUp />
+          </AsyncComponent>
         </Route>
 
         {/* página da pergunta se um usuário é LGBTQ+ */}
-        <Route path="/areyouLGBTQIA" component={AreYou} />
+        <Route path="/areyouLGBTQIA">
+          <AsyncComponent>
+            <AreYou />
+          </AsyncComponent>
+        </Route>
 
         {/* página que pergunta se um usuário quer participar do mapeamento */}
-        <Route path="/participar-mapeamento" component={MappingQuestion} /> 
+        <Route path="/participar-mapeamento">        
+          <AsyncComponent>
+            <MappingQuestion />
+          </AsyncComponent>
+        </Route>
 
         {/* Home page */}
         <Route exact path="/">
-          <Home />
+          <AsyncComponent>
+            <Home />
+          </AsyncComponent>
         </Route>
       </Switch>
     </Router>
