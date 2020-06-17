@@ -1,16 +1,11 @@
 import React from "react"
 import styled from 'styled-components';
 import Mask from './mask';
-import PluralLogo from '../../Components/Logo';
+import PluralLogo from 'Components/Logo';
 import Backg from './background';
 
-const Grid = styled.div`
-    width:100%;
-    height: 100%;
-`;
-
 const LogoDiv = styled.div`
-
+    grid-area: logo;
     display: flex;
     justify-content:center;
     height:100%;
@@ -60,28 +55,16 @@ const StyleLogo = styled(PluralLogo)`
 
 `;
 
-function Loading(){
-    return( 
-        
-        <Backg>
-            <Mask>
-                <Grid/>
-                <Grid/>
-                <Grid/>
-                <Grid/>
-                <Grid/>
-                <Grid/>
-                <Grid/>
-            <LogoDiv>
-                    <StyleLogo/>
-            </LogoDiv>
-            <Grid/>
-
-
-            </Mask>
-           
-        </Backg>
-    )
+function Loading() {
+  return (
+    <Backg>
+      <Mask>
+        <LogoDiv>
+          <StyleLogo />
+        </LogoDiv>
+      </Mask>
+    </Backg>
+  )
 }
 
 export default Loading;

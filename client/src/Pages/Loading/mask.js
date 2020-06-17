@@ -11,8 +11,15 @@ const Mascarade = styled.div`
     background-position: 0% 0%;
     background-repeat: no-repeat;
     background-size: 95%;
+
     grid-template-columns: 10% 80% 10%;
     grid-template-rows: 40% 40% 20%;
+    grid-template-areas: 
+        ". . ."
+        ". . ."
+        ". logo ."
+    ;
+
     display: inline-grid;
 
     @media(max-width:680px){
@@ -54,7 +61,7 @@ function Mask(props){
     return(
         <Mascarade>
             {props.children}
-            </Mascarade>
+        </Mascarade>
     )
 }
 
