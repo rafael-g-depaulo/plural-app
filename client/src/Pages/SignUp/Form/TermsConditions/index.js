@@ -75,14 +75,23 @@ const StyledCheckbox = styled.span`
   }
 `;
 
+const MyLink = styled.a`
+  color: #f26522;
+  text-decoration: none;
+
+  &:hover, &:active {
+    color: #ebce8b;
+  }
+`
+
 export const TermsConditions = ({ ...props }) => {
   return (
     <Container>
       <Label>
         <Input />
         <StyledCheckbox />
-        Eu concordo com os <b>Termos e Condições</b> e com a{" "}
-        <b>Política de Privacidade</b> do Plural
+        Eu concordo com os <b><MyLink href="https://www.google.com" target="_blanc" rel="noopener noreferrer">Termos e Condições</MyLink></b> e com a{" "}
+        <b><MyLink href="https://www.google.com" target="_blanc" rel="noopener noreferrer">Política de Privacidade</MyLink></b> do Plural
       </Label>
     </Container>
   );

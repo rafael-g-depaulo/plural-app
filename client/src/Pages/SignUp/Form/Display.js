@@ -156,7 +156,7 @@ export const Display = ({
       </Group>
 
       <Group>
-        <InputLabel htmlFor="phone">Quer nos passar seu Whatsapp?</InputLabel>
+        <InputLabel htmlFor="phone">Quer nos passar seu Whatsapp? (opcional)</InputLabel>
         <FormattedInput
           customInput={Input}
           onValueChange={(values) => {
