@@ -8,7 +8,7 @@ export const Routes = ({
 }) => {
 
   return (
-    <Router basename="/">
+    <Router basename="/"> 
       <Switch>
         <Route path="/login">
           <Login />
