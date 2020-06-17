@@ -1,9 +1,10 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import Home from "Pages/Home"
+import SignUp from "Pages/SignUp"
 import Login from 'Pages/Login'
 import AreYou from "Pages/AreYouLGBTQIA"
-import Home from "Pages/Home"
 import MappingQuestion from "Pages/MappingQuestion"
 
 export const Routes = ({ ...props }) => {
@@ -16,6 +17,11 @@ export const Routes = ({ ...props }) => {
           <Login />
         </Route>
 
+        {/* página de cadastro */}
+        <Route  path="/signup">
+          <SignUp />
+        </Route>
+
         {/* página da pergunta se um usuário é LGBTQ+ */}
         <Route path="/areyouLGBTQIA" component={AreYou} />
 
@@ -23,7 +29,7 @@ export const Routes = ({ ...props }) => {
         <Route path="/participar-mapeamento" component={MappingQuestion} /> 
 
         {/* Home page */}
-        <Route path="/">
+        <Route exact path="/">
           <Home />
         </Route>
       </Switch>
