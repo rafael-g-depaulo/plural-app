@@ -13,7 +13,7 @@ const Img = styled.img`
   width: 100%;
 `;
 
-export const Footer = ({ ...props }) => {
+export const ComputerAsset = ({ ...props }) => {
   return (
     <Container>
       <Img src={computer} alt="Computador" />
@@ -21,4 +21,4 @@ export const Footer = ({ ...props }) => {
   );
 };
 
-export default Footer;
+export default ComputerAsset;
