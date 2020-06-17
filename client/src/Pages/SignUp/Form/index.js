@@ -14,6 +14,7 @@ export const Form = ({ ...props }) => {
       let error;
       switch (name) {
         case "email":
+          /*eslint no-useless-escape: "off" */
           const validEmailRegex = RegExp(
             /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
           );
