@@ -1,0 +1,1 @@
+export const StrapiBaseUrl = "https://plural-server.herokuapp.com"
