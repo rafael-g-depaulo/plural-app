@@ -1,7 +1,11 @@
 /* eslint-disable no-restricted-globals */
+import { resolve } from "path";
+
 var CACHE_NAME = "plural-app";
 
-var urlsToCache = ["/login"];
+const src = resolve(__dirname, "../", "src/");
+
+var urlsToCache = [`${src}/logo.svg`, "/robots.txt"];
 
 self.addEventListener("install", function (event) {
   // Perform install steps
@@ -14,12 +18,13 @@ self.addEventListener("install", function (event) {
 
 self.addEventListener("fetch", function (event) {
   event.respondWith(
-    caches.match(event.request).then(function (response) {
-      // Cache hit - return response
-      if (response) {
-        return response;
-      }
-      return fetch(event.request);
-    })
+    caches
+      .match(event.request)
+      .then((response) => {
+        return response || fetch(event.request);
+      })
+      .catch(() => {
+        return caches.match("/login");
+      })
   );
 });
