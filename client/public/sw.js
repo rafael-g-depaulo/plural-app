@@ -1,14 +1,9 @@
 /* eslint-disable no-restricted-globals */
-import { resolve } from "path";
-
 var CACHE_NAME = "plural-app";
 
-const src = resolve(__dirname, "../", "src/");
-
-var urlsToCache = [`${src}/logo.svg`, "/robots.txt"];
+var urlsToCache = ["/images/icons/icon-72x72.png"];
 
 self.addEventListener("install", function (event) {
-  // Perform install steps
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
       return cache.addAll(urlsToCache);
