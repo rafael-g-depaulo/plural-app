@@ -44,6 +44,10 @@
       "last 1 safari version"
     ]
   },
+  "engines": {
+    "node": ">= 12.x",
+    "yarn": "1.x"
+  },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
