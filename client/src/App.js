@@ -5,7 +5,7 @@ import GlobalStyles from 'GlobalStyles'
 import Fonts from 'Fonts'
 import Routes from 'Routes'
 
-const App = () => {
+const App = () => { 
   return (
     <>
       <Fonts />
