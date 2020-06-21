@@ -4,6 +4,9 @@ const utils = require("../utils");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
+  async showCurrentUser(req, res) {
+    return res.status(200).send({current_user: req.decoded.user})
+  },
   async create(req, res) {
     const { email, password, name, birthdate, phoneNumber, city } = req.body;
 

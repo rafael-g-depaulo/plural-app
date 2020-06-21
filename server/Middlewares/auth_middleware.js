@@ -4,6 +4,8 @@ module.exports = {
   verifyToken(req, res, next) {
     const token = req.cookies.token;
 
+    console.log("Provided token:", token);
+
     if (token) {
       jwt.verify(token, process.env.TOKEN_SECRET_KEY, function (err, decoded) {
         if (err) {
@@ -16,6 +18,8 @@ module.exports = {
         next();
       });
     } else {
+      console.log("\n[ERROR] No token provided.\n");
+
       return res.status(403).json({ error: "No token provided." });
     }
   },
