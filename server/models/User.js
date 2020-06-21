@@ -15,7 +15,7 @@ class User extends Model {
         active: DataTypes.BOOLEAN
       },
       { sequelize }
-    ); 
+    );
   }
 
   static associate(models) {
