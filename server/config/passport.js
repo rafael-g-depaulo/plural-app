@@ -7,6 +7,7 @@ async function createUserFromProvider(providerId, provider) {
   const user = await User.create({
     provider_id: providerId,
     provider: provider,
+    active: true
   });
 
   console.log(`Created user: ${JSON.stringify(user)}`);

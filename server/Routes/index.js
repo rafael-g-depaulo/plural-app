@@ -10,6 +10,8 @@ import MappingRouter from "./MappingRouter";
 
 import User from "models/User";
 
+import AuthMiddleware from "Middlewares/auth_middleware"
+
 // use dependency injection in module
 export default ({ passport }, config = { mergeParams: true }) => express.Router(config)
   .use("/auth/facebook", FacebookRouter({ passport }, config))
