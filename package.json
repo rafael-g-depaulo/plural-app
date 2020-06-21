@@ -7,7 +7,7 @@
     "start": "if-env NODE_ENV=production && yarn start:prod || yarn start:dev",
     "dev": "yarn start:dev",
     "prod": "yarn start:prod",
-    "start:dev": "nodemon --exec babel-node -r ./node_modules/dotenv/config --presets @babel/env ./server/index.js",
+    "start:dev": "nodemon --exec babel-node --ignore './client/' -r ./node_modules/dotenv/config --presets @babel/env ./server/index.js",
     "start:prod": "yarn serve",
     "serve": "node -r dotenv/config build",
     "build": "yarn build:client && yarn build:server",
