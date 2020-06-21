@@ -7,6 +7,8 @@ const SignUp = lazy(() => import("Pages/SignUp"))
 const Login = lazy(() => import("Pages/Login"))
 const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
 const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
+const Blog = lazy(() => import("Pages/Posts/Blog"))
+
 
 export const Routes = ({ ...props }) => {
   return (
@@ -38,6 +40,11 @@ export const Routes = ({ ...props }) => {
         <Route path="/participar-mapeamento">        
           <AsyncComponent>
             <MappingQuestion />
+          </AsyncComponent>
+        </Route>
+        <Route path="/api/blog/:id_post">        
+          <AsyncComponent>
+            <Blog />
           </AsyncComponent>
         </Route>
 
