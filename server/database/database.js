@@ -1,5 +1,5 @@
-import dotenv from 'dotenv'
-dotenv.config()
+const dotenv = require("dotenv");
+dotenv.config();
 
 module.exports = {
   dialect: "postgres",
@@ -9,5 +9,6 @@ module.exports = {
   database: process.env.DB_NAME,
   define: {
     timestamps: true,
+    underscored: true,
   },
 };
