@@ -1,7 +1,8 @@
 import { Router } from "express";
-const UsersController = require("../../controllers/users_controller");
+import UsersController from "controllers/users_controller"
+import AuthMiddleware from "Middlewares/AuthMiddleware";
 
-export default ({ AuthMiddleware }, options) => {
+export default ({  }, options) => {
   return Router(options)
     .post("/register", UsersController.create)
     .get("/verify-email/:token", UsersController.verifyEmail)

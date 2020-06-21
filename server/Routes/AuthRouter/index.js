@@ -1,6 +1,6 @@
 import { Router } from "express";
-const AuthController = require("../../controllers/auth_controller");
-const AuthMiddleware = require("../../Middlewares/auth_middleware");
+import AuthController from "controllers/auth_controller"
+import AuthMiddleware from "Middlewares/AuthMiddleware"
 
 export default ({}, options) => {
   return Router(options)
