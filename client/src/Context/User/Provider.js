@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { UserContext } from "./index.js";
-import { getCurrentUser } from "../../api";
+import { getCurrentUser } from "Api/User";
 
 export function UserProvider(props) {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,9 +24,9 @@ export function UserProvider(props) {
           "Successfully fetched current user.",
           response.data.current_user
         );
-      } catch (error) {
+      } catch (err) {
         !didCancel && setCurrentUser(null);
-        !didCancel && setError(error.data?.status);
+        !didCancel && setError(err.data?.status);
 
         console.log("An error occured while fetching current user.");
 
@@ -42,6 +42,8 @@ export function UserProvider(props) {
       didCancel = true;
     };
   }, []);
+
+  if (error) console.warn("UserProvider Error:", error)
 
   return isLoading === true ? (
     <h1>Loading</h1>
