@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn dev",
-    "dev": "nodemon --exec babel-node -r ./node_modules/dotenv/config --presets @babel/env ./server/index.js",
+    "dev": "nodemon --exec babel-node --ignore './client/' -r ./node_modules/dotenv/config --presets @babel/env ./server/index.js",
     "prod": "yarn install-deps && yarn clean && yarn build && yarn serve",
     "serve": "node -r dotenv/config build",
     "build": "yarn build-client && yarn build-server",
