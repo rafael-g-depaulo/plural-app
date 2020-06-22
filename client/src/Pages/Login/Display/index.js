@@ -127,6 +127,12 @@ const Icon = styled(FontAwesomeIcon)`
   margin-left: 5px;
 `
 
+const SocialLink = ({
+  href,
+  children,
+}) => (
+  <a href={href} target="_blanc" rel="noopener" >{ children }</a>
+)
 
 export const Display = ({
   LinkComponent = "span",
@@ -135,8 +141,6 @@ export const Display = ({
   pwd = "",
   onChangePwd = () => {}, 
   onSubmit = () => {},
-  facebookLogin = () => {},
-  googleLogin = () => {},
   ...props
 }) => {
   return (
@@ -159,8 +163,8 @@ export const Display = ({
         {/* </form> */}
         <Text>OU ENTRE COM<br/>SUAS REDES SOCIAIS:</Text>
         <Social>
-          <SocialButton onClick={facebookLogin} color="#003172" hcolor="#004db3" acolor="#0060de"><Box>Entre com <Icon icon={faFacebook} /></Box></SocialButton>
-          <SocialButton onClick={googleLogin} color="#9f005d" hcolor="#c50073" acolor="#d4007c"><Box>Entre com <Icon icon={faGooglePlus} /></Box></SocialButton>
+          <SocialLink href={`${process.env.REACT_APP_SERVER_URL}/api/auth/facebook`}><SocialButton color="#003172" hcolor="#004db3" acolor="#0060de"><Box>Entre com <Icon icon={faFacebook} /></Box></SocialButton></SocialLink>
+          <SocialLink href={`${process.env.REACT_APP_SERVER_URL}/api/auth/google`}><SocialButton color="#9f005d" hcolor="#c50073" acolor="#d4007c"><Box>Entre com <Icon icon={faGooglePlus} /></Box></SocialButton></SocialLink>
         </Social>
         <Parceiros />
       </Content>
