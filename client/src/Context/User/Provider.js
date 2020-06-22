@@ -20,10 +20,10 @@ export function UserProvider(props) {
 
         !didCancel && setCurrentUser(response.data.current_user);
 
-        console.log(
-          "Successfully fetched current user.",
-          response.data.current_user
-        );
+        // console.log(
+        //   "Successfully fetched current user.",
+        //   response.data.current_user
+        // );
       } catch (err) {
         !didCancel && setCurrentUser(null);
         !didCancel && setError(err.data?.status);
