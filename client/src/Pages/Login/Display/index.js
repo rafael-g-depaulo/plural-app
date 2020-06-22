@@ -10,6 +10,7 @@ import Input from './Input'
 import Label from './Label'
 import Parceiros from './Parceiros'
 import Button from './Button'
+import SocialLink from './SocialLink'
 
 import bgDesktop from './bg_desktop.png'
 import bgMobile from './bg_mobile.png'
@@ -94,31 +95,10 @@ const Text = styled.span`
   margin-bottom: 20px;
 `
 
-const SocialButton = styled(Button)`
-  width: 48%;
-  background-color: ${props => props.color};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    background-color: ${props => props.hcolor};
-  }
-  &:active {
-    background-color: ${props => props.acolor};
-  }
-`
-
 const Social = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-`
-
-const Box = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `
 
 const Icon = styled(FontAwesomeIcon)`
@@ -126,13 +106,6 @@ const Icon = styled(FontAwesomeIcon)`
   margin-top: 2px;
   margin-left: 5px;
 `
-
-const SocialLink = ({
-  href,
-  children,
-}) => (
-  <a href={href} target="_blanc" rel="noopener" >{ children }</a>
-)
 
 export const Display = ({
   LinkComponent = "span",
@@ -163,8 +136,8 @@ export const Display = ({
         {/* </form> */}
         <Text>OU ENTRE COM<br/>SUAS REDES SOCIAIS:</Text>
         <Social>
-          <SocialLink href={`${process.env.REACT_APP_SERVER_URL}/api/auth/facebook`}><SocialButton color="#003172" hcolor="#004db3" acolor="#0060de"><Box>Entre com <Icon icon={faFacebook} /></Box></SocialButton></SocialLink>
-          <SocialLink href={`${process.env.REACT_APP_SERVER_URL}/api/auth/google`}><SocialButton color="#9f005d" hcolor="#c50073" acolor="#d4007c"><Box>Entre com <Icon icon={faGooglePlus} /></Box></SocialButton></SocialLink>
+          <SocialLink href="/api/auth/facebook" color="#003172" hcolor="#004db3" acolor="#0060de">Entre com <Icon icon={faFacebook} /></SocialLink>
+          <SocialLink href="/api/auth/google" color="#9f005d" hcolor="#c50073" acolor="#d4007c">Entre com <Icon icon={faGooglePlus} /></SocialLink>
         </Social>
         <Parceiros />
       </Content>
