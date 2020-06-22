@@ -5,6 +5,7 @@ import AsyncComponent from 'Components/AsyncComponent'
 const Home = lazy(() => import("Pages/Home"))
 const SignUp = lazy(() => import("Pages/SignUp"))
 const Login = lazy(() => import("Pages/Login"))
+const Profile = lazy(() => import("Pages/Profile"))
 const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
 const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
 
@@ -24,6 +25,13 @@ export const Routes = ({ ...props }) => {
         <Route  path="/signup">
           <AsyncComponent>
             <SignUp />
+          </AsyncComponent>
+        </Route>
+
+        {/* página de perfil */}
+        <Route  path="/profile">
+          <AsyncComponent>
+            <Profile />
           </AsyncComponent>
         </Route>
 
