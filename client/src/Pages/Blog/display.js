@@ -15,7 +15,7 @@ const Container = styled.div`
   background-position: center;
 
   display: grid;
-  grid-template-columns: minmax(5%, auto) minmax(300px, 400px) minmax(5%, auto);
+  grid-template-columns: minmax(5%, auto) minmax(300px, 670px) minmax(5%, auto);
   grid-template-rows: minmax(0, 3fr) auto;
   grid-template-areas:
     ". content ."
@@ -36,6 +36,13 @@ const Content = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const TopContent = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 `;
@@ -44,6 +51,16 @@ const Logo = styled(PluralLogo)`
   margin-right: 60px;
   margin-top: 93.5px;
   margin-bottom: 38.5px;
+  height: 65px;
+  width: 205px;
+
+  @media (min-width: 700px) {
+    margin-right: 130px;
+    margin-top: 140px;
+    margin-bottom: 62px;
+    height: 127px;
+    width: 411px;
+  }
 `;
 
 const ComputerLogo = styled.img`
@@ -52,37 +69,42 @@ const ComputerLogo = styled.img`
   object-position: 0 42px;
   width: 370px;
   height: auto;
+
+  @media (min-width: 700px) {
+    width: 650px;
+    object-position: 0 60px;
+  }
 `;
 
-export const Display = ({ title, description, image, ...props }) => {
-  const array = [1, 2, 3];
-
+export const Display = ({ postList }) => {
   return (
     <Container>
       <Content>
-        <Logo height="65px" width="205px" />
-        <Navbar />
-        <Title />
+        <TopContent>
+          <Logo />
+          <Navbar />
+          <Title />
+        </TopContent>
         {/* lógica para exibir todos os posts, o último sem border-bottom */}
-        {array.map((element) => {
-          if (element === array.length) {
+        {postList.map((item) => {
+          if (item === postList[postList.length - 1]) {
             return (
               <PostCard
-                borderBottom="none"
-                key={element}
-                titulo={title}
-                descricao={description}
-                imagem={image}
+                borderbottom="none"
+                key={item.id}
+                titulo={item.title}
+                descricao={item.body}
+                imagem={item.capa}
               />
             );
           } else {
             return (
               <PostCard
-                borderBottom="1px solid #ffffff"
-                key={element}
-                titulo={title}
-                descricao={description}
-                imagem={image}
+                borderbottom="1px solid #ffffff"
+                key={item.id}
+                titulo={item.title}
+                descricao={item.body}
+                imagem={item.capa}
               />
             );
           }

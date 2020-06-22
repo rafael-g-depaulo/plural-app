@@ -4,6 +4,10 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 191.5px;
   height: auto;
+
+  @media (min-width: 700px) {
+    width: 385px;
+  }
 `;
 
 const Text = styled.div`
@@ -16,6 +20,10 @@ const Text = styled.div`
   letter-spacing: normal;
   text-align: justify;
   color: #ffffff;
+
+  @media (min-width: 700px) {
+    font-size: 25px;
+  }
 `;
 
 export const Description = ({ description, ...props }) => {

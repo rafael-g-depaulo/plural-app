@@ -5,6 +5,11 @@ const Container = styled.div`
   width: 191.5px;
   height: auto;
   margin-bottom: -11px;
+
+  @media (min-width: 700px) {
+    width: 383px;
+    margin-bottom: -22px;
+  }
 `;
 
 const Text = styled.p`
@@ -17,6 +22,10 @@ const Text = styled.p`
   letter-spacing: normal;
   text-align: justify;
   color: #ebce8b;
+
+  @media (min-width: 700px) {
+    font-size: 33px;
+  }
 `;
 
 export const PostTitle = ({ title, ...props }) => {

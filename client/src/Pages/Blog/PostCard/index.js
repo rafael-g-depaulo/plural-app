@@ -11,9 +11,14 @@ const Container = styled(Link)`
   align-items: flex-start;
   width: 343px;
   height: auto;
-  border-bottom: ${(props) => props.borderBottom};
+  border-bottom: ${(props) => props.borderbottom};
   padding-bottom: 38px;
   text-decoration: none;
+
+  @media (min-width: 700px) {
+    width: 686px;
+    border-width: 2px;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -24,7 +29,7 @@ const TextContainer = styled.div`
 
 export const PostCard = ({ titulo, descricao, imagem, ...props }) => {
   return (
-    <Container borderBottom={props.borderBottom} to="/">
+    <Container borderbottom={props.borderbottom} to="/">
       <TextContainer>
         <PostTitle title={titulo} />
         <Description description={descricao} />

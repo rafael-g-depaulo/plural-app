@@ -11,6 +11,13 @@ const Container = styled.div`
   margin-left: 12px;
   border-radius: 50%;
   margin-top: 23px;
+
+  @media (min-width: 700px) {
+    width: 275px;
+    height: 275px;
+    margin-left: 24px;
+    margin-top: 34.1px;
+  }
 `;
 
 export const BannerImage = ({ image, ...props }) => {
