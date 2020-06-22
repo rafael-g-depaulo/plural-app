@@ -1,27 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Display from "./display";
-import exemplo from "./Background/perfil.jpg";
+import { listAll } from "Api/blogs";
 
 export const Blog = ({ ...props }) => {
-  // exemplos 
-  const [title, setTitle] = useState("Chegamos! O que é o projeto e quando.");
-  const [description, setDescription] = useState(
-    "Para contra atacar a pandemia lançamos uma versão on line do nosso festival!"
-  );
-  const [image, setImage] = useState(exemplo);
+  const [postList, setPostList] = useState([]);
 
-  // chamar API para gerar index dos posts
+  // chama a API para listar os posts (#index)
+  const getPosts = async() => {
+    await listAll().then((response) => {
+      setPostList(response.data);
+    });
+  }
 
-  return (
-    <Display
-      {...{
-        title,
-        description,
-        image,
-      }}
-      {...props}
-    />
-  );
+  useEffect(() => {
+   getPosts()
+  }, []);
+
+  return <Display {...{ postList }} />;
 };
 
 export default Blog;

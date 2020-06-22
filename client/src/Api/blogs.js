@@ -1,5 +1,5 @@
-import axios from 'axios'
+import axios from "axios";
 
-export const listAll = () => axios
-  .get("/api/blog")
-  .then(response => response.data)
+export const listAll = () => {
+  return axios.get("/api/blog");
+};
