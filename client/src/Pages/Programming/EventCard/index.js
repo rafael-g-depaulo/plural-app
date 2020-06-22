@@ -1,0 +1,42 @@
+import React from "react";
+import styled from "styled-components";
+import BannerImage from "./BannerImage";
+import Description from "./Description";
+import ProgramTitle from "./ProgramTitle";
+import { Link } from "react-router-dom";
+
+const Container = styled(Link)`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 343px;
+  height: auto;
+  border-bottom: ${(props) => props.borderbottom};
+  padding-bottom: 38px;
+  text-decoration: none;
+
+  @media (min-width: 700px) {
+    width: 686px;
+    border-width: 2px;
+  }
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const EventCard = ({ titulo, descricao, imagem, ...props }) => {
+  return (
+    <Container borderbottom={props.borderbottom} to="/">
+      <TextContainer>
+        <ProgramTitle title={titulo} />
+        <Description description={descricao} />
+      </TextContainer>
+      <BannerImage image={imagem} />
+    </Container>
+  );
+};
+
+export default EventCard;
