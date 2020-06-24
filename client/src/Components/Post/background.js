@@ -7,7 +7,7 @@ import useWidth from 'Hooks/useWidth';
 
 
 const Background = styled.div`
-    height: ${(props) => props.height}px;
+    height: auto;
     background-color: black;
     object-fit: cover;
     margin: 0 auto;
@@ -16,7 +16,6 @@ const Background = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
 
 
     @media(max-width:760px){
