@@ -8,13 +8,9 @@ export const FormContainer = styled.form`
   #columnOut {
     display: flex;
     flex-direction: column;
-    margin-top: -4px;
 
     @media (min-width: 500px) {
-      display: flex;
-      flex-direction: column;
-      margin-top: -22px;
-      max-width: 100%;
+      margin-top: -40px;
     }
   }
 
@@ -102,7 +98,7 @@ export const CheckboxLabel = styled.label`
 
   @media (min-width: 500px) {
     padding: 0 30px 0px 30px;
-    font-size: 22px;
+    font-size: 18px;
   }
 `;
 
