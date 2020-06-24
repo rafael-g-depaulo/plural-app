@@ -7,7 +7,8 @@ const SignUp = lazy(() => import("Pages/SignUp"))
 const Login = lazy(() => import("Pages/Login"))
 const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
 const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
-const Blog = lazy(() => import("Pages/Posts/Blog"))
+const Blog = lazy(() => import("Pages/Blog"))
+const Event = lazy(() => import("Pages/Event"))
 
 
 export const Routes = ({ ...props }) => {
@@ -45,6 +46,11 @@ export const Routes = ({ ...props }) => {
         <Route path="/api/blog/:id_post">        
           <AsyncComponent>
             <Blog />
+          </AsyncComponent>
+        </Route>
+        <Route path="/api/event/:id_post">        
+          <AsyncComponent>
+            <Event />
           </AsyncComponent>
         </Route>
 
