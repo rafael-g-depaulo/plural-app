@@ -6,14 +6,13 @@ export const Blog = ({ ...props }) => {
   const [postList, setPostList] = useState([]);
 
   // chama a API para listar os posts (#index)
-  const getPosts = async() => {
-    await listAll().then((response) => {
-      setPostList(response.data);
-    });
-  }
-
   useEffect(() => {
-   getPosts()
+    listAll()
+      .then((response) => {
+        setPostList(response.data);
+      })
+      .catch(err => console.err("get post error", err))
+
   }, []);
 
   return <Display {...{ postList }} />;
