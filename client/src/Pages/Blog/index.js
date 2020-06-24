@@ -6,6 +6,9 @@ import Back from "Components/Post/background";
 import PluralLogo from 'Components/Logo';
 import NavBar from 'Components/Menu';
 import Area from "./textarea";
+import LoadDots from "Components/Load"
+import LoadRainbow from "Components/LoadRainbow"
+
 const Container = styled.div`
     display: inline-grid;
     width:100%;
@@ -117,14 +120,13 @@ export const Blog = ({...props}) =>{
                 setData({info: response.data, isFetching: false});
             } catch (e) {
                 console.log(e);
-                setData({info: data, isFetching: false});
+                setData({info: data, isFetching: true});
             }
         };
         fecthData();
     }, []);
     
 
-    let date = data.info.created_at;
     return(
         <Back>
             <Container>
@@ -136,7 +138,7 @@ export const Blog = ({...props}) =>{
                     </Navigation>
                         {
                             data.isFetching ? 
-                            <p>Loading</p>
+                            <LoadDots/>
                             :
                             <Area info={data.info}/>
 

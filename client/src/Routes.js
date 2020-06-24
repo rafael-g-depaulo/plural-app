@@ -9,6 +9,10 @@ const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
 const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
 const Blog = lazy(() => import("Pages/Blog"))
 const Event = lazy(() => import("Pages/Event"))
+const LoadDots = lazy(() => import("Components/Load"))
+const LoadRainbow = lazy(() => import("Components/LoadRainbow"))
+
+
 
 
 export const Routes = ({ ...props }) => {
