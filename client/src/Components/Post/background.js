@@ -8,6 +8,7 @@ import useWidth from 'Hooks/useWidth';
 
 const Background = styled.div`
     height: auto;
+    min-height:100vh;
     background-color: black;
     object-fit: cover;
     margin: 0 auto;
