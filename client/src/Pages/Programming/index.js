@@ -9,7 +9,7 @@ export const Programming = ({ ...props }) => {
       id: 1,
       title: "[Webinar] Palestra",
       body:
-        "24 de julho, á partir de 17h Evento on line Uma década sobre o Mapeamento LGBTQI do Brasil, desdobramentos e importância. Palestrante: Sandro Ka - RS Arte Educador e Ativist  a  aaaa aaa aaa aaaa a",
+        "24 de julho, á partir de 17h Evento on line Uma década sobre o Mapeamento LGBTQI do Brasil, desdobramentos e importância. Palestrante: Sandro Ka - RS Arte Educador e Ativist",
       capa: null,
     },
 
@@ -17,7 +17,7 @@ export const Programming = ({ ...props }) => {
       id: 2,
       title: "[Webinar] Palestra",
       body:
-        "24 de julho, á partir de 17h Evento on line Uma década sobre o Mapeamento LGBTQI do Brasil, desdobramentos e importância. Palestrante: Sandro Ka - RS Arte Educador e Ativist ",
+        "24 de julho, á partir de 17h Evento on line Uma década sobre o Mapeamento LGBTQI do Brasil, desdobramentos e importância. Palestrante: Sandro Ka - RS Arte Educador e Ativist",
       capa: null,
     },
   ]);
