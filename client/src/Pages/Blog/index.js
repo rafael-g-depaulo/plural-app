@@ -1,13 +1,16 @@
-import React, {useEffect ,useState } from "react";
-import styled from 'styled-components';
-import axios from 'axios';
-import { useParams } from "react-router-dom";
-import Back from "Components/Post/background";
-import PluralLogo from 'Components/Logo';
-import NavBar from 'Components/Menu';
-import Area from "./textarea";
+import React, { useEffect ,useState } from "react"
+import styled from 'styled-components'
+import axios from 'axios'
+import { ListAll } from "Api/blog"
+
+import { useParams } from "react-router-dom"
+
+import Back from "Components/Post/background"
+import PluralLogo from 'Components/Logo'
+import NavBar from 'Components/Menu'
 import LoadDots from "Components/Load"
-import LoadRainbow from "Components/LoadRainbow"
+
+import Area from "./textarea";
 
 const Container = styled.div`
     display: inline-grid;
@@ -90,43 +93,22 @@ const Navigation = styled.div`
 
 `;
 
-// const Navbar = styled.div`
-//     grid-area: nav;
-//     display:flex;
-//     width:100%;
-//     background: rgba(0,0,0,0);
-
-// `;
-
-// const Button = styled.button`
-//   display: inline-block;
-//   color: #f26522;
-// `;
-
-
-
-
-
-
 export const Blog = ({...props}) =>{
-    const [data, setData] = useState({info:[], isFetching:true})
-    const {id_post} = useParams();
+    const [ data, setData ] = useState([])
+    const [ responseStatus, setResponseStatus ] = useState(null)
+    const isFetching = responseStatus === null
+
+    const { id_post } = useParams()
 
     useEffect(() => {
-        const fecthData = async () => {
-            try {
-                setData({info: data, isFetching: true});
-                const response = await axios.get('/blogs/'+id_post);
-                setData({info: response.data, isFetching: false});
-            } catch (e) {
-                console.log(e);
-                setData({info: data, isFetching: true});
-            }
-        };
-        fecthData();
+        ListAll(id_post)
+            .then(({ data, status }) => {
+                setData(data)
+                setResponseStatus(status)
+            })
+            .catch(err => setResponseStatus(err.response.status))
     }, []);
     
-
     return(
         <Back>
             <Container>
@@ -137,18 +119,13 @@ export const Blog = ({...props}) =>{
                         <NavBar></NavBar>
                     </Navigation>
                         {
-                            data.isFetching ? 
+                            isFetching || responseStatus !== 200 ? 
                             <LoadDots/>
                             :
-                            <Area info={data.info}/>
+                            <Area info={data}/>
 
                         };
-
-
-
-
                 </Container>
-
         </Back>
     )
 }
