@@ -1,15 +1,18 @@
 import React from 'react'
 
+import { UserProvider } from "Context/User/Provider"
 import GlobalStyles from 'GlobalStyles'
 import Fonts from 'Fonts'
 import Routes from 'Routes'
 
-const App = () => {
+const App = () => { 
   return (
     <>
       <Fonts />
       <GlobalStyles />
-      <Routes />
+      <UserProvider>
+        <Routes />
+      </UserProvider>
     </>
   )
 }
