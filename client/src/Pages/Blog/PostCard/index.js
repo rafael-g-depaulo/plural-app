@@ -12,12 +12,13 @@ const Container = styled(Link)`
   width: 343px;
   height: auto;
   border-bottom: ${(props) => props.borderbottom};
-  padding-bottom: 38px;
+  padding-bottom: 34px;
   text-decoration: none;
 
   @media (min-width: 700px) {
     width: 686px;
     border-width: 2px;
+    padding-bottom: 68px;
   }
 `;
 

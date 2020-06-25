@@ -4,11 +4,11 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 191.5px;
   height: auto;
-  margin-bottom: -11px;
+  margin-bottom: -8px;
 
   @media (min-width: 700px) {
     width: 383px;
-    margin-bottom: -22px;
+    margin-bottom: -16px;
   }
 `;
 
