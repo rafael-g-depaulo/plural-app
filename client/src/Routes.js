@@ -7,7 +7,7 @@ const SignUp = lazy(() => import("Pages/SignUp"))
 const Login = lazy(() => import("Pages/Login"))
 const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
 const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
-const Blog = lazy(() => import("Pages/Blog"))
+const Blog = lazy(() => import("Pages/BlogList"))
 
 export const Routes = ({ ...props }) => {
   return (
