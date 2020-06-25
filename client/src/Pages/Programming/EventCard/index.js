@@ -10,13 +10,14 @@ const Container = styled(Link)`
   flex-direction: row;
   align-items: flex-start;
   width: 343px;
-  height: auto;
+  max-height: auto;
   border-bottom: ${(props) => props.borderbottom};
-  padding-bottom: 38px;
+  padding-bottom: 21.5px;
   text-decoration: none;
 
   @media (min-width: 700px) {
     width: 686px;
+    padding-bottom: 43px;
     border-width: 2px;
   }
 `;

@@ -3,10 +3,12 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 192.5px;
-  height: auto;
+  max-height: 140px;
+  overflow: hidden;
 
   @media (min-width: 700px) {
     width: 385px;
+    max-height: 280px;
   }
 `;
 
