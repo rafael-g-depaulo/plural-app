@@ -101,7 +101,7 @@ export const Area = ({
   }) => {
     let imgSrc;
     let title = props.info.title
-    if(props.info.capa!= undefined){
+    if(props.info.capa !== undefined){
       imgSrc = props.info.capa.url;
     }
     let blog = props.info.body;

@@ -1,6 +1,5 @@
 import React, { useEffect ,useState } from "react"
 import styled from 'styled-components'
-import axios from 'axios'
 import { ListAll } from "Api/blog"
 
 import { useParams } from "react-router-dom"
@@ -107,7 +106,7 @@ export const Blog = ({...props}) =>{
                 setResponseStatus(status)
             })
             .catch(err => setResponseStatus(err.response.status))
-    }, []);
+    }, [id_post]);
     
     return(
         <Back>
