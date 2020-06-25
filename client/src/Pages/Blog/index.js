@@ -1,6 +1,6 @@
-import React, { useEffect ,useState } from "react"
+import React, { useCallback } from "react"
 import styled from 'styled-components'
-import { ListAll } from "Api/blog"
+import { getBlogPost } from "Api/blog"
 
 import { useParams } from "react-router-dom"
 
@@ -10,6 +10,7 @@ import NavBar from 'Components/Menu'
 import LoadDots from "Components/Load"
 
 import Area from "./textarea";
+import { useAPICache } from "Hooks/useAPICache"
 
 const Container = styled.div`
     display: inline-grid;
@@ -93,20 +94,11 @@ const Navigation = styled.div`
 `;
 
 export const Blog = ({...props}) =>{
-    const [ data, setData ] = useState([])
-    const [ responseStatus, setResponseStatus ] = useState(null)
-    const isFetching = responseStatus === null
 
     const { id_post } = useParams()
 
-    useEffect(() => {
-        ListAll(id_post)
-            .then(({ data, status }) => {
-                setData(data)
-                setResponseStatus(status)
-            })
-            .catch(err => setResponseStatus(err.response.status))
-    }, [id_post]);
+    const getBlog = useCallback(() => getBlogPost(id_post), [id_post])
+    const { data, status } = useAPICache(`blog/${id_post}`, null, getBlog)
     
     return(
         <Back>
@@ -118,11 +110,10 @@ export const Blog = ({...props}) =>{
                         <NavBar></NavBar>
                     </Navigation>
                         {
-                            isFetching || responseStatus !== 200 ? 
+                            data === null || status !== 200 ? 
                             <LoadDots/>
                             :
                             <Area info={data}/>
-
                         };
                 </Container>
         </Back>
