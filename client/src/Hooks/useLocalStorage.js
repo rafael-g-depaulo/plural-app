@@ -34,6 +34,10 @@ export const useLocalStorage = (key, initialValue) => {
     }
   }
 
+  // if item isnt yet in localStorage, store it's initial value
+  if (window.localStorage.getItem(key) === null)
+    setValue(initialValue)
+
   return [storedValue, setValue]
 }
 
