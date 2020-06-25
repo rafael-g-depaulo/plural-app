@@ -47,12 +47,14 @@ export const Routes = ({ ...props }) => {
             <MappingQuestion />
           </AsyncComponent>
         </Route>
-        <Route path="/api/blog/:id_post">        
+
+        <Route path="/blog/:id_post">        
           <AsyncComponent>
             <Blog />
           </AsyncComponent>
         </Route>
-        <Route path="/api/event/:id_post">        
+
+        <Route path="/event/:id_post">        
           <AsyncComponent>
             <Event />
           </AsyncComponent>
