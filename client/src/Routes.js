@@ -49,7 +49,7 @@ export const Routes = ({ ...props }) => {
           </AsyncComponent>
         </Route>
 
-        <Route path="/event/:id_post">        
+        <Route path="/event/:id_event">        
           <AsyncComponent>
             <Event />
           </AsyncComponent>
