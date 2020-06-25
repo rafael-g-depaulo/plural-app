@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback } from "react"
 import styled from 'styled-components'
 
 import { useParams } from "react-router-dom"
-import { ListAll } from "Api/event"
+import { useAPICache } from "Hooks/useAPICache"
+import { getEvent } from "Api/event"
 
 import Area from "./textarea"
 
 import Back from "Components/Post/background"
 import PluralLogo from 'Components/Logo'
 import NavBar from 'Components/Menu'
-import LoadRainbow from "Components/LoadRainbow"
+import LoadDots from "Components/Load"
 
 const Container = styled.div`
     display: inline-grid;
@@ -93,21 +94,12 @@ const Navigation = styled.div`
 `;
 
 export const Event = ({...props}) =>{
-    const [ data, setData ] = useState([])
-    const [ responseStatus, setResponseStatus ] = useState(null)
-    const isFetching = responseStatus === null
 
     const { id_event } = useParams()
 
-    useEffect(() => {
-        ListAll(id_event)
-            .then(({ data, status }) => {
-                setData(data)
-                setResponseStatus(status)
-            })
-            .catch(err => setResponseStatus(err.response.status))
-    }, [id_event]);
-
+    const apiCall = useCallback(() => getEvent(id_event), [id_event])
+    const { data, status } = useAPICache(`event/${id_event}`, null, apiCall)
+    
     return(
         <Back>
             <Container>
@@ -118,18 +110,13 @@ export const Event = ({...props}) =>{
                         <NavBar></NavBar>
                     </Navigation>
                         {
-                            isFetching || responseStatus !== 200 ? 
-                            <LoadRainbow/>
+                            data === null || status !== 200 ? 
+                            <LoadDots/>
                             :
-                            <Area info={data.info}/>
+                            <Area info={data}/>
 
-                        };
-
-
-
-
+                        }
                 </Container>
-
         </Back>
     )
 }

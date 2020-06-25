@@ -8,7 +8,8 @@ export const useAPICache = (key, initialValue, apiCall = Promise.resolve) => {
   const [ cache, setCache ] = useLocalStorage(key, { timeout: Date.now(), data: initialValue })
 
   useEffect(() => {
-    if (cache.timeout <= Date.now() || cache.isInvalid) {
+    // can add "|| cache.isInvalid" to retry on bad response
+    if (cache.timeout <= Date.now()) {
       apiCall()
         .then(({ data, status }) => setCache(({
           ...cache,
