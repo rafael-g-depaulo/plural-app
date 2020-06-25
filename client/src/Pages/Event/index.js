@@ -1,12 +1,16 @@
-import React, {useEffect ,useState } from "react";
-import styled from 'styled-components';
-import axios from 'axios';
-import { useParams } from "react-router-dom";
-import Back from "Components/Post/background";
-import PluralLogo from 'Components/Logo';
-import NavBar from 'Components/Menu';
-import Area from "./textarea";
+import React, { useEffect, useState } from "react"
+import styled from 'styled-components'
+
+import { useParams } from "react-router-dom"
+import { ListAll } from "Api/event"
+
+import Area from "./textarea"
+
+import Back from "Components/Post/background"
+import PluralLogo from 'Components/Logo'
+import NavBar from 'Components/Menu'
 import LoadRainbow from "Components/LoadRainbow"
+
 const Container = styled.div`
     display: inline-grid;
     width:100%;
@@ -27,7 +31,6 @@ const Container = styled.div`
         grid-template-columns:30% 40% 30%;
     }
 `;
-
 
 const LogoDiv = styled.div`
     grid-area: logo;
@@ -51,6 +54,7 @@ const LogoDiv = styled.div`
     }
 
 `;
+
 const Logo = styled(PluralLogo)`
 
     @media(min-width:760px){
@@ -88,44 +92,22 @@ const Navigation = styled.div`
 
 `;
 
-// const Navbar = styled.div`
-//     grid-area: nav;
-//     display:flex;
-//     width:100%;
-//     background: rgba(0,0,0,0);
+export const Event = ({...props}) =>{
+    const [ data, setData ] = useState([])
+    const [ responseStatus, setResponseStatus ] = useState(null)
+    const isFetching = responseStatus === null
 
-// `;
-
-// const Button = styled.button`
-//   display: inline-block;
-//   color: #f26522;
-// `;
-
-
-
-
-
-
-export const Blog = ({...props}) =>{
-    const [data, setData] = useState({info:[], isFetching:true})
-    const {id_post} = useParams();
+    const { id_event } = useParams()
 
     useEffect(() => {
-        const fecthData = async () => {
-            try {
-                setData({info: data, isFetching: true});
-                const response = await axios.get('/events/'+id_post);
-                setData({info: response.data, isFetching: false});
-            } catch (e) {
-                console.log(e);
-                setData({info: data, isFetching: true});
-            }
-        };
-        fecthData();
-    }, []);
-    
+        ListAll(id_event)
+            .then(({ data, status }) => {
+                setData(data)
+                setResponseStatus(status)
+            })
+            .catch(err => setResponseStatus(err.response.status))
+    }, [id_event]);
 
-    let date = data.info.created_at;
     return(
         <Back>
             <Container>
@@ -136,7 +118,7 @@ export const Blog = ({...props}) =>{
                         <NavBar></NavBar>
                     </Navigation>
                         {
-                            data.isFetching ? 
+                            isFetching || responseStatus !== 200 ? 
                             <LoadRainbow/>
                             :
                             <Area info={data.info}/>
@@ -152,4 +134,4 @@ export const Blog = ({...props}) =>{
     )
 }
 
-export default Blog
+export default Event
