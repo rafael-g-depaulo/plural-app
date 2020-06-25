@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Display from "./display";
 import { listAll } from "Api/blogs";
+import { useAPICache } from "Hooks/useAPICache";
 
 export const Blog = ({ ...props }) => {
-  const [postList, setPostList] = useState([]);
+  const { data, status } = useAPICache(`blog_list`, [], listAll)
+  
+  if (status !== 200) console.log("Error in blog list page: ", status)
 
-  // chama a API para listar os posts (#index)
-  useEffect(() => {
-    listAll()
-      .then((response) => {
-        setPostList(response.data);
-      })
-      .catch(err => console.err("get post error", err))
-
-  }, []);
-
-  return <Display {...{ postList }} />;
+  return <Display postList={data} />;
 };
 
 export default Blog;
