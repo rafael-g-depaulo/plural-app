@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 
 import { FormContainer, Title } from "./styles";
 
@@ -20,16 +20,23 @@ import EquipeTecnica from "./categories/equipeTecnica";
 import Moda from "./categories/moda";
 
 export const Form = () => {
+  const [gender, setGender] = useState(null);
+
   const onSubmitButton = useCallback((e) => {
     e.preventDefault();
 
     console.log("Deu Submit!");
   }, []);
 
+  const genderChange = (e) => {
+    setGender(e.target.value);
+    console.log(e.target.value);
+  };
+
   return (
     <FormContainer onSubmit={onSubmitButton}>
       <Title>MAPEAMENTO</Title>
-      <Gender />
+      <Gender onGenderChange={genderChange} />
       <Orientation />
       <Culture />
       <Title style={{ marginTop: 40 }}>SUBCATEGORIA</Title>

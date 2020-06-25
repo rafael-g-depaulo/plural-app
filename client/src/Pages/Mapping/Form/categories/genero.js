@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import {
   GroupName,
@@ -9,17 +9,6 @@ import {
 } from "../styles";
 
 export default function Gender({ onGenderChange = () => {}, ...props }) {
-  const [gender, setGender] = useState("");
-
-  useEffect(() => {
-    onGenderChange(gender);
-  }, [gender, onGenderChange]);
-
-  function handleGenderChange(e) {
-    setGender(e.target.value);
-    console.log(e.target.value);
-  }
-
   return (
     <>
       <GroupName>IDENTIDADE DE GÊNERO</GroupName>
@@ -30,7 +19,7 @@ export default function Gender({ onGenderChange = () => {}, ...props }) {
               name="genero"
               value="masculino"
               type="radio"
-              onChange={handleGenderChange}
+              onChange={onGenderChange}
             />
             masculino
           </CheckboxLabel>
@@ -39,7 +28,7 @@ export default function Gender({ onGenderChange = () => {}, ...props }) {
               name="genero"
               value="binario"
               type="radio"
-              onChange={handleGenderChange}
+              onChange={onGenderChange}
             />
             binario
           </CheckboxLabel>
@@ -51,7 +40,7 @@ export default function Gender({ onGenderChange = () => {}, ...props }) {
               name="genero"
               value="feminino"
               type="radio"
-              onChange={handleGenderChange}
+              onChange={onGenderChange}
             />
             feminino
           </CheckboxLabel>
@@ -60,7 +49,7 @@ export default function Gender({ onGenderChange = () => {}, ...props }) {
               name="genero"
               value="outros"
               type="radio"
-              onChange={handleGenderChange}
+              onChange={onGenderChange}
             />
             outros
           </CheckboxLabel>
