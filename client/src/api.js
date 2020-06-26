@@ -10,5 +10,20 @@ const api = axios.create({
 });
 
 export const getCurrentUser = () => {
-  return api.get("/user/current", {withCredentials: true});
+  return api.get("/user/current", { withCredentials: true });
+};
+
+export const passwordReset = (email) => {
+  return api.post("/user/password-reset", { email }, { withCredentials: true });
+};
+
+export const passwordResetCallback = (password, token) => {
+  return api.post(
+    `/user/password-reset/callback`,
+    { password },
+    {
+      headers: { Authorization: `${token}` },
+      withCredentials: true,
+    }
+  );
 };

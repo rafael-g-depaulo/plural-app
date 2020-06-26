@@ -9,5 +9,11 @@ export default ({ AuthMiddleware }, options) => {
       "/current",
       AuthMiddleware.verifyToken,
       UsersController.showCurrentUser
+    )
+    .post("/password-reset", UsersController.passwordReset)
+    .post(
+      "/password-reset/callback",
+      AuthMiddleware.verifyPasswordResetToken,
+      UsersController.passwordResetCallback
     );
 };

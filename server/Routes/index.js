@@ -3,7 +3,7 @@ import GoogleRouter from "./GoogleRouter";
 import FacebookRouter from "./FacebookRouter";
 import UserRouter from "./UserRouter";
 import AuthRouter from "./AuthRouter";
-import MappingRouter from "./mapping";
+import MappingRouter from "./MappingRouter";
 import AuthMiddleware from "../Middlewares/auth_middleware";
 import User from "../models/User";
 
@@ -11,7 +11,7 @@ import BlogRouter from './BlogRouter'
 import EventRouter from './EventRouter'
 
 // use dependency injection in module
-export default ({}, config = { mergeParams: true }) => express.Router(config)
+export default ({ passport }, config = { mergeParams: true }) => express.Router(config)
 // add routes
   .use(/\/blogs?/, BlogRouter({}, config))
   .use(/\/events?/, EventRouter({}, config))
