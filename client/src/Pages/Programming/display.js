@@ -90,6 +90,7 @@ export const Display = ({eventList}) => {
               <EventCard
                 borderbottom="none"
                 key={item.id}
+                id={item.id}
                 titulo={item.title}
                 descricao={item.body}
                 imagem={item.capa}
@@ -100,6 +101,7 @@ export const Display = ({eventList}) => {
               <EventCard
                 borderbottom="1px solid #ffffff"
                 key={item.id}
+                id={item.id}
                 titulo={item.title}
                 descricao={item.body}
                 imagem={item.capa}

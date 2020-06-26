@@ -28,9 +28,12 @@ const TextContainer = styled.div`
   align-items: flex-start;
 `;
 
-export const EventCard = ({ titulo, descricao, imagem, ...props }) => {
+export const EventCard = ({ id, titulo, descricao, imagem, ...props }) => {
+
+  const event_route = `event/${id}`
+
   return (
-    <Container borderbottom={props.borderbottom} to="/">
+    <Container borderbottom={props.borderbottom} to={event_route} >
       <TextContainer>
         <ProgramTitle title={titulo} />
         <Description description={descricao} />
