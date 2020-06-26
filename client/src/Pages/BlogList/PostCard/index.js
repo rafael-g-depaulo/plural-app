@@ -28,9 +28,12 @@ const TextContainer = styled.div`
   align-items: flex-start;
 `;
 
-export const PostCard = ({ titulo, descricao, imagem, ...props }) => {
+export const PostCard = ({ id, titulo, descricao, imagem, ...props }) => {
+
+  const route = `/blog/${id}`;
+
   return (
-    <Container borderbottom={props.borderbottom} to="/">
+    <Container borderbottom={props.borderbottom} to={route} >
       <TextContainer>
         <PostTitle title={titulo} />
         <Description description={descricao} />

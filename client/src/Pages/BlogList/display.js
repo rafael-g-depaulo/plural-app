@@ -92,6 +92,7 @@ export const Display = ({ postList }) => {
               <PostCard
                 borderbottom="none"
                 key={item.id}
+                id={item.id}
                 titulo={item.title}
                 descricao={item.body}
                 imagem={`${process.env.REACT_APP_STRAPI_URL}${item.capa.url}`}
@@ -102,6 +103,7 @@ export const Display = ({ postList }) => {
               <PostCard
                 borderbottom="1px solid #ffffff"
                 key={item.id}
+                id={item.id}
                 titulo={item.title}
                 descricao={item.body}
                 imagem={`${process.env.REACT_APP_STRAPI_URL}${item.capa.url}`}
