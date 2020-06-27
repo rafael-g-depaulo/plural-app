@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { UserContext } from "./index.js";
 import { getCurrentUser } from "Api/User";
+import { useHistory } from "react-router-dom"
 
 export function UserProvider(props) {
   const [isLoading, setIsLoading] = useState(true);
@@ -9,28 +10,37 @@ export function UserProvider(props) {
 
   const [error, setError] = useState(null);
 
+  const history = useHistory();
+
   /*
     Each time the current user gets updated, check if:
       - Is active
       - Is LGBTQ
       - Has filled the mapping form 
   */
-
   useEffect(() => {
-    if (currentUser !== undefined) {
+    if (currentUser !== undefined && currentUser !== null) {
       console.log("Current user has been updated", currentUser);
 
       if (currentUser.active === false) {
         console.log("Redirecting to email confirmation.");
+
+        history.push('/confirmation')
       } else if (currentUser.isLgbtq === null) {
         console.log("Redirecting to is LGBTQ+?");
+
+        history.push('/areyouLGBTQIA')
       } else if (currentUser.isLgbtq === true && currentUser.mapping === null) {
         console.log("Redirecting to mapping.");
+
+        history.push('/participar-mapeamento')
       } else {
         console.log("Redirecting to homepage");
+
+        history.push('/')
       }
     }
-  }, [currentUser]);
+  }, [currentUser, history]);
 
   useEffect(() => {
     let didCancel = false;
