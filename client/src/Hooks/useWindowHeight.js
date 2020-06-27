@@ -18,4 +18,4 @@ export const useHeight = () => {
   return windowSize
 }
 
-export default useHeight
+export default useHeight;
