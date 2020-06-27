@@ -36,7 +36,7 @@ const verifyCallback = async (req, token, refreshToken, profile, done) => {
   let user = await getUserByProviderId(providerId);
 
   if (user != null) {
-    const userToken = await Utils.signToken(user.id, user.email);
+    const userToken = await Utils.signToken(user.id, user.email, user.active, user.is_lgbtq);
 
     req.token = userToken;
 
@@ -47,7 +47,7 @@ const verifyCallback = async (req, token, refreshToken, profile, done) => {
 
   //Check if user was created.
 
-  const userToken = await Utils.signToken(user.id, user.email);
+  const userToken = await Utils.signToken(user.id, user.email, user.active, user.is_lgbtq);
 
   req.token = userToken;
 

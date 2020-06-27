@@ -43,12 +43,24 @@ module.exports = {
     }
 
     // Verify if user is already verified.
-    if(user.active !== true)
-    {
-      return res.status(401).json({error: "The user must verify its account."})
+    if (user.active !== true) {
+      console.log("The user must verify its account.");
+      // return res.status(401).json({error: "The user must verify its account."})
     }
 
-    const token = await Utils.signToken(userId, email);
+    const token = await Utils.signToken(
+      userId,
+      email,
+      user.active,
+      user.is_lgbtq
+    );
+
+    const currentUser = {
+      id: userId,
+      email,
+      active: user.active,
+      isLgbtq: user.is_lgbtq,
+    };
 
     if (token == null) {
       res
@@ -57,7 +69,7 @@ module.exports = {
     }
 
     const successMessage =
-      "The credentials provided are valid. Succesfully logged in.";
+      "The credentials provided are valid. Successfully logged in.";
 
     console.log("[SUCCESS]", successMessage);
 
@@ -66,6 +78,6 @@ module.exports = {
       .cookie("token", token, {
         httpOnly: true,
       })
-      .json({ message: successMessage });
+      .json({ currentUser, message: successMessage });
   },
 };

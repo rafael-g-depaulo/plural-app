@@ -12,14 +12,15 @@ class User extends Model {
         city: DataTypes.STRING,
         phone_number: DataTypes.STRING,
         name: DataTypes.STRING,
-        active: DataTypes.BOOLEAN
+        active: DataTypes.BOOLEAN,
+        is_lgbtq: DataTypes.BOOLEAN,
       },
       { sequelize }
     );
   }
 
   static associate(models) {
-    this.hasOne(models.Mapping, { foreignKey: 'user_id', as: "mapping" })
+    this.hasOne(models.Mapping, { foreignKey: "user_id", as: "mapping" });
   }
 }
 

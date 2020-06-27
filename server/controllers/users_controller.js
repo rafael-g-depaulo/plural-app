@@ -25,7 +25,7 @@ module.exports = {
         active: false,
       });
 
-      const token = utils.signToken(user.dataValues.id, user.dataValues.email);
+      const token = utils.signToken(user.dataValues.id, user.dataValues.email, user.dataValues.active, user.dataValues.is_lgbtq);
 
       utils.sendConfirmationEmail(user.dataValues, token);
 
