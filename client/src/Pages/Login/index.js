@@ -1,42 +1,50 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useContext } from "react";
 
-import Display from './Display'
+import Display from "./Display";
 
-import { loginUser } from 'Api/User'
-import { useHistory } from 'react-router-dom'
+import { loginUser } from "Api/User";
+import { useHistory } from "react-router-dom";
 
-export const Login = ({
-  ...props
-}) => {
+import UserContext from "Context/User";
 
+export const Login = ({ ...props }) => {
   // get history to redirect
-  const history = useHistory()
+  const history = useHistory();
+
+  const userContext = useContext(UserContext);
 
   // handle input
-  const [ email, setEmail ] = useState("")
-  const [ pwd, setPwd ] = useState("")
-  const onChangeEmail = useCallback(e => {
-    setEmail(e.target.value)
-  }, [])
-  const onChangePwd = useCallback(e => {
-    setPwd(e.target.value)
-  }, [])
+  const [email, setEmail] = useState("");
+  const [pwd, setPwd] = useState("");
+  const onChangeEmail = useCallback((e) => {
+    setEmail(e.target.value);
+  }, []);
+  const onChangePwd = useCallback((e) => {
+    setPwd(e.target.value);
+  }, []);
 
   // submit login form
-  const onSubmit = useCallback(e => {
-    e.preventDefault()
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    loginUser({ email, password: pwd })
-      .then(res => {
-        // redirect to home page
-        history.push("/")
-      })
-      .catch(err => {
-        // TODO: popup here
-        const errorStatus = err.response.status
-        console.log("erro:", errorStatus)
-      })
-  }, [ email, pwd, history ])
+      loginUser({ email, password: pwd })
+        .then((res) => {
+          console.log(res.data);
+
+          userContext.setCurrentUser(res.data)
+
+          // redirect to home page
+          history.push("/");
+        })
+        .catch((err) => {
+          // TODO: popup here
+          const errorStatus = err.response.status;
+          console.log("erro:", errorStatus);
+        });
+    },
+    [email, pwd, history, userContext]
+  );
 
   return (
     <Display
@@ -49,7 +57,7 @@ export const Login = ({
       }}
       {...props}
     />
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
