@@ -13,7 +13,7 @@ const Event = lazy(() => import("Pages/Event"))
 
 export const Routes = ({ ...props }) => {
   return (
-    <Router basename="/"> 
+    <Router basename="/">
       <Switch>
 
         {/* página de login */}
