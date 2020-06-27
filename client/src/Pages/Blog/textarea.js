@@ -98,28 +98,29 @@ const BlogPost = styled.div`
 
 
 export const Area = ({
-    ...props
-  }) => {
-    let title = props.info.title
-    let imgSrc = props.info.capa.url;
-    let blog = props.info.body;
-    return (
-      <TextArea
-      
-        {...props}
-      >
-        <Title source={title}></Title>
-        <Date datatime={props.info.created_at}/>
-        <Capa>
-        <BlockImg src={imgSrc}/>
-        <Credit>Teste</Credit>
-        </Capa>
-        <BlogPost>
-        <Markdown source={blog}/>
-        </BlogPost>
-          </TextArea>
-    )
-  }
+  info,
+  ...props
+}) => {
+  const { capa, title, body, photo_credit } = info
+  const imgSrc = capa?.url
+
+  return (
+    <TextArea
+
+      {...props}
+    >
+      <Title source={title}></Title>
+      <Date datatime={props.info.created_at} />
+      <Capa>
+        <BlockImg src={imgSrc} />
+        <Credit>{photo_credit}</Credit>
+      </Capa>
+      <BlogPost>
+        <Markdown source={body} />
+      </BlogPost>
+    </TextArea>
+  )
+}
 
 
 export default Area;
