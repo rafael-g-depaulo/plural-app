@@ -72,7 +72,7 @@ export const Parceiros = ({
         <Logo src={Fac} width="150px" height="28px"/>
       </FacBox>
       <OtherBox>
-        <Text>Realização:</Text>
+        <Text>PRODUÇÃO:</Text>
         <OtherBoxLogoCenter>
           <Logo src={BlocoB} margin="0 10px 0 0" width="45%" height="22px"/>
           <Logo src={Transforma} width="45%" height="19px"/>

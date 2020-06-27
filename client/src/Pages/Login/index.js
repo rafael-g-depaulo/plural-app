@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
+
 import Display from './Display'
-import { useState } from 'react'
-import { useCallback } from 'react'
+
+import { loginUser } from 'Api/User'
+import { useHistory } from 'react-router-dom'
 
 export const Login = ({
   ...props
 }) => {
+
+  // get history to redirect
+  const history = useHistory()
 
   // handle input
   const [ email, setEmail ] = useState("")
@@ -20,17 +25,18 @@ export const Login = ({
   // submit login form
   const onSubmit = useCallback(e => {
     e.preventDefault()
-    console.log(email, pwd)
-    // call API to log in
-  }, [email, pwd])
 
-  // favebook/google auths
-  const facebookLogin = useCallback(e => {
-    // call API to log in
-  }, [])
-  const googleLogin = useCallback(e => {
-    // call API to log in
-  }, [])
+    loginUser({ email, password: pwd })
+      .then(res => {
+        // redirect to home page
+        history.push("/")
+      })
+      .catch(err => {
+        // TODO: popup here
+        const errorStatus = err.response.status
+        console.log("erro:", errorStatus)
+      })
+  }, [ email, pwd, history ])
 
   return (
     <Display
@@ -40,8 +46,6 @@ export const Login = ({
         onChangeEmail,
         pwd,
         onChangePwd,
-        facebookLogin,
-        googleLogin,
       }}
       {...props}
     />

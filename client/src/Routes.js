@@ -8,6 +8,8 @@ const Login = lazy(() => import("Pages/Login"))
 const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
 const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
 const Programming = lazy(() => import("Pages/Programming"))
+const Blog = lazy(() => import("Pages/Blog"))
+const Event = lazy(() => import("Pages/Event"))
 
 export const Routes = ({ ...props }) => {
   return (
@@ -46,6 +48,18 @@ export const Routes = ({ ...props }) => {
         <Route path="/programacao">
           <AsyncComponent>
             <Programming />
+          </AsyncComponent>
+        </Route>
+        
+        <Route path="/blog/:id_post">        
+          <AsyncComponent>
+            <Blog />
+          </AsyncComponent>
+        </Route>
+
+        <Route path="/event/:id_event">        
+          <AsyncComponent>
+            <Event />
           </AsyncComponent>
         </Route>
 
