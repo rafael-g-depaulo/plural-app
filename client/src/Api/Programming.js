@@ -1,5 +1,4 @@
 import api from "Api";
 
-export const listAllEvents = () => {
-    return api.get("/api/event");
-}
+export const listAllEvents = () => api
+  .get("/api/event", { withCredentials: false })
