@@ -21,7 +21,7 @@ export const useAPICache = (key, initialValue, apiCall = Promise.resolve) => {
         .catch(({ response }) => setCache(({
           ...cache,
           timeout: Date.now,
-          status: response.status,
+          status: response?.status ?? 404,
           isInvalid: true,
         })))
     }
