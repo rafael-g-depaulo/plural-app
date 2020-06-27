@@ -8,10 +8,10 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   justify-content: center;
-  margin-bottom: -16px;
+  margin-bottom: -10px;
 
   @media (min-width: 700px) {
-    margin-bottom: -26px;
+    margin-bottom: -22px;
   }
 `;
 
@@ -26,26 +26,25 @@ const Text = styled(Link)`
   color: #f26522;
   text-transform: uppercase;
   text-decoration: none;
-  padding-right: ${(props) => props.paddingright ?? "0"};
+
+  &:not(:last-child) {
+    padding-right: 17px;
+  }
   
   @media (min-width: 700px) {
     font-size: 25px;
-    padding-right: ${(props) => props.paddingrightbigger ?? "0"};
+    &:not(:last-child) {
+      padding-right: 34px;
+    }
   }
 `;
 
 export const Navbar = ({ ...props }) => {
   return (
     <Container>
-      <Text to="/" paddingright="17px" paddingrightbigger="34px">
-        blog
-      </Text>
-      <Text to="/" paddingright="17px" paddingrightbigger="34px">
-        perfil
-      </Text>
-      <Text to="/programacao" paddingright="17px" paddingrightbigger="34px">
-        programação
-      </Text>
+      <Text to="/blog">blog</Text>
+      <Text to="/">perfil</Text>
+      <Text to="/programacao">programação</Text>
       <Text to="/participar-mapeamento">mapeamento</Text>
     </Container>
   );

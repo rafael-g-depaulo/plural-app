@@ -8,7 +8,7 @@ const SignUp = lazy(() => import("Pages/SignUp"))
 const Login = lazy(() => import("Pages/Login"))
 const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
 const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
-const Programming = lazy(() => import("Pages/Programming"))
+const BlogList = lazy(() => import("Pages/BlogList"))
 const Blog = lazy(() => import("Pages/Blog"))
 const Event = lazy(() => import("Pages/Event"))
 const Programming = lazy(() => import("Pages/Programming"))
@@ -53,6 +53,13 @@ export const Routes = ({ ...props }) => {
           </AsyncComponent>
         </Route>
 
+        {/* página de listagem dos blogposts */}
+        <Route path="/blog">        
+          <AsyncComponent>
+            <BlogList />
+          </AsyncComponent>
+        </Route>
+
         {/* página de um evento individual */}
         <Route path="/event/:id_event">        
           <AsyncComponent>
@@ -60,7 +67,7 @@ export const Routes = ({ ...props }) => {
           </AsyncComponent>
         </Route>
 
-        {/* página de programação */}
+        {/* página de listagem da programação */}
         <Route path="/event">
           <AsyncComponent>
             <Programming />
