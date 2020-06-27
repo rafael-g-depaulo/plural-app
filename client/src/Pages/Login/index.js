@@ -32,10 +32,7 @@ export const Login = ({ ...props }) => {
         .then((res) => {
           console.log(res.data);
 
-          userContext.setCurrentUser(res.data)
-
-          // redirect to home page
-          history.push("/");
+          userContext.setCurrentUser(res.data.currentUser)
         })
         .catch((err) => {
           // TODO: popup here
