@@ -1,8 +1,8 @@
 import React, { lazy } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import AsyncComponent from 'Components/AsyncComponent'
-import Confirmation from 'Pages/Confirmation'
 
+const Confirmation = lazy(() => import('Pages/Confirmation'))
 const Home = lazy(() => import("Pages/Home"))
 const SignUp = lazy(() => import("Pages/SignUp"))
 const Login = lazy(() => import("Pages/Login"))
@@ -63,7 +63,7 @@ export const Routes = ({ ...props }) => {
           </AsyncComponent>
         </Route>
         
-        <Route path="/">
+        <Route path="/confirmation">
           <Confirmation />
         </Route>
       </Switch>
