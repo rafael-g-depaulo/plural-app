@@ -1,7 +1,7 @@
 import React from "react";
 
 import {
-  GroupName,
+  SubTitle,
   Group,
   Container,
   CheckboxLabel,
@@ -11,26 +11,35 @@ import {
 export default function Gender({ onGenderChange = () => {}, ...props }) {
   return (
     <>
-      <GroupName>IDENTIDADE DE GÊNERO</GroupName>
+      <SubTitle>IDENTIDADE DE GÊNERO</SubTitle>
       <Group>
         <Container>
           <CheckboxLabel>
             <Checkbox
               name="genero"
-              value="masculino"
+              value="travesti"
               type="radio"
               onChange={onGenderChange}
             />
-            masculino
+            travesti
           </CheckboxLabel>
           <CheckboxLabel>
             <Checkbox
               name="genero"
-              value="binario"
+              value="homem trans"
               type="radio"
               onChange={onGenderChange}
             />
-            binario
+            homem trans
+          </CheckboxLabel>
+          <CheckboxLabel>
+            <Checkbox
+              name="genero"
+              value="pessoa cis"
+              type="radio"
+              onChange={onGenderChange}
+            />
+            pessoa cis
           </CheckboxLabel>
         </Container>
 
@@ -38,20 +47,29 @@ export default function Gender({ onGenderChange = () => {}, ...props }) {
           <CheckboxLabel>
             <Checkbox
               name="genero"
-              value="feminino"
+              value="mulher trans"
               type="radio"
               onChange={onGenderChange}
             />
-            feminino
+            mulher trans
           </CheckboxLabel>
           <CheckboxLabel>
             <Checkbox
               name="genero"
-              value="outros"
+              value="não-binárie"
               type="radio"
               onChange={onGenderChange}
             />
-            outros
+            não-binárie
+          </CheckboxLabel>
+          <CheckboxLabel>
+            <Checkbox
+              name="genero"
+              value="prefiro não dizer"
+              type="radio"
+              onChange={onGenderChange}
+            />
+            prefiro não dizer
           </CheckboxLabel>
         </Container>
       </Group>

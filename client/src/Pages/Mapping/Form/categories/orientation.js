@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import {
-  GroupName,
+  SubTitle,
   Group,
   Container,
   CheckboxLabel,
@@ -12,55 +12,45 @@ export default function Orientation({
   onOrientationChange = () => {},
   ...props
 }) {
-  const [orientation, setOrientation] = useState("");
-
-  useEffect(() => {
-    onOrientationChange(orientation);
-  }, [orientation, onOrientationChange]);
-
-  function handleOrientationChange(e) {
-    setOrientation(e.target.value);
-    console.log(e.target.value);
-  }
 
   return (
     <>
-      <GroupName>ORIENTAÇÃO SEXUAL</GroupName>
+      <SubTitle>ORIENTAÇÃO SEXUAL</SubTitle>
       <Group>
         <Container>
           <CheckboxLabel>
             <Checkbox
               name="orientation"
-              value="homossexual"
+              value="lésbica"
               type="radio"
-              onChange={handleOrientationChange}
+              onChange={onOrientationChange}
             />
-            homossexual
+            lésbica
           </CheckboxLabel>
           <CheckboxLabel>
             <Checkbox
               name="orientation"
-              value="assexual"
+              value="gay"
               type="radio"
-              onChange={handleOrientationChange}
+              onChange={onOrientationChange}
             />
-            assexual
+            gay
           </CheckboxLabel>
           <CheckboxLabel>
             <Checkbox
               name="orientation"
-              value="bissexual"
+              value="heterosexual"
               type="radio"
-              onChange={handleOrientationChange}
+              onChange={onOrientationChange}
             />
-            bissexual
+            heterosexual
           </CheckboxLabel>
           <CheckboxLabel>
             <Checkbox
               name="orientation"
               value="prefiro não dizer"
               type="radio"
-              onChange={handleOrientationChange}
+              onChange={onOrientationChange}
             />
             prefiro não dizer
           </CheckboxLabel>
@@ -70,29 +60,38 @@ export default function Orientation({
           <CheckboxLabel>
             <Checkbox
               name="orientation"
-              value="heterossexual"
+              value="bissexual"
               type="radio"
-              onChange={handleOrientationChange}
+              onChange={onOrientationChange}
             />
             heterossexual
           </CheckboxLabel>
           <CheckboxLabel>
             <Checkbox
               name="orientation"
+              value="assexual"
+              type="radio"
+              onChange={onOrientationChange}
+            />
+            assexual
+          </CheckboxLabel>
+          <CheckboxLabel>
+            <Checkbox
+              name="orientation"
               value="pansexual"
               type="radio"
-              onChange={handleOrientationChange}
+              onChange={onOrientationChange}
             />
             pansexual
           </CheckboxLabel>
           <CheckboxLabel>
             <Checkbox
               name="orientation"
-              value="interssexual"
+              value="outros"
               type="radio"
-              onChange={handleOrientationChange}
+              onChange={onOrientationChange}
             />
-            interssexual
+            outros
           </CheckboxLabel>
         </Container>
       </Group>

@@ -11,6 +11,13 @@ const Label = styled.label`
   color: #000000;
   text-transform: uppercase;
   text-align: center;
+
+  @media (min-width: 500px) {
+    font-size: 12px;
+  max-width: 30%;
+  }
+  justify-content: center !important;
+  align-items: center !important;
 `;
 
 const HiddenInput = styled.input`
