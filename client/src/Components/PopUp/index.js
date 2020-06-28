@@ -33,7 +33,19 @@ const CloseButton = styled.a`
   border: 1px solid #cfcece;
 `;
 
-export const PopUp = ({ ...props }) => {
+const Default = () => 
+  (
+    <Text>
+      Desculpe, tivemos um problema!
+      <br />
+      <span>Por favor, tente novamente mais tarde.</span>
+    </Text>
+  )
+
+export const PopUp = ({
+  children,
+  ...props
+}) => {
   return (
     <Popup
       open={props.open}
@@ -50,11 +62,7 @@ export const PopUp = ({ ...props }) => {
       {(close) => (
         <>
           <CloseButton onClick={close}>&times;</CloseButton>
-          <Text>
-            Desculpe, tivemos um problema!
-            <br />
-            <span>Por favor, tente novamente mais tarde.</span>
-          </Text>
+          { children ?? <Default />}
         </>
       )}
     </Popup>
