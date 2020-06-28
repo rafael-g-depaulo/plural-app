@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import {
   SubTitle,
@@ -17,7 +17,7 @@ export default function Etnia({ onEtniaChange = () => {}, ...props }) {
         <Container>
           <CheckboxLabel>
             <Checkbox
-              name="culture"
+              name="etnia"
               value="negra (preta ou parda-afro-descendente)"
               type="radio"
               onChange={onEtniaChange}
@@ -26,7 +26,7 @@ export default function Etnia({ onEtniaChange = () => {}, ...props }) {
           </CheckboxLabel>
           <CheckboxLabel>
             <Checkbox
-              name="culture"
+              name="etnia"
               value="amarela (de ascendência asiática)"
               type="radio"
               onChange={onEtniaChange}
@@ -40,7 +40,7 @@ export default function Etnia({ onEtniaChange = () => {}, ...props }) {
         <Container>
           <CheckboxLabel>
             <Checkbox
-              name="culture"
+              name="etnia"
               value="indigena"
               type="radio"
               onChange={onEtniaChange}
@@ -52,7 +52,7 @@ export default function Etnia({ onEtniaChange = () => {}, ...props }) {
         <Container>
           <CheckboxLabel>
             <Checkbox
-              name="culture"
+              name="etnia"
               value="branca"
               type="radio"
               onChange={onEtniaChange}
