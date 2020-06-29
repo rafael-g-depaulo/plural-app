@@ -13,13 +13,18 @@ export const Login = ({ ...props }) => {
   // handle input
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+
   const onChangeEmail = useCallback((e) => {
     setEmail(e.target.value);
   }, []);
   const onChangePwd = useCallback((e) => {
     setPwd(e.target.value);
   }, []);
+  
+  // error box status
   const [open, setOpen] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(null)
+
   // submit login form
   const onSubmit = useCallback(
     (e) => {
@@ -32,6 +37,8 @@ export const Login = ({ ...props }) => {
         })
         .catch((err) => {
           // set the PopUp state as true so it shows on the screen
+          console.log({ err })
+          setErrorStatus(err.response?.status ?? 500)
           setOpen(true);
         });
       // if the user tries again it shows the same  error message
@@ -39,6 +46,13 @@ export const Login = ({ ...props }) => {
     },
     [email, pwd, history]
   );
+
+  const getErrorMsg = useCallback(status => 
+    status === 401 ? { title: "Email e/ou senha inválidos", message: "Por favor tente de novo" } :
+    status === 500 ? { title: "Erro de conexão", message: "Por favor tente de novo" } :
+    { title: "Erro", message: "Houve um erro. Tente de novo mais tarde" }  
+  , [])
+
 
   return (
     <>
@@ -52,7 +66,7 @@ export const Login = ({ ...props }) => {
         }}
         {...props}
       />
-      <PopUp open={open} />
+      <PopUp open={open} {...getErrorMsg(errorStatus)} />
     </>
   );
 };

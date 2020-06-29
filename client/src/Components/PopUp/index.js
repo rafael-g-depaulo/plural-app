@@ -33,12 +33,12 @@ const CloseButton = styled.a`
   border: 1px solid #cfcece;
 `;
 
-const Default = () => 
+const Default = ({ title, message }) => 
   (
     <Text>
-      Desculpe, tivemos um problema!
+      {title ?? "Desculpe, tivemos um problema!"}
       <br />
-      <span>Por favor, tente novamente mais tarde.</span>
+      <span>{message ?? "Por favor, tente novamente mais tarde."}</span>
     </Text>
   )
 
@@ -62,7 +62,7 @@ export const PopUp = ({
       {(close) => (
         <>
           <CloseButton onClick={close}>&times;</CloseButton>
-          { children ?? <Default />}
+          <Default {...props} />
         </>
       )}
     </Popup>
