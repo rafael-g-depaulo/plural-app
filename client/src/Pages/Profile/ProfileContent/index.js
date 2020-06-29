@@ -38,10 +38,19 @@ export const ProfileContent = ({ ...props }) => {
       <About content={placeholderText} />
 
       <SocialMedia
-        instagramLink="https://www.google.com.br/"
-        facebookLink="https://www.google.com.br/"
-        twitterLink="https://www.google.com.br/"
-        youtubeLink="https://www.google.com.br/"
+        links={[
+          "https://m.instagram.com/",
+          "https://facebook.com/",
+          "https://twitter.com/",
+          "https://www.youtube.com/",
+          "https://linkedin.com/",
+          "https://soundcloud.com/",
+          "https://deezer.com/",
+          "https://tiktok.com/",
+          "https://spotify.com/",
+          "https://vimeo.com/",
+          "https://abc.tumblr.com/",
+        ]}
       />
     </>
   );

@@ -2,31 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { labelFontSize } from "Themes/default";
 
-import InstagramIcon from "@material-ui/icons/Instagram";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import YouTubeIcon from "@material-ui/icons/YouTube";
-
-const Instagram = styled(InstagramIcon)`
-  width: 100% !important;
-  height: 100% !important;
-`;
-const Facebook = styled(FacebookIcon)`
-  width: 100% !important;
-  height: 100% !important;
-`;
-const Twitter = styled(TwitterIcon)`
-  width: 100% !important;
-  height: 100% !important;
-`;
-const YouTube = styled(YouTubeIcon)`
-  width: 100% !important;
-  height: 100% !important;
-`;
+import SocialMediaLink from "./SocialMediaLink";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   color: #ffffff;
   padding-bottom: 25px;
@@ -36,14 +17,20 @@ const Container = styled.div`
   }
 `;
 
-const Row = styled.div`
+const Rows = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: space-around;
   width: 100%;
 
-  @media (min-width: 500px) {
-    width: 500px;
+  @media (min-width: 768px) {
+    width: 645px;
   }
+`;
+
+const RowBreak = styled.div`
+  flex-basis: 100%;
+  height: 15px;
 `;
 
 const Title = styled.span`
@@ -65,57 +52,65 @@ const Title = styled.span`
   }
 `;
 
-const IconContainer = styled.a`
-  width: 36px;
-  height: 36px;
-  color: #ffffff;
+export const SocialMedia = ({ links, ...props }) => {
+  const regexes = {
+    deezer: RegExp(/(?:deezer.com)/i),
+    facebook: RegExp(/(?:facebook|fb)\.com/i),
+    instagram: RegExp(/(?:instagram.com|instagr.am)/i),
+    linkedin: RegExp(/(?:linkedin.com)/i),
+    soundcloud: RegExp(/(?:soundcloud.com|snd.sc)/i),
+    spotify: RegExp(/(?:spotify.com)/i),
+    tiktok: RegExp(/(?:tiktok.com)/i),
+    tumblr: RegExp(/(?:tumblr.com)/i),
+    twitter: RegExp(/(?:twitter.com)/i),
+    vimeo: RegExp(/(?:vimeo.com)/i),
+    youtube: RegExp(/(?:youtube.com|youtu.be)/i),
+  };
 
-  &:link,
-  &:visited {
-    color: #ffffff;
-  }
+  // checks if a link matches a regex in regexes
+  // return [socialMedia, link]
+  const checkLink = (link) => {
+    const domain = new URL(link).hostname;
+    const regexList = Object.values(regexes);
 
-  &:link:active,
-  &:visited:active {
-    color: #ffffff;
-  }
+    const index = regexList.findIndex((expression) => expression.test(domain));
 
-  @media (min-width: 500px) {
-    width: 64px;
-    height: 64px;
-  }
-`;
+    if (index !== -1) {
+      return [Object.keys(regexes)[index], link];
+    }
+  };
 
-export const SocialMedia = ({
-  instagramLink,
-  facebookLink,
-  twitterLink,
-  youtubeLink,
-  ...props
-}) => {
+  // filter out links, builds array with [socialMedia, link]
+  const filterLinks = (arr) => {
+    return arr.reduce((result, curr) => {
+      let socialLink = checkLink(curr);
+
+      if (socialLink !== undefined) {
+        result.push(socialLink);
+      }
+
+      return result;
+    }, []);
+  };
+
   return (
     <Container>
       <Title>
         <b>Se interessou?</b> Confira mais informações sobre o perfil através
         das redes sociais.
       </Title>
-      <Row>
-        <IconContainer href={instagramLink}>
-          <Instagram />
-        </IconContainer>
+      <Rows>
+        {filterLinks(links).map((socialLink, index, arr) => (
+          <React.Fragment key={index}>
+            <SocialMediaLink socialMedia={socialLink[0]} link={socialLink[1]} />
 
-        <IconContainer href={facebookLink}>
-          <Facebook />
-        </IconContainer>
-
-        <IconContainer href={twitterLink}>
-          <Twitter />
-        </IconContainer>
-
-        <IconContainer href={youtubeLink}>
-          <YouTube />
-        </IconContainer>
-      </Row>
+            {/* splits into two rows when there's more than 6 items */}
+            {arr.length > 6 && index + 1 === Math.ceil(arr.length / 2) && (
+              <RowBreak />
+            )}
+          </React.Fragment>
+        ))}
+      </Rows>
     </Container>
   );
 };
