@@ -28,3 +28,5 @@ export const registerUser = ({
 
 export const updateUserIsLgbtq = ({ isLgbtq }) =>
   api.put("/api/user/update/is-lgbtq", { isLgbtq });
+
+export const updateUser = (value) => api.put("/api/user/update", value);
