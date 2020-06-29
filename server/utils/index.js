@@ -2,11 +2,9 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
 module.exports = {
-  signToken(id, email, activeStatus, lgbtqStatus) {
-    console.log(id, email, activeStatus, lgbtqStatus)
-    
+  signToken(id, email) {  
     const token = jwt.sign(
-      { user: { id, email, active: activeStatus, isLgbtq: lgbtqStatus } },
+      { user: { id, email} },
       process.env.TOKEN_SECRET_KEY,
       { expiresIn: parseInt(process.env.TOKEN_EXPIRATION_TIME) }
     );

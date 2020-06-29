@@ -14,6 +14,7 @@ class User extends Model {
         name: DataTypes.STRING,
         active: DataTypes.BOOLEAN,
         is_lgbtq: DataTypes.BOOLEAN,
+        is_mapping_participant: DataTypes.BOOLEAN,
       },
       { sequelize }
     );
