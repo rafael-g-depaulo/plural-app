@@ -15,5 +15,10 @@ export default ({}, options) => {
       "/update/is-lgbtq",
       AuthMiddleware.verifyToken,
       UsersController.updateIsLgbtq
+    )
+    .put(
+      "/update",
+      AuthMiddleware.verifyToken,
+      UsersController.update
     );
 };

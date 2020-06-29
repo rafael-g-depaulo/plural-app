@@ -1,14 +1,23 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const Mapping = require("/models/Mapping");
 const Utils = require("../utils");
 
 async function getUserFromEmail(email) {
   console.log(`\nSearching for user with email: ${email}\n`);
 
-  const user = await User.findOne({ where: { email: email } });
+  const user = await User.findOne({
+    where: { email: email },
+    include: [
+      {
+        model: Mapping,
+        as: "mapping",
+      },
+    ],
+  });
 
-  user == null
+  user === null
     ? console.log("\nNo records found.\n")
     : console.log(`\nFound the following user: ${JSON.stringify(user)}\n`);
 
@@ -27,7 +36,7 @@ module.exports = {
     const user = await getUserFromEmail(email);
 
     // Testar
-    if (user == undefined) {
+    if (user === undefined) {
       console.log("[ERROR]", errorMessage);
 
       return res.status(401).json({ error: errorMessage });
@@ -48,21 +57,23 @@ module.exports = {
       // return res.status(401).json({error: "The user must verify its account."})
     }
 
-    const token = await Utils.signToken(
-      userId,
-      email,
-      user.active,
-      user.is_lgbtq
-    );
+    const token = await Utils.signToken(userId, email);
 
     const currentUser = {
-      id: userId,
-      email,
-      active: user.active,
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      birthdate: user.birthdate,
+      phoneNumber: user.phone_number,
       isLgbtq: user.is_lgbtq,
+      active: user.active,
+      city: user.city,
+      provider: user.provider,
+      providerId: user.providerId,
+      mapping: user.mapping,
     };
 
-    if (token == null) {
+    if (token === null) {
       res
         .status(500)
         .json({ error: "An internal error has occurred. Try again." });
