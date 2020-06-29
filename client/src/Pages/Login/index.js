@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useContext } from "react";
+import PopUp from "../../Components/PopUp";
 
 import Display from "./Display";
 
@@ -22,6 +23,10 @@ export const Login = ({ ...props }) => {
   const onChangePwd = useCallback((e) => {
     setPwd(e.target.value);
   }, []);
+  
+  // error box status
+  const [open, setOpen] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(null)
 
   // submit login form
   const onSubmit = useCallback(
@@ -30,31 +35,40 @@ export const Login = ({ ...props }) => {
 
       loginUser({ email, password: pwd })
         .then((res) => {
-          console.log(res.data);
-
           userContext.setCurrentUser(res.data.currentUser)
         })
         .catch((err) => {
-          // TODO: popup here
-          const errorStatus = err.response.status;
-          console.log("erro:", errorStatus);
+          // set the PopUp state as true so it shows on the screen
+          setErrorStatus(err.response?.status ?? 500)
+          setOpen(true);
         });
+      // if the user tries again it shows the same  error message
+      setOpen(false);
     },
     [email, pwd, history, userContext]
   );
 
+  const getErrorMsg = useCallback(status => 
+    status === 401 ? { title: "Email e/ou senha inválidos", message: "Por favor tente de novo" } :
+    status === 500 ? { title: "Erro de conexão", message: "Por favor tente de novo" } :
+    { title: "Erro", message: "Houve um erro. Tente de novo mais tarde" }  
+  , [])
+
   return (
-    <Display
-      {...{
-        onSubmit,
-        email,
-        onChangeEmail,
-        pwd,
-        onChangePwd,
-      }}
-      {...props}
-    />
-  );
+    <>
+      <Display
+        {...{
+          onSubmit,
+          email,
+          onChangeEmail,
+          pwd,
+          onChangePwd,
+        }}
+        {...props}
+      />  
+      <PopUp open={open} {...getErrorMsg(errorStatus)} />
+    </>
+  )
 };
 
 export default Login;

@@ -31,7 +31,7 @@ module.exports = {
     console.log("Received JSON params:", req.body);
 
     const errorMessage =
-      "The authentication failed. The credentials provided are invalid.";
+      "Email e/ou senha inválidos. Por favor tente de novo";
 
     const user = await getUserFromEmail(email);
 
@@ -49,12 +49,6 @@ module.exports = {
       console.log("[ERROR]", errorMessage);
 
       return res.status(401).json({ error: errorMessage });
-    }
-
-    // Verify if user is already verified.
-    if (user.active !== true) {
-      console.log("The user must verify its account.");
-      // return res.status(401).json({error: "The user must verify its account."})
     }
 
     const token = await Utils.signToken(userId, email);

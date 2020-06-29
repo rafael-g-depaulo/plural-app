@@ -13,6 +13,7 @@ const MappingQuestion = lazy(() => import("Pages/MappingQuestion"));
 const Mapping = lazy(() => import("Pages/Mapping"));
 const Programming = lazy(() => import("Pages/Programming"));
 const Blog = lazy(() => import("Pages/Blog"));
+const BlogList = lazy(() => import("Pages/BlogList"));
 const Event = lazy(() => import("Pages/Event"));
 
 export const Routes = ({ ...props }) => {
@@ -55,12 +56,26 @@ export const Routes = ({ ...props }) => {
             </AsyncComponent>
           </Route>
 
-          {/* página de um blogpost */}
-          <Route path="/blog/:id_post">
-            <AsyncComponent>
-              <Blog />
-            </AsyncComponent>
-          </Route>
+        {/* página que pergunta se um usuário quer participar do mapeamento */}
+        <Route path="/participar-mapeamento">
+          <AsyncComponent>
+            <MappingQuestion />
+          </AsyncComponent>
+        </Route>
+        
+        {/* página de um blogpost */}
+        <Route path="/blog/:id_post">        
+          <AsyncComponent>
+            <Blog />
+          </AsyncComponent> 
+        </Route>
+
+        {/* página de listagem dos blogposts */}
+        <Route path="/blog">        
+          <AsyncComponent>
+            <BlogList />
+          </AsyncComponent>
+        </Route>
 
           {/* página de um evento individual */}
           <Route path="/event/:id_event">
