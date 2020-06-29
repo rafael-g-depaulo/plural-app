@@ -25,8 +25,17 @@ export const Form = () => {
   const onSubmitButton = useCallback((e) => {
     e.preventDefault();
 
-    console.log("Deu Submit!");
-  }, []);
+    console.log("Deu Submit!", [
+      gender,
+      jobs,
+      bio,
+      user,
+      social,
+      orientation,
+      etnia,
+      atuacao,
+    ]);
+  }, [ gender, jobs, bio, user, social, orientation, etnia, atuacao ]);
 
   const onUpdateUser = useCallback((e) => {
     setUser(e.target.value);

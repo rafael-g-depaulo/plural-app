@@ -16,7 +16,7 @@ export default function RedesSociais({ onChange = () => {}, ...props }) {
       console.log(redesSociais);
     }, [setRedesSociais, redesSociais])
   
-    useEffect(() => { onChange(redesSociais) }, [redesSociais])
+    useEffect(() => { onChange(redesSociais) }, [redesSociais, onChange])
   
     return (
       <>
