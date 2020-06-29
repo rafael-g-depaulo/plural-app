@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { UserContext } from "./index.js";
 import { getCurrentUser } from "Api/User";
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 
 export function UserProvider(props) {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,24 +20,33 @@ export function UserProvider(props) {
   */
   useEffect(() => {
     if (currentUser !== undefined && currentUser !== null) {
-      console.log("Current user has been updated", currentUser);
-
       if (currentUser.active === false) {
         console.log("Redirecting to email confirmation.");
 
-        history.push('/confirmation')
+        history.push("/confirmation");
       } else if (currentUser.isLgbtq === null) {
         console.log("Redirecting to is LGBTQ+?");
 
-        history.push('/areyouLGBTQIA')
-      } else if (currentUser.isLgbtq === true && currentUser.mapping === null) {
-        console.log("Redirecting to mapping.");
+        history.push("/areyouLGBTQIA");
+      } else if (
+        currentUser.isLgbtq === true &&
+        currentUser.isMappingParticipant === null &&
+        currentUser.mapping === null
+      ) {
+        console.log("Redirecting to mapping question.");
 
-        history.push('/participar-mapeamento')
+        history.push("/participar-mapeamento");
+      } else if (
+        currentUser.isMappingParticipant === true &&
+        currentUser.mapping === null
+      ) {
+        console.log("Redirecting to mapping");
+
+        history.push("/mapeamento");
       } else {
-        console.log("Redirecting to homepage");
+        console.log("Redirecting to .");
 
-        history.push('/')
+        history.push("/");
       }
     }
   }, [currentUser, history]);
