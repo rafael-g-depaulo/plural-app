@@ -13,7 +13,6 @@ export const Login = ({ ...props }) => {
   // handle input
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
-
   const onChangeEmail = useCallback((e) => {
     setEmail(e.target.value);
   }, []);
@@ -37,7 +36,6 @@ export const Login = ({ ...props }) => {
         })
         .catch((err) => {
           // set the PopUp state as true so it shows on the screen
-          console.log({ err })
           setErrorStatus(err.response?.status ?? 500)
           setOpen(true);
         });
