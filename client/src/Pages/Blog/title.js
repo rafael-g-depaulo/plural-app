@@ -25,9 +25,6 @@ const Container = styled(Markdown)`
     @media(min-width:1800px){
       font-size: 3.5em;
     }
-
-
-
 `;
 
 export const Title = ({

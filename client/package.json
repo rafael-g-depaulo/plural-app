@@ -23,6 +23,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.0",
     "react-youtube": "^7.11.2",
+    "reactjs-popup": "^1.5.0",
     "styled-components": "^5.1.1",
     "youtube-validate": "^1.2.4"
   },
