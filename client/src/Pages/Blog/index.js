@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 
 import Back from "Components/Post/background"
 import PluralLogo from 'Components/Logo'
-import NavBar from 'Components/Menu'
+import NavBar from 'Components/Navbar'
 import LoadDots from "Components/Load"
 
 import Area from "./textarea";

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "Context/User";
 
 const Container = styled.div`
   display: flex;
@@ -40,12 +42,16 @@ const Text = styled(Link)`
 `;
 
 export const Navbar = ({ ...props }) => {
+  const user = useContext(UserContext)
+
+  console.log("user", user)
   return (
     <Container>
       <Text to="/blog">blog</Text>
       <Text to="/">perfil</Text>
       <Text to="/programacao">programação</Text>
       <Text to="/participar-mapeamento">mapeamento</Text>
+      <Text to="/login">sair</Text>
     </Container>
   );
 };

@@ -9,7 +9,7 @@ import Area from "./textarea"
 
 import Back from "Components/Post/background"
 import PluralLogo from 'Components/Logo'
-import NavBar from 'Components/Menu'
+import NavBar from 'Components/Navbar'
 import LoadDots from "Components/Load"
 
 const Container = styled.div`
