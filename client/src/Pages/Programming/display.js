@@ -75,6 +75,7 @@ const ComputerLogo = styled.img`
 `;
 
 export const Display = ({eventList}) => {
+  console.log("strapi URL", process.env.REACT_APP_STRAPI_URL)
   return (
     <Container>
       <Content>
