@@ -9,7 +9,7 @@ export const useAPICache = (key, initialValue, apiCall = Promise.resolve) => {
 
   useEffect(() => {
     // can add "|| cache.isInvalid" to retry on bad response
-    if (cache.timeout <= Date.now()) {
+    if (!cache?.timeout || cache.timeout <= Date.now()) {
       apiCall()
         .then(({ data, status }) => setCache(({
           ...cache,

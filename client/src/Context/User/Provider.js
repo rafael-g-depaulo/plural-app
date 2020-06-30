@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { UserContext } from "./index.js";
 import { getCurrentUser } from "Api/User";
+import Loading from "Pages/Loading";
 
 export function UserProvider(props) {
   const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +47,7 @@ export function UserProvider(props) {
   if (error) console.warn("UserProvider Error:", error)
 
   return isLoading === true ? (
-    <h1>Loading</h1>
+    <Loading />
   ) : (
     <UserContext.Provider value={currentUser}>
       {isLoading === true ? <h1>Loading...</h1> : props.children}
