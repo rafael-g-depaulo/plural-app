@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "Context/User";
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   width: 100%;
-  justify-content: center;
+  align-items: center;
+  justify-content: ${props => props.leftAlign ? "flex-start" : "center"};
   margin-bottom: -10px;
 
   @media (min-width: 700px) {
@@ -42,16 +42,22 @@ const Text = styled(Link)`
 `;
 
 export const Navbar = ({ ...props }) => {
-  const user = useContext(UserContext)
 
-  console.log("user", user)
+  // find if the user is logged in
+  const user = useContext(UserContext)
+  const isLogged = user !== null
+
+  // get current path to return here if the user logs in
+  const { pathname } = useLocation()
+  const returnTo = pathname.replace("/", "")
+
   return (
-    <Container>
+    <Container leftAlign={!isLogged}>
       <Text to="/blog">blog</Text>
-      <Text to="/">perfil</Text>
+      { isLogged && <Text to="/">perfil</Text> }
       <Text to="/programacao">programação</Text>
-      <Text to="/participar-mapeamento">mapeamento</Text>
-      <Text to="/login">sair</Text>
+      { isLogged && <Text to="/participar-mapeamento">mapeamento</Text> }
+      <Text to={"/login" + (isLogged ? "" : `?redirectTo=${returnTo}`)}>{ isLogged ? "sair" : "entrar" }</Text>
     </Container>
   );
 };

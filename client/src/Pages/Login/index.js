@@ -1,14 +1,18 @@
 import React, { useState, useCallback } from "react";
-import PopUp from "../../Components/PopUp";
-
-import Display from "./Display";
-
+import { useHistory, useLocation } from "react-router-dom";
+import { parse } from "qs"
 import { loginUser } from "Api/User";
-import { useHistory } from "react-router-dom";
+
+import PopUp from "Components/PopUp";
+import Display from "./Display";
 
 export const Login = ({ ...props }) => {
   // get history to redirect
   const history = useHistory();
+
+  // get redirect path, if exists
+  const { search } = useLocation()
+  const { redirectTo = "" } = parse(search.replace("?", ""))
 
   // handle input
   const [email, setEmail] = useState("");
@@ -31,8 +35,8 @@ export const Login = ({ ...props }) => {
 
       loginUser({ email, password: pwd })
         .then((res) => {
-          // redirect to home page
-          history.push("/");
+          // redirect
+          history.push(`/${redirectTo}`);
         })
         .catch((err) => {
           // set the PopUp state as true so it shows on the screen
@@ -42,7 +46,7 @@ export const Login = ({ ...props }) => {
       // if the user tries again it shows the same  error message
       setOpen(false);
     },
-    [email, pwd, history]
+    [email, pwd, history, redirectTo]
   );
 
   const getErrorMsg = useCallback(status => 

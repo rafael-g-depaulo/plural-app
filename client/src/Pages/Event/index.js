@@ -99,7 +99,7 @@ export const Event = ({...props}) =>{
 
     const apiCall = useCallback(() => getEvent(id_event), [id_event])
     const { data, status } = useAPICache(`event/${id_event}`, null, apiCall)
-    console.log("data", data)
+    
     return(
         <Back>
             <Container>
