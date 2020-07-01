@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from "react"
 import ChipInput from "material-ui-chip-input"
+import { inputFontSize } from "Themes/default";
 
 import {
   SubTitle,
@@ -10,8 +10,6 @@ import {
 
 export default function Jobs({ onJobsChange = () => {}, ...props }) {
   const [ newJob, setNewJob ] = useState([])
-  const [maxJobs, setMaxJobs] = useState(false);
-  let jobsCount = 0;
 
   // update parent when jobs change
   useEffect(() => { onJobsChange(newJob) }, [ newJob, onJobsChange ])
@@ -20,16 +18,13 @@ export default function Jobs({ onJobsChange = () => {}, ...props }) {
     setNewJob((chips) => chips.filter((chip) => chip.key !== chipToDelete.key))
   }, [])
 
-  const handleNewJob = useCallback((chip) => {
-    setNewJob(chip)
-    jobsCount += 1;
-    console.log(jobsCount)
-    if (jobsCount === 6){
-      setMaxJobs(true)
-    } else {
-      setMaxJobs(false)
-    }
-  }, [])
+  function handleNewJob(chip){
+    console.log(newJob.length)
+    if (newJob.length !== 6) {
+      setNewJob(chip)
+      console.log(chip)
+    } 
+  }
 
   return (
     <>
@@ -41,10 +36,19 @@ export default function Jobs({ onJobsChange = () => {}, ...props }) {
         <Text>
           ex: #ArtistaMultimídia #Designer #Ilustrador #VJ 
         <ChipInput
-          style={{background: '#FFFF', width: '100%'}}
+          style={{
+            color: 'white',
+            paddingTop: 2,
+            paddingBottom: 2,
+            paddingLeft: 30,
+            paddingRight: 30,
+            background: '#FFFF',
+            width: '100%', 
+            border: '2px solid #00000',
+            borderRadius: 50,
+          }}
           onChange={chips => handleNewJob(chips)}
-          onDelete={chips => handleDeleteJob(chips)}
-          disabled={maxJobs}
+          onDelete={(chip) => handleDeleteJob(chip)}
           newChipKeyCodes={[32, 13]}
           {...props}
         />

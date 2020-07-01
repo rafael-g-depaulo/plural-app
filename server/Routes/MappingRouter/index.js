@@ -39,7 +39,7 @@ export default ({ User }, config) => {
 
       await insertUser(user_id, data);
 
-      const body = {
+      /* const body = {
         query: {
           match_phrase_prefix: {
             professional: "Fotogr",
@@ -47,7 +47,7 @@ export default ({ User }, config) => {
         },
       };
       const response = await searchUsers(body);
-
+ */
       return res.json(mapping);
     })
     .post("/users/jobs", async (req, res) => {
