@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'Town Display';
+  src: local('Town Display'), local('TownDisplay'), local('Town-Display'), 
+  url('./Jason-Vandenberg-Town-10-Display-Black.otf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Town Display';
+  src: local('Town Display'), local('TownDisplay'), local('Town-Display'), 
+  url('./Jason-Vandenberg-Town-10-Display-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Town Display';
+  src: local('Town Display'), local('TownDisplay'), local('Town-Display'), 
+  url('./Jason-Vandenberg-Town-10-Display-Medium.otf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Town Display';
+  src: local('Town Display'), local('TownDisplay'), local('Town-Display'), 
+  url('./Jason-Vandenberg-Town-10-Display-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Town Display';
+  src: local('Town Display'), local('TownDisplay'), local('Town-Display'), 
+  url('./Jason-Vandenberg-Town-80-Text-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Town Display';
+  src: local('Town Display'), local('TownDisplay'), local('Town-Display'), 
+  url('./Jason-Vandenberg-Town-80-Text-Thin.ttf') format('truetype');
+  font-weight: 250;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Town Display';
+  src: local('Town Display'), local('TownDisplay'), local('Town-Display'), 
+  url('./Jason-Vandenberg-Town-10-Display-Extra-Thin.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Town Display';
+  src: local('Town Display'), local('TownDisplay'), local('Town-Display'), 
+  url('./Jason-Vandenberg-Town-10-Display-Hairline.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+
+
+
+@font-face {
+  font-family: 'Town Text';
+  src: local('Town Text'), local('TownText'), local('Town-Text'), 
+  url('./Jason-Vandenberg-Town-80-Text-Bold.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Town Text';
+  src: local('Town Text'), local('TownText'), local('Town-Text'), 
+  url('./Jason-Vandenberg-Town-80-Text-Medium.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Town Text';
+  src: local('Town Text'), local('TownText'), local('Town-Text'), 
+  url('./Jason-Vandenberg-Town-80-Text-Book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Town Text';
+  src: local('Town Text'), local('TownText'), local('Town-Text'), 
+  url('./Jason-Vandenberg-Town-80-Text-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Town Text';
+  src: local('Town Text'), local('TownText'), local('Town-Text'), 
+  url('./Jason-Vandenberg-Town-80-Text-Thin.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+
+
+
+@font-face {
+  font-family: 'Town Text';
+  src: local('Town Text'), local('TownText'), local('Town-Text'), 
+  url('./Jason-Vandenberg-Town-80-Text-Bold-Italic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Town Text';
+  src: local('Town Text'), local('TownText'), local('Town-Text'), 
+  url('./Jason-Vandenberg-Town-80-Text-Medium-Italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Town Text';
+  src: local('Town Text'), local('TownText'), local('Town-Text'), 
+  url('./Jason-Vandenberg-Town-80-Text-Book-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Town Text';
+  src: local('Town Text'), local('TownText'), local('Town-Text'), 
+  url('./Jason-Vandenberg-Town-80-Text-Light-Italic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Town Text';
+  src: local('Town Text'), local('TownText'), local('Town-Text'), 
+  url('./Jason-Vandenberg-Town-80-Text-Thin-Italic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
