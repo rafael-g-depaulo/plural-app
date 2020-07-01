@@ -7,9 +7,9 @@ import UserContext from "Context/User";
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   width: 100%;
-  justify-content: center;
+  align-items: center;
+  justify-content: ${props => props.leftAlign ? "flex-start" : "center"};
   margin-bottom: -10px;
 
   @media (min-width: 700px) {
@@ -43,15 +43,15 @@ const Text = styled(Link)`
 
 export const Navbar = ({ ...props }) => {
   const user = useContext(UserContext)
+  const isLogged = user !== null
 
-  console.log("user", user)
   return (
-    <Container>
+    <Container leftAlign={!isLogged}>
       <Text to="/blog">blog</Text>
-      <Text to="/">perfil</Text>
+      { isLogged && <Text to="/">perfil</Text> }
       <Text to="/programacao">programação</Text>
-      <Text to="/participar-mapeamento">mapeamento</Text>
-      <Text to="/login">sair</Text>
+      { isLogged && <Text to="/participar-mapeamento">mapeamento</Text> }
+      <Text to="/login">{ isLogged ? "sair" : "entrar" }</Text>
     </Container>
   );
 };
