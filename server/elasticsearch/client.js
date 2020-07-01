@@ -2,8 +2,18 @@ const es = require("elasticsearch");
 
 const esClient = new es.Client({
   // host: "localhost:9200",
-  host: "https://raq2d6kggt:o3d11mc7dl@ash-427947896.us-east-1.bonsaisearch.net:443",
-  log: "trace",
+   host: process.env.ELASTIC_URL,
+   log: "trace",
 });
 
+esClient.ping({
+  requestTimeout: 30000,
+}, (error) => {
+  if(error) {
+    console.error('elasticsearch cluster is down')
+  } else {
+    console.log('all is well')
+  }
+})
+ 
 module.exports = esClient;
