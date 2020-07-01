@@ -61,9 +61,11 @@ export const Form = () => {
     setAtuacao(e.target.value);
   }, []);
 
-  const onJobsChange = useCallback((jobs) => {
-    setJobs(jobs)
-  }, []);
+  function onJobsChange(job) {
+    if (jobs.length !== 6){
+      setJobs(job)
+    }
+  }
 
   return (
     <FormContainer onSubmit={onSubmitButton}>
@@ -73,7 +75,7 @@ export const Form = () => {
       <Orientation onOrientationChange={onOrientationChange}/>
       <Etnia onEtniaChange={onEtniaChange}/>
       <AreaAtuacao onAtuacaoChange={onAtuacaoChange}/>
-      <Jobs onJobsChange={onJobsChange}/>
+      <Jobs onJobsChange={onJobsChange} />
 
       <AboutUser onUpdateUser={onUpdateUser} onInputBio={onInputBio}/>
       <RedesSociais onChange={setSocial}/>

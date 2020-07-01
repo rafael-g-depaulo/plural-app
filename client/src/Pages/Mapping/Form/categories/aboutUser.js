@@ -71,14 +71,14 @@ export default function AboutUser({ onInputBio = () => {}, onUpdateUser = () => 
         <InputLabel htmlFor="name">
           Como sua pessoa quer ser chamada?
         </InputLabel>
-        <Input id="name" name="name" type="text" value="user" onChange={onUpdateUser} />
+        <Input id="name" name="name" type="text" onChange={onUpdateUser} />
       </Group>
 
       <Group>
         <InputLabel htmlFor="bio">
             Conte nos um pouco sobre você e seu trabalho: (biografia)
         </InputLabel>
-        <StyledTextArea id="bio" name="bio" type="textarea" value="bio" onChange={onInputBio} />
+        <StyledTextArea id="bio" name="bio" type="textarea" onChange={onInputBio} />
       </Group>
 
     <PhotoInput />

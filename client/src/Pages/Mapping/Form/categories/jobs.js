@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react"
 import ChipInput from "material-ui-chip-input"
+import { inputFontSize } from "Themes/default";
 
 import {
   SubTitle,
@@ -17,11 +18,13 @@ export default function Jobs({ onJobsChange = () => {}, ...props }) {
     setNewJob((chips) => chips.filter((chip) => chip.key !== chipToDelete.key))
   }, [])
 
-  const handleNewJob = useCallback((chip) => {
-    setNewJob(chip)
-  }, [])
-
-  // LIMITAR 6
+  function handleNewJob(chip){
+    console.log(newJob.length)
+    if (newJob.length !== 6) {
+      setNewJob(chip)
+      console.log(chip)
+    } 
+  }
 
   return (
     <>
@@ -33,9 +36,19 @@ export default function Jobs({ onJobsChange = () => {}, ...props }) {
         <Text>
           ex: #ArtistaMultimídia #Designer #Ilustrador #VJ 
         <ChipInput
-          style={{background: '#FFFF', width: '100%'}}
+          style={{
+            color: 'white',
+            paddingTop: 2,
+            paddingBottom: 2,
+            paddingLeft: 30,
+            paddingRight: 30,
+            background: '#FFFF',
+            width: '100%', 
+            border: '2px solid #00000',
+            borderRadius: 50,
+          }}
           onChange={chips => handleNewJob(chips)}
-          onDelete={chips => handleDeleteJob(chips)}
+          onDelete={(chip) => handleDeleteJob(chip)}
           newChipKeyCodes={[32, 13]}
           {...props}
         />
