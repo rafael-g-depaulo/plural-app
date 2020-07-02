@@ -11,7 +11,9 @@ export const MappingQuestion = ({ ...props }) => {
 
   const updateUserMappingStatus = (isMappingParticipant) => {
     updateUser({ is_mapping_participant: isMappingParticipant })
-      .then((res) => userContext.setCurrentUser(res.data.updatedUser))
+      .then((res) => {
+        userContext.setCurrentUser(res.data.updatedUser);
+      })
       .catch((err) => console.log(err));
   };
 
