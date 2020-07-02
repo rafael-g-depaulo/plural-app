@@ -1,7 +1,7 @@
 //! setup middlewares
 import cors from "cors"
 
-const allowedOrigins = process.env.NODE_ENV === "production"
+const allowedOrigins = process.env.NODE_ENV !== "production"
   ? [ /localhost$/, /localhost:3000$/ ]
   : [ /www\.festivalplural\.com\.br$/, /festivalplural\.com\.br$/, /dev\.festivalplural\.com\.br$/ ]
 
