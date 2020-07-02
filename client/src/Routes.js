@@ -13,6 +13,7 @@ const Blog = lazy(() => import("Pages/Blog"))
 const Event = lazy(() => import("Pages/Event"))
 const SingUpMapping = lazy(() => import("Pages/Mapping"))
 const Programming = lazy(() => import("Pages/Programming"))
+const MappingSearch = lazy(() => import("Pages/MappingSearch"))
 
 export const Routes = ({ ...props }) => {
   const user = useContext(UserContext)
@@ -87,6 +88,13 @@ export const Routes = ({ ...props }) => {
         <Route path="/confirmation">
           <AsyncComponent>
             <Confirmation />
+          </AsyncComponent>
+        </Route>
+
+        {/* página de busca no mapeamento*/}
+        <Route path="/search">
+          <AsyncComponent>
+            <MappingSearch />
           </AsyncComponent>
         </Route>
 
