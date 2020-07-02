@@ -158,7 +158,12 @@ export default ({ User }, config) => {
           ],
         });
 
-        // const response = await searchUsers(body);
+        const data = {
+          user_id,
+          professional,
+        };
+  
+        await insertUser(user_id, data);
 
         return res.status(200).json(destructureUser(user));
       } catch (err) {
