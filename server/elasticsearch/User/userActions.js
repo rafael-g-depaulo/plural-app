@@ -1,7 +1,6 @@
 const esClient = require("../client");
 
 export async function insertUser(id, data) {
-  console.log("insertUser", id, data);
   return await esClient.index({
     index: "mapping",
     type: "mytype",
