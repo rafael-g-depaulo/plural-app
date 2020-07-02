@@ -1,9 +1,9 @@
-import React, { lazy } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { lazy, useContext } from "react";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import AsyncComponent from "Components/AsyncComponent";
+import UserContext from "Context/User";
 
 const Confirmation = lazy(() => import('Pages/Confirmation'))
-const Home = lazy(() => import("Pages/Home"))
 const SignUp = lazy(() => import("Pages/SignUp"))
 const Login = lazy(() => import("Pages/Login"))
 const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
@@ -15,6 +15,8 @@ const SingUpMapping = lazy(() => import("Pages/Mapping"))
 const Programming = lazy(() => import("Pages/Programming"))
 
 export const Routes = ({ ...props }) => {
+  const user = useContext(UserContext)
+  
   return (
     <Router basename="/">
       <Switch>
@@ -90,9 +92,10 @@ export const Routes = ({ ...props }) => {
 
         {/* Home page */}
         <Route exact path="/">
-          <AsyncComponent>
-            <Home />
-          </AsyncComponent>
+          { user === null
+            ? <Redirect to="/login"/>
+            : <Redirect to="/event"/>
+          }
         </Route>
         
       </Switch>
