@@ -1,19 +1,10 @@
 const es = require("elasticsearch");
 
+const { ELASTIC_URL = "http://localhost:9200/" } = process.env
+
 const esClient = new es.Client({
-  // host: "localhost:9200",
-   host: process.env.ELASTIC_URL,
-   log: "trace",
+  host: ELASTIC_URL,
+  log: "trace",
 });
 
-esClient.ping({
-  requestTimeout: 30000,
-}, (error) => {
-  if(error) {
-    console.error('elasticsearch cluster is down')
-  } else {
-    console.log('all is well')
-  }
-})
- 
 module.exports = esClient;

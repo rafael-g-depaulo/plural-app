@@ -1,6 +1,6 @@
 import Router from "express";
-import Mapping from "../../models/Mapping";
-import { insertUser, searchUsers } from "../../elasticsearch/User/userActions";
+import Mapping from "models/Mapping";
+import { insertUser, searchUsers } from "elasticsearch/User/userActions";
 
 export default ({ User }, config) => {
   return Router(config)
