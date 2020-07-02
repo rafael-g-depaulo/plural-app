@@ -16,9 +16,11 @@ export default ({}, options) => {
       AuthMiddleware.verifyToken,
       UsersController.updateIsLgbtq
     )
-    .put(
-      "/update",
-      AuthMiddleware.verifyToken,
-      UsersController.update
+    .put("/update", AuthMiddleware.verifyToken, UsersController.update)
+    .post("/password-reset", UsersController.passwordReset)
+    .post(
+      "/password-reset/callback",
+      AuthMiddleware.verifyPasswordResetToken,
+      UsersController.passwordResetCallback
     );
 };

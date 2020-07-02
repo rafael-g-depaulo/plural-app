@@ -171,4 +171,54 @@ module.exports = {
       }
     });
   },
+  /*
+    This method generates a simplified token with the user's email, and send it via email.
+    Then the user will be redirected to the password reset screen
+  */
+  async passwordReset(req, res) {
+    const { email } = req.body;
+
+    console.log("Searching for user with email:", email);
+
+    const user = await User.findOne({ where: { email: email } });
+
+    if (user === null) {
+      console.log("\nNo records found.\n");
+
+      return res.status(404).send({ error: "No records found." });
+    }
+
+    //If the user is valid, sign password reset token and send the recovery link via email
+    console.log(`\nFound the following user: ${JSON.stringify(user)}\n`);
+
+    const token = utils.signPasswordResetToken(user.id, user.email);
+
+    utils.sendPasswordResetEmail(user, token);
+
+    return res
+      .status(200)
+      .send({ data: "Successfully sent password reset email." });
+  },
+  async passwordResetCallback(req, res) {
+    const { password } = req.body;
+
+    const hashCost = 10;
+
+    try {
+      const passwordHash = await bcrypt.hash(password, hashCost);
+
+      const user = await User.update(
+        { password: passwordHash },
+        { where: { id: req.decoded.user.id } }
+      );
+
+      res
+        .status(200)
+        .json({ message: "The user's password was successfully updated." });
+    } catch (err) {
+      res.status(422).json({
+        message: "An error occurred while updating password. Try again. ",
+      });
+    }
+  },
 };

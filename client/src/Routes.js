@@ -16,6 +16,8 @@ const Blog = lazy(() => import("Pages/Blog"));
 const BlogList = lazy(() => import("Pages/BlogList"));
 const Event = lazy(() => import("Pages/Event"));
 
+const PasswordReset = lazy(() => import("Pages/PasswordReset"));
+
 export const Routes = ({ ...props }) => {
   return (
     <Router basename="/">
@@ -55,20 +57,27 @@ export const Routes = ({ ...props }) => {
               <Mapping />
             </AsyncComponent>
           </Route>
-        
-        {/* página de um blogpost */}
-        <Route path="/blog/:id_post">        
-          <AsyncComponent>
-            <Blog />
-          </AsyncComponent> 
-        </Route>
 
-        {/* página de listagem dos blogposts */}
-        <Route path="/blog">        
-          <AsyncComponent>
-            <BlogList />
-          </AsyncComponent>
-        </Route>
+          {/* página de um blogpost */}
+          <Route path="/blog/:id_post">
+            <AsyncComponent>
+              <Blog />
+            </AsyncComponent>
+          </Route>
+
+          {/* página de listagem dos blogposts */}
+          <Route path="/blog">
+            <AsyncComponent>
+              <BlogList />
+            </AsyncComponent>
+          </Route>
+
+          {/* página de reset de senha */}
+          <Route path="/password-reset/:token?">
+            <AsyncComponent>
+              <PasswordReset />
+            </AsyncComponent>
+          </Route>
 
           {/* página de um evento individual */}
           <Route path="/event/:id_event">
