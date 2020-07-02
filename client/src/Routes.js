@@ -13,6 +13,7 @@ const Blog = lazy(() => import("Pages/Blog"))
 const Event = lazy(() => import("Pages/Event"))
 const SingUpMapping = lazy(() => import("Pages/Mapping"))
 const Programming = lazy(() => import("Pages/Programming"))
+const MappingSearch = lazy(() => import("Pages/MappingSearch"))
 
 export const Routes = ({ ...props }) => {
   return (
@@ -84,6 +85,13 @@ export const Routes = ({ ...props }) => {
         {/* página de aviso da confirmação de email */}
         <Route path="/confirmation">
           <Confirmation />
+        </Route>
+
+        {/* página de busca no mapeamento*/}
+        <Route path="/search">
+          <AsyncComponent>
+            <MappingSearch />
+          </AsyncComponent>
         </Route>
 
         {/* Home page */}
