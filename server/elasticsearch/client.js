@@ -6,5 +6,5 @@ const esClient = new es.Client({
   host: ELASTIC_URL,
   log: "trace",
 });
- 
+
 module.exports = esClient;
