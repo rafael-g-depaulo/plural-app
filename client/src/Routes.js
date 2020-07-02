@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import AsyncComponent from "Components/AsyncComponent";
 import UserContext from "Context/User";
 
+const PasswordReset = lazy(() => import("Pages/PasswordReset"));
 const Confirmation = lazy(() => import('Pages/Confirmation'))
 const SignUp = lazy(() => import("Pages/SignUp"))
 const Login = lazy(() => import("Pages/Login"))
@@ -89,6 +90,13 @@ export const Routes = ({ ...props }) => {
             <Confirmation />
           </AsyncComponent>
         </Route>
+
+          {/* página de reset de senha */}
+          <Route path="/password-reset/:token?">
+            <AsyncComponent>
+              <PasswordReset />
+            </AsyncComponent>
+          </Route>
 
         {/* Home page */}
         <Route exact path="/">

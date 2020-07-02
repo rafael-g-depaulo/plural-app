@@ -76,8 +76,8 @@ export const Button = ({ ...props }) => {
   return (
     <>
       <Container>
-        <ButtonBox to="">Sim</ButtonBox>
-        <ButtonBox to="">Não</ButtonBox>
+        <ButtonBox onClick={() => props.onClickCallback(true)}>Sim</ButtonBox>
+        <ButtonBox onClick={() => props.onClickCallback(false)}>Não</ButtonBox>
       </Container>
     </>
   );
