@@ -83,7 +83,9 @@ export const Routes = ({ ...props }) => {
 
         {/* página de aviso da confirmação de email */}
         <Route path="/confirmation">
-          <Confirmation />
+          <AsyncComponent>
+            <Confirmation />
+          </AsyncComponent>
         </Route>
 
         {/* Home page */}

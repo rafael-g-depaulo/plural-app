@@ -7,11 +7,11 @@ const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: -23px;
+    margin-top: 30px;
 
     @media (min-width: 700px) {
         width: 686px;
-        margin-bottom: -46px;
+        margin-bottom: 10px;
     }
 `;
 
@@ -25,6 +25,7 @@ const Text = styled.p`
     text-align: justify;
     text-transform: uppercase;  
     color: #f26522;
+    margin: 0;
 
     @media (min-width: 700px) {
         font-size: 47px;
