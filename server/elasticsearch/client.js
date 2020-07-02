@@ -1,9 +1,10 @@
 const es = require("elasticsearch");
 
 const esClient = new es.Client({
-  // host: "localhost:9200",
-   host: process.env.ELASTIC_URL,
-   log: "trace",
+  //host: "localhost:9200",
+  // host: process.env.ELASTIC_URL,
+  host: "https://p9swk6ub1h:9gkkkz71qs@ash-427947896.us-east-1.bonsaisearch.net:443",
+  log: "trace",
 });
 
 esClient.ping({
