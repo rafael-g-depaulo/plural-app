@@ -40,11 +40,6 @@ const Group = styled.div`
   padding-bottom: 20px;
 `;
 
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 export const Display = ({
   errors,
   onSubmit,

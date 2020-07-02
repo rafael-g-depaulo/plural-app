@@ -49,7 +49,7 @@ export const Form = ({...props}) => {
 
       props.onSubmitCallback(form)
     },
-    [gender, jobs, bio, user, social, orientation, etnia, atuacao]
+    [gender, jobs, bio, user, social, orientation, etnia, atuacao, props]
   );
 
   const onUpdateUser = useCallback((e) => {

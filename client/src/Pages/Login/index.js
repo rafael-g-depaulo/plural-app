@@ -4,13 +4,10 @@ import PopUp from "../../Components/PopUp";
 import Display from "./Display";
 
 import { loginUser } from "Api/User";
-import { useHistory } from "react-router-dom";
 
 import UserContext from "Context/User";
 
 export const Login = ({ ...props }) => {
-  // get history to redirect
-  const history = useHistory();
 
   const userContext = useContext(UserContext);
 
@@ -45,7 +42,7 @@ export const Login = ({ ...props }) => {
       // if the user tries again it shows the same  error message
       setOpen(false);
     },
-    [email, pwd, history, userContext]
+    [email, pwd, userContext]
   );
 
   const getErrorMsg = useCallback(status => 

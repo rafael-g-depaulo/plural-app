@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import Display from "./Display";
-import { passwordReset } from "../../../api";
+import { passwordReset } from "Api/User.js";
 
 export const Form = ({ ...props }) => {
   const [user, setUser] = useState({});

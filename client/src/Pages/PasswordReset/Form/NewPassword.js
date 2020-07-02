@@ -4,7 +4,7 @@ import Input from "./Input";
 import InputLabel from "./InputLabel";
 import InputError from "./InputError";
 import SubmitButton from "./SubmitButton";
-import { passwordResetCallback } from "../../../api";
+import { passwordResetCallback } from "Api/User.js";
 
 const Form = styled.form`
   display: flex;
