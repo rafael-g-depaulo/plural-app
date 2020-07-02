@@ -76,9 +76,11 @@ export const Form = ({...props}) => {
     setAtuacao(e.target.value);
   }, []);
 
-  const onJobsChange = useCallback((jobs) => {
-    setJobs(jobs);
-  }, []);
+  const onJobsChange = useCallback(jobs => {
+    if (jobs.length !== 6) {
+      setJobs(jobs);
+    }
+  }, [setJobs]);
 
   return (
     <FormContainer onSubmit={onSubmitButton}>

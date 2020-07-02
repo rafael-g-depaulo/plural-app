@@ -3,6 +3,8 @@ import { UserContext } from "./index.js";
 import { getCurrentUser } from "Api/User";
 import { useHistory } from "react-router-dom";
 
+import Loading from "Pages/Loading";
+
 export function UserProvider(props) {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -90,12 +92,12 @@ export function UserProvider(props) {
   if (error) console.warn("UserProvider Error:", error);
 
   return isLoading === true ? (
-    <h1>Loading</h1>
+    <Loading />
   ) : (
     <UserContext.Provider
       value={{ currentUser, setCurrentUser: (user) => setCurrentUser(user) }}
     >
-      {isLoading === true ? <h1>Loading...</h1> : props.children}
+      {isLoading === true ? <Loading /> : props.children}
     </UserContext.Provider>
   );
 }

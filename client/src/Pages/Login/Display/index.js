@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGooglePlus } from "@fortawesome/free-brands-svg-icons";
@@ -13,8 +12,10 @@ import Parceiros from "./Parceiros";
 import Button from "./Button";
 import SocialLink from "./SocialLink";
 
-import bgDesktop from "./bg_desktop.png";
-import bgMobile from "./bg_mobile.png";
+import { Link } from 'react-router-dom'
+
+import bgDesktop from './bg_desktop.png'
+import bgMobile from './bg_mobile.png'
 
 const Container = styled.div`
   height: 100vh;
@@ -105,8 +106,14 @@ const Icon = styled(FontAwesomeIcon)`
   margin-left: 5px;
 `;
 
+const MyLink = styled(Link)`
+  &, &:hover, &:active {
+    text-decoration: none;
+    color: #ffffff;
+  }
+`
+
 export const Display = ({
-  LinkComponent = "span",
   email = "",
   onChangeEmail = () => {},
   pwd = "",
@@ -114,8 +121,6 @@ export const Display = ({
   onSubmit = () => {},
   ...props
 }) => {
-  const history = useHistory();
-
   return (
     <Container>
       <Content>
@@ -140,13 +145,8 @@ export const Display = ({
             autoComplete="current-password"
           />
           <Links>
-            <LinkComponent>Cadastre-se</LinkComponent>
-            <LinkComponent
-              style={{ cursor: 'pointer' }}
-              onClick={() => history.push("/password-reset")}
-            >
-              Esqueci a minha senha
-            </LinkComponent>
+            <MyLink to="/signup">Cadastre-se</MyLink>
+            <MyLink to="/password-reset">Esqueci a minha senha</MyLink>
           </Links>
           <MyButton type="submit">ENTRAR</MyButton>
         </Content>

@@ -1,6 +1,6 @@
 import Router from "express";
-import Mapping from "../../models/Mapping";
-import { insertUser, searchUsers } from "../../elasticsearch/User/userActions";
+import Mapping from "models/Mapping";
+import { insertUser, searchUsers } from "elasticsearch/User/userActions";
 import AuthMiddleware from "Middlewares/AuthMiddleware";
 
 const sexualOrientationMap = new Map([
