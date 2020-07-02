@@ -43,6 +43,7 @@ const Default = ({ title, message }) =>
   )
 
 export const PopUp = ({
+  onClose,
   children,
   ...props
 }) => {
@@ -50,6 +51,7 @@ export const PopUp = ({
     <Popup
       open={props.open}
       modal
+      onClose={onClose}
       contentStyle={{
         background: "#fff",
         borderRadius: "30px",
