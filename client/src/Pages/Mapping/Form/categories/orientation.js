@@ -4,8 +4,6 @@ import {
   SubTitle,
   Group,
   Container,
-  CheckboxLabel,
-  Checkbox,
   ContainerInput,
   Label,
   Input,

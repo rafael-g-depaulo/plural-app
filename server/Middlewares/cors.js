@@ -3,7 +3,7 @@ import cors from "cors"
 
 const allowedOrigins = process.env.NODE_ENV !== "production"
   ? [ /localhost$/, /localhost:3000$/ ]
-  : [ /www\.festivalplural\.com\.br$/, /festivalplural\.com\.br$/, /dev\.festivalplural\.com\.br$/ ]
+  : [ /www\.festivalplural\.com\.br$/, /festivalplural\.com\.br$/, /dev\.festivalplural\.com\.br$/, /plural-app-dev\.herokuapp\.com/, /plural-app\.herokuapp\.com/ ]
 
 export default cors({
   origin: (origin, callback) => {

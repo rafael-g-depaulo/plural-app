@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react"
 import ChipInput from "material-ui-chip-input"
-import { inputFontSize } from "Themes/default";
 
 import {
   SubTitle,
