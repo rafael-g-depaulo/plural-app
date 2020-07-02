@@ -5,13 +5,30 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   async showCurrentUser(req, res) {
-    return res.status(200).send({current_user: req.decoded.user})
+    return res.status(200).send({ current_user: req.decoded.user });
   },
   async create(req, res) {
-    const { email, password, name, birthdate, phoneNumber, city } = req.body;
+    const {
+      email,
+      email_confirm,
+      password,
+      password_confirm,
+      name,
+      day,
+      month,
+      year,
+      phone,
+      city,
+    } = req.body;
 
     const hashCost = 10;
 
+    
+    if(email !== email_confirm || password !== password_confirm)
+    {
+      return res.status(400).json({message: "Email or password doesn't match."})
+    }
+    
     try {
       const passwordHash = await bcrypt.hash(password, hashCost);
 
@@ -19,8 +36,8 @@ module.exports = {
         email: email,
         password: passwordHash,
         name: name,
-        birthdate: birthdate,
-        phone_number: phoneNumber,
+        birthdate: `${month}/${day}/${year}`,
+        phone_number: phone,
         city: city,
         active: false,
       });
@@ -40,7 +57,7 @@ module.exports = {
   async verifyEmail(req, res) {
     const token = req.params.token;
 
-    jwt.verify(token, process.env.TOKEN_SECRET_KEY, async function (
+    jwt.verify(token, process.env.TOKEN_SECRET_KEY, async function(
       err,
       decoded
     ) {
@@ -51,7 +68,7 @@ module.exports = {
           error: "Unauthorized access. The email couldn't be verified.",
         });
       }
-      
+
       try {
         const user = await User.update(
           { active: true },
@@ -62,11 +79,9 @@ module.exports = {
           .status(200)
           .json({ message: "The email was successfully verified." });
       } catch {
-        res
-          .status(422)
-          .json({
-            message: "An error occurred while verifying email. Try again. ",
-          });
+        res.status(422).json({
+          message: "An error occurred while verifying email. Try again. ",
+        });
       }
     });
   },

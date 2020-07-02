@@ -1,9 +1,13 @@
 import React, { useState, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import Display from "./Display";
+import { createUser } from "Api/User.js";
 
 export const Form = ({ ...props }) => {
   const [user, setUser] = useState({});
   const [errors, setErrors] = useState({});
+
+  const history = useHistory();
 
   // update user on input change
   const updateUser = useCallback(
@@ -88,7 +92,13 @@ export const Form = ({ ...props }) => {
     (e) => {
       e.preventDefault();
 
-      console.log(user);
+      createUser(user)
+        .then((res) => {
+          history.push("/");
+        })
+        .catch((err) => {
+          alert("Ocorreu um erro ao registrar.");
+        });
     },
     [user]
   );
