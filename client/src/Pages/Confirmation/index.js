@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import PluralLogo from 'Components/PluralLogo'
 import TextBox from './textbox'
 import TextField from './text'
+import { useContext } from 'react';
+import UserContext from 'Context/User';
 
 const MainDiv = styled.div`
     height:100vh;
@@ -64,6 +66,9 @@ const LogoDiv = styled.div`
 export const Confirmation = ({
     ...props
 }) => {
+    const { name = "usuário" } = useContext(UserContext)
+    const userName = name.split(" ")[0].toUpperCase()
+
     return (
         <MainDiv>
         <Background>
@@ -73,7 +78,7 @@ export const Confirmation = ({
                     <StyleLogo />
                 </LogoDiv>
                 <TextBox>
-                    <TextField><span style={{fontWeight:900}}>OI, MONA</span> <br/>CONFIRME SEU EMAIL <br />PRA FINALIZAR A CRIAÇÃO <br />DO SEU CADASTRO</TextField>
+                    <TextField><span style={{fontWeight:900}}>OI, { userName }</span> <br/>CONFIRME SEU EMAIL <br />PRA FINALIZAR A CRIAÇÃO <br />DO SEU CADASTRO</TextField>
 
                 </TextBox>
             </Grid>
