@@ -98,10 +98,8 @@ module.exports = {
         plain: true,
       });
 
-      console.log(user[1]);
-
       res.status(200).send({
-        updatedUser: destructureUser(user),
+        updatedUser: destructureUser(user[1]),
         message: "The user was successfully updated.",
       });
     } catch (error) {
