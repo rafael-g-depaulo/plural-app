@@ -90,28 +90,29 @@ module.exports = {
 
     const token = utils.signPasswordResetToken(user.id, user.email);
 
-    if (await utils.sendPasswordResetEmail(user, token)) {
-      return res
-        .status(200)
-        .send({ data: "Successfully sent password reset email." });
-    }
+    utils.sendPasswordResetEmail(user, token);
 
     return res
-      .status(500)
-      .send({ error: "An error occurred while sending email. Try again." });
+      .status(200)
+      .send({ data: "Successfully sent password reset email." });
   },
   async passwordResetCallback(req, res) {
     const { password } = req.body;
-    
+
+    const hashCost = 10;
+
     try {
+      const passwordHash = await bcrypt.hash(password, hashCost);
+
       const user = await User.update(
-        { password },
+        { password: passwordHash },
         { where: { id: req.decoded.user.id } }
       );
+
       res
         .status(200)
         .json({ message: "The user's password was successfully updated." });
-    } catch {
+    } catch (err) {
       res.status(422).json({
         message: "An error occurred while updating password. Try again. ",
       });
