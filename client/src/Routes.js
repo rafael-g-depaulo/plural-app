@@ -107,7 +107,7 @@ export const Routes = ({ ...props }) => {
         </Route>
         
       </Switch>
-    </Router>
+    </Router> 
   );
 };
 
