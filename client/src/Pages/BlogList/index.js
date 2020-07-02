@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useAPICache } from "Hooks/useAPICache";
 
-import { listAll } from "Api/blogs";
+import { listAll } from "Api/blog";
 
 import PopUp from "Components/PopUp";
 import Display from "./display";
