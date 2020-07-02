@@ -1,7 +1,7 @@
 import React, { useCallback } from "react"
 import styled from 'styled-components'
 
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { useAPICache } from "Hooks/useAPICache"
 import { getEvent } from "Api/event"
 
@@ -11,6 +11,7 @@ import Back from "Components/Post/background"
 import PluralLogo from 'Components/Logo'
 import NavBar from 'Components/Navbar'
 import LoadDots from "Components/Load"
+import PopUp from "Components/PopUp"
 
 const Container = styled.div`
     display: inline-grid;
@@ -93,32 +94,47 @@ const Navigation = styled.div`
 
 `;
 
-export const Event = ({...props}) =>{
+export const Event = ({ ...props }) => {
 
-    const { id_event } = useParams()
+  const { id_event } = useParams()
 
-    const apiCall = useCallback(() => getEvent(id_event), [id_event])
-    const { data, status } = useAPICache(`event/${id_event}`, null, apiCall)
-    
-    return(
-        <Back>
-            <Container>
-                <LogoDiv>   
-                    <Logo></Logo>
-                    </LogoDiv>
-                    <Navigation>
-                        <NavBar></NavBar>
-                    </Navigation>
-                        {
-                            data === null || status !== 200 ? 
-                            <LoadDots/>
-                            :
-                            <Area info={data}/>
+  const apiCall = useCallback(() => getEvent(id_event), [id_event])
+  const { data, status } = useAPICache(`event/${id_event}`, null, apiCall)
 
-                        }
-                </Container>
-        </Back>
-    )
+  // error handling
+  const open = status !== 200
+  console.log("status", status)
+  const { title, message } =
+    status === 404 ? { title: "Atividade não existe", message: "Essa atividade não existe" } :
+    status === 500 ? { title: "Erro de conexão", message: "Por favor tente de novo mais tarde" } :
+    { title: "Erro", message: "Houve um erro. Tente de novo mais tarde" }
+
+  // redirect to blog list on popup close
+  const history = useHistory()
+  const onClose = useCallback(() => {
+    history.push("/event")
+  }, [history])
+
+  return (<>
+    <Back>
+      <Container>
+        <LogoDiv>
+          <Logo></Logo>
+        </LogoDiv>
+        <Navigation>
+          <NavBar></NavBar>
+        </Navigation>
+        {
+          data === null || status !== 200 ?
+            <LoadDots />
+            :
+            <Area info={data} />
+
+        }
+      </Container>
+    </Back>
+    <PopUp {...{ open, title, message, onClose }} />
+  </>)
 }
 
 export default Event
