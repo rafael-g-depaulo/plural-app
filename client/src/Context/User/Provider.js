@@ -38,7 +38,7 @@ export function UserProvider(props) {
         history.push("/participar-mapeamento");
       } else if (
         currentUser.isMappingParticipant === true &&
-        currentUser.mapping === null
+        (currentUser.mapping === null || currentUser.mapping === undefined)
       ) {
         console.log("Redirecting to mapping");
 
