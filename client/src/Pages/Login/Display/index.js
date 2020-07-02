@@ -12,6 +12,8 @@ import Parceiros from './Parceiros'
 import Button from './Button'
 import SocialLink from './SocialLink'
 
+import { Link } from 'react-router-dom'
+
 import bgDesktop from './bg_desktop.png'
 import bgMobile from './bg_mobile.png'
 
@@ -107,8 +109,14 @@ const Icon = styled(FontAwesomeIcon)`
   margin-left: 5px;
 `
 
+const MyLink = styled(Link)`
+  &, &:hover, &:active {
+    text-decoration: none;
+    color: #ffffff;
+  }
+`
+
 export const Display = ({
-  LinkComponent = "span",
   email = "",
   onChangeEmail = () => {},
   pwd = "",
@@ -128,8 +136,8 @@ export const Display = ({
           <Label htmlFor="pwd">SENHA</Label>
           <MyInput value={pwd} onChange={onChangePwd} name="pwd" type="password" autoComplete="current-password"/>
           <Links>
-            <LinkComponent>Cadastre-se</LinkComponent>
-            <LinkComponent>Esqueci a minha senha</LinkComponent>
+            <MyLink to="/signup">Cadastre-se</MyLink>
+            <MyLink>Esqueci a minha senha</MyLink>
           </Links>
           <MyButton type="submit">ENTRAR</MyButton>
         </Content>
