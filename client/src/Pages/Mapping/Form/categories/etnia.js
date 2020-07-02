@@ -3,63 +3,66 @@ import React from "react";
 import {
   SubTitle,
   Group,
-  Container,
-  CheckboxLabel,
-  Checkbox,
   GroupOut,
+  ContainerInput,
+  Label,
+  Input,
+  StyledCheckbox,
 } from "../styles";
 
 export default function Etnia({ onEtniaChange = () => {}, ...props }) {
     return (
     <>
       <SubTitle>RAÇA / COR / ETNIA</SubTitle>
-      <GroupOut>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+      <GroupOut>   
+        <ContainerInput>
+          <Label>
+            <Input 
               name="etnia"
               value="negra (preta ou parda-afro-descendente)"
               type="radio"
-              onChange={onEtniaChange}
             />
+            <StyledCheckbox />
             negra (preta ou parda-afro-descendente)
-          </CheckboxLabel>
-          <CheckboxLabel>
-            <Checkbox
+          </Label>
+        </ContainerInput>
+        <ContainerInput>
+          <Label>
+            <Input 
               name="etnia"
               value="amarela (de ascendência asiática)"
               type="radio"
-              onChange={onEtniaChange}
             />
+            <StyledCheckbox />
             amarela (de ascendência asiática)
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
       </GroupOut>
       
       <Group>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+        <ContainerInput>
+          <Label>
+            <Input 
               name="etnia"
               value="indigena"
               type="radio"
-              onChange={onEtniaChange}
             />
+            <StyledCheckbox />
             indigena
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
 
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+        <ContainerInput>
+          <Label>
+            <Input 
               name="etnia"
               value="branca"
               type="radio"
-              onChange={onEtniaChange}
             />
+            <StyledCheckbox />
             branca
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
       </Group>
 
     </>

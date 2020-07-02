@@ -1,7 +1,9 @@
 const es = require("elasticsearch");
 
+const { ELASTIC_URL = "http://localhost:9200/" } = process.env
+
 const esClient = new es.Client({
-  host: "localhost:9200",
+  host: ELASTIC_URL,
   log: "trace",
 });
 
