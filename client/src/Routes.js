@@ -55,13 +55,6 @@ export const Routes = ({ ...props }) => {
               <Mapping />
             </AsyncComponent>
           </Route>
-
-        {/* página que pergunta se um usuário quer participar do mapeamento */}
-        <Route path="/participar-mapeamento">
-          <AsyncComponent>
-            <MappingQuestion />
-          </AsyncComponent>
-        </Route>
         
         {/* página de um blogpost */}
         <Route path="/blog/:id_post">        
