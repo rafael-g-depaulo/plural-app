@@ -1,16 +1,17 @@
 import React, { useCallback } from "react"
 import styled from 'styled-components'
-import { getBlogPost } from "Api/blog"
+import { useParams, useHistory } from "react-router-dom"
+import { useAPICache } from "Hooks/useAPICache"
 
-import { useParams } from "react-router-dom"
+import { getBlogPost } from "Api/blog"
 
 import Back from "Components/Post/background"
 import PluralLogo from 'Components/Logo'
 import NavBar from 'Components/Navbar'
 import LoadDots from "Components/Load"
+import PopUp from "Components/PopUp"
 
 import Area from "./textarea";
-import { useAPICache } from "Hooks/useAPICache"
 
 const Container = styled.div`
     display: inline-grid;
@@ -93,31 +94,45 @@ const Navigation = styled.div`
 
 `;
 
-export const Blog = ({...props}) =>{
+export const Blog = ({ ...props }) => {
 
-    const { id_post } = useParams()
+  const { id_post } = useParams()
 
-    const getBlog = useCallback(() => getBlogPost(id_post), [id_post])
-    const { data, status } = useAPICache(`blog/${id_post}`, null, getBlog)
-    
-    return(
-        <Back>
-            <Container>
-                <LogoDiv>   
-                    <Logo></Logo>
-                    </LogoDiv>
-                    <Navigation>
-                        <NavBar></NavBar>
-                    </Navigation>
-                        {
-                            data === null || status !== 200 ? 
-                            <LoadDots/>
-                            :
-                            <Area info={data}/>
-                        };
+  const getBlog = useCallback(() => getBlogPost(id_post), [id_post])
+  const { data, status } = useAPICache(`blog/${id_post}`, null, getBlog)
+
+  // error handling
+  const open = status !== 200
+  const { title, message } =
+    status === 404 ? { title: "Post não existe", message: "Esse post não existe" } :
+    status === 500 ? { title: "Erro de conexão", message: "Por favor tente de novo mais tarde" } :
+    { title: "Erro", message: "Houve um erro. Tente de novo mais tarde" }
+
+  // redirect to blog list on popup close
+  const history = useHistory()
+  const onClose = useCallback(() => {
+    history.push("/blog")
+  }, [history])
+  
+  return (<>
+    <Back>
+      <Container>
+        <LogoDiv>
+          <Logo></Logo>
+        </LogoDiv>
+        <Navigation>
+          <NavBar></NavBar>
+        </Navigation>
+        {
+          data === null || status !== 200 ?
+            <LoadDots />
+            :
+            <Area info={data} />
+        };
                 </Container>
-        </Back>
-    )
+    </Back>
+    <PopUp {...{ open, title, message, onClose }} />
+  </>)
 }
 
 export default Blog
