@@ -44,7 +44,7 @@ export function UserProvider(props) {
       ) {
         console.log("Redirecting to mapping");
 
-        history.push("/mapeamento");
+        history.push("/mapping");
       } else {
         console.log("Redirecting to .");
 

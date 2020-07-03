@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import AsyncComponent from "Components/AsyncComponent";
 import UserContext from "Context/User";
+import { UserProvider } from "Context/User/Provider";
 
 const PasswordReset = lazy(() => import("Pages/PasswordReset"));
 const Confirmation = lazy(() => import("Pages/Confirmation"));
@@ -27,6 +28,7 @@ export const Routes = ({ ...props }) => {
 
   return (
     <Router basename="/">
+      <UserProvider>
       <Switch>
         {/* página de login */}
         <Route path="/login">
@@ -45,7 +47,7 @@ export const Routes = ({ ...props }) => {
         {/* página de perfil -- current user */}
 
         <Route path="/me">
-          {user.currentUser === null ? (
+          {user === null ? (
             <Redirect to="/" />
           ) : (
             <AsyncComponent>
@@ -129,6 +131,7 @@ export const Routes = ({ ...props }) => {
           {user === null ? <Redirect to="/login" /> : <Redirect to="/event" />}
         </Route>
       </Switch>
+      </UserProvider>
     </Router>
   );
 };

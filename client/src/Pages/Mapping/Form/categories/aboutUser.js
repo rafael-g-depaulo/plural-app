@@ -17,9 +17,9 @@ const Group = styled.div`
   padding-bottom: 20px;
 `;
 
-const TextPhoto = styled.text`
+const TextPhoto = styled.span`
 font-family: Town Text;
-  font-size: 8 px;
+  font-size: 8px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

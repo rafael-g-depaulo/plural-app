@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const Container = styled.div`
   position: absolute;
@@ -38,13 +37,12 @@ const Container = styled.div`
   }
 `;
 
-const ButtonBox = styled(Link)`
+const ButtonBox = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-color: ${(props) =>
-    props.cover === true ? "#6739d1" : "#f58880"};
+  background-color: ${props => props.cover ? "#6739d1" : "#f58880"};
   text-decoration: none;
   font-family: Town Text;
   font-weight: 700;
@@ -83,10 +81,10 @@ export const Buttons = ({ ...props }) => {
   return (
     <>
       <Container>
-        <ButtonBox onClick={() => props.onClickCallback(true)} cover={true}>
+        <ButtonBox cover onClick={() => props.onClickCallback(true)} >
           sim
         </ButtonBox>
-        <ButtonBox onClick={() => props.onClickCallback(false)} cover={false}>
+        <ButtonBox onClick={() => props.onClickCallback(false)} >
           não
         </ButtonBox>
       </Container>
