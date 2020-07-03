@@ -177,7 +177,8 @@ export const Form = ({ ...props }) => {
 
   const countErrors = useCallback((oldErrors, newErrors) => {
     // using this because setErrors is async
-    const combined = { ...oldErrors, ...newErrors };
+    // sets phone_number to be ignored
+    const combined = { ...oldErrors, ...newErrors, phone_number: "" };
 
     // filter out "" as those are not errors
     return Object.values(combined).filter((v) => v !== "").length;
