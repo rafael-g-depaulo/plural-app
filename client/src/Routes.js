@@ -43,10 +43,15 @@ export const Routes = ({ ...props }) => {
         </Route>
 
         {/* página de perfil -- current user */}
+
         <Route path="/me">
-          <AsyncComponent>
-            <MyProfile />
-          </AsyncComponent>
+          {user.currentUser === null ? (
+            <Redirect to="/" />
+          ) : (
+            <AsyncComponent>
+              <MyProfile />
+            </AsyncComponent>
+          )}
         </Route>
 
         {/* página de perfil  -- por id */}
