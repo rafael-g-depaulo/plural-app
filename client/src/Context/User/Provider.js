@@ -22,7 +22,12 @@ export function UserProvider(props) {
   */
   useEffect(() => {
     if (currentUser !== undefined && currentUser !== null) {
-      if (currentUser.active === false) {
+      if (currentUser.providerId !== null && currentUser.name === null) {
+        history.push({
+          pathname: "/signup",
+          state: { userFromProvider: true },
+        });
+      } else if (currentUser.active === false) {
         console.log("Redirecting to email confirmation.");
 
         history.push("/confirmation");
@@ -44,7 +49,7 @@ export function UserProvider(props) {
       ) {
         console.log("Redirecting to mapping");
 
-        history.push("/mapeamento");
+        history.push("/mapping");
       } else {
         console.log("Redirecting to .");
 
