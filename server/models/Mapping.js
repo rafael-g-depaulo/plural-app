@@ -11,7 +11,7 @@ class Mapping extends Model {
         gender_orientation: DataTypes.INTEGER,
         professional: DataTypes.ARRAY(DataTypes.STRING),
         art_category: DataTypes.INTEGER,
-        profile_picture: DataTypes.BLOB,
+        profile_picture: DataTypes.STRING,
         facebook: DataTypes.STRING,
         instagram: DataTypes.STRING,
         linkedin: DataTypes.STRING,
