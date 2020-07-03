@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100%;
+  width: 330px;
   max-height: 180px;
   display: flex;
   flex-direction: column;
@@ -10,6 +10,12 @@ const Container = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   margin-right: 12px;
+
+  @media (min-width: 700px) {
+    width: 660px;
+    max-height: 360px;
+    margin-right: 24px;
+  }
 `;
 
 const ItemContainer = styled.div`
@@ -17,7 +23,11 @@ const ItemContainer = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  margin: 0 0 0 10px;
+  margin-left: 10px;
+
+  @media (min-width: 700px) {
+    margin-left: 25px;
+  }
 `;
 
 const ItemName = styled.p`
@@ -35,28 +45,66 @@ const ItemName = styled.p`
   text-transform: uppercase;
   padding-left: 5px;
   margin: 0;
+
+  @media (min-width: 700px) {
+    max-width: 270px;
+    font-size: 33px;
+    padding-left: 10px;
+  }
 `;
 
 const Item = styled.input`
-  width: 12px;
-  height: 12px;
-  -webkit-appearance: none;
-  border: solid 1px #fffefe;
-  background-color: #000000;
-  :hover {
-    background-color: #ffffff;
-    cursor: pointer;
-  }
-  :focus {
-    outline: none;
-  }
-  :checked {
-    ::after {
-      border: solid 1px #fffefe;
-      background-color: white;
-      width: 12px;
-      height: 12px;
+  @media (max-width: 699px) {
+    width: 12px;
+    height: 12px;
+    border: solid 1px #fffefe;
+    -webkit-appearance: none;
+    background-color: #000000;
+
+    :hover {
+      background-color: #ffffff;
+      cursor: pointer;
     }
+
+    :focus {
+      outline: none;
+    }
+
+    :checked {
+      ::after {
+        border: solid 1px #fffefe;
+        background-color: white;
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  @media (min-width: 700px) {
+    width: 26px;
+    height: 26px;
+    border: solid 2px #fffefe;
+    -webkit-appearance: none;
+    background-color: #000000;
+    
+    :hover {
+      background-color: #ffffff;
+      cursor: pointer;
+    }
+    
+    :focus {
+      outline: none;
+    }
+    
+    :checked {
+      ::after {
+        border: solid 2px #fffefe;
+        background-color: white;
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
 `;
 
 export const Checklist = ({ ...props }) => {

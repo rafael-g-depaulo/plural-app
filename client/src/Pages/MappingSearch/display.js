@@ -16,8 +16,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: minmax(5%, auto) minmax(300px, 670px) minmax(5%, auto);
   grid-template-rows: minmax(0, 3fr) auto;
-  grid-template-areas:
-    ". content .";
+  grid-template-areas: ". content .";
 
   @media (max-width: 399px) {
     background-image: url(${app_fundo});
@@ -55,13 +54,61 @@ const Logo = styled(PluralLogo)`
 `;
 
 export const Display = ({ ...props }) => {
+  const array = [
+    {
+      id: 1,
+      name: "madamy",
+      jobs:
+        "produção & EQUIPE TÉCNICA - música - artes cênicas - artes visuais - MODA - DANÇA",
+      hashtags:
+        " #Produçãomusical #DJ #Teatro #Produçãodefestas #Cenografia #Permance",
+      image: null,
+    },
+    {
+      id: 2,
+      name: "madamy",
+      jobs:
+        "produção & EQUIPE TÉCNICA - música - artes cênicas - artes visuais - MODA - DANÇA",
+      hashtags:
+        " #Produçãomusical #DJ #Teatro #Produçãodefestas #Cenografia #Permance",
+      image: null,
+    },
+  ];
+
   return (
     <Container>
       <Content>
         <Logo />
         <Checklist />
         <SearchBar />
-        <InfoCard />
+        {/* lógica para exibir todos os posts, o último sem border-bottom */}
+        {array.map((item) => {
+          if (item === array[array.length - 1]) {
+            return (
+              <InfoCard
+                borderbottom="none"
+                key={item.id}
+                id={item.id}
+                nome={item.name}
+                categoria={item.jobs}
+                hashtags={item.hashtags}
+                imagem={item.image}
+              />
+            );
+          } else {
+            return (
+              <InfoCard
+                borderbottom="1px solid #ffffff"
+                key={item.id}
+                id={item.id}
+                nome={item.name}
+                categoria={item.jobs}
+                hashtags={item.hashtags}
+                imagem={item.image}
+              />
+            );
+          }
+        })}
       </Content>
     </Container>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import JobInputs from "../../../Components/JobsInput";
 
 const Container = styled.div`
   display: flex;
@@ -8,27 +9,18 @@ const Container = styled.div`
   align-items: center;
   width: 305px;
   margin: 30px 31.5px;
+
+  @media(min-width: 700px) {
+    width: 610px;
+    margin: 60px 63px;
+  }
 `;
 
-const SearchInput = styled.input`
+const SearchInput = styled.div`
   width: 197.5px;
-  height: 20.5px;
-  color: #ffffff;
-  font-family: "Town Text";
-  font-size: 12.5px;
-  font-weight: 500;
-  font-style: italic;
-  line-height: normal;
-  letter-spacing: normal;
-  background-color: #000000;
-  border-radius: 5rem;
-  border: solid 1px #fffdfd;
-  text-align: center;
-  :focus {
-    outline: none;
-  }
-  ::-webkit-input-placeholder {
-    color: #fff;
+
+  @media(min-width: 700px) {
+    width: 395px;
   }
 `;
 
@@ -51,12 +43,21 @@ const ButtonSearch = styled.button`
   :focus {
     outline: none;
   }
+
+  @media(min-width: 700px) {
+    width: 193px;
+    height: 41px;
+    font-size: 25px;
+    border: solid 2px #fffdfd;
+  }
 `;
 
 export const SearchBar = ({ ...props }) => {
   return (
     <Container>
-      <SearchInput type="text" placeholder="está procurando por qual job?" />
+      <SearchInput>
+        <JobInputs />
+      </SearchInput>
       <ButtonSearch>pesquisar</ButtonSearch>
     </Container>
   );
