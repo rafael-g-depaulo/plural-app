@@ -37,8 +37,6 @@ export const Routes = ({ ...props }) => {
       "/mapping"
     : ""
 
-  console.log(currentUser)
-
   return (
     <Router basename="/">
       {/* if user logged in but didn't finish signup process, redirect them */}

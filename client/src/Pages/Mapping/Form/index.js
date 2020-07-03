@@ -72,8 +72,11 @@ export const Form = ({...props}) => {
     setEtnia(e.target.value);
   }, []);
 
-  const onAtuacaoChange = useCallback((e) => {
-    setAtuacao(e.target.value);
+  const onAtuacaoChange = useCallback((areas) => {
+    const listaAreas = Object.entries(areas)
+      .filter(area => area[1])
+      .map(([areaName]) => areaName)
+    setAtuacao(listaAreas);
   }, []);
 
   const onJobsChange = useCallback(jobs => {
@@ -89,7 +92,7 @@ export const Form = ({...props}) => {
       <Gender onGenderChange={genderChange} />
       <Orientation onOrientationChange={onOrientationChange} />
       <Etnia onEtniaChange={onEtniaChange} />
-      <AreaAtuacao onAtuacaoChange={onAtuacaoChange} />
+      <AreaAtuacao onChange={onAtuacaoChange} />
       <Jobs onJobsChange={onJobsChange} />
 
       <AboutUser onUpdateUser={onUpdateUser} onInputBio={onInputBio} />

@@ -18,7 +18,7 @@ function destructureUser(user) {
     provider_id: providerId,
     mapping,
     is_mapping_participant: isMappingParticipant,
-  } = user;
+  } = user ?? {};
 
   return {
     id,
