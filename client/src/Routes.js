@@ -2,18 +2,19 @@ import React, { lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AsyncComponent from "Components/AsyncComponent";
 
-const Confirmation = lazy(() => import('Pages/Confirmation'))
-const Home = lazy(() => import("Pages/Home"))
-const SignUp = lazy(() => import("Pages/SignUp"))
-const Login = lazy(() => import("Pages/Login"))
-const Profile = lazy(() => import("Pages/Profile"))
-const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
-const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
-const BlogList = lazy(() => import("Pages/BlogList"))
-const Blog = lazy(() => import("Pages/Blog"))
-const Event = lazy(() => import("Pages/Event"))
-const SingUpMapping = lazy(() => import("Pages/Mapping"))
-const Programming = lazy(() => import("Pages/Programming"))
+const Confirmation = lazy(() => import("Pages/Confirmation"));
+const Home = lazy(() => import("Pages/Home"));
+const SignUp = lazy(() => import("Pages/SignUp"));
+const Login = lazy(() => import("Pages/Login"));
+const MyProfile = lazy(() => import("Pages/MyProfile"));
+const Profile = lazy(() => import("Pages/Profile"));
+const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"));
+const MappingQuestion = lazy(() => import("Pages/MappingQuestion"));
+const BlogList = lazy(() => import("Pages/BlogList"));
+const Blog = lazy(() => import("Pages/Blog"));
+const Event = lazy(() => import("Pages/Event"));
+const SingUpMapping = lazy(() => import("Pages/Mapping"));
+const Programming = lazy(() => import("Pages/Programming"));
 
 export const Routes = ({ ...props }) => {
   return (
@@ -33,8 +34,15 @@ export const Routes = ({ ...props }) => {
           </AsyncComponent>
         </Route>
 
-        {/* página de perfil */}
-        <Route  path="/profile">
+        {/* página de perfil -- current user */}
+        <Route path="/me">
+          <AsyncComponent>
+            <MyProfile />
+          </AsyncComponent>
+        </Route>
+
+        {/* página de perfil  -- por id */}
+        <Route path="/profile/:id_user">
           <AsyncComponent>
             <Profile />
           </AsyncComponent>
@@ -53,23 +61,23 @@ export const Routes = ({ ...props }) => {
             <MappingQuestion />
           </AsyncComponent>
         </Route>
-        
+
         {/* página de um blogpost */}
-        <Route path="/blog/:id_post">        
+        <Route path="/blog/:id_post">
           <AsyncComponent>
             <Blog />
-          </AsyncComponent> 
+          </AsyncComponent>
         </Route>
 
         {/* página de listagem dos blogposts */}
-        <Route path="/blog">        
+        <Route path="/blog">
           <AsyncComponent>
             <BlogList />
           </AsyncComponent>
         </Route>
 
         {/* página de um evento individual */}
-        <Route path="/event/:id_event">        
+        <Route path="/event/:id_event">
           <AsyncComponent>
             <Event />
           </AsyncComponent>
@@ -100,7 +108,6 @@ export const Routes = ({ ...props }) => {
             <Home />
           </AsyncComponent>
         </Route>
-        
       </Switch>
     </Router>
   );
