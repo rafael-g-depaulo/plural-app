@@ -1,15 +1,13 @@
-import React from "react"
+import React from "react";
 import styled from "styled-components";
 
-import InputLabel from '../InputLabel'
-import Input from '../Input'
-import PhotoInput from '../../../../Components/PhotoInput'
+import InputLabel from "../InputLabel";
+import Input from "../Input";
+import PhotoInput from "../../../../Components/PhotoInput";
 
 import { inputFontSize } from "Themes/default";
 
-import {
-    Text,
-  } from "../styles";
+import { Text } from "../styles";
 
 const Group = styled.div`
   display: flex;
@@ -18,7 +16,7 @@ const Group = styled.div`
 `;
 
 const TextPhoto = styled.text`
-font-family: Town Text;
+  font-family: Town Text;
   font-size: 8 px;
   font-weight: normal;
   font-stretch: normal;
@@ -60,12 +58,15 @@ const StyledTextArea = styled.textarea`
   }
 `;
 
-export default function AboutUser({ onInputBio = () => {}, onUpdateUser = () => {}, ...props }) {
+export default function AboutUser({
+  onInputBio = () => {},
+  onUpdateUser = () => {},
+  onUpdateProfilePic = () => {},
+  ...props
+}) {
   return (
     <>
-      <Text style={{fontWeight: "bold"}}>
-        Fale mais sobre você!
-      </Text>
+      <Text style={{ fontWeight: "bold" }}>Fale mais sobre você!</Text>
 
       <Group>
         <InputLabel htmlFor="name">
@@ -76,13 +77,21 @@ export default function AboutUser({ onInputBio = () => {}, onUpdateUser = () => 
 
       <Group>
         <InputLabel htmlFor="bio">
-            Conte nos um pouco sobre você e seu trabalho: (biografia)
+          Conte nos um pouco sobre você e seu trabalho: (biografia)
         </InputLabel>
-        <StyledTextArea id="bio" name="bio" type="textarea" onChange={onInputBio} />
+        <StyledTextArea
+          id="bio"
+          name="bio"
+          type="textarea"
+          onChange={onInputBio}
+        />
       </Group>
 
-    <PhotoInput />
-    <TextPhoto>A imagem escolhida deve estar no formato JPG ou PNG e ter no máximo 5 MB de tamanho. Dimensões ideais: 600x600 pixels</TextPhoto>
+      <PhotoInput onFileChange={onUpdateProfilePic} />
+      <TextPhoto>
+        A imagem escolhida deve estar no formato JPG ou PNG e ter no máximo 5 MB
+        de tamanho. Dimensões ideais: 600x600 pixels
+      </TextPhoto>
     </>
   );
 }

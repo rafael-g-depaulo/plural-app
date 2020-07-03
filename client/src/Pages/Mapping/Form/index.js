@@ -21,6 +21,7 @@ export const Form = ({...props}) => {
   const [orientation, setOrientation] = useState(null);
   const [etnia, setEtnia] = useState(null);
   const [atuacao, setAtuacao] = useState(null);
+  const [profilePic, setProfilePic] = useState(null)
 
   const onSubmitButton = useCallback(
     (e) => {
@@ -44,12 +45,13 @@ export const Form = ({...props}) => {
         deezer: social.deezer,
         tiktok: social.tiktok,
         tumblr: social.tumblr,
-        vimeo: social.vimeo
+        vimeo: social.vimeo,
+        profile_picture: profilePic
       };
 
       props.onSubmitCallback(form)
     },
-    [gender, jobs, bio, user, social, orientation, etnia, atuacao, props]
+    [gender, jobs, bio, user, social, orientation, etnia, atuacao, profilePic, props]
   );
 
   const onUpdateUser = useCallback((e) => {
@@ -82,6 +84,10 @@ export const Form = ({...props}) => {
     }
   }, [setJobs]);
 
+  const onProfilePicChange = useCallback((pic) => {
+    setProfilePic(pic)
+  }, [])
+
   return (
     <FormContainer onSubmit={onSubmitButton}>
       <Title>mapeamento CULTURAL LGBTQI+ DO DISTRITO FEDErAL</Title>
@@ -92,7 +98,7 @@ export const Form = ({...props}) => {
       <AreaAtuacao onAtuacaoChange={onAtuacaoChange} />
       <Jobs onJobsChange={onJobsChange} />
 
-      <AboutUser onUpdateUser={onUpdateUser} onInputBio={onInputBio} />
+      <AboutUser onUpdateProfilePic={onProfilePicChange} onUpdateUser={onUpdateUser} onInputBio={onInputBio} />
       <RedesSociais onChange={setSocial} />
 
       <SubmitButton />

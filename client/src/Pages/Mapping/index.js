@@ -9,11 +9,27 @@ export const Mapping = () => {
   const userContext = useContext(UserContext);
   
   function submitMapping(data) {
-    console.log(data);
+    const formData = new FormData();
 
-    createMapping(data)
+    formData.append('file', data.profile_picture)
+    formData.append('sexual_orientation', data.sexual_orientation)
+    formData.append('ethnicity', data.etnia)
+    formData.append('gender_orientation', data.gender_orientation)
+    formData.append('facebook', data.facebook)
+    formData.append('twitter', data.twitter)
+    formData.append('instagram', data.instagram)
+    formData.append('art_category', data.art_category)
+    formData.append('spotify', data.spotify)
+    formData.append('deezer', data.deezer)
+    formData.append('linkedin', data.linkedin)
+    formData.append('tiktok', data.tiktok)
+    formData.append('tumblr', data.tumblr)
+    formData.append('vimeo', data.vimeo)
+    formData.append('youtube', data.youtube)
+    formData.append('long_bio', data.long_bio)
+
+    createMapping(formData)
       .then((res) => {
-        console.log(res)
         userContext.setCurrentUser(res.data);
       })
       .catch((err) => console.log(err));
