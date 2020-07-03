@@ -43,7 +43,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       profile_picture: {
-        type: Sequelize.BLOB,
+        type: Sequelize.STRING,
       },
       created_at: {
         type: Sequelize.DATE,
