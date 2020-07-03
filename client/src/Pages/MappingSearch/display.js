@@ -53,7 +53,7 @@ const Logo = styled(PluralLogo)`
   }
 `;
 
-export const Display = ({ ...props }) => {
+export const Display = ({ onChecklistChange, onJobsChange, onSubmit, ...props }) => {
   const array = [
     {
       id: 1,
@@ -79,8 +79,8 @@ export const Display = ({ ...props }) => {
     <Container>
       <Content>
         <Logo />
-        <Checklist />
-        <SearchBar />
+        <Checklist onChange={onChecklistChange} />
+        <SearchBar onJobsChange={onJobsChange} onClick={onSubmit} />
         {/* lógica para exibir todos os posts, o último sem border-bottom */}
         {array.map((item) => {
           if (item === array[array.length - 1]) {

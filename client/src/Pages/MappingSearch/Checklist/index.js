@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -54,29 +54,27 @@ const ItemName = styled.p`
 `;
 
 const Item = styled.input`
+  border: solid 1px #fffefe;
+  -webkit-appearance: none;
+  background-color: #000000;
+
+  &:hover {
+    background-color: #999;
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
   @media (max-width: 699px) {
     width: 12px;
     height: 12px;
-    border: solid 1px #fffefe;
-    -webkit-appearance: none;
-    background-color: #000000;
-
-    :hover {
-      background-color: #ffffff;
-      cursor: pointer;
-    }
-
-    :focus {
-      outline: none;
-    }
-
-    :checked {
-      ::after {
-        border: solid 1px #fffefe;
-        background-color: white;
-        width: 12px;
-        height: 12px;
-      }
+    &:checked {
+      border: solid 1px #fffefe;
+      background-color: white;
+      width: 12px;
+      height: 12px;
     }
   }
 
@@ -84,71 +82,157 @@ const Item = styled.input`
     width: 26px;
     height: 26px;
     border: solid 2px #fffefe;
-    -webkit-appearance: none;
-    background-color: #000000;
-    
-    :hover {
-      background-color: #ffffff;
-      cursor: pointer;
-    }
-    
-    :focus {
-      outline: none;
-    }
-    
-    :checked {
-      ::after {
-        border: solid 2px #fffefe;
-        background-color: white;
-        width: 24px;
-        height: 24px;
-      }
+
+    &:checked {
+      border: solid 2px #fffefe;
+      background-color: white;
+      width: 26px;
+      height: 26px;
     }
   }
 `;
 
-export const Checklist = ({ ...props }) => {
+export const Checklist = ({ onChange = () => {}, ...props }) => {
+  const [cenicas, setCenicas] = useState(false);
+  const [comunicacao, setComunicacao] = useState(false);
+  const [danca, setDanca] = useState(false);
+  const [producao, setProducao] = useState(false);
+  const [moda, setModa] = useState(false);
+  const [musica, setMusica] = useState(false);
+  const [artesVis, setArtesVis] = useState(false);
+  const [cinema, setCinema] = useState(false);
+  const [games, setGames] = useState(false);
+  const [literatura, setLiteratura] = useState(false);
+
+  useEffect(() => {
+    onChange({
+      cenicas,
+      comunicacao,
+      danca,
+      producao,
+      moda,
+      musica,
+      artesVis,
+      cinema,
+      games,
+      literatura,
+    });
+  }, [
+    cenicas,
+    comunicacao,
+    danca,
+    producao,
+    moda,
+    musica,
+    artesVis,
+    cinema,
+    games,
+    literatura,
+  ]);
+
   return (
     <Container>
       <ItemContainer>
-        <Item type="checkbox" />
-        <ItemName>Artes Cênicas</ItemName>
+        <Item
+          type="checkbox"
+          onClick={() => setCenicas((a) => !a)}
+          checked={cenicas}
+          onChange={() => {}}
+        />
+        <ItemName onClick={() => setCenicas((a) => !a)}>Artes Cênicas</ItemName>
       </ItemContainer>
       <ItemContainer>
-        <Item type="checkbox" />
-        <ItemName>comunicação</ItemName>
+        <Item
+          type="checkbox"
+          onClick={() => setComunicacao((a) => !a)}
+          checked={comunicacao}
+          onChange={() => {}}
+        />
+        <ItemName onClick={() => setComunicacao((a) => !a)}>
+          comunicação
+        </ItemName>
       </ItemContainer>
       <ItemContainer>
-        <Item type="checkbox" />
-        <ItemName>dança</ItemName>
+        <Item
+          type="checkbox"
+          onClick={() => setDanca((a) => !a)}
+          checked={danca}
+          onChange={() => {}}
+        />
+        <ItemName onClick={() => setDanca((a) => !a)}>dança</ItemName>
       </ItemContainer>
       <ItemContainer>
-        <Item type="checkbox" />
-        <ItemName>produção & equipe técnica</ItemName>
+        <Item
+          type="checkbox"
+          onClick={() => setProducao((a) => !a)}
+          checked={producao}
+          onChange={() => {}}
+        />
+        <ItemName onClick={() => setProducao((a) => !a)}>
+          produção & equipe técnica
+        </ItemName>
       </ItemContainer>
       <ItemContainer>
-        <Item type="checkbox" />
-        <ItemName>moda</ItemName>
+        <Item
+          type="checkbox"
+          onClick={() => setModa((a) => !a)}
+          checked={moda}
+          onChange={() => {}}
+        />
+        <ItemName onClick={() => setModa((a) => !a)}>moda</ItemName>
       </ItemContainer>
       <ItemContainer>
-        <Item type="checkbox" />
-        <ItemName>música</ItemName>
+        <Item
+          type="checkbox"
+          onClick={() => setMusica((a) => !a)}
+          checked={musica}
+          onChange={() => {}}
+        />
+        <ItemName onClick={() => setMusica((a) => !a)}>música</ItemName>
       </ItemContainer>
       <ItemContainer>
-        <Item type="checkbox" />
-        <ItemName>Artes visuais</ItemName>
+        <Item
+          type="checkbox"
+          onClick={() => setArtesVis((a) => !a)}
+          checked={artesVis}
+          onChange={() => {}}
+        />
+        <ItemName onClick={() => setArtesVis((a) => !a)}>
+          Artes visuais
+        </ItemName>
       </ItemContainer>
       <ItemContainer>
-        <Item type="checkbox" />
-        <ItemName>cinema e fotografia</ItemName>
+        <Item
+          type="checkbox"
+          onClick={() => setCinema((a) => !a)}
+          checked={cinema}
+          onChange={() => {}}
+        />
+        <ItemName onClick={() => setCinema((a) => !a)}>
+          cinema e fotografia
+        </ItemName>
       </ItemContainer>
       <ItemContainer>
-        <Item type="checkbox" />
-        <ItemName>apps, jogos eletrônicos e sites</ItemName>
+        <Item
+          type="checkbox"
+          onClick={() => setGames((a) => !a)}
+          checked={games}
+          onChange={() => {}}
+        />
+        <ItemName onClick={() => setGames((a) => !a)}>
+          apps, jogos eletrônicos e sites
+        </ItemName>
       </ItemContainer>
       <ItemContainer>
-        <Item type="checkbox" />
-        <ItemName>literatura, influencers e youtubers</ItemName>
+        <Item
+          type="checkbox"
+          onClick={() => setLiteratura((a) => !a)}
+          checked={literatura}
+          onChange={() => {}}
+        />
+        <ItemName onClick={() => setLiteratura((a) => !a)}>
+          literatura, influencers e youtubers
+        </ItemName>
       </ItemContainer>
     </Container>
   );

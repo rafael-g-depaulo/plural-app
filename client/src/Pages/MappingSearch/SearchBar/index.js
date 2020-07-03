@@ -52,13 +52,13 @@ const ButtonSearch = styled.button`
   }
 `;
 
-export const SearchBar = ({ ...props }) => {
+export const SearchBar = ({ onJobsChange, onClick, ...props }) => {
   return (
     <Container>
       <SearchInput>
-        <JobInputs />
+        <JobInputs onJobsChange={onJobsChange} />
       </SearchInput>
-      <ButtonSearch>pesquisar</ButtonSearch>
+      <ButtonSearch onClick={onClick}>pesquisar</ButtonSearch>
     </Container>
   );
 };
