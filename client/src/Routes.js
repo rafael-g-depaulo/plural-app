@@ -13,6 +13,7 @@ const Confirmation = lazy(() => import("Pages/Confirmation"));
 const SignUp = lazy(() => import("Pages/SignUp"));
 const Login = lazy(() => import("Pages/Login"));
 const MyProfile = lazy(() => import("Pages/MyProfile"));
+const EditProfile = lazy(() => import("Pages/EditProfile"));
 const Profile = lazy(() => import("Pages/Profile"));
 const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"));
 const MappingQuestion = lazy(() => import("Pages/MappingQuestion"));
@@ -46,6 +47,13 @@ export const Routes = ({ ...props }) => {
         <Route path="/me">
           <AsyncComponent>
             <MyProfile />
+          </AsyncComponent>
+        </Route>
+
+        {/* página de editar perfil */}
+        <Route path="/edit-profile">
+          <AsyncComponent>
+            <EditProfile />
           </AsyncComponent>
         </Route>
 

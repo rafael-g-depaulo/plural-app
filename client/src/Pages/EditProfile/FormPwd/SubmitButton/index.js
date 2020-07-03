@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { buttonFontSize } from "Themes/default";
 
-const StyledLink = styled(Link)`
+const StyledInput = styled.input.attrs({ type: "submit" })`
   padding: 15px 0;
   font-family: Town Display;
   font-size: ${buttonFontSize}px;
@@ -17,8 +16,6 @@ const StyledLink = styled(Link)`
   background: #000000;
   border: 2px solid #ffffff;
   border-radius: 50px;
-  text-transform: uppercase;
-  text-decoration: none;
 
   &:focus {
     outline: none;
@@ -33,18 +30,8 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 30px;
-`;
-
-export const EditButton = ({ ...props }) => {
-  return (
-    <Container>
-      <StyledLink to="/edit-profile">Editar perfil</StyledLink>
-    </Container>
-  );
+export const Input = ({ ...props }) => {
+  return <StyledInput value="Salvar alterações" />;
 };
 
-export default EditButton;
+export default Input;
