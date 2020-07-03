@@ -54,6 +54,8 @@ export const Display = ({
   onSubmit,
   updateUser,
   updateUserFormattedInput,
+  termsAccepted,
+  setTermsAccepted,
   ...props
 }) => {
   return (
@@ -108,11 +110,13 @@ export const Display = ({
           Como sua pessoa quer ser chamada?
         </InputLabel>
         <Input id="name" name="name" type="text" onInput={updateUser} />
+        {errors.name && <InputError>{errors.name}</InputError>}
       </Group>
 
       <Group>
         <InputLabel htmlFor="city">Em qual cidade do DF você mora?</InputLabel>
         <Input id="city" name="city" type="text" onInput={updateUser} />
+        {errors.city && <InputError>{errors.city}</InputError>}
       </Group>
 
       <Group>
@@ -152,29 +156,36 @@ export const Display = ({
           />
         </Row>
         {errors.day && <InputError>{errors.day}</InputError>}
+        {errors.month && <InputError>{errors.month}</InputError>}
         {errors.year && <InputError>{errors.year}</InputError>}
       </Group>
 
       <Group>
-        <InputLabel htmlFor="phone">
+        <InputLabel htmlFor="phone_number">
           Quer nos passar seu Whatsapp? (opcional)
         </InputLabel>
         <FormattedInput
           customInput={Input}
           onValueChange={(values) => {
             const { formattedValue } = values;
-            updateUserFormattedInput("phone", formattedValue);
+            updateUserFormattedInput("phone_number", formattedValue);
           }}
           format="(##) #####-####"
           isNumericString={true}
           mask="_"
-          id="phone"
-          name="phone"
+          id="phone_number"
+          name="phone_number"
           type="tel"
         />
+        {errors.phone_number && <InputError>{errors.phone_number}</InputError>}
       </Group>
 
-      <TermsConditions />
+      <TermsConditions
+        {...{
+          termsAccepted,
+          setTermsAccepted,
+        }}
+      />
 
       <SubmitButton />
     </Form>

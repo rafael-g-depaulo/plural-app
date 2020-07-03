@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const Container = styled.div`
   position: absolute;
@@ -38,13 +37,12 @@ const Container = styled.div`
   }
 `;
 
-const ButtonBox = styled(Link)`
+const ButtonBox = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-color: ${(props) =>
-    props.cover === true ? "#6739d1" : "#f58880"};
+  background-color: ${props => props.cover ? "#6739d1" : "#f58880"};
   text-decoration: none;
   font-family: Town Text;
   font-weight: 700;
@@ -53,6 +51,14 @@ const ButtonBox = styled(Link)`
   color: #ffffff;
   border-radius: 5rem;
   width: 100%;
+
+  &:hover {
+    background-color: ${props => props.cover ? "#5a1ee5" : "#f3756c"};
+  }
+
+  &:active {
+    background-color: ${props => props.cover ? "#471cad" : "#ed5e54"};
+  }
 
   @media (max-width: 599px) {
     height: 5.8vh;
@@ -83,10 +89,10 @@ export const Buttons = ({ ...props }) => {
   return (
     <>
       <Container>
-        <ButtonBox to="" cover={true}>
+        <ButtonBox cover onClick={() => props.onClickCallback(true)} >
           sim
         </ButtonBox>
-        <ButtonBox to="" cover={false}>
+        <ButtonBox onClick={() => props.onClickCallback(false)} >
           não
         </ButtonBox>
       </Container>

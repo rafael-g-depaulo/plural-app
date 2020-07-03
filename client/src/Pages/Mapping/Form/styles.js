@@ -184,7 +184,7 @@ export const StyledCheckbox = styled.span`
   }
 `;
 
-export const Text = styled.text`
+export const Text = styled.span`
   font-family: Town Text;
   font-weight: normal;
   font-stretch: normal;

@@ -66,8 +66,8 @@ const LogoDiv = styled.div`
 export const Confirmation = ({
     ...props
 }) => {
-    const { name = "usuário" } = useContext(UserContext)
-    const userName = name.split(" ")[0].toUpperCase()
+    const { currentUser } = useContext(UserContext)
+    const userName = currentUser.name.split(" ")[0].toUpperCase()
 
     return (
         <MainDiv>

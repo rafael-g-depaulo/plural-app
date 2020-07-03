@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -35,7 +34,7 @@ const Container = styled.div`
   }
 `;
 
-const ButtonBox = styled(Link)`
+const ButtonBox = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -49,6 +48,15 @@ const ButtonBox = styled(Link)`
   letter-spacing: normal;
   text-align: center;
   color: #ffffff;
+  background-color: rgba(255, 255, 255, 0);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
 
   @media (max-width: 599px) {
     width: 20vw;
@@ -76,8 +84,8 @@ export const Button = ({ ...props }) => {
   return (
     <>
       <Container>
-        <ButtonBox to="">Sim</ButtonBox>
-        <ButtonBox to="">Não</ButtonBox>
+        <ButtonBox onClick={() => props.onClickCallback(true)}>Sim</ButtonBox>
+        <ButtonBox onClick={() => props.onClickCallback(false)}>Não</ButtonBox>
       </Container>
     </>
   );
