@@ -83,10 +83,10 @@ export const Buttons = ({ ...props }) => {
   return (
     <>
       <Container>
-        <ButtonBox to="" cover={true}>
+        <ButtonBox onClick={() => props.onClickCallback(true)} cover={true}>
           sim
         </ButtonBox>
-        <ButtonBox to="" cover={false}>
+        <ButtonBox onClick={() => props.onClickCallback(false)} cover={false}>
           não
         </ButtonBox>
       </Container>

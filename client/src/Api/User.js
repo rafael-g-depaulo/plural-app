@@ -27,3 +27,23 @@ export const registerUser = ({
     birthdate,
   });
 // .then(({ data }) => data)
+
+export const updateUserIsLgbtq = ({ isLgbtq }) =>
+  api.put("/api/user/update/is-lgbtq", { isLgbtq });
+
+export const updateUser = (value) => api.put("/api/user/update", value);
+
+export const passwordReset = (email) => {
+  return api.post("/user/password-reset", { email }, { withCredentials: true });
+};
+
+export const passwordResetCallback = (password, token) => {
+  return api.post(
+    `/user/password-reset/callback`,
+    { password },
+    {
+      headers: { Authorization: `${token}` },
+      withCredentials: true,
+    }
+  );
+};
