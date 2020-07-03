@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import AsyncComponent from "Components/AsyncComponent";
 import UserContext from "Context/User";
-import { UserProvider } from "Context/User/Provider";
 
 const PasswordReset = lazy(() => import("Pages/PasswordReset"));
 const Confirmation = lazy(() => import("Pages/Confirmation"));
@@ -24,11 +23,27 @@ const SingUpMapping = lazy(() => import("Pages/Mapping"));
 const Programming = lazy(() => import("Pages/Programming"));
 
 export const Routes = ({ ...props }) => {
-  const user = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
+
+  const redirectTo =
+    currentUser?.active === false ?
+      "/confirmation"
+    : currentUser?.isLgbtq === null ?
+      "/areyouLGBTQIA"
+    : currentUser?.isLgbtq === true && currentUser?.isMappingParticipant === null && currentUser?.mapping === null ?
+      "/participar-mapeamento"
+    : currentUser?.isMappingParticipant === true && (currentUser?.mapping === null || currentUser?.mapping === undefined) ?
+      "/participar-mapeamento"
+    : ""
+
+  console.log(currentUser)
 
   return (
     <Router basename="/">
-      <UserProvider>
+      {/* if user logged in but didn't finish signup process, redirect them */}
+      { redirectTo !== "" && <Redirect to={redirectTo} /> }
+
+      {/* else, give 'em the routes */}
       <Switch>
         {/* página de login */}
         <Route path="/login">
@@ -47,13 +62,13 @@ export const Routes = ({ ...props }) => {
         {/* página de perfil -- current user */}
 
         <Route path="/me">
-          {user === null ? (
+          {currentUser === null ? (
             <Redirect to="/" />
           ) : (
-            <AsyncComponent>
-              <MyProfile />
-            </AsyncComponent>
-          )}
+              <AsyncComponent>
+                <MyProfile />
+              </AsyncComponent>
+            )}
         </Route>
 
         {/* página de perfil  -- por id */}
@@ -128,10 +143,9 @@ export const Routes = ({ ...props }) => {
 
         {/* Home page */}
         <Route exact path="/">
-          {user === null ? <Redirect to="/login" /> : <Redirect to="/event" />}
+          {currentUser === null ? <Redirect to="/login" /> : <Redirect to="/event" />}
         </Route>
       </Switch>
-      </UserProvider>
     </Router>
   );
 };
