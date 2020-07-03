@@ -197,7 +197,7 @@ export const Form = ({ ...props }) => {
       if (noErrors && termsAccepted) {
         return {
           ...user,
-          birthdate: `${user.year}-${user.month}-${user.day}`,
+          birthdate: `${user.year}-${parseInt(user.month) + 1}-${user.day}`,
           phoneNumber: user.phone_number,
         };
       } else {
