@@ -54,7 +54,7 @@ export const Navbar = ({ ...props }) => {
   return (
     <Container leftAlign={!isLogged}>
       <Text to="/blog">blog</Text>
-      { isLogged && <Text to="/">perfil</Text> }
+      { isLogged && <Text to="/me">perfil</Text> }
       <Text to="/event">programação</Text>
       { isLogged && <Text to="/participar-mapeamento">mapeamento</Text> }
       <Text to={"/login" + (isLogged ? "" : `?redirectTo=${returnTo}`)}>{ isLogged ? "sair" : "entrar" }</Text>

@@ -23,6 +23,7 @@ export const Form = ({ ...props }) => {
     switch (key) {
       case "email":
         const validEmailRegex = RegExp(
+          // eslint-disable-next-line
           /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
         );
 

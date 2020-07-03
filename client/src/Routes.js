@@ -24,10 +24,27 @@ const SingUpMapping = lazy(() => import("Pages/Mapping"));
 const Programming = lazy(() => import("Pages/Programming"));
 
 export const Routes = ({ ...props }) => {
-  const user = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
+
+  const redirectTo =
+    currentUser?.active === false ?
+      "/confirmation"
+    : currentUser?.isLgbtq === null ?
+      "/areyouLGBTQIA"
+    : currentUser?.isLgbtq && currentUser?.isMappingParticipant === null && currentUser?.mapping === null ?
+      "/participar-mapeamento"
+    : currentUser?.isMappingParticipant && (currentUser?.mapping === null || currentUser?.mapping === undefined) ?
+      "/mapping"
+    : ""
+
+  console.log(currentUser)
 
   return (
     <Router basename="/">
+      {/* if user logged in but didn't finish signup process, redirect them */}
+      { redirectTo !== "" && <Redirect to={redirectTo} /> }
+
+      {/* else, give 'em the routes */}
       <Switch>
         {/* página de login */}
         <Route path="/login">
@@ -44,10 +61,15 @@ export const Routes = ({ ...props }) => {
         </Route>
 
         {/* página de perfil -- current user */}
+
         <Route path="/me">
-          <AsyncComponent>
-            <MyProfile />
-          </AsyncComponent>
+          {currentUser === null ? (
+            <Redirect to="/" />
+          ) : (
+              <AsyncComponent>
+                <MyProfile />
+              </AsyncComponent>
+            )}
         </Route>
 
         {/* página de editar perfil */}
@@ -129,7 +151,7 @@ export const Routes = ({ ...props }) => {
 
         {/* Home page */}
         <Route exact path="/">
-          {user === null ? <Redirect to="/login" /> : <Redirect to="/event" />}
+          {currentUser === null ? <Redirect to="/login" /> : <Redirect to="/event" />}
         </Route>
       </Switch>
     </Router>
