@@ -202,7 +202,7 @@ export default ({ User }, config) => {
             professional,
           };
 
-          // await insertUser(user_id, data);
+          await insertUser(user_id, data);
 
           return res.status(200).json(destructureUser(user));
         } catch (err) {
