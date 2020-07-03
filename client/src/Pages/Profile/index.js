@@ -17,7 +17,7 @@ export const Profile = ({ ...props }) => {
         setUser(res.data.user);
       });
     }
-  }, []);
+  }, [id_user]);
 
   return (
     <Background>
