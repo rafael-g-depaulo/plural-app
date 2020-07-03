@@ -9,12 +9,12 @@ import ProfileContent from "Components/ProfileContent";
 import UserContext from "Context/User";
 
 export const MyProfile = ({ ...props }) => {
-  const user = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   return (
     <Background>
       <Header />
-      <ProfileContent />
+      <ProfileContent user={currentUser} />
       <EditButton />
       <Footer />
     </Background>

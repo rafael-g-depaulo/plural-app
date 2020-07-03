@@ -4,6 +4,9 @@ export const getCurrentUser = () =>
   api.get("/api/user/current", { withCredentials: true });
 // .then(({ data }) => data.current_user)
 
+export const getUser = (user_id) =>
+  api.get(`/api/user/id/${user_id}`, { withCredentials: true });
+
 export const loginUser = ({ email, password }) =>
   api.post("/api/auth/login", { email, password });
 // .then(({ data }) => data)

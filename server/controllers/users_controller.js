@@ -54,6 +54,23 @@ module.exports = {
       current_user: destructureUser(user),
     });
   },
+  async getUser(req, res) {
+    console.log("User ID:", req.params.id);
+
+    const user = await User.findOne({
+      where: { id: req.params.id },
+      include: [
+        {
+          model: Mapping,
+          as: "mapping",
+        },
+      ],
+    });
+
+    return res.status(200).send({
+      user: destructureUser(user),
+    });
+  },
   async create(req, res) {
     const { email, password, name, birthdate, phoneNumber, city } = req.body;
 

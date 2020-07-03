@@ -70,13 +70,18 @@ export const SocialMedia = ({ links, ...props }) => {
   // checks if a link matches a regex in regexes
   // return [socialMedia, link]
   const checkLink = (link) => {
-    const domain = new URL(link).hostname;
-    const regexList = Object.values(regexes);
+    try {
+      const domain = new URL(link).hostname;
+      const regexList = Object.values(regexes);
 
-    const index = regexList.findIndex((expression) => expression.test(domain));
-
-    if (index !== -1) {
-      return [Object.keys(regexes)[index], link];
+      const index = regexList.findIndex((expression) =>
+        expression.test(domain)
+      );
+      if (index !== -1) {
+        return [Object.keys(regexes)[index], link];
+      }
+    } catch {
+      // URL not valid
     }
   };
 
@@ -95,10 +100,12 @@ export const SocialMedia = ({ links, ...props }) => {
 
   return (
     <Container>
-      <Title>
-        <b>Se interessou?</b> Confira mais informações sobre o perfil através
-        das redes sociais.
-      </Title>
+      {filterLinks(links).length > 0 && (
+        <Title>
+          <b>Se interessou?</b> Confira mais informações sobre o perfil através
+          das redes sociais.
+        </Title>
+      )}
       <Rows>
         {filterLinks(links).map((socialLink, index, arr) => (
           <React.Fragment key={index}>
