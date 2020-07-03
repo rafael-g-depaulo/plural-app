@@ -30,10 +30,10 @@ export const Routes = ({ ...props }) => {
       "/confirmation"
     : currentUser?.isLgbtq === null ?
       "/areyouLGBTQIA"
-    : currentUser?.isLgbtq === true && currentUser?.isMappingParticipant === null && currentUser?.mapping === null ?
+    : currentUser?.isLgbtq && currentUser?.isMappingParticipant === null && currentUser?.mapping === null ?
       "/participar-mapeamento"
-    : currentUser?.isMappingParticipant === true && (currentUser?.mapping === null || currentUser?.mapping === undefined) ?
-      "/participar-mapeamento"
+    : currentUser?.isMappingParticipant && (currentUser?.mapping === null || currentUser?.mapping === undefined) ?
+      "/mapping"
     : ""
 
   console.log(currentUser)
