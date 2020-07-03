@@ -1,22 +1,47 @@
-import React, { lazy } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { lazy, useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import AsyncComponent from "Components/AsyncComponent";
+import UserContext from "Context/User";
 
-const Confirmation = lazy(() => import('Pages/Confirmation'))
-const Home = lazy(() => import("Pages/Home"))
-const SignUp = lazy(() => import("Pages/SignUp"))
-const Login = lazy(() => import("Pages/Login"))
-const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
-const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
-const BlogList = lazy(() => import("Pages/BlogList"))
-const Blog = lazy(() => import("Pages/Blog"))
-const Event = lazy(() => import("Pages/Event"))
-const SingUpMapping = lazy(() => import("Pages/Mapping"))
-const Programming = lazy(() => import("Pages/Programming"))
+const PasswordReset = lazy(() => import("Pages/PasswordReset"));
+const Confirmation = lazy(() => import("Pages/Confirmation"));
+const SignUp = lazy(() => import("Pages/SignUp"));
+const Login = lazy(() => import("Pages/Login"));
+const MyProfile = lazy(() => import("Pages/MyProfile"));
+const Profile = lazy(() => import("Pages/Profile"));
+const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"));
+const MappingQuestion = lazy(() => import("Pages/MappingQuestion"));
+const BlogList = lazy(() => import("Pages/BlogList"));
+const Blog = lazy(() => import("Pages/Blog"));
+const Event = lazy(() => import("Pages/Event"));
+const SingUpMapping = lazy(() => import("Pages/Mapping"));
+const Programming = lazy(() => import("Pages/Programming"));
 
 export const Routes = ({ ...props }) => {
+  const { currentUser } = useContext(UserContext);
+
+  const redirectTo =
+    currentUser?.active === false ?
+      "/confirmation"
+    : currentUser?.isLgbtq === null ?
+      "/areyouLGBTQIA"
+    : currentUser?.isLgbtq && currentUser?.isMappingParticipant === null && currentUser?.mapping === null ?
+      "/participar-mapeamento"
+    : currentUser?.isMappingParticipant && (currentUser?.mapping === null || currentUser?.mapping === undefined) ?
+      "/mapping"
+    : ""
+
   return (
     <Router basename="/">
+      {/* if user logged in but didn't finish signup process, redirect them */}
+      { redirectTo !== "" && <Redirect to={redirectTo} /> }
+
+      {/* else, give 'em the routes */}
       <Switch>
         {/* página de login */}
         <Route path="/login">
@@ -29,6 +54,25 @@ export const Routes = ({ ...props }) => {
         <Route path="/signup">
           <AsyncComponent>
             <SignUp />
+          </AsyncComponent>
+        </Route>
+
+        {/* página de perfil -- current user */}
+
+        <Route path="/me">
+          {currentUser === null ? (
+            <Redirect to="/" />
+          ) : (
+              <AsyncComponent>
+                <MyProfile />
+              </AsyncComponent>
+            )}
+        </Route>
+
+        {/* página de perfil  -- por id */}
+        <Route path="/profile/:id_user">
+          <AsyncComponent>
+            <Profile />
           </AsyncComponent>
         </Route>
 
@@ -45,23 +89,23 @@ export const Routes = ({ ...props }) => {
             <MappingQuestion />
           </AsyncComponent>
         </Route>
-        
+
         {/* página de um blogpost */}
-        <Route path="/blog/:id_post">        
+        <Route path="/blog/:id_post">
           <AsyncComponent>
             <Blog />
-          </AsyncComponent> 
+          </AsyncComponent>
         </Route>
 
         {/* página de listagem dos blogposts */}
-        <Route path="/blog">        
+        <Route path="/blog">
           <AsyncComponent>
             <BlogList />
           </AsyncComponent>
         </Route>
 
         {/* página de um evento individual */}
-        <Route path="/event/:id_event">        
+        <Route path="/event/:id_event">
           <AsyncComponent>
             <Event />
           </AsyncComponent>
@@ -83,16 +127,22 @@ export const Routes = ({ ...props }) => {
 
         {/* página de aviso da confirmação de email */}
         <Route path="/confirmation">
-          <Confirmation />
+          <AsyncComponent>
+            <Confirmation />
+          </AsyncComponent>
+        </Route>
+
+        {/* página de reset de senha */}
+        <Route path="/password-reset/:token?">
+          <AsyncComponent>
+            <PasswordReset />
+          </AsyncComponent>
         </Route>
 
         {/* Home page */}
         <Route exact path="/">
-          <AsyncComponent>
-            <Home />
-          </AsyncComponent>
+          {currentUser === null ? <Redirect to="/login" /> : <Redirect to="/event" />}
         </Route>
-        
       </Switch>
     </Router>
   );

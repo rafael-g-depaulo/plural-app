@@ -1,30 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   SubTitle,
   GroupOut,
   Container,
-  CheckboxLabel,
-  Checkbox,
   Text,
+  Input,
+  StyledCheckbox,
+  ContainerInput,
+  Label,
 } from "../styles";
 
-export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
+export default function AreaAtuacao({ onChange = () => {}, ...props }) {
+
+  const [area, setArea] = useState({
+    "Artes Cênicas": false,
+    "Artes Visuais": false,
+    "Comunicação": false,
+    "Cinema e Fotografia": false,
+    "Danca": false,
+    "Produção e Equipes Técnicas para Projetos Culturais": false,
+    "Jogos Eletrônicos, APPs e Sites": false,
+    "Literatura, Influencers e Youtubers": false,
+    "Moda": false,
+    "Musica": false,
+  })
+
+  const onAtuacaoChange = (e) => {
+    const value = e.currentTarget.value
+    setArea(area => ({ ...area, [value]: !area[value]}))
+  }
+
+  useEffect(() => onChange(area), [area, onChange])
+  
   return (
     <>
       <SubTitle>QUEREMOS SABER EM  QUE ÁREA você ATUA</SubTitle>
       <GroupOut>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+        <ContainerInput>
+          <Label>
+            <Input 
               name="atuacao"
               value="Artes Cênicas"
-              type="radio"
-              onChange={onAtuacaoChange}
-            />
+              type="checkbox"
+              checked={area["Artes Cênicas"]}
+              onChange={onAtuacaoChange}/>
+            <StyledCheckbox />
             Artes Cênicas
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
 
         <Container>
           <Text>
@@ -38,17 +62,18 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
       </GroupOut>
 
       <GroupOut>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+        <ContainerInput>
+          <Label>
+            <Input 
               name="atuacao"
               value="Artes Visuais"
-              type="radio"
-              onChange={onAtuacaoChange}
-            />
+              type="checkbox"
+              checked={area["Artes Visuais"]}
+              onChange={onAtuacaoChange}/>
+            <StyledCheckbox />
             Artes Visuais
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
 
         <Container>
           <Text>
@@ -61,17 +86,18 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
       </GroupOut>
 
       <GroupOut>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+        <ContainerInput>
+          <Label>
+            <Input 
               name="atuacao"
               value="Comunicação"
-              type="radio"
-              onChange={onAtuacaoChange}
-            />
+              type="checkbox"
+              checked={area["Comunicação"]}
+              onChange={onAtuacaoChange}/>
+            <StyledCheckbox />
             Comunicação
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
 
         <Container>
           <Text>
@@ -84,17 +110,18 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
       </GroupOut>
 
       <GroupOut>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+        <ContainerInput>
+          <Label>
+            <Input 
               name="atuacao"
               value="Cinema e Fotografia"
-              type="radio"
-              onChange={onAtuacaoChange}
-            />
+              type="checkbox"
+              checked={area["Cinema e Fotografia"]}
+              onChange={onAtuacaoChange}/>
+            <StyledCheckbox />
             Cinema e Fotografia
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
 
         <Container>
           <Text>
@@ -107,17 +134,18 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
       </GroupOut>
 
       <GroupOut>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+        <ContainerInput>
+          <Label>
+            <Input 
               name="atuacao"
-              value="Dança"
-              type="radio"
-              onChange={onAtuacaoChange}
-            />
+              value="Danca"
+              type="checkbox"
+              checked={area["Danca"]}
+              onChange={onAtuacaoChange}/>
+            <StyledCheckbox />
             Dança
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
 
         <Container>
           <Text>
@@ -129,17 +157,18 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
       </GroupOut>
 
       <GroupOut>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+        <ContainerInput>
+          <Label>
+            <Input 
               name="atuacao"
               value="Produção e Equipes Técnicas para Projetos Culturais"
-              type="radio"
-              onChange={onAtuacaoChange}
-            />
+              type="checkbox"
+              checked={area["Produção e Equipes Técnicas para Projetos Culturais"]}
+              onChange={onAtuacaoChange}/>
+            <StyledCheckbox />
             Produção e Equipes Técnicas para Projetos Culturais
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
 
         <Container>
           <Text>
@@ -151,17 +180,18 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
       </GroupOut>
 
       <GroupOut>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+        <ContainerInput>
+          <Label>
+            <Input 
               name="atuacao"
               value="Jogos Eletrônicos, APPs e Sites"
-              type="radio"
-              onChange={onAtuacaoChange}
-            />
+              type="checkbox"
+              checked={area["Jogos Eletrônicos, APPs e Sites"]}
+              onChange={onAtuacaoChange}/>
+            <StyledCheckbox />
             Jogos Eletrônicos, APPs e Sites
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
 
         <Container>
           <Text>
@@ -172,17 +202,18 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
       </GroupOut>
 
       <GroupOut>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+        <ContainerInput>
+          <Label>
+            <Input 
               name="atuacao"
               value="Literatura, Influencers e Youtubers"
-              type="radio"
-              onChange={onAtuacaoChange}
-            />
+              type="checkbox"
+              checked={area["Literatura, Influencers e Youtubers"]}
+              onChange={onAtuacaoChange}/>
+            <StyledCheckbox />
             Literatura, Influencers e Youtubers
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
 
         <Container>
           <Text>
@@ -193,17 +224,17 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
       </GroupOut>
 
       <GroupOut>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+        <ContainerInput>
+          <Label>
+            <Input 
               name="atuacao"
               value="Moda"
-              type="radio"
-              onChange={onAtuacaoChange}
-            />
+              type="checkbox"
+              onChange={onAtuacaoChange}/>
+            <StyledCheckbox />
             Moda
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
 
         <Container>
           <Text>
@@ -214,17 +245,17 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
       </GroupOut>
 
       <GroupOut>
-        <Container>
-          <CheckboxLabel>
-            <Checkbox
+      <ContainerInput>
+          <Label>
+            <Input 
               name="atuacao"
-              value="Música"
-              type="radio"
-              onChange={onAtuacaoChange}
-            />
+              value="Musica"
+              type="checkbox"
+              onChange={onAtuacaoChange}/>
+            <StyledCheckbox />
             Música
-          </CheckboxLabel>
-        </Container>
+          </Label>
+        </ContainerInput>
 
         <Container>
           <Text>

@@ -106,24 +106,37 @@ export const GroupName = styled.h2`
   }
 `;
 
-export const CheckboxLabel = styled.label`
+export const ContainerInput = styled.div`
+  padding-left: 30px;
+  padding-bottom: 28px;
+  padding-right: 30px;
+  padding-top: 10px;
+
+  @media (min-width: 500px) {
+    padding-right: 42px;
+  }
+`;
+
+export const Label = styled.label`
+  display: block;
+  position: relative;
+  padding-left: 35px;
   font-family: Town Text;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.31;
+  line-height: normal;
   letter-spacing: normal;
   text-align: left;
   padding-top: 18px;
+  user-select: none;
   color: #ffffff;
+  cursor: pointer;
 
   @media (max-width: 350px) {
     display: flex;
-    margin-bottom: 8px;
     font-size: 14px;
   }
-
-  cursor: pointer;
 
   @media (min-width: 500px) {
     padding: 0 30px 0px 30px;
@@ -131,18 +144,18 @@ export const CheckboxLabel = styled.label`
   }
 `;
 
-export const Checkbox = styled.input`
-  margin-right: 3%;
-
-  @media (max-width: 500px) {
-    padding: 0 30px 0px 30px;
-    font-size: 28px;
-  }
+export const Input = styled.input.attrs()`
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 `;
 
 export const StyledCheckbox = styled.span`
   position: absolute;
-  top: 5px;
   left: 0;
   height: 20px;
   width: 20px;
@@ -151,12 +164,12 @@ export const StyledCheckbox = styled.span`
   border: 2px solid #ffffff;
   border-radius: 50%;
 
-  ${CheckboxLabel}:hover & {
+  ${Label}:hover & {
     background-color: #222222;
   }
 
   //Checked dot
-  ${Checkbox}:checked + & {
+  ${Input}:checked + & {
     &:after {
       display: block;
       content: "";
@@ -171,17 +184,7 @@ export const StyledCheckbox = styled.span`
   }
 `;
 
-export const Input = styled.input.attrs({ type: "checkbox" })`
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-`;
-
-export const Text = styled.text`
+export const Text = styled.span`
   font-family: Town Text;
   font-weight: normal;
   font-stretch: normal;

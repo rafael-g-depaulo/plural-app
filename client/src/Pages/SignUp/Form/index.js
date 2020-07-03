@@ -217,7 +217,7 @@ export const Form = ({ ...props }) => {
 
       registerUser(validateUser(user))
         .then((res) => {
-          history.push("/");
+          history.push("/confirmation");
         })
         .catch((err) => {
           setStatus(err.response?.status ?? 500);
