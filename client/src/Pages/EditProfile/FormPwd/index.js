@@ -3,7 +3,7 @@ import React, { useState, useCallback } from "react";
 import Display from "./Display";
 import PopUp from "Components/PopUp";
 
-import { updateUser as patchUser } from "Api/User";
+import { changePassword } from "Api/User";
 import { useHistory } from "react-router-dom";
 
 export const Form = ({ ...props }) => {
@@ -124,7 +124,7 @@ export const Form = ({ ...props }) => {
 
       setOpen(false);
 
-      patchUser(validateUser(user))
+      changePassword(validateUser(user))
         .then((res) => {
           history.push("/me");
           window.location.reload();

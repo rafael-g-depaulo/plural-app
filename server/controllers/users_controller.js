@@ -188,6 +188,28 @@ module.exports = {
       }
     });
   },
+  async passwordChange(req, res) {
+    const { password } = req.body;
+
+    const hashCost = 10;
+
+    try {
+      const passwordHash = await bcrypt.hash(password, hashCost);
+
+      const user = await User.update(
+        { password: passwordHash },
+        { where: { id: req.decoded.user.id } }
+      );
+
+      res
+        .status(200)
+        .json({ message: "The user's password was successfully updated." });
+    } catch (err) {
+      res.status(422).json({
+        message: "An error occurred while updating password. Try again. ",
+      });
+    }
+  },
   /*
     This method generates a simplified token with the user's email, and send it via email.
     Then the user will be redirected to the password reset screen
