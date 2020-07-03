@@ -23,8 +23,7 @@ export const Form = ({ ...props }) => {
     switch (key) {
       case "email":
         const validEmailRegex = RegExp(
-          // eslint-disable-next-line
-          /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+          /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
         );
 
         // checks if email is valid and if matches email_confirm
@@ -178,7 +177,8 @@ export const Form = ({ ...props }) => {
 
   const countErrors = useCallback((oldErrors, newErrors) => {
     // using this because setErrors is async
-    const combined = { ...oldErrors, ...newErrors };
+    // sets phone_number to be ignored
+    const combined = { ...oldErrors, ...newErrors, phone_number: "" };
 
     // filter out "" as those are not errors
     return Object.values(combined).filter((v) => v !== "").length;
@@ -198,7 +198,7 @@ export const Form = ({ ...props }) => {
       if (noErrors && termsAccepted) {
         return {
           ...user,
-          birthdate: `${user.year}-${user.month}-${user.day}`,
+          birthdate: `${user.year}-${parseInt(user.month) + 1}-${user.day}`,
           phoneNumber: user.phone_number,
         };
       } else {
