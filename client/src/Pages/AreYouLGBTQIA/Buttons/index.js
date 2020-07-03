@@ -52,6 +52,14 @@ const ButtonBox = styled.button`
   border-radius: 5rem;
   width: 100%;
 
+  &:hover {
+    background-color: ${props => props.cover ? "#5a1ee5" : "#f3756c"};
+  }
+
+  &:active {
+    background-color: ${props => props.cover ? "#471cad" : "#ed5e54"};
+  }
+
   @media (max-width: 599px) {
     height: 5.8vh;
     font-size: 1.2em;
