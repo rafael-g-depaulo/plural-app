@@ -1,13 +1,18 @@
-import React, { useState, useCallback } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useCallback, useContext } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import Display from "./Display";
-import { createUser } from "Api/User.js";
+import { createUser, updateUser as callUpdateUser } from "Api/User.js";
+import UserContext from "Context/User";
 
 export const Form = ({ ...props }) => {
-  const [user, setUser] = useState({});
+  const userContext = useContext(UserContext);
+
+  const [user, setUser] = useState({ email: userContext.currentUser?.email });
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
+
+  const location = useLocation();
 
   // update user on input change
   const updateUser = useCallback(
@@ -91,14 +96,34 @@ export const Form = ({ ...props }) => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-
-      createUser(user)
-        .then((res) => {
-          history.push("/");
-        })
-        .catch((err) => {
-          alert("Ocorreu um erro ao registrar.");
-        });
+      if (
+        user.email === user.email_confirm &&
+        user.password === user.password_confirm &&
+        user.name !== undefined
+      ) {
+        if (location.state?.userFromProvider) {
+          callUpdateUser(user)
+            .then((res) => {
+              userContext.setCurrentUser(res.data.updatedUser);
+              history.push("/");
+            })
+            .catch((err) => {
+              alert("Ocorreu um erro ao atualizar as informações.");
+            });
+        } else {
+          createUser(user)
+            .then((res) => {
+              history.push("/");
+            })
+            .catch((err) => {
+              alert("Ocorreu um erro ao registrar.");
+            });
+        }
+      }
+      else
+      {
+        alert('Ocorreu um erro. Verifique se o email e senha conferem, e se todos campos estão preenchidos.')
+      }
     },
     [user]
   );
