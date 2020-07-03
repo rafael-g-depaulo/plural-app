@@ -110,7 +110,7 @@ export const Area = ({
       {...props}
     >
       <Title source={title}></Title>
-      <Date datatime={props.info.created_at} />
+      <Date datatime={info?.created_at} />
       <Capa>
         <BlockImg src={imgSrc} />
         <Credit>{photo_credit}</Credit>

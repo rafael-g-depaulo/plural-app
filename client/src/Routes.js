@@ -1,9 +1,15 @@
-import React, { lazy } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { lazy, useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import AsyncComponent from "Components/AsyncComponent";
+import UserContext from "Context/User";
 
+const PasswordReset = lazy(() => import("Pages/PasswordReset"));
 const Confirmation = lazy(() => import("Pages/Confirmation"));
-const Home = lazy(() => import("Pages/Home"));
 const SignUp = lazy(() => import("Pages/SignUp"));
 const Login = lazy(() => import("Pages/Login"));
 const MyProfile = lazy(() => import("Pages/MyProfile"));
@@ -17,6 +23,8 @@ const SingUpMapping = lazy(() => import("Pages/Mapping"));
 const Programming = lazy(() => import("Pages/Programming"));
 
 export const Routes = ({ ...props }) => {
+  const user = useContext(UserContext);
+
   return (
     <Router basename="/">
       <Switch>
@@ -99,14 +107,21 @@ export const Routes = ({ ...props }) => {
 
         {/* página de aviso da confirmação de email */}
         <Route path="/confirmation">
-          <Confirmation />
+          <AsyncComponent>
+            <Confirmation />
+          </AsyncComponent>
+        </Route>
+
+        {/* página de reset de senha */}
+        <Route path="/password-reset/:token?">
+          <AsyncComponent>
+            <PasswordReset />
+          </AsyncComponent>
         </Route>
 
         {/* Home page */}
         <Route exact path="/">
-          <AsyncComponent>
-            <Home />
-          </AsyncComponent>
+          {user === null ? <Redirect to="/login" /> : <Redirect to="/event" />}
         </Route>
       </Switch>
     </Router>

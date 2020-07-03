@@ -1,11 +1,11 @@
 const esClient = require("../client");
 
 export async function insertUser(id, data) {
-  console.log("insertUser", id, data);
   return await esClient.index({
     index: "mapping",
+    type: "mytype",
     id: id,
-    body: data,
+    body: data
   });
 }
 
@@ -16,37 +16,68 @@ export async function searchUsers(job) {
   });
 }
 
-// async function test() {
-//   const body = {
-//     query: {
-//       match_phrase_prefix: {
-//         professional: "Fotografo",
-//       },
-//     },
-//   };
-//   try {
-//     const resp = await searchUsers(body);
-//     console.log(JSON.stringify(resp));
-//   } catch (e) {
-//     console.log(e);
-//   }
-// }
+export async function getUser(id){
+  return await esClient.get({
+    index: "mapping",
+    id: id,
+  })
+}
 
-// test();
+export async function updateUsers(id, data){
+  return await esClient.update({
+    id: id,
+    type: "mytype",
+    index: "mapping",
+    body: {
+      doc: data
+    },
+  })
+}
+
 
 /*
-  Exemplo de busca: GET
+## GET USER BY ID ##
 
-  const response = await searchUsers(job);
-  console.log(response); 
+const id = "10"
+const response = getUser(id)
+console.log(response) 
 */
 
 /* 
-  Exemplo de inserção: POST
-  
-  id: 10
-  jobs: ["iluminacao", "design", "programador", "musico", "fotografo"]
+  ### UPDATE USER ###
 
-  const response = await insertUser(id, jobs);
+  const id = "10"
+  const data = {
+    jobs: ["reactjs", "nodejs", "express"]
+  } 
+
+  const response = updateUsers(id, data);
   console.log(response);
+ */
+
+/*
+  ## GET USERS BY JOBS ##
+
+  const job = {
+    query: {
+      match_phrase_prefix: {
+        jobs: 'progr',
+      },
+    },
+  }
+  const response = searchUsers(job)
+  console.log(response); 
+*/
+
+/*  
+  ## POST USER ##
+
+  const id = 2
+  const data = {
+    id: 2,
+    jobs: ["programador", "design"]
+  } 
+
+  const response = insertUser(id, data);
+  console.log(response); 
 */

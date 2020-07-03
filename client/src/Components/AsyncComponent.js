@@ -1,5 +1,5 @@
 import React, { Suspense } from "react"
-import Loading from "../Pages/Loading/index"
+import Loading from "Pages/Loading"
 
 function AsyncComponent({
     component,
