@@ -8,7 +8,7 @@ const App = () => {
   return (
     <>
       <Fonts />
-      <GlobalStyles />
+      <GlobalStyles />    
       <UserProvider>
         <Routes />
       </UserProvider>
