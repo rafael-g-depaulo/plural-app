@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   SubTitle,
@@ -11,7 +11,28 @@ import {
   Label,
 } from "../styles";
 
-export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
+export default function AreaAtuacao({ onChange = () => {}, ...props }) {
+
+  const [area, setArea] = useState({
+    "Artes Cênicas": false,
+    "Artes Visuais": false,
+    "Comunicação": false,
+    "Cinema e Fotografia": false,
+    "Danca": false,
+    "Produção e Equipes Técnicas para Projetos Culturais": false,
+    "Jogos Eletrônicos, APPs e Sites": false,
+    "Literatura, Influencers e Youtubers": false,
+    "Moda": false,
+    "Musica": false,
+  })
+
+  const onAtuacaoChange = (e) => {
+    const value = e.currentTarget.value
+    setArea(area => ({ ...area, [value]: !area[value]}))
+  }
+
+  useEffect(() => onChange(area), [area, onChange])
+  
   return (
     <>
       <SubTitle>QUEREMOS SABER EM  QUE ÁREA você ATUA</SubTitle>
@@ -22,6 +43,7 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
               name="atuacao"
               value="Artes Cênicas"
               type="checkbox"
+              checked={area["Artes Cênicas"]}
               onChange={onAtuacaoChange}/>
             <StyledCheckbox />
             Artes Cênicas
@@ -46,6 +68,7 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
               name="atuacao"
               value="Artes Visuais"
               type="checkbox"
+              checked={area["Artes Visuais"]}
               onChange={onAtuacaoChange}/>
             <StyledCheckbox />
             Artes Visuais
@@ -69,6 +92,7 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
               name="atuacao"
               value="Comunicação"
               type="checkbox"
+              checked={area["Comunicação"]}
               onChange={onAtuacaoChange}/>
             <StyledCheckbox />
             Comunicação
@@ -92,6 +116,7 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
               name="atuacao"
               value="Cinema e Fotografia"
               type="checkbox"
+              checked={area["Cinema e Fotografia"]}
               onChange={onAtuacaoChange}/>
             <StyledCheckbox />
             Cinema e Fotografia
@@ -115,6 +140,7 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
               name="atuacao"
               value="Danca"
               type="checkbox"
+              checked={area["Danca"]}
               onChange={onAtuacaoChange}/>
             <StyledCheckbox />
             Dança
@@ -137,6 +163,7 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
               name="atuacao"
               value="Produção e Equipes Técnicas para Projetos Culturais"
               type="checkbox"
+              checked={area["Produção e Equipes Técnicas para Projetos Culturais"]}
               onChange={onAtuacaoChange}/>
             <StyledCheckbox />
             Produção e Equipes Técnicas para Projetos Culturais
@@ -159,6 +186,7 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
               name="atuacao"
               value="Jogos Eletrônicos, APPs e Sites"
               type="checkbox"
+              checked={area["Jogos Eletrônicos, APPs e Sites"]}
               onChange={onAtuacaoChange}/>
             <StyledCheckbox />
             Jogos Eletrônicos, APPs e Sites
@@ -180,6 +208,7 @@ export default function AreaAtuacao({ onAtuacaoChange = () => {}, ...props }) {
               name="atuacao"
               value="Literatura, Influencers e Youtubers"
               type="checkbox"
+              checked={area["Literatura, Influencers e Youtubers"]}
               onChange={onAtuacaoChange}/>
             <StyledCheckbox />
             Literatura, Influencers e Youtubers

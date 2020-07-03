@@ -23,18 +23,6 @@ const genderMap = new Map([
   ["prefiro não dizer", 6],
 ]);
 
-const artCategoryMap = new Map([
-  ["Artes Cênicas", 1],
-  ["Artes Visuais", 2],
-  ["Comunicação", 3],
-  ["Cinema e Fotografia", 4],
-  ["Dança", 5],
-  ["Produção e Equipes Técnicas para Projetos Culturais", 6],
-  ["Jogos Eletrônicos, APPs e Sites", 7],
-  ["Litetura, Influencers e Youtubers", 8],
-  ["Moda", 9],
-  ["Música", 10],
-]);
 
 function destructureUser(user) {
   const {
@@ -110,7 +98,6 @@ export default ({ User }, config) => {
 
       sexual_orientation = sexualOrientationMap.get(sexual_orientation);
       gender_orientation = genderMap.get(gender_orientation);
-      art_category = artCategoryMap.get(art_category);
 
       let user = await User.findOne({
         where: { id: user_id },
