@@ -128,6 +128,7 @@ export const Checklist = ({ onChange = () => {}, ...props }) => {
     cinema,
     games,
     literatura,
+    onChange,
   ]);
 
   return (
