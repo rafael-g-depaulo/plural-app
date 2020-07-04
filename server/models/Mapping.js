@@ -23,7 +23,7 @@ class Mapping extends Model {
         tumblr: DataTypes.STRING,
         vimeo: DataTypes.STRING,
       },
-      { sequelize }
+      { sequelize, tableName: "mappings" }
     );
   }
 
