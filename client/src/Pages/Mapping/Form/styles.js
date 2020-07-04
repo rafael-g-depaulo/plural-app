@@ -77,6 +77,19 @@ export const GroupOut = styled.div`
   }
 `;
 
+export const ContainerJobs = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  inline-size: 100%;
+
+  @media (max-width: 500px) {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
