@@ -15,6 +15,7 @@ import RedesSociais from "./categories/redesSociais";
 export const Form = ({...props}) => {
   const [gender, setGender] = useState(null);
   const [jobs, setJobs] = useState([]);
+  const [jobsCount, setJobsCount] = useState([])
   const [bio, setBio] = useState(null);
   const [user, setUser] = useState(null);
   const [social, setSocial] = useState({});
@@ -80,10 +81,12 @@ export const Form = ({...props}) => {
   }, []);
 
   const onJobsChange = useCallback(jobs => {
-    if (jobs.length !== 6) {
+    setJobsCount(jobs);
+    
+    if ((jobs.length <= 6) && (jobsCount.length <= 6)) {
       setJobs(jobs);
-    }
-  }, [setJobs]);
+    } 
+  }, [ setJobs, jobsCount]);
 
   return (
     <FormContainer onSubmit={onSubmitButton}>
