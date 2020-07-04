@@ -17,6 +17,8 @@ const StyledInput = styled.input.attrs({ type: "submit" })`
   border: 2px solid #ffffff;
   border-radius: 50px;
 
+  margin-top: 15px;
+
   &:focus {
     outline: none;
   }
