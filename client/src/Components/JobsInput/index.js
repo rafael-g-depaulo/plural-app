@@ -15,8 +15,8 @@ export const JobsInput = ({
   }, [setJobs])
 
   const onChange = useCallback(chip => {
-    if (jobs.length !== 6) setJobs(chip)
-  }, [jobs, setJobs])
+    setJobs(chip)
+  }, [setJobs])
 
   return (
     <Display
