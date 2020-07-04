@@ -13,7 +13,7 @@
     "build": "yarn build:client && yarn build:server && yarn build:db",
     "build:client": "yarn install:client && cd client && yarn build && cd ..",
     "build:server": "yarn install:server && ./node_modules/.bin/babel ./server -d ./build -s",
-    "build:db": "yarn install:server && yarn db:setup",
+    "build:db": "yarn install:server && yarn db:migrate",
     "install-deps": "yarn install:client && yarn install:server",
     "install:client": "cd client && yarn install --production=true && cd ..",
     "install:server": "yarn install --production=true",
@@ -21,7 +21,8 @@
     "clean:server": "rm -rf build && mkdir build",
     "clean:client": "cd client && rm -rf ./build && cd ..",
     "db:drop": "./node_modules/.bin/sequelize db:drop",
-    "db:setup": "./node_modules/.bin/sequelize db:create && ./node_modules/.bin/sequelize db:migrate",
+    "db:migrate" : "./node_modules/.bin/sequelize db:migrate",
+    "db:setup": "./node_modules/.bin/sequelize db:create && yarn db:migrate",
     "db:reset": "yarn db:drop && yarn db:setup"
   },
   "dependencies": {
