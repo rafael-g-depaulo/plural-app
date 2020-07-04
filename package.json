@@ -13,7 +13,7 @@
     "build": "yarn build:client && yarn build:server && yarn build:db",
     "build:client": "yarn install:client && cd client && yarn build && cd ..",
     "build:server": "yarn install:server && ./node_modules/.bin/babel ./server -d ./build -s",
-    "build:db": "yarn db:setup",
+    "build:db": "yarn install:server && yarn db:setup",
     "install-deps": "yarn install:client && yarn install:server",
     "install:client": "cd client && yarn install --production=true && cd ..",
     "install:server": "yarn install --production=true",
@@ -45,13 +45,13 @@
     "pg": "^8.0.2",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.6",
+    "sequelize-cli": "^6.1.0",
     "storybook": "^5.3.19"
   },
   "devDependencies": {
     "@babel/core": "^7.8",
     "@babel/node": "^7.8",
-    "nodemon": "^2.0.2",
-    "sequelize-cli": "^5.5.1"
+    "nodemon": "^2.0.2"
   },
   "engines": {
     "node": ">= 12.x",
