@@ -22,9 +22,9 @@ export const JobsInput = ({
 
   const onChange = useCallback(
     (chip) => {
-      if (jobs.length !== 6) setJobs(chip);
+      setJobs(chip);
     },
-    [jobs, setJobs]
+    [setJobs]
   );
 
   return <Display {...{ onChange, onDelete }} defaultValue={jobs} />;

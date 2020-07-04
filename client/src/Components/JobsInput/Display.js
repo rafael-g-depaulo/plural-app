@@ -10,7 +10,7 @@ export const Display = ({
     <ChipInput
       style={{
         color: "white",
-        paddingTop: 2,
+        paddingTop: 5,
         paddingBottom: 2,
         paddingLeft: 30,
         paddingRight: 30,
@@ -19,6 +19,7 @@ export const Display = ({
         border: "2px solid #00000",
         borderRadius: 50,
       }}
+      disableUnderline={true}
       newChipKeyCodes={[32, 13]}
       onChange={onChange}
       onDelete={onDelete}
