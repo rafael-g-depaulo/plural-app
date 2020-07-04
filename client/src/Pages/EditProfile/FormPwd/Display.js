@@ -51,6 +51,7 @@ export const Display = ({ user, errors, onSubmit, updateUser, ...props }) => {
           id="password"
           name="password"
           type="password"
+          autoComplete="new-password"
           onInput={updateUser}
         />
         {errors.password && <InputError>{errors.password}</InputError>}
@@ -62,6 +63,7 @@ export const Display = ({ user, errors, onSubmit, updateUser, ...props }) => {
           id="password-confirm"
           name="password_confirm"
           type="password"
+          autoComplete="new-password"
           onInput={updateUser}
         />
         {errors.password_confirm && (

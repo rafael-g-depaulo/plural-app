@@ -26,8 +26,9 @@ const StyledInput = styled.input.attrs({ type: "submit" })`
   }
 
   &:active {
-    background-color: #222222;
+    background-color: #303030;
   }
+
 `;
 
 export const Input = ({ ...props }) => {

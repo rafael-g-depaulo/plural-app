@@ -19,9 +19,15 @@ const StyledInput = styled.input`
 
   width: ${(props) => props.width || "100%"};
 
+  &:hover {
+    background-color: #222222;
+  }
+  
   &:focus {
     outline: none;
+    background-color: #303030;
   }
+
 
   @media (min-width: 500px) {
     padding: 15px 30px;

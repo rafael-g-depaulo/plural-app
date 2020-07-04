@@ -29,7 +29,7 @@ const StyledLink = styled(Link)`
   }
 
   &:active {
-    background-color: #222222;
+    background-color: #303030;
   }
 `;
 
