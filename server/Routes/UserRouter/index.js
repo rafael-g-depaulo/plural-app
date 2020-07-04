@@ -18,6 +18,11 @@ export default ({}, options) => {
       UsersController.updateIsLgbtq
     )
     .put("/update", AuthMiddleware.verifyToken, UsersController.update)
+    .put(
+      "/password-change",
+      AuthMiddleware.verifyToken,
+      UsersController.passwordChange
+    )
     .post("/password-reset", UsersController.passwordReset)
     .post(
       "/password-reset/callback",

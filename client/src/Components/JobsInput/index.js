@@ -1,28 +1,33 @@
-import React, { useCallback, useState, useEffect } from 'react'
-import Display from './Display'
+import React, { useCallback, useState, useEffect } from "react";
+import Display from "./Display";
 
 export const JobsInput = ({
   onJobsChange = () => {},
+  defaultJobs,
   ...props
 }) => {
-  const [ jobs, setJobs ] = useState([])
+  const [jobs, setJobs] = useState(defaultJobs ? defaultJobs : []);
 
   // update parent when jobs change
-  useEffect(() => { onJobsChange(jobs) }, [ jobs, onJobsChange ])
+  useEffect(() => {
+    onJobsChange(jobs);
+  }, [jobs, onJobsChange]);
 
-  const onDelete = useCallback(chipToDelete => {
-    setJobs(chips => chips.filter(chip => chip.key !== chipToDelete.key))
-  }, [setJobs])
+  const onDelete = useCallback(
+    (chipToDelete) => {
+      setJobs((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
+    },
+    [setJobs]
+  );
 
-  const onChange = useCallback(chip => {
-    setJobs(chip)
-  }, [setJobs])
+  const onChange = useCallback(
+    (chip) => {
+      setJobs(chip);
+    },
+    [setJobs]
+  );
 
-  return (
-    <Display
-      {...{ onChange, onDelete } }
-    />
-  )
-}
+  return <Display {...{ onChange, onDelete }} defaultValue={jobs} />;
+};
 
-export default JobsInput
+export default JobsInput;

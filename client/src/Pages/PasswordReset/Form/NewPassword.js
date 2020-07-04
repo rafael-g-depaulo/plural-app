@@ -95,6 +95,7 @@ export const NewPasswordForm = ({ ...props }) => {
               id="new-password"
               name="new-password"
               type="password"
+              autoComplete="new-password"
               onInput={(e) => setPassword(e.target.value)}
             />
 
@@ -105,6 +106,7 @@ export const NewPasswordForm = ({ ...props }) => {
               id="password-confirmation"
               name="password-confirmation"
               type="password"
+              autoComplete="new-password"
               onInput={(e) => setPasswordConfirmation(e.target.value)}
             />
             {errors.invalidPassword && (

@@ -8,20 +8,20 @@ import {
 import AsyncComponent from "Components/AsyncComponent";
 import UserContext from "Context/User";
 
-const PasswordReset = lazy(() => import("Pages/PasswordReset"))
-const Confirmation = lazy(() => import("Pages/Confirmation"))
-const SignUp = lazy(() => import("Pages/SignUp"))
-const Login = lazy(() => import("Pages/Login"))
-const MyProfile = lazy(() => import("Pages/MyProfile"))
-const Profile = lazy(() => import("Pages/Profile"))
-const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
-const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
-const BlogList = lazy(() => import("Pages/BlogList"))
-const Blog = lazy(() => import("Pages/Blog"))
-const Event = lazy(() => import("Pages/Event"))
-const SingUpMapping = lazy(() => import("Pages/Mapping"))
-const Programming = lazy(() => import("Pages/Programming"))
-const MappingSearch = lazy(() => import("Pages/MappingSearch"))
+// const PasswordReset = lazy(() => import("Pages/PasswordReset"));
+const Confirmation = lazy(() => import("Pages/Confirmation"));
+const SignUp = lazy(() => import("Pages/SignUp"));
+const Login = lazy(() => import("Pages/Login"));
+const MyProfile = lazy(() => import("Pages/MyProfile"));
+const EditProfile = lazy(() => import("Pages/EditProfile"));
+const Profile = lazy(() => import("Pages/Profile"));
+const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"));
+const MappingQuestion = lazy(() => import("Pages/MappingQuestion"));
+const BlogList = lazy(() => import("Pages/BlogList"));
+const Blog = lazy(() => import("Pages/Blog"));
+const Event = lazy(() => import("Pages/Event"));
+const SingUpMapping = lazy(() => import("Pages/Mapping"));
+const Programming = lazy(() => import("Pages/Programming"));
 
 export const Routes = ({ ...props }) => {
   const { currentUser } = useContext(UserContext);
@@ -68,6 +68,13 @@ export const Routes = ({ ...props }) => {
                 <MyProfile />
               </AsyncComponent>
             )}
+        </Route>
+
+        {/* página de editar perfil */}
+        <Route path="/edit-profile">
+          <AsyncComponent>
+            <EditProfile />
+          </AsyncComponent>
         </Route>
 
         {/* página de perfil  -- por id */}
@@ -141,11 +148,11 @@ export const Routes = ({ ...props }) => {
         </Route>
         
         {/* página de reset de senha */}
-        <Route path="/password-reset/:token?">
+        {/* <Route path="/password-reset/:token?">
           <AsyncComponent>
             <PasswordReset />
           </AsyncComponent>
-        </Route>
+        </Route> */}
 
         {/* Home page */}
         <Route exact path="/">

@@ -93,7 +93,9 @@ module.exports = {
 
       utils.sendConfirmationEmail(user.dataValues, token);
 
-      res.status(200).send({ message: "The user was successfully created." });
+      const userObject = JSON.parse(JSON.stringify(user))
+      delete userObject.password
+      res.status(200).send({ user: userObject })
     } catch (error) {
       console.log(error);
       res.status(422).send({
@@ -187,6 +189,28 @@ module.exports = {
         });
       }
     });
+  },
+  async passwordChange(req, res) {
+    const { password } = req.body;
+
+    const hashCost = 10;
+
+    try {
+      const passwordHash = await bcrypt.hash(password, hashCost);
+
+      const user = await User.update(
+        { password: passwordHash },
+        { where: { id: req.decoded.user.id } }
+      );
+
+      res
+        .status(200)
+        .json({ message: "The user's password was successfully updated." });
+    } catch (err) {
+      res.status(422).json({
+        message: "An error occurred while updating password. Try again. ",
+      });
+    }
   },
   /*
     This method generates a simplified token with the user's email, and send it via email.

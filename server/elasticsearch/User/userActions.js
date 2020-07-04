@@ -23,7 +23,7 @@ export async function getUser(id){
   })
 }
 
-export async function updateUsers(id, data){
+export async function updateUser(id, data){
   return await esClient.update({
     id: id,
     type: "mytype",

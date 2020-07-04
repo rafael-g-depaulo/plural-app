@@ -29,7 +29,7 @@ const StyledLink = styled(Link)`
   }
 
   &:active {
-    background-color: #222222;
+    background-color: #303030;
   }
 `;
 
@@ -42,7 +42,7 @@ const Container = styled.div`
 export const EditButton = ({ ...props }) => {
   return (
     <Container>
-      <StyledLink to="/">Editar perfil</StyledLink>
+      <StyledLink to="/edit-profile">Editar perfil</StyledLink>
     </Container>
   );
 };

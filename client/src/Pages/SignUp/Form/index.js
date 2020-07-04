@@ -1,13 +1,15 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 
 import Display from "./Display";
 import PopUp from "Components/PopUp";
 
 import { registerUser } from "Api/User";
 import { useHistory } from "react-router-dom";
+import UserContext from "Context/User";
 
 export const Form = ({ ...props }) => {
   const history = useHistory();
+  const { setCurrentUser } = useContext(UserContext)
 
   // user and error objects
   const [user, setUser] = useState({});
@@ -217,6 +219,7 @@ export const Form = ({ ...props }) => {
 
       registerUser(validateUser(user))
         .then((res) => {
+          setCurrentUser(res.data.user)
           history.push("/confirmation");
         })
         .catch((err) => {
@@ -224,7 +227,7 @@ export const Form = ({ ...props }) => {
           setOpen(true);
         });
     },
-    [user, validateUser, history]
+    [user, validateUser, setCurrentUser, history]
   );
 
   const getPopUpMessage = useCallback((status) => {
