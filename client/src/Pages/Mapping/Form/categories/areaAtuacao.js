@@ -18,12 +18,12 @@ export default function AreaAtuacao({ onChange = () => {}, ...props }) {
     "Artes Visuais": false,
     "Comunicação": false,
     "Cinema e Fotografia": false,
-    "Danca": false,
+    "Dança": false,
     "Produção e Equipes Técnicas para Projetos Culturais": false,
     "Jogos Eletrônicos, APPs e Sites": false,
     "Literatura, Influencers e Youtubers": false,
     "Moda": false,
-    "Musica": false,
+    "Música": false,
   })
 
   const onAtuacaoChange = (e) => {
@@ -138,9 +138,9 @@ export default function AreaAtuacao({ onChange = () => {}, ...props }) {
           <Label>
             <Input 
               name="atuacao"
-              value="Danca"
+              value="Dança"
               type="checkbox"
-              checked={area["Danca"]}
+              checked={area["Dança"]}
               onChange={onAtuacaoChange}/>
             <StyledCheckbox />
             Dança
@@ -230,6 +230,7 @@ export default function AreaAtuacao({ onChange = () => {}, ...props }) {
               name="atuacao"
               value="Moda"
               type="checkbox"
+              checked={area["Moda"]}
               onChange={onAtuacaoChange}/>
             <StyledCheckbox />
             Moda
@@ -249,8 +250,9 @@ export default function AreaAtuacao({ onChange = () => {}, ...props }) {
           <Label>
             <Input 
               name="atuacao"
-              value="Musica"
+              value="Música"
               type="checkbox"
+              checked={area["Música"]}
               onChange={onAtuacaoChange}/>
             <StyledCheckbox />
             Música

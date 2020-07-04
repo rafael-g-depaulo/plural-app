@@ -8,19 +8,20 @@ import {
 import AsyncComponent from "Components/AsyncComponent";
 import UserContext from "Context/User";
 
-const PasswordReset = lazy(() => import("Pages/PasswordReset"));
-const Confirmation = lazy(() => import("Pages/Confirmation"));
-const SignUp = lazy(() => import("Pages/SignUp"));
-const Login = lazy(() => import("Pages/Login"));
-const MyProfile = lazy(() => import("Pages/MyProfile"));
-const Profile = lazy(() => import("Pages/Profile"));
-const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"));
-const MappingQuestion = lazy(() => import("Pages/MappingQuestion"));
-const BlogList = lazy(() => import("Pages/BlogList"));
-const Blog = lazy(() => import("Pages/Blog"));
-const Event = lazy(() => import("Pages/Event"));
-const SingUpMapping = lazy(() => import("Pages/Mapping"));
-const Programming = lazy(() => import("Pages/Programming"));
+const PasswordReset = lazy(() => import("Pages/PasswordReset"))
+const Confirmation = lazy(() => import("Pages/Confirmation"))
+const SignUp = lazy(() => import("Pages/SignUp"))
+const Login = lazy(() => import("Pages/Login"))
+const MyProfile = lazy(() => import("Pages/MyProfile"))
+const Profile = lazy(() => import("Pages/Profile"))
+const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
+const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
+const BlogList = lazy(() => import("Pages/BlogList"))
+const Blog = lazy(() => import("Pages/Blog"))
+const Event = lazy(() => import("Pages/Event"))
+const SingUpMapping = lazy(() => import("Pages/Mapping"))
+const Programming = lazy(() => import("Pages/Programming"))
+const MappingSearch = lazy(() => import("Pages/MappingSearch"))
 
 export const Routes = ({ ...props }) => {
   const { currentUser } = useContext(UserContext);
@@ -132,6 +133,13 @@ export const Routes = ({ ...props }) => {
           </AsyncComponent>
         </Route>
 
+        {/* página de busca no mapeamento*/}
+        <Route path="/search">
+          <AsyncComponent>
+            <MappingSearch />
+          </AsyncComponent>
+        </Route>
+        
         {/* página de reset de senha */}
         <Route path="/password-reset/:token?">
           <AsyncComponent>
@@ -144,7 +152,7 @@ export const Routes = ({ ...props }) => {
           {currentUser === null ? <Redirect to="/login" /> : <Redirect to="/event" />}
         </Route>
       </Switch>
-    </Router>
+    </Router> 
   );
 };
 

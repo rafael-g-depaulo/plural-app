@@ -103,7 +103,6 @@ export const Event = ({ ...props }) => {
 
   // error handling
   const open = status !== 200
-  console.log("status", status)
   const { title, message } =
     status === 404 ? { title: "Atividade não existe", message: "Essa atividade não existe" } :
     status === 500 ? { title: "Erro de conexão", message: "Por favor tente de novo mais tarde" } :
