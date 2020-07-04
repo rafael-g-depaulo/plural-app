@@ -12,6 +12,7 @@ class Mapping extends Model {
         professional: DataTypes.ARRAY(DataTypes.STRING),
         art_category: DataTypes.INTEGER,
         profile_picture: DataTypes.STRING,
+        ethnicity: DataTypes.STRING,
         facebook: DataTypes.STRING,
         instagram: DataTypes.STRING,
         linkedin: DataTypes.STRING,

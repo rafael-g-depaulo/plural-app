@@ -71,6 +71,8 @@ export const Form = ({...props}) => {
   }, []);
 
   const onEtniaChange = useCallback((e) => {
+    console.log(e.target.value)
+    
     setEtnia(e.target.value);
   }, []);
 

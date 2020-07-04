@@ -57,6 +57,13 @@ const artCategoryMap = new Map([
   ["Música", 10],
 ]);
 
+const ethnicityMap = new Map([
+  ["branca", 1],
+  ["indigena", 2],
+  ["negra (preta ou parda-afro-descendente)", 3],
+  ["amarela (de ascendência asiática)", 4],
+]);
+
 async function uploadImageToGCS(file) {
   return new Promise((resolve, reject) => {
     // Create a new blob in the bucket and upload the file data.
@@ -121,6 +128,8 @@ export default ({ User }, config) => {
       async (req, res) => {
         const user_id = req.decoded.user.id;
 
+        console.log("\n\n\n\n REQ BODY ", req.body, "\n\n\n\n");
+
         let {
           artistic_name,
           short_biography,
@@ -145,6 +154,7 @@ export default ({ User }, config) => {
         sexual_orientation = sexualOrientationMap.get(sexual_orientation);
         gender_orientation = genderMap.get(gender_orientation);
         art_category = artCategoryMap.get(art_category);
+        ethnicity = ethnicityMap.get(ethnicity);
 
         let user = await User.findOne({
           where: { id: user_id },
@@ -155,8 +165,6 @@ export default ({ User }, config) => {
         if (!user) {
           return res.status(400).json({ error: "user not found" + user_id });
         }
-
-        console.log(req.file);
 
         try {
           let profile_picture =
@@ -202,7 +210,7 @@ export default ({ User }, config) => {
             professional,
           };
 
-          await insertUser(user_id, data);
+          //await insertUser(user_id, data);
 
           return res.status(200).json(destructureUser(user));
         } catch (err) {

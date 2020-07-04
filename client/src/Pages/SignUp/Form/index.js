@@ -96,13 +96,27 @@ export const Form = ({ ...props }) => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
+
+      const birthdate = `${user.month}/${user.day}/${user.year}`;
+
+      const formattedUser = {
+        email: user.email,
+        email_confirm: user.email_confirm,
+        password: user.password,
+        password_confirm: user.password_confirm,
+        name: user.name,
+        birthdate,
+        phone_number: user.phone,
+        city: user.city,
+      };
+
       if (
         user.email === user.email_confirm &&
         user.password === user.password_confirm &&
         user.name !== undefined
       ) {
         if (location.state?.userFromProvider) {
-          callUpdateUser(user)
+          callUpdateUser(formattedUser)
             .then((res) => {
               userContext.setCurrentUser(res.data.updatedUser);
               history.push("/");
@@ -111,7 +125,7 @@ export const Form = ({ ...props }) => {
               alert("Ocorreu um erro ao atualizar as informações.");
             });
         } else {
-          createUser(user)
+          createUser(formattedUser)
             .then((res) => {
               history.push("/");
             })
@@ -119,10 +133,10 @@ export const Form = ({ ...props }) => {
               alert("Ocorreu um erro ao registrar.");
             });
         }
-      }
-      else
-      {
-        alert('Ocorreu um erro. Verifique se o email e senha conferem, e se todos campos estão preenchidos.')
+      } else {
+        alert(
+          "Ocorreu um erro. Verifique se o email e senha conferem, e se todos campos estão preenchidos."
+        );
       }
     },
     [user]

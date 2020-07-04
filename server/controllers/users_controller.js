@@ -61,10 +61,8 @@ module.exports = {
       password,
       password_confirm,
       name,
-      day,
-      month,
-      year,
-      phone,
+      birthdate,
+      phone_number,
       city,
     } = req.body;
 
@@ -80,12 +78,12 @@ module.exports = {
       const passwordHash = await bcrypt.hash(password, hashCost);
 
       const user = await User.create({
-        email: email,
+        email,
         password: passwordHash,
-        name: name,
-        birthdate: `${month}/${day}/${year}`,
-        phone_number: phone,
-        city: city,
+        name,
+        birthdate,
+        phone_number,
+        city,
         active: false,
       });
 
@@ -102,7 +100,26 @@ module.exports = {
     }
   },
   async update(req, res) {
+    
+    console.log('passwoooooooooord', req.body.password)
+    
     try {
+      if(req.body.password !== undefined)
+      {
+        console.log('passwoooooooooord', req.body.password)
+        
+        if(req.body.password !== req.body.password_confirm)
+        {
+          res.status(400).send({
+            error: "Passwords doesn't match."
+          });
+        }
+        else
+        {
+          req.body.password = await bcrypt.hash(req.body.password, 10);
+        }
+      }
+      
       const user = await User.update(req.body, {
         where: { id: req.decoded.user.id },
         include: [
@@ -123,7 +140,7 @@ module.exports = {
       console.log(error);
 
       res.status(422).send({
-        error: "An error occurred while updating LGBTQ status.",
+        error: "An error occurred while updating user.",
       });
     }
   },
