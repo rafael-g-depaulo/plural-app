@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 
 import { FormContainer, Title } from "./styles";
 
@@ -16,6 +16,7 @@ export const Form = ({...props}) => {
   const [gender, setGender] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [jobsCount, setJobsCount] = useState([])
+  const [jobsErrMsg, setJobsErrMsg] = useState("")
   const [bio, setBio] = useState(null);
   const [user, setUser] = useState(null);
   const [social, setSocial] = useState({});
@@ -88,6 +89,11 @@ export const Form = ({...props}) => {
     } 
   }, [ setJobs, jobsCount]);
 
+  useEffect(() => {
+    if (jobsCount.length > 6) setJobsErrMsg("Só os primeiros 6 jobs serão armazenados!")
+    else setJobsErrMsg("")
+  }, [jobsCount, setJobsErrMsg])
+
   return (
     <FormContainer onSubmit={onSubmitButton}>
       <Title>mapeamento CULTURAL LGBTQI+ DO DISTRITO FEDErAL</Title>
@@ -96,7 +102,7 @@ export const Form = ({...props}) => {
       <Orientation onOrientationChange={onOrientationChange} />
       <Etnia onEtniaChange={onEtniaChange} />
       <AreaAtuacao onChange={onAtuacaoChange} />
-      <Jobs onJobsChange={onJobsChange} />
+      <Jobs onJobsChange={onJobsChange} errorMsg={jobsErrMsg} />
 
       <AboutUser onUpdateUser={onUpdateUser} onInputBio={onInputBio} />
       <RedesSociais onChange={setSocial} />

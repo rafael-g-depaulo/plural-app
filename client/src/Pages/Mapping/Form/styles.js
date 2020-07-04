@@ -59,11 +59,11 @@ export const Group = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-bottom: 20px;
+  margin-bottom: 15px;
 
   @media (max-width: 500px) {
-    padding-bottom: 5px;
-    max-width: 90%;
+    margin-bottom: 5px;
+    /* max-width: 90%; */
   }
 `;
 
@@ -214,7 +214,7 @@ export const Text = styled.span`
   }
 
   @media (min-width: 500px) {
-    padding: 0 30px 30px 30px;
+    margin: 0 0 15px 0;
     font-size: 18px;
   }
 `;
