@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Display from "./display";
 import { search } from "Api/Mapping";
 import { getUser } from "Api/User";
 
 export const MappingSearch = ({ ...props }) => {
   const [users, setUsers] = useState([]);
+  const [renderedUsers, setRenderedUsers] = useState([]);
   const [checklist, setChecklist] = useState(false);
   const [jobs, setJobs] = useState([]);
   const onChecklistChange = (checklist) => {
@@ -19,13 +20,20 @@ export const MappingSearch = ({ ...props }) => {
       .then((users) => setUsers(users));
   };
 
+  useEffect(() => {
+    setRenderedUsers(
+      users.filter((user) => user.mapping.art_category
+        .some((category) => checklist[category])
+      )
+    );
+  }, [users, checklist]);
+
   return (
     <Display
       onChecklistChange={onChecklistChange}
       onJobsChange={setJobs}
       onSubmit={onSubmit}
-      data={users}
-      filter={checklist}
+      data={renderedUsers}
     />
   );
 };

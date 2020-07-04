@@ -106,16 +106,16 @@ export const Checklist = ({ onChange = () => {}, ...props }) => {
 
   useEffect(() => {
     onChange({
-      cenicas,
-      comunicacao,
-      danca,
-      producao,
-      moda,
-      musica,
-      artesVis,
-      cinema,
-      games,
-      literatura,
+      "Artes Cênicas": cenicas,
+      "Artes Visuais": artesVis,
+      "Comunicação": comunicacao,
+      "Cinema e Fotografia": cinema,
+      "Dança": danca,
+      "Produção e Equipes Técnicas para Projetos Culturais": producao,
+      "Jogos Eletrônicos, APPs e Sites": games,
+      "Literatura, Influencers e Youtubers": literatura,
+      "Moda": moda,
+      "Música": musica,
     });
   }, [
     cenicas,

@@ -58,7 +58,6 @@ export const Display = ({
   onJobsChange,
   onSubmit,
   data,
-  filter,
   ...props
 }) => {
   return (
