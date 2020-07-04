@@ -93,7 +93,9 @@ module.exports = {
 
       utils.sendConfirmationEmail(user.dataValues, token);
 
-      res.status(200).send({ message: "The user was successfully created." });
+      const userObject = JSON.parse(JSON.stringify(user))
+      delete userObject.password
+      res.status(200).send({ user: userObject })
     } catch (error) {
       console.log(error);
       res.status(422).send({

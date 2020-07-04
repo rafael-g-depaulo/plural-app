@@ -49,6 +49,8 @@ export function UserProvider(props) {
 
   if (error) console.warn("UserProvider Error:", error);
 
+  useEffect(() => { if (process.env.NODE_ENV !== "production") console.log("current user", currentUser) }, [currentUser])
+
   return isLoading === true ? (
     <Loading />
   ) : (

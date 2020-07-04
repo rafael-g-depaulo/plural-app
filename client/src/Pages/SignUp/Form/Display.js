@@ -64,7 +64,13 @@ export const Display = ({
 
       <Group>
         <InputLabel htmlFor="email">Qual seu email?</InputLabel>
-        <Input id="email" name="email" type="email" onInput={updateUser} />
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          onInput={updateUser}
+        />
         {errors.email && <InputError>{errors.email}</InputError>}
       </Group>
 
@@ -74,6 +80,7 @@ export const Display = ({
           id="email-confirm"
           name="email_confirm"
           type="email"
+          autoComplete="email"
           onInput={updateUser}
         />
         {errors.email_confirm && (
@@ -87,6 +94,7 @@ export const Display = ({
           id="password"
           name="password"
           type="password"
+          autoComplete="new-password"
           onInput={updateUser}
         />
         {errors.password && <InputError>{errors.password}</InputError>}
@@ -98,6 +106,7 @@ export const Display = ({
           id="password-confirm"
           name="password_confirm"
           type="password"
+          autoComplete="new-password"
           onInput={updateUser}
         />
         {errors.password_confirm && (

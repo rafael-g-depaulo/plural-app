@@ -67,7 +67,8 @@ export const Confirmation = ({
     ...props
 }) => {
     const { currentUser } = useContext(UserContext)
-    const userName = currentUser.name.split(" ")[0].toUpperCase()
+    const firstName = currentUser?.name ?? "usuário"
+    const displayName = firstName.split(" ")[0].toUpperCase()
 
     return (
         <MainDiv>
@@ -78,7 +79,7 @@ export const Confirmation = ({
                     <StyleLogo />
                 </LogoDiv>
                 <TextBox>
-                    <TextField><span style={{fontWeight:900}}>OI, { userName }</span> <br/>CONFIRME SEU EMAIL <br />PRA FINALIZAR A CRIAÇÃO <br />DO SEU CADASTRO</TextField>
+                    <TextField><span style={{fontWeight:900}}>OI, { displayName }</span> <br/>CONFIRME SEU EMAIL <br />PRA FINALIZAR A CRIAÇÃO <br />DO SEU CADASTRO</TextField>
 
                 </TextBox>
             </Grid>
