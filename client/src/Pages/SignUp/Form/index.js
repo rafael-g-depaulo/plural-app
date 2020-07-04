@@ -214,20 +214,24 @@ export const Form = ({ ...props }) => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-
       setOpen(false);
 
-      registerUser(validateUser(user))
-        .then((res) => {
-          setCurrentUser(res.data.user)
-          history.push("/confirmation");
-        })
-        .catch((err) => {
-          setStatus(err.response?.status ?? 500);
-          setOpen(true);
-        });
+      if (Object.values(errors).some(error => error !== "")) {
+        setStatus(422);
+        setOpen(true);
+      } else {        
+        registerUser(validateUser(user))
+          .then((res) => {
+            setCurrentUser(res.data.user)
+            history.push("/confirmation");
+          })
+          .catch((err) => {
+            setStatus(err.response?.status ?? 500);
+            setOpen(true);
+          });
+      }
     },
-    [user, validateUser, setCurrentUser, history]
+    [user, errors, validateUser, setCurrentUser, history]
   );
 
   const getPopUpMessage = useCallback((status) => {

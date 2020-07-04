@@ -44,8 +44,9 @@ const Text = styled(Link)`
 export const Navbar = ({ ...props }) => {
 
   // find if the user is logged in
-  const user = useContext(UserContext)
-  const isLogged = user !== null
+  const { currentUser } = useContext(UserContext)
+  const isLogged = !!currentUser
+  const isMapped = !!currentUser?.mapping
 
   // get current path to return here if the user logs in
   const { pathname } = useLocation()
@@ -54,9 +55,9 @@ export const Navbar = ({ ...props }) => {
   return (
     <Container leftAlign={!isLogged}>
       <Text to="/blog">blog</Text>
-      { isLogged && <Text to="/me">perfil</Text> }
+      { isMapped && <Text to="/me">perfil</Text> }
       <Text to="/event">programação</Text>
-      { isLogged && <Text to="/participar-mapeamento">mapeamento</Text> }
+      { isMapped && <Text to="/participar-mapeamento">mapeamento</Text> }
       <Text to={"/login" + (isLogged ? "" : `?redirectTo=${returnTo}`)}>{ isLogged ? "sair" : "entrar" }</Text>
     </Container>
   );
