@@ -107,7 +107,7 @@ export const Form = ({...props}) => {
       <AboutUser onUpdateUser={onUpdateUser} onInputBio={onInputBio} />
       <RedesSociais onChange={setSocial} />
 
-      <SubmitButton />
+      <SubmitButton /> 
     </FormContainer>
   );
 };
