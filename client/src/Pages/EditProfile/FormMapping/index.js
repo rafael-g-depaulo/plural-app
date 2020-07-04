@@ -111,10 +111,10 @@ export const Form = ({ currentUser, ...props }) => {
         gender_orientation: gender,
         professional: jobs,
         long_bio: bio,
-        name,
+        artistic_name: name,
         social,
         sexual_orientation: orientation,
-        etnia,
+        ethnicity: etnia,
         art_category: atuacao,
         facebook: social.facebook,
         twitter: social.twitter,
@@ -140,6 +140,7 @@ export const Form = ({ currentUser, ...props }) => {
         });
     },
     [
+      history,
       atuacao,
       bio,
       currentUser.mapping.id,

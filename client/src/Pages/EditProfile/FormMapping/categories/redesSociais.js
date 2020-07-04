@@ -15,7 +15,7 @@ export default function RedesSociais({
     (e) => {
       setRedesSociais((r) => ({ ...r, [e.target.name]: e.target.value }));
     },
-    [setRedesSociais, redesSociais]
+    [setRedesSociais]
   );
 
   useEffect(() => {
