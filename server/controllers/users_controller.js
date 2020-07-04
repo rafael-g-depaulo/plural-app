@@ -89,13 +89,20 @@ module.exports = {
         active: false,
       });
 
-      const token = utils.signToken(user.dataValues.id, user.dataValues.email);
+      const token = await utils.signToken(user.dataValues.id, user.dataValues.email);
 
       utils.sendConfirmationEmail(user.dataValues, token);
 
-      const userObject = JSON.parse(JSON.stringify(user))
+      const userObject = user.dataValues
       delete userObject.password
-      res.status(200).send({ user: userObject })
+
+      return res
+        .status(200)
+        .cookie("token", token, {
+          httpOnly: true
+        })
+        .json({ user: userObject })
+
     } catch (error) {
       console.log(error);
       res.status(422).send({

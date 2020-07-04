@@ -95,7 +95,7 @@ export const Form = ({ ...props }) => {
         // checks phone_number length
         let stripped = value.replace(/\D/g, ""); // removes non-numeric chars (e.g. (), _ and - )
         return {
-          [key]: stripped.length < 11 ? "Número incompleto" : "",
+          [key]: stripped.length < 11 && stripped.length > 0 ? "Número incompleto" : "",
         };
 
       default:

@@ -20,8 +20,13 @@ const StyledSelect = styled.select`
   color: ${(props) => props.color || "#ffffff"};
   width: ${(props) => props.width || "100%"};
 
+  &:hover {
+    background-color: #222222;
+  }
+  
   &:focus {
     outline: none;
+    background-color: #303030;
   }
 
   @media (min-width: 500px) {

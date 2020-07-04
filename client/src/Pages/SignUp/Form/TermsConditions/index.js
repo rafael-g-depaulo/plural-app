@@ -59,7 +59,7 @@ const StyledCheckbox = styled.span`
     background-color: #222222;
   }
 
-  //Checked dot
+  /* Checked dot */
   ${Input}:checked + & {
     &:after {
       display: block;
@@ -72,6 +72,10 @@ const StyledCheckbox = styled.span`
       background-color: #ffffff;
       border-radius: 50%;
     }
+  }
+
+  ${Input}:focus + & {
+    border: 3px solid #ffffff;
   }
 `;
 

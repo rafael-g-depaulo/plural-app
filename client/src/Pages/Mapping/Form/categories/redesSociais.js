@@ -31,34 +31,34 @@ export default function RedesSociais({ onChange = () => {}, ...props }) {
       </Text>
   
       <MyGroup>
-          <Input placeholder="Facebook" id="facebook" name="facebook" type="text" onInput={onInput} />
+          <Input placeholder="Facebook" id="facebook" name="facebook" type="text" onChange={onInput} />
       </MyGroup>
       <MyGroup>
-          <Input placeholder="Instagram" id="instagram" name="instagram" type="text" onInput={onInput} />
+          <Input placeholder="Instagram" id="instagram" name="instagram" type="text" onChange={onInput} />
       </MyGroup>
       <MyGroup>
-          <Input placeholder="Linkedin" id="linkedin" name="linkedin" type="text" onInput={onInput} />
+          <Input placeholder="Linkedin" id="linkedin" name="linkedin" type="text" onChange={onInput} />
       </MyGroup>
       <MyGroup>
-          <Input placeholder="YouTube" id="youtube" name="youtube" type="text" onInput={onInput} />
+          <Input placeholder="YouTube" id="youtube" name="youtube" type="text" onChange={onInput} />
       </MyGroup>
       <MyGroup>
-          <Input placeholder="Twitter" id="twitter" name="twitter" type="text" onInput={onInput} />
+          <Input placeholder="Twitter" id="twitter" name="twitter" type="text" onChange={onInput} />
       </MyGroup>
       <MyGroup>
-          <Input placeholder="Spotify" id="spotify" name="spotify" type="text" onInput={onInput} />
+          <Input placeholder="Spotify" id="spotify" name="spotify" type="text" onChange={onInput} />
       </MyGroup>
       <MyGroup>
-          <Input placeholder="Deezer" id="deezer" name="deezer" type="text" onInput={onInput} />
+          <Input placeholder="Deezer" id="deezer" name="deezer" type="text" onChange={onInput} />
       </MyGroup>
       <MyGroup>
-          <Input placeholder="Tik Tok" id="tiktok" name="tiktok" type="text" onInput={onInput} />
+          <Input placeholder="Tik Tok" id="tiktok" name="tiktok" type="text" onChange={onInput} />
       </MyGroup>
       <MyGroup>
-          <Input placeholder="Tumblr" id="tumblr" name="tumblr" type="text" onInput={onInput} />
+          <Input placeholder="Tumblr" id="tumblr" name="tumblr" type="text" onChange={onInput} />
       </MyGroup>
       <MyGroup>
-          <Input placeholder="Vimeo" id="vimeo" name="vimeo" type="text" onInput={onInput} />
+          <Input placeholder="Vimeo" id="vimeo" name="vimeo" type="text" onChange={onInput} />
       </MyGroup>
       </>
     );

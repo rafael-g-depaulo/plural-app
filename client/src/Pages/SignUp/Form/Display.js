@@ -69,7 +69,7 @@ export const Display = ({
           name="email"
           type="email"
           autoComplete="email"
-          onInput={updateUser}
+          onChange={updateUser}
         />
         {errors.email && <InputError>{errors.email}</InputError>}
       </Group>
@@ -81,7 +81,7 @@ export const Display = ({
           name="email_confirm"
           type="email"
           autoComplete="email"
-          onInput={updateUser}
+          onChange={updateUser}
         />
         {errors.email_confirm && (
           <InputError>{errors.email_confirm}</InputError>
@@ -95,7 +95,7 @@ export const Display = ({
           name="password"
           type="password"
           autoComplete="new-password"
-          onInput={updateUser}
+          onChange={updateUser}
         />
         {errors.password && <InputError>{errors.password}</InputError>}
       </Group>
@@ -107,7 +107,7 @@ export const Display = ({
           name="password_confirm"
           type="password"
           autoComplete="new-password"
-          onInput={updateUser}
+          onChange={updateUser}
         />
         {errors.password_confirm && (
           <InputError>{errors.password_confirm}</InputError>
@@ -118,13 +118,13 @@ export const Display = ({
         <InputLabel htmlFor="name">
           Como sua pessoa quer ser chamada?
         </InputLabel>
-        <Input id="name" name="name" type="text" onInput={updateUser} />
+        <Input id="name" name="name" type="text" onChange={updateUser} />
         {errors.name && <InputError>{errors.name}</InputError>}
       </Group>
 
       <Group>
         <InputLabel htmlFor="city">Em qual cidade do DF você mora?</InputLabel>
-        <Input id="city" name="city" type="text" onInput={updateUser} />
+        <Input id="city" name="city" type="text" onChange={updateUser} />
         {errors.city && <InputError>{errors.city}</InputError>}
       </Group>
 
@@ -147,7 +147,7 @@ export const Display = ({
           <MonthSelect
             id="month"
             name="month"
-            onInput={updateUser}
+            onChange={updateUser}
             width="40%"
           />
           <FormattedInput
