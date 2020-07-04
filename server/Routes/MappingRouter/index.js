@@ -23,7 +23,6 @@ const genderMap = new Map([
   ["prefiro não dizer", 6],
 ]);
 
-
 function destructureUser(user) {
   const {
     id,
@@ -149,7 +148,104 @@ export default ({ User }, config) => {
           user_id,
           professional,
         };
-  
+
+        await insertUser(user_id, data);
+
+        return res.status(200).json(destructureUser(user));
+      } catch (err) {
+        console.log(err);
+
+        return res.status(422).json({
+          message: "An error has occurred while creating mapping.",
+        });
+      }
+    })
+    .put("/users/mapping", AuthMiddleware.verifyToken, async (req, res) => {
+      const user_id = req.decoded.user.id;
+
+      let {
+        artistic_name,
+        short_biography,
+        long_bio,
+        sexual_orientation,
+        gender_orientation,
+        professional,
+        art_category,
+        profile_pic,
+        ethnicity,
+        facebook,
+        instagram,
+        linkedin,
+        youtube,
+        twitter,
+        spotify,
+        deezer,
+        tiktok,
+        tumblr,
+        vimeo,
+        id,
+      } = req.body;
+
+      sexual_orientation = sexualOrientationMap.get(sexual_orientation);
+      gender_orientation = genderMap.get(gender_orientation);
+
+      let user = await User.findOne({
+        where: { id: user_id },
+      });
+
+      console.log("Found the following user:", user);
+
+      if (!user) {
+        return res.status(400).json({ error: "user not found" + user_id });
+      }
+
+      try {
+        const mapping = await Mapping.update(
+          {
+            artistic_name,
+            short_biography,
+            long_bio,
+            sexual_orientation,
+            gender_orientation,
+            professional,
+            art_category,
+            profile_pic,
+            ethnicity,
+            facebook,
+            instagram,
+            linkedin,
+            youtube,
+            twitter,
+            spotify,
+            deezer,
+            tiktok,
+            tumblr,
+            vimeo,
+          },
+          {
+            where: { id: id },
+            returning: true,
+            plain: true,
+          }
+        );
+
+        console.log("MAPPING MAPPING", mapping);
+
+        user = await User.findOne({
+          where: { id: user_id },
+          include: [
+            {
+              model: Mapping,
+              as: "mapping",
+            },
+          ],
+        });
+
+        const data = {
+          user_id,
+          professional,
+        };
+
         await insertUser(user_id, data);
 
         return res.status(200).json(destructureUser(user));

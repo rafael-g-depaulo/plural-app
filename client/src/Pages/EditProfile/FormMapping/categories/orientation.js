@@ -12,111 +12,133 @@ import {
 
 export default function Orientation({
   onOrientationChange = () => {},
+  orientation,
   ...props
 }) {
-
   return (
     <>
       <SubTitle>ORIENTAÇÃO SEXUAL</SubTitle>
       <Group>
-        <Container> 
+        <Container>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="orientation"
                 value="lesbica"
                 type="radio"
                 onChange={onOrientationChange}
+                defaultChecked={
+                  orientation === "lesbica" ? "checked" : undefined
+                }
               />
               <StyledCheckbox />
-               lesbica
+              lesbica
             </Label>
           </ContainerInput>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="orientation"
                 value="gay"
                 type="radio"
                 onChange={onOrientationChange}
+                defaultChecked={orientation === "gay" ? "checked" : undefined}
               />
               <StyledCheckbox />
-               gay
+              gay
             </Label>
           </ContainerInput>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="orientation"
                 value="heterossexual"
                 type="radio"
                 onChange={onOrientationChange}
+                defaultChecked={
+                  orientation === "heterossexual" ? "checked" : undefined
+                }
               />
               <StyledCheckbox />
-               heterossexual
+              heterossexual
             </Label>
           </ContainerInput>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="orientation"
                 value="prefiro nao dizer"
                 type="radio"
                 onChange={onOrientationChange}
+                defaultChecked={
+                  orientation === "prefiro nao dizer" ? "checked" : undefined
+                }
               />
               <StyledCheckbox />
-               prefiro não dizer
+              prefiro não dizer
             </Label>
           </ContainerInput>
         </Container>
 
         <Container>
-        <ContainerInput>
+          <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="orientation"
                 value="bissexual"
                 type="radio"
                 onChange={onOrientationChange}
+                defaultChecked={
+                  orientation === "bissexual" ? "checked" : undefined
+                }
               />
               <StyledCheckbox />
-               bissexual
+              bissexual
             </Label>
           </ContainerInput>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="orientation"
                 value="assexual"
                 type="radio"
                 onChange={onOrientationChange}
+                defaultChecked={
+                  orientation === "assexual" ? "checked" : undefined
+                }
               />
               <StyledCheckbox />
-               assexual
+              assexual
             </Label>
           </ContainerInput>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="orientation"
                 value="pansexual"
                 type="radio"
                 onChange={onOrientationChange}
+                defaultChecked={
+                  orientation === "pansexual" ? "checked" : undefined
+                }
               />
               <StyledCheckbox />
-               pansexual
+              pansexual
             </Label>
           </ContainerInput>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="orientation"
                 value="outros"
                 type="radio"
                 onChange={onOrientationChange}
+                defaultChecked={
+                  orientation === "outros" ? "checked" : undefined
+                }
               />
               <StyledCheckbox />
-               outros
+              outros
             </Label>
           </ContainerInput>
         </Container>

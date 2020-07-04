@@ -61,6 +61,8 @@ const StyledTextArea = styled.textarea`
 export default function AboutUser({
   onInputBio = () => {},
   onUpdateName = () => {},
+  name,
+  bio,
   ...props
 }) {
   return (
@@ -71,7 +73,13 @@ export default function AboutUser({
         <InputLabel htmlFor="name">
           Como sua pessoa quer ser chamada?
         </InputLabel>
-        <Input id="name" name="name" type="text" onChange={onUpdateName} />
+        <Input
+          id="name"
+          name="name"
+          value={name ? name : ""}
+          type="text"
+          onChange={onUpdateName}
+        />
       </Group>
 
       <Group>
@@ -81,6 +89,7 @@ export default function AboutUser({
         <StyledTextArea
           id="bio"
           name="bio"
+          value={bio ? bio : ""}
           type="textarea"
           onChange={onInputBio}
         />

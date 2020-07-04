@@ -7,10 +7,14 @@ import {
   ContainerInput,
   Label,
   Input,
-  StyledCheckbox
+  StyledCheckbox,
 } from "../styles";
 
-export default function Gender({ onGenderChange = () => {}, ...props }) {
+export default function Gender({
+  onGenderChange = () => {},
+  gender,
+  ...props
+}) {
   return (
     <>
       <SubTitle>IDENTIDADE DE GÊNERO</SubTitle>
@@ -18,77 +22,91 @@ export default function Gender({ onGenderChange = () => {}, ...props }) {
         <Container>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="genero"
                 value="travesti"
                 type="radio"
                 onChange={onGenderChange}
+                defaultChecked={gender === "travesti" ? "checked" : undefined}
               />
               <StyledCheckbox />
-               travesti
+              travesti
             </Label>
           </ContainerInput>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="genero"
                 value="homem trans"
                 type="radio"
                 onChange={onGenderChange}
+                defaultChecked={
+                  gender === "homem trans" ? "checked" : undefined
+                }
               />
               <StyledCheckbox />
-               homem trans
+              homem trans
             </Label>
           </ContainerInput>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="genero"
                 value="pessoa cis"
                 type="radio"
                 onChange={onGenderChange}
+                defaultChecked={gender === "pessoa cis" ? "checked" : undefined}
               />
               <StyledCheckbox />
-               pessoa cis
+              pessoa cis
             </Label>
           </ContainerInput>
         </Container>
 
         <Container>
-        <ContainerInput>
+          <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="genero"
                 value="mulher trans"
                 type="radio"
                 onChange={onGenderChange}
+                defaultChecked={
+                  gender === "mulher trans" ? "checked" : undefined
+                }
               />
               <StyledCheckbox />
-               mulher trans
+              mulher trans
             </Label>
           </ContainerInput>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="genero"
                 value="não-binárie"
                 type="radio"
                 onChange={onGenderChange}
+                defaultChecked={
+                  gender === "não-binárie" ? "checked" : undefined
+                }
               />
               <StyledCheckbox />
-               não-binárie
+              não-binárie
             </Label>
           </ContainerInput>
           <ContainerInput>
             <Label>
-              <Input 
+              <Input
                 name="genero"
                 value="prefiro nao dizer"
                 type="radio"
                 onChange={onGenderChange}
+                defaultChecked={
+                  gender === "prefiro nao dizer" ? "checked" : undefined
+                }
               />
               <StyledCheckbox />
-               prefiro não dizer
+              prefiro não dizer
             </Label>
           </ContainerInput>
         </Container>

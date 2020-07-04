@@ -40,28 +40,49 @@ const Title = styled.h2`
 `;
 
 export const Display = ({
-  onSubmit,
-  onUpdateName,
-  onInputBio,
-  onOrientationChange,
+  gender,
   genderChange,
+  orientation,
+  onOrientationChange,
   onEtniaChange,
+  atuacao,
   onAtuacaoChange,
+  jobs,
   onJobsChange,
+  name,
+  onUpdateName,
+  bio,
+  onInputBio,
+  social,
   setSocial,
+  onSubmit,
   ...props
 }) => {
   return (
     <Form onSubmit={onSubmit} autocomplete="off">
       <Title>Editar Mapeamento</Title>
 
-      <Gender onGenderChange={genderChange} />
-      <Orientation onOrientationChange={onOrientationChange} />
+      <Gender gender={gender} onGenderChange={genderChange} />
+
+      <Orientation
+        orientation={orientation}
+        onOrientationChange={onOrientationChange}
+      />
+
       <Etnia onEtniaChange={onEtniaChange} />
-      <AreaAtuacao onAtuacaoChange={onAtuacaoChange} />
-      <Jobs onJobsChange={onJobsChange} />
-      <AboutUser onUpdateName={onUpdateName} onInputBio={onInputBio} />
-      <RedesSociais onChange={setSocial} />
+
+      <AreaAtuacao atuacao={atuacao} onChange={onAtuacaoChange} />
+
+      <Jobs jobs={jobs} onJobsChange={onJobsChange} />
+
+      <AboutUser
+        name={name}
+        onUpdateName={onUpdateName}
+        bio={bio}
+        onInputBio={onInputBio}
+      />
+
+      <RedesSociais social={social} onChange={setSocial} />
 
       <SubmitButton />
     </Form>
