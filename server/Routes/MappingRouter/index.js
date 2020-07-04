@@ -1,6 +1,10 @@
 import Router from "express";
 import Mapping from "models/Mapping";
-import { insertUser, searchUsers } from "elasticsearch/User/userActions";
+import {
+  insertUser,
+  updateUser,
+  searchUsers,
+} from "elasticsearch/User/userActions";
 import AuthMiddleware from "Middlewares/AuthMiddleware";
 
 const sexualOrientationMap = new Map([
@@ -246,7 +250,7 @@ export default ({ User }, config) => {
           professional,
         };
 
-        await insertUser(user_id, data);
+        await updateUser(user_id, data);
 
         return res.status(200).json(destructureUser(user));
       } catch (err) {
