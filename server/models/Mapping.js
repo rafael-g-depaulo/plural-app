@@ -16,6 +16,7 @@ class Mapping extends Model {
         instagram: DataTypes.STRING,
         linkedin: DataTypes.STRING,
         youtube: DataTypes.STRING,
+        twitter: DataTypes.STRING,
         spotify: DataTypes.STRING,
         deezer: DataTypes.STRING,
         tiktok: DataTypes.STRING,

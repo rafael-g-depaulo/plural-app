@@ -83,7 +83,7 @@ export default function Gender({ onGenderChange = () => {}, ...props }) {
             <Label>
               <Input 
                 name="genero"
-                value="prefiro nao dizer"
+                value="prefiro não dizer"
                 type="radio"
                 onChange={onGenderChange}
               />
