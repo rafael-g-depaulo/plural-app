@@ -83,8 +83,24 @@ export const description = ({ name, category, hashtags }) => {
   return (
     <Container>
       <Title>{name}</Title>
-      <Category>{category}</Category>
-      <Hashtags>{hashtags}</Hashtags>
+      <Category>
+        {category.map((item) => {
+          if (item === category[category.length - 1]) {
+            return <span key={item}>{item}</span>;
+          } else {
+            return <span key={item}>{item} - </span>;
+          }
+        })}
+      </Category>
+      <Hashtags>
+        {hashtags.map((item) => {
+          if (item === hashtags[hashtags.length - 1]) {
+            return <span key={item}>#{item}</span>;
+          } else {
+            return <span key={item}>#{item} </span>;
+          }
+        })}
+      </Hashtags>
     </Container>
   );
 };

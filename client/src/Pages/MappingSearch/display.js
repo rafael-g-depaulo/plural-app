@@ -53,28 +53,14 @@ const Logo = styled(PluralLogo)`
   }
 `;
 
-export const Display = ({ onChecklistChange, onJobsChange, onSubmit, ...props }) => {
-  const array = [
-    {
-      id: 1,
-      name: "madamy",
-      jobs:
-        "produção & EQUIPE TÉCNICA - música - artes cênicas - artes visuais - MODA - DANÇA",
-      hashtags:
-        " #Produçãomusical #DJ #Teatro #Produçãodefestas #Cenografia #Permance",
-      image: null,
-    },
-    {
-      id: 2,
-      name: "madamy",
-      jobs:
-        "produção & EQUIPE TÉCNICA - música - artes cênicas - artes visuais - MODA - DANÇA",
-      hashtags:
-        " #Produçãomusical #DJ #Teatro #Produçãodefestas #Cenografia #Permance",
-      image: null,
-    },
-  ];
-
+export const Display = ({
+  onChecklistChange,
+  onJobsChange,
+  onSubmit,
+  data,
+  filter,
+  ...props
+}) => {
   return (
     <Container>
       <Content>
@@ -82,17 +68,17 @@ export const Display = ({ onChecklistChange, onJobsChange, onSubmit, ...props })
         <Checklist onChange={onChecklistChange} />
         <SearchBar onJobsChange={onJobsChange} onClick={onSubmit} />
         {/* lógica para exibir todos os posts, o último sem border-bottom */}
-        {array.map((item) => {
-          if (item === array[array.length - 1]) {
+        {data.map((item) => {
+          if (item === data[data.length - 1]) {
             return (
               <InfoCard
                 borderbottom="none"
                 key={item.id}
                 id={item.id}
                 nome={item.name}
-                categoria={item.jobs}
-                hashtags={item.hashtags}
-                imagem={item.image}
+                categoria={item.mapping.art_category}
+                hashtags={item.mapping.professional}
+                imagem={item.mapping.profile_picture}
               />
             );
           } else {
@@ -102,9 +88,9 @@ export const Display = ({ onChecklistChange, onJobsChange, onSubmit, ...props })
                 key={item.id}
                 id={item.id}
                 nome={item.name}
-                categoria={item.jobs}
-                hashtags={item.hashtags}
-                imagem={item.image}
+                categoria={item.mapping.art_category}
+                hashtags={item.mapping.professional}
+                imagem={item.mapping.profile_picture}
               />
             );
           }

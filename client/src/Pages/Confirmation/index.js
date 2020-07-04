@@ -67,7 +67,7 @@ export const Confirmation = ({
     ...props
 }) => {
     const { currentUser } = useContext(UserContext)
-    const userName = currentUser.name.split(" ")[0].toUpperCase()
+    const userName = (currentUser?.name ?? "usuário").split(" ")[0].toUpperCase()
 
     return (
         <MainDiv>

@@ -87,7 +87,7 @@ const MyLink = styled.a`
 
 export const TermsConditions = ({
   termsAccepted,
-  setTermsAccepted,
+  setTermsAccepted = () => {},
   ...props
 }) => {
   return (
