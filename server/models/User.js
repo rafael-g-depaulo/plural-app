@@ -16,7 +16,7 @@ class User extends Model {
         is_lgbtq: DataTypes.BOOLEAN,
         is_mapping_participant: DataTypes.BOOLEAN,
       },
-      { sequelize, tableName: "users" }
+      { sequelize, tableName: "users", underscored: true }
     );
   }
 
