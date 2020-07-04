@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import InputLabel from "../InputLabel";
 import Input from "../Input";
@@ -13,11 +13,20 @@ const Group = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
+
+  padding-top: ${(props) => props.paddingTop ?? 0};
+
+  ${(props) =>
+    props.center &&
+    css`
+      justify-content: center;
+      align-items: center;
+    `}
 `;
 
-const TextPhoto = styled.text`
+const TextPhoto = styled.span`
   font-family: Town Text;
-  font-size: 8 px;
+  font-size: 10px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -26,6 +35,7 @@ const TextPhoto = styled.text`
   text-align: justify;
   color: #ffffff;
   max-width: 55%;
+  margin-top: 10px;
 
   @media (min-width: 500px) {
     font-size: 12px;
@@ -45,16 +55,36 @@ const StyledTextArea = styled.textarea`
   color: #ffffff;
   background: #000000;
   border: 2px solid #ffffff;
-  border-radius: 50px;
+  border-radius: 10px;
+  resize: none;
+
+  height: 90px;
 
   width: ${(props) => props.width || "100%"};
 
+  &:hover {
+    background-color: #222222;
+  }
+
   &:focus {
     outline: none;
+    background-color: #303030;
   }
 
   @media (min-width: 500px) {
     padding: 15px 30px;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      width: 10px;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+      background-color: #4285f4;
+    }
   }
 `;
 
@@ -67,7 +97,9 @@ export default function AboutUser({
 }) {
   return (
     <>
-      <Text style={{ fontWeight: "bold" }}>Fale mais sobre você!</Text>
+      <Text style={{ fontWeight: "bold", marginTop: "10px" }}>
+        Fale mais sobre você!
+      </Text>
 
       <Group>
         <InputLabel htmlFor="name">
@@ -95,11 +127,14 @@ export default function AboutUser({
         />
       </Group>
 
-      <PhotoInput />
-      <TextPhoto>
-        A imagem escolhida deve estar no formato JPG ou PNG e ter no máximo 5 MB
-        de tamanho. Dimensões ideais: 600x600 pixels
-      </TextPhoto>
+      <Group center paddingTop="20px">
+        {/* <SubTitle style={{alignSelf: "flex-start"}}>Manda uma foto sua</SubTitle> */}
+        <PhotoInput />
+        <TextPhoto>
+          A imagem escolhida deve estar no formato JPG ou PNG e ter no máximo 5
+          MB de tamanho. Dimensões ideais: 600x600 pixels
+        </TextPhoto>
+      </Group>
     </>
   );
 }

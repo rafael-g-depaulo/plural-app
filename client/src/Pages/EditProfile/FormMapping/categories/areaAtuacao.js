@@ -255,6 +255,7 @@ export default function AreaAtuacao({
               name="atuacao"
               value="Moda"
               type="checkbox"
+              checked={area["Moda"]}
               onChange={onAtuacaoChange}
             />
             <StyledCheckbox />
@@ -278,6 +279,7 @@ export default function AreaAtuacao({
               name="atuacao"
               value="Musica"
               type="checkbox"
+              checked={area["Musica"]}
               onChange={onAtuacaoChange}
             />
             <StyledCheckbox />

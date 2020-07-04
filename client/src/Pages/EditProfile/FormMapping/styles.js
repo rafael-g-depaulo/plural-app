@@ -59,11 +59,11 @@ export const Group = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-bottom: 20px;
+  margin-bottom: 15px;
 
   @media (max-width: 500px) {
-    padding-bottom: 5px;
-    max-width: 90%;
+    margin-bottom: 5px;
+    /* max-width: 90%; */
   }
 `;
 
@@ -74,6 +74,19 @@ export const GroupOut = styled.div`
 
   @media (max-width: 500px) {
     max-width: 90%;
+  }
+`;
+
+export const ContainerJobs = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  inline-size: 100%;
+
+  @media (max-width: 500px) {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
   }
 `;
 
@@ -184,7 +197,7 @@ export const StyledCheckbox = styled.span`
   }
 `;
 
-export const Text = styled.text`
+export const Text = styled.span`
   font-family: Town Text;
   font-weight: normal;
   font-stretch: normal;
@@ -201,7 +214,7 @@ export const Text = styled.text`
   }
 
   @media (min-width: 500px) {
-    padding: 0 30px 30px 30px;
+    margin: 0 0 15px 0;
     font-size: 18px;
   }
 `;

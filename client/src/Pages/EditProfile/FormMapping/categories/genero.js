@@ -98,11 +98,11 @@ export default function Gender({
             <Label>
               <Input
                 name="genero"
-                value="prefiro nao dizer"
+                value="prefiro não dizer"
                 type="radio"
                 onChange={onGenderChange}
                 defaultChecked={
-                  gender === "prefiro nao dizer" ? "checked" : undefined
+                  gender === "prefiro não dizer" ? "checked" : undefined
                 }
               />
               <StyledCheckbox />

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import Display from "./Display";
 import PopUp from "Components/PopUp";
@@ -44,6 +44,8 @@ export const Form = ({ currentUser, ...props }) => {
   const [atuacao, setAtuacao] = useState(currentUser.mapping.art_category);
 
   const [jobs, setJobs] = useState(currentUser.mapping.professional);
+  const [jobsCount, setJobsCount] = useState([]);
+  const [jobsErrMsg, setJobsErrMsg] = useState("");
 
   const [name, setName] = useState(currentUser.mapping.artistic_name);
 
@@ -91,12 +93,19 @@ export const Form = ({ currentUser, ...props }) => {
 
   const onJobsChange = useCallback(
     (jobs) => {
-      if (jobs.length !== 6) {
+      setJobsCount(jobs);
+      if (jobs.length <= 6 && jobsCount.length <= 6) {
         setJobs(jobs);
       }
     },
-    [setJobs]
+    [setJobs, jobsCount]
   );
+
+  useEffect(() => {
+    if (jobsCount.length > 6)
+      setJobsErrMsg("Só os primeiros 6 jobs serão armazenados!");
+    else setJobsErrMsg("");
+  }, [jobsCount, setJobsErrMsg]);
 
   // error popup status
   const [open, setOpen] = useState(false);
@@ -186,6 +195,7 @@ export const Form = ({ currentUser, ...props }) => {
           onAtuacaoChange,
           jobs,
           onJobsChange,
+          jobsErrMsg,
           name,
           onUpdateName,
           bio,

@@ -49,6 +49,7 @@ export const Display = ({
   onAtuacaoChange,
   jobs,
   onJobsChange,
+  jobsErrMsg,
   name,
   onUpdateName,
   bio,
@@ -73,7 +74,7 @@ export const Display = ({
 
       <AreaAtuacao atuacao={atuacao} onChange={onAtuacaoChange} />
 
-      <Jobs jobs={jobs} onJobsChange={onJobsChange} />
+      <Jobs jobs={jobs} errorMsg={jobsErrMsg} onJobsChange={onJobsChange} />
 
       <AboutUser
         name={name}

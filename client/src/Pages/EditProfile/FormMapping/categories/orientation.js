@@ -24,15 +24,15 @@ export default function Orientation({
             <Label>
               <Input
                 name="orientation"
-                value="lesbica"
+                value="lésbica"
                 type="radio"
                 onChange={onOrientationChange}
                 defaultChecked={
-                  orientation === "lesbica" ? "checked" : undefined
+                  orientation === "lésbica" ? "checked" : undefined
                 }
               />
               <StyledCheckbox />
-              lesbica
+              lésbica
             </Label>
           </ContainerInput>
           <ContainerInput>
@@ -67,11 +67,11 @@ export default function Orientation({
             <Label>
               <Input
                 name="orientation"
-                value="prefiro nao dizer"
+                value="prefiro não dizer"
                 type="radio"
                 onChange={onOrientationChange}
                 defaultChecked={
-                  orientation === "prefiro nao dizer" ? "checked" : undefined
+                  orientation === "prefiro não dizer" ? "checked" : undefined
                 }
               />
               <StyledCheckbox />
