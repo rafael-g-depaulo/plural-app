@@ -35,7 +35,7 @@ export default function RedesSociais({
           name="facebook"
           defaultValue={social.facebook}
           type="text"
-          onInput={onInput}
+          onChange={onInput}
         />
       </Group>
       <Group>
@@ -45,7 +45,7 @@ export default function RedesSociais({
           name="instagram"
           defaultValue={social.instagram}
           type="text"
-          onInput={onInput}
+          onChange={onInput}
         />
       </Group>
       <Group>
@@ -55,7 +55,7 @@ export default function RedesSociais({
           name="linkedin"
           defaultValue={social.linkedin}
           type="text"
-          onInput={onInput}
+          onChange={onInput}
         />
       </Group>
       <Group>
@@ -65,7 +65,7 @@ export default function RedesSociais({
           name="youtube"
           defaultValue={social.youtube}
           type="text"
-          onInput={onInput}
+          onChange={onInput}
         />
       </Group>
       <Group>
@@ -75,7 +75,7 @@ export default function RedesSociais({
           name="twitter"
           defaultValue={social.twitter}
           type="text"
-          onInput={onInput}
+          onChange={onInput}
         />
       </Group>
       <Group>
@@ -85,7 +85,7 @@ export default function RedesSociais({
           name="spotify"
           defaultValue={social.spotify}
           type="text"
-          onInput={onInput}
+          onChange={onInput}
         />
       </Group>
       <Group>
@@ -95,7 +95,7 @@ export default function RedesSociais({
           name="deezer"
           defaultValue={social.deezer}
           type="text"
-          onInput={onInput}
+          onChange={onInput}
         />
       </Group>
       <Group>
@@ -105,7 +105,7 @@ export default function RedesSociais({
           name="tiktok"
           defaultValue={social.tiktok}
           type="text"
-          onInput={onInput}
+          onChange={onInput}
         />
       </Group>
       <Group>
@@ -115,7 +115,7 @@ export default function RedesSociais({
           name="tumblr"
           defaultValue={social.tumblr}
           type="text"
-          onInput={onInput}
+          onChange={onInput}
         />
       </Group>
       <Group>
@@ -125,7 +125,7 @@ export default function RedesSociais({
           name="vimeo"
           defaultValue={social.vimeo}
           type="text"
-          onInput={onInput}
+          onChange={onInput}
         />
       </Group>
     </>

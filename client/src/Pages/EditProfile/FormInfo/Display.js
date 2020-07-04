@@ -105,7 +105,7 @@ export const Display = ({
           <MonthSelect
             id="month"
             name="month"
-            onInput={updateUser}
+            onChange={updateUser}
             defaultValue={user.month}
             width="40%"
           />

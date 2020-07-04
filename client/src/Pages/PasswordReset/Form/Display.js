@@ -52,7 +52,7 @@ export const Display = ({
 
       <Group>
         <InputLabel htmlFor="email">Qual seu email?</InputLabel>
-        <Input id="email" name="email" type="email" onInput={updateUserEmail} />
+        <Input id="email" name="email" type="email" onChange={updateUserEmail} />
         {errors.email && <InputError>{errors.email}</InputError>}
       </Group>
 

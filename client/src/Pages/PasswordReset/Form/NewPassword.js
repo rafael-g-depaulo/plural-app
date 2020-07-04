@@ -96,7 +96,7 @@ export const NewPasswordForm = ({ ...props }) => {
               name="new-password"
               type="password"
               autoComplete="new-password"
-              onInput={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
 
             <br />
@@ -107,7 +107,7 @@ export const NewPasswordForm = ({ ...props }) => {
               name="password-confirmation"
               type="password"
               autoComplete="new-password"
-              onInput={(e) => setPasswordConfirmation(e.target.value)}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
             {errors.invalidPassword && (
               <InputError>As senhas não correspondem</InputError>
