@@ -10,15 +10,19 @@
     "start:dev": "nodemon --exec babel-node --ignore './client/' -r ./node_modules/dotenv/config --presets @babel/env ./server/index.js",
     "start:prod": "yarn serve",
     "serve": "node -r dotenv/config build",
-    "build": "yarn build:client && yarn build:server",
+    "build": "yarn build:client && yarn build:server && yarn build:db",
     "build:client": "yarn install:client && cd client && yarn build && cd ..",
     "build:server": "yarn install:server && ./node_modules/.bin/babel ./server -d ./build -s",
+    "build:db": "yarn db:setup",
     "install-deps": "yarn install:client && yarn install:server",
     "install:client": "cd client && yarn install --production=true && cd ..",
     "install:server": "yarn install --production=true",
     "clean": "yarn clean:client && yarn clean:server",
     "clean:server": "rm -rf build && mkdir build",
-    "clean:client": "cd client && rm -rf ./build && cd .."
+    "clean:client": "cd client && rm -rf ./build && cd ..",
+    "db:drop": "./node_modules/.bin/sequelize db:drop",
+    "db:setup": "./node_modules/.bin/sequelize db:create && ./node_modules/.bin/sequelize db:migrate",
+    "db:reset": "yarn db:drop && yarn db:setup"
   },
   "dependencies": {
     "@babel/cli": "^7.8",
