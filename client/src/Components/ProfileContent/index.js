@@ -13,7 +13,7 @@ export const ProfileContent = ({ user, ...props }) => {
       {user.mapping && (
         <ProfilePhoto
           photoSrc={
-            user.mapping.profile_picture ? user.mapping.profile_picture : ""
+            user.mapping.profile_picture ?? ""
           }
         />
       )}

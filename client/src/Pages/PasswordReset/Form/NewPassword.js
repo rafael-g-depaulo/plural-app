@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import Input from "./Input";
 import InputLabel from "./InputLabel";
 import InputError from "./InputError";
 import SubmitButton from "./SubmitButton";
 import { passwordResetCallback } from "Api/User.js";
+import { useHistory } from "react-router-dom";
+import { buttonFontSize } from "Themes/default";
 
 const Form = styled.form`
   display: flex;
@@ -45,6 +47,34 @@ const Group = styled.div`
   padding-bottom: 20px;
 `;
 
+const RedirectButton = styled.button`
+  padding: 15px 0;
+  font-family: Town Display;
+  font-size: ${buttonFontSize}px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  background: #000000;
+  border: 2px solid #ffffff;
+  border-radius: 50px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: #222222;
+  }
+
+  &:active {
+    background-color: #303030;
+  }
+`
+
 export const NewPasswordForm = ({ ...props }) => {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -77,9 +107,15 @@ export const NewPasswordForm = ({ ...props }) => {
     }
   }
 
+  const history = useHistory()
+  const redirect = useCallback(() => { history.push("/") }, [history])
+
   function FormContent() {
     if (success) {
-      return <Text>Sua senha foi atualizada com sucesso!</Text>;
+      return (<>
+        <Text>Sua senha foi atualizada com sucesso!</Text>
+        <RedirectButton onClick={redirect}>Clique em mim para continuar</RedirectButton>
+      </>);
     } else if (errors.invalidToken) {
       return (
         <Text>

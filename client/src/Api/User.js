@@ -40,12 +40,12 @@ export const updateUserIsLgbtq = ({ isLgbtq }) =>
 export const updateUser = (value) => api.put("/api/user/update", value);
 
 export const passwordReset = (email) => {
-  return api.post("/user/password-reset", { email }, { withCredentials: true });
+  return api.post("/api/user/password-reset", { email }, { withCredentials: false });
 };
 
 export const passwordResetCallback = (password, token) => {
   return api.post(
-    `/user/password-reset/callback`,
+    `/api/user/password-reset/callback`,
     { password },
     {
       headers: { Authorization: `${token}` },
