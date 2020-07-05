@@ -84,11 +84,15 @@ module.exports = {
     });
   },
   async uploadImageToGCS(file) {
-    console.log(process.env.GCS_PRIVATE_KEY)
+    const key = process.env.GCS_PRIVATE_KEY
+      .replace(/_BEGIN___KEY_/g, "-----BEGIN PRIVATE KEY-----")
+      .replace(/_BARRA_BARRA_N_/g, "\\n")
+      .replace(/\\n/g, "\n")
+
     const gc = new Storage({
       projectId: "plural-282215",
       credentials: {
-        private_key: process.env.GCS_PRIVATE_KEY.replace("-----BEGIN PRIVATE KEY-----\n", "-----BEGIN PRIVATE KEY-----").replace(/\\n/g, "\n"),
+        private_key: key,
         client_email: process.env.GCS_CLIENT_EMAIL,
       },
     });
