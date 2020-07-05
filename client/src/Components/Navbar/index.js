@@ -9,12 +9,7 @@ const Container = styled.div`
   flex-direction: row;
   width: 100%;
   align-items: center;
-  justify-content: ${props => props.leftAlign ? "flex-start" : "center"};
-  margin-bottom: -10px;
-
-  @media (min-width: 700px) {
-    margin-bottom: -22px;
-  }
+  justify-content: ${props => props.leftAlign ? "flex-start" : "space-around"};
 `;
 
 const Text = styled(Link)`
@@ -30,13 +25,13 @@ const Text = styled(Link)`
   text-decoration: none;
 
   &:not(:last-child) {
-    padding-right: 17px;
+    /* padding-right: 17px; */
   }
   
   @media (min-width: 700px) {
     font-size: 25px;
     &:not(:last-child) {
-      padding-right: 34px;
+      /* padding-right: 34px; */
     }
   }
 `;
@@ -57,7 +52,7 @@ export const Navbar = ({ ...props }) => {
       <Text to="/blog">blog</Text>
       { isMapped && <Text to="/me">perfil</Text> }
       <Text to="/event">programação</Text>
-      { isMapped && <Text to="/participar-mapeamento">mapeamento</Text> }
+      { isMapped && <Text to="/search">mapeamento</Text> }
       <Text to={"/login" + (isLogged ? "" : `?redirectTo=${returnTo}`)}>{ isLogged ? "sair" : "entrar" }</Text>
     </Container>
   );

@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Imagem = styled.img`
   background-image: url(${(props) => props.image});
   background-color: ${(props) => props.color};
+  object-fit: contain;
   background-size: cover;
   background-position: center;
   width: 75px;
@@ -17,10 +18,10 @@ const Imagem = styled.img`
   }
 `;
 
-export const image = ({ image }) => {
+export const image = ({ imgUrl }) => {
   let $banner_image = <Imagem color="#000"></Imagem>;
   if (image != null) {
-    return <Imagem image={image}></Imagem>;
+    return <Imagem src={imgUrl ?? `https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg`}></Imagem>;
   }
   return $banner_image;
 };

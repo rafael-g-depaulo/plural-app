@@ -58,13 +58,14 @@ const Item = styled.input`
   -webkit-appearance: none;
   background-color: #000000;
 
+  &:focus {
+    background-color: #777;
+    outline: none;
+  }
+
   &:hover {
     background-color: #999;
     cursor: pointer;
-  }
-
-  &:focus {
-    outline: none;
   }
 
   @media (max-width: 699px) {
@@ -75,6 +76,9 @@ const Item = styled.input`
       background-color: white;
       width: 12px;
       height: 12px;
+    }
+    &:focus {
+      border: solid 2px #fffefe;
     }
   }
 
@@ -88,6 +92,9 @@ const Item = styled.input`
       background-color: white;
       width: 26px;
       height: 26px;
+    }
+    &:focus {
+      border: solid 3px #fffefe;
     }
   }
 `;
