@@ -84,6 +84,7 @@ module.exports = {
     });
   },
   async uploadImageToGCS(file) {
+    console.log(process.env.GCS_PRIVATE_KEY)
     const gc = new Storage({
       projectId: "plural-282215",
       credentials: {
