@@ -90,6 +90,7 @@ const StyledTextArea = styled.textarea`
 export default function AboutUser({
   onInputBio = () => {},
   bio,
+  onProfilePicChange = () => {},
   ...props
 }) {
   return (
@@ -113,7 +114,7 @@ export default function AboutUser({
 
       <Group center paddingTop="20px">
         {/* <SubTitle style={{alignSelf: "flex-start"}}>Manda uma foto sua</SubTitle> */}
-        <PhotoInput />
+        <PhotoInput onFileChange={onProfilePicChange} />
         <TextPhoto>
           A imagem escolhida deve estar no formato JPG ou PNG e ter no máximo 5
           MB de tamanho. Dimensões ideais: 600x600 pixels
