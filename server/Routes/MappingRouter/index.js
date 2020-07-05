@@ -7,7 +7,7 @@ import {
 } from "elasticsearch/User/userActions";
 import AuthMiddleware from "Middlewares/AuthMiddleware";
 import MulterMiddleware from "Middlewares/MulterMiddleware";
-import Utils from "Utils";
+import Utils from "utils";
 
 const sexualOrientationMap = new Map([
   ["lésbica", 1],
