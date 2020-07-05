@@ -2,8 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 import InputLabel from "../InputLabel";
-import Input from "../Input";
-import PhotoInput from "../../../../Components/PhotoInput";
+import PhotoInput from "Components/PhotoInput";
 
 import { inputFontSize } from "Themes/default";
 
@@ -90,8 +89,6 @@ const StyledTextArea = styled.textarea`
 
 export default function AboutUser({
   onInputBio = () => {},
-  onUpdateName = () => {},
-  name,
   bio,
   ...props
 }) {
@@ -100,19 +97,6 @@ export default function AboutUser({
       <Text style={{ fontWeight: "bold", marginTop: "10px" }}>
         Fale mais sobre você!
       </Text>
-
-      <Group>
-        <InputLabel htmlFor="name">
-          Como sua pessoa quer ser chamada?
-        </InputLabel>
-        <Input
-          id="name"
-          name="name"
-          value={name ? name : ""}
-          type="text"
-          onChange={onUpdateName}
-        />
-      </Group>
 
       <Group>
         <InputLabel htmlFor="bio">

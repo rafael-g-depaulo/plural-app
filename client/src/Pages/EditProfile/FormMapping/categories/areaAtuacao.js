@@ -19,9 +19,9 @@ export default function AreaAtuacao({
   const [area, setArea] = useState({
     "Artes Cênicas": atuacao.includes("Artes Cênicas"),
     "Artes Visuais": atuacao.includes("Artes Visuais"),
-    Comunicação: atuacao.includes("Comunicação"),
+    "Comunicação": atuacao.includes("Comunicação"),
     "Cinema e Fotografia": atuacao.includes("Cinema e Fotografia"),
-    Danca: atuacao.includes("Danca"),
+    "Danca": atuacao.includes("Danca"),
     "Produção e Equipes Técnicas para Projetos Culturais": atuacao.includes(
       "Produção e Equipes Técnicas para Projetos Culturais"
     ),

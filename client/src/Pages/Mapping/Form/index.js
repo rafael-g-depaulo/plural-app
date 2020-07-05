@@ -18,7 +18,6 @@ export const Form = ({onSubmit = () => {}, ...props}) => {
   const [jobsCount, setJobsCount] = useState([])
   const [jobsErrMsg, setJobsErrMsg] = useState("")
   const [bio, setBio] = useState(null);
-  const [user, setUser] = useState(null);
   const [social, setSocial] = useState({});
   const [orientation, setOrientation] = useState(null);
   const [etnia, setEtnia] = useState(null);
@@ -33,7 +32,6 @@ export const Form = ({onSubmit = () => {}, ...props}) => {
         gender_orientation: gender,
         professional: jobs,
         long_bio: bio,
-        user,
         sexual_orientation: orientation,
         etnia,
         art_category: atuacao,
@@ -52,12 +50,8 @@ export const Form = ({onSubmit = () => {}, ...props}) => {
 
       onSubmit(form)
     },
-    [gender, jobs, bio, user, social, orientation, etnia, atuacao, profilePic, onSubmit]
+    [gender, jobs, bio, social, orientation, etnia, atuacao, profilePic, onSubmit]
   );
-
-  const onUpdateUser = useCallback((e) => {
-    setUser(e.target.value);
-  }, []);
 
   const onInputBio = useCallback((e) => {
     setBio(e.target.value);
@@ -109,7 +103,7 @@ export const Form = ({onSubmit = () => {}, ...props}) => {
       <AreaAtuacao onChange={onAtuacaoChange} />
       <Jobs onJobsChange={onJobsChange} errorMsg={jobsErrMsg} />
 
-      <AboutUser onUpdateProfilePic={onProfilePicChange} onUpdateUser={onUpdateUser} onInputBio={onInputBio} />
+      <AboutUser onUpdateProfilePic={onProfilePicChange} onInputBio={onInputBio} />
       <RedesSociais onChange={setSocial} />
 
       <SubmitButton /> 

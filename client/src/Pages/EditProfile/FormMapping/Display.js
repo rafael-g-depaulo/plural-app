@@ -78,8 +78,6 @@ export const Display = ({
       <Jobs jobs={jobs} errorMsg={jobsErrMsg} onJobsChange={onJobsChange} />
 
       <AboutUser
-        name={name}
-        onUpdateName={onUpdateName}
         bio={bio}
         onInputBio={onInputBio}
       />

@@ -157,7 +157,7 @@ export default ({ User }, config) => {
 
         sexual_orientation = sexualOrientationMap.get(sexual_orientation);
         gender_orientation = genderMap.get(gender_orientation);
-        art_category = art_category?.split(",").map(category => artCategoryMap.get(category))
+        art_category = art_category?.split(",") // .map(category => artCategoryMap.get(category))
         ethnicity = ethnicityMap.get(ethnicity);
 
         let user = await User.findOne({
@@ -214,7 +214,7 @@ export default ({ User }, config) => {
             professional,
           };
 
-          //await insertUser(user_id, data);
+          await insertUser(user_id, data);
 
           return res.status(200).json(destructureUser(user));
         } catch (err) {
@@ -226,6 +226,113 @@ export default ({ User }, config) => {
         }
       }
     )
+    
+    .put(
+      "/users/mapping",
+      multerMiddleware.single("file"),
+      AuthMiddleware.verifyToken,
+      async (req, res) => {
+      const user_id = req.decoded.user.id;
+
+      console.log("\n\n\n\n REQ BODY ", req.body, "\n\n\n\n");
+
+      let {
+        artistic_name,
+        short_biography,
+        long_bio,
+        sexual_orientation,
+        gender_orientation,
+        professional,
+        art_category,
+        ethnicity,
+        facebook,
+        instagram,
+        linkedin,
+        youtube,
+        twitter,
+        spotify,
+        deezer,
+        tiktok,
+        tumblr,
+        vimeo,
+      } = req.body;
+
+      sexual_orientation = sexualOrientationMap.get(sexual_orientation);
+      gender_orientation = genderMap.get(gender_orientation);
+      ethnicity = ethnicityMap.get(ethnicity);
+
+      let user = await User.findOne({
+        where: { id: user_id },
+      });
+
+      console.log("Found the following user:", user);
+
+      if (!user) {
+        return res.status(400).json({ error: "user not found" + user_id });
+      }
+
+      try {
+        let profile_picture =
+          req.file !== null && req.file !== undefined
+            ? await uploadImageToGCS(req.file)
+            : null;
+
+        const mapping = await Mapping.update(
+          {
+            artistic_name,
+            short_biography,
+            long_bio,
+            sexual_orientation,
+            gender_orientation,
+            professional: professional,
+            art_category,
+            user_id,
+            profile_picture,
+            ethnicity,
+            facebook,
+            instagram,
+            linkedin,
+            youtube,
+            twitter,
+            spotify,
+            deezer,
+            tiktok,
+            tumblr,
+            vimeo,
+          },
+          {
+            where: { id: user_id },
+            returning: true,
+            plain: true,
+          }
+        );
+
+        user = await User.findOne({
+          where: { id: user_id },
+          include: [
+            {
+              model: Mapping,
+              as: "mapping",
+            },
+          ],
+        });
+
+        const data = {
+          user_id,
+          professional,
+        };
+
+        await insertUser(user_id, data);
+
+        return res.status(200).json(destructureUser(user));
+      } catch (err) {
+        console.log(err);
+
+        return res.status(422).json({
+          message: "An error has occurred while editing mapping.",
+        });
+      }
+    })
     .post("/users/jobs", async (req, res) => {
       var allJobs = req.body.jobs;
 
