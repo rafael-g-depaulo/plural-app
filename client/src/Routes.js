@@ -61,21 +61,25 @@ export const Routes = ({ ...props }) => {
 
         {/* página de perfil -- current user */}
 
-        <Route path="/me">
-          {currentUser === null ? (
+        <Route path={["/me", "/eu", "/meu-perfil"]}>
+          { !currentUser || !currentUser.mapping ? (
             <Redirect to="/" />
           ) : (
-              <AsyncComponent>
-                <MyProfile />
-              </AsyncComponent>
-            )}
+            <AsyncComponent>
+              <MyProfile />
+            </AsyncComponent>
+          )}
         </Route>
 
         {/* página de editar perfil */}
         <Route path="/edit-profile">
-          <AsyncComponent>
-            <EditProfile />
-          </AsyncComponent>
+          { !currentUser || !currentUser.mapping ? (
+            <Redirect to="/" />
+          ) : (
+            <AsyncComponent>
+              <EditProfile />
+            </AsyncComponent>
+          )}
         </Route>
 
         {/* página de perfil  -- por id */}
@@ -87,16 +91,24 @@ export const Routes = ({ ...props }) => {
 
         {/* página da pergunta se um usuário é LGBTQ+ */}
         <Route path="/areyouLGBTQIA">
-          <AsyncComponent>
-            <AreYou />
-          </AsyncComponent>
+          { currentUser?.isLgbtq !== null ? (
+            <Redirect to="/" />
+          ) : (
+            <AsyncComponent>
+              <AreYou />
+            </AsyncComponent>
+          )}
         </Route>
 
         {/* página que pergunta se um usuário quer participar do mapeamento */}
         <Route path="/participar-mapeamento">
-          <AsyncComponent>
-            <MappingQuestion />
-          </AsyncComponent>
+          { !currentUser?.isLgbtq || currentUser?.isMappingParticipant !== null || currentUser?.mapping !== null ? (
+            <Redirect to="/" />
+          ) : (
+            <AsyncComponent>
+              <MappingQuestion />
+            </AsyncComponent>
+          )}
         </Route>
 
         {/* página de um blogpost */}
@@ -120,11 +132,15 @@ export const Routes = ({ ...props }) => {
           </AsyncComponent>
         </Route>
 
-        {/* página que pergunta se um usuário quer participar do mapeamento */}
+        {/* página de cadastro no mapeamento */}
         <Route path="/mapping">
-          <AsyncComponent>
-            <SingUpMapping />
-          </AsyncComponent>
+          { !currentUser?.isMappingParticipant || (!!currentUser?.mapping)  ? (
+            <Redirect to="/" />
+          ) : (
+            <AsyncComponent>
+              <SingUpMapping />
+            </AsyncComponent>
+          )}
         </Route>
 
         {/* página de listagem da programação */}
@@ -136,16 +152,24 @@ export const Routes = ({ ...props }) => {
 
         {/* página de aviso da confirmação de email */}
         <Route path="/confirmation">
-          <AsyncComponent>
-            <Confirmation />
-          </AsyncComponent>
+          { currentUser?.active ? (
+            <Redirect to="/" />
+          ) : (
+            <AsyncComponent>
+              <Confirmation />
+            </AsyncComponent>
+          )}
         </Route>
 
         {/* página de busca no mapeamento*/}
         <Route path="/search">
-          <AsyncComponent>
-            <MappingSearch />
-          </AsyncComponent>
+          { !currentUser || !currentUser?.mapping ? (
+            <Redirect to="/" />
+          ) : (
+            <AsyncComponent>
+              <MappingSearch />
+            </AsyncComponent>
+          )}
         </Route>
         
         {/* página de reset de senha */}
