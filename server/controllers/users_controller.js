@@ -50,13 +50,13 @@ module.exports = {
           },
         ],
       });
-      
+
       return res.status(200).send({
         current_user: destructureUser(user),
       });
     } catch (err) {
-      console.log(err)
-      return res.status(500).send({ error: "error finding user" })
+      console.log(err);
+      return res.status(500).send({ error: "error finding user" });
     }
   },
   async getUser(req, res) {
@@ -90,12 +90,12 @@ module.exports = {
 
     const hashCost = 10;
 
-    
-    if(email !== email_confirm || password !== password_confirm)
-    {
-      return res.status(400).json({message: "Email or password doesn't match."})
+    if (email !== email_confirm || password !== password_confirm) {
+      return res
+        .status(400)
+        .json({ message: "Email or password doesn't match." });
     }
-    
+
     try {
       const passwordHash = await bcrypt.hash(password, hashCost);
 
@@ -109,20 +109,22 @@ module.exports = {
         active: false,
       });
 
-      const token = await utils.signToken(user.dataValues.id, user.dataValues.email);
+      const token = await utils.signToken(
+        user.dataValues.id,
+        user.dataValues.email
+      );
 
       utils.sendConfirmationEmail(user.dataValues, token);
 
-      const userObject = user.dataValues
-      delete userObject.password
+      const userObject = user.dataValues;
+      delete userObject.password;
 
       return res
         .status(200)
         .cookie("token", token, {
-          httpOnly: true
+          httpOnly: true,
         })
-        .json({ user: userObject })
-
+        .json({ user: userObject });
     } catch (error) {
       console.log(error);
       res.status(422).send({
@@ -131,26 +133,21 @@ module.exports = {
     }
   },
   async update(req, res) {
-    
-    console.log('passwoooooooooord', req.body.password)
-    
+    console.log("passwoooooooooord", req.body.password);
+
     try {
-      if(req.body.password !== undefined)
-      {
-        console.log('passwoooooooooord', req.body.password)
-        
-        if(req.body.password !== req.body.password_confirm)
-        {
+      if (req.body.password !== undefined) {
+        console.log("passwoooooooooord", req.body.password);
+
+        if (req.body.password !== req.body.password_confirm) {
           res.status(400).send({
-            error: "Passwords doesn't match."
+            error: "Passwords doesn't match.",
           });
-        }
-        else
-        {
+        } else {
           req.body.password = await bcrypt.hash(req.body.password, 10);
         }
       }
-      
+
       const user = await User.update(req.body, {
         where: { id: req.decoded.user.id },
         include: [
@@ -226,13 +223,9 @@ module.exports = {
           { where: { id: decoded.user.id } }
         );
 
-        res
-          .status(200)
-          .json({ message: "The email was successfully verified." });
+        res.status(200).redirect(process.env.CLIENT_URL);
       } catch {
-        res.status(422).json({
-          message: "An error occurred while verifying email. Try again. ",
-        });
+        res.status(422).redirect(process.env.CLIENT_URL);
       }
     });
   },
