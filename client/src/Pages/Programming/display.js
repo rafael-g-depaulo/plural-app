@@ -2,11 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import app_background from "./Background/login_app_fundo.png";
 import site_background from "./Background/sitecadastro_fundo.png";
-import PluralLogo from "../../Components/PluralLogo";
-import ComputerAsset from "../../Components/ComputerAsset/Computador.png";
-import Navbar from "../../Components/Navbar";
+import ComputerAsset from "Components/ComputerAsset/Computador.png";
 import EventCard from "./EventCard";
 import Title from "./Title";
+import Navigation from "Components/Navigation";
 
 const Container = styled.div`
   width: 100%;
@@ -45,22 +44,6 @@ const TopContent = styled.div`
   align-items: center;
 `;
 
-const Logo = styled(PluralLogo)`
-  margin-right: 40px;
-  margin-top: 93.5px;
-  margin-bottom: 38.5px;
-  height: 63.5px;
-  width: 205.5px;
-
-  @media (min-width: 700px) {
-    margin-right: 130px;
-    margin-top: 150px;
-    margin-bottom: 77px;
-    height: 127px;
-    width: 411px;
-  }
-`;
-
 const ComputerLogo = styled.img`
   position: relative;
   object-fit: contain;
@@ -79,8 +62,7 @@ export const Display = ({eventList}) => {
     <Container>
       <Content>
         <TopContent>
-          <Logo />
-          <Navbar />
+          <Navigation />
           <Title />
         </TopContent>
         {/* lógica para exibir todos os posts, o último sem border-bottom */}

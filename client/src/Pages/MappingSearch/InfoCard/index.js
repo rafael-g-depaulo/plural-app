@@ -34,11 +34,11 @@ const Background = styled.div`
   }
 `;
 
-export const InfoCard = ({nome, categoria, hashtags, imagem, ...props }) => {
+export const InfoCard = ({nome, imgUrl, categoria, hashtags, ...props }) => {
   return (
     <Container borderbottom={props.borderbottom}>
       <Background>
-        <Image image={imagem} />
+        <Image image={imgUrl} />
         <Description name={nome} category={categoria} hashtags={hashtags} />
       </Background>
     </Container>

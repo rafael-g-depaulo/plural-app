@@ -2,11 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import app_fundo from "./Background/login_app_fundo.png";
 import site_fundo from "./Background/login_site_fundo.png";
-import PluralLogo from "../../Components/PluralLogo";
-import ComputerAsset from "../../Components/ComputerAsset/Computador.png";
-import Navbar from "../../Components/Navbar";
+import ComputerAsset from "Components/ComputerAsset/Computador.png";
 import Title from "./Title";
 import PostCard from "./PostCard/index";
+import Navigation from "Components/Navigation";
 
 const Container = styled.div`
   width: 100%;
@@ -47,22 +46,6 @@ const TopContent = styled.div`
   align-items: center;
 `;
 
-const Logo = styled(PluralLogo)`
-  margin-right: 60px;
-  margin-top: 93.5px;
-  margin-bottom: 38.5px;
-  height: 65px;
-  width: 205px;
-
-  @media (min-width: 700px) {
-    margin-right: 130px;
-    margin-top: 140px;
-    margin-bottom: 62px;
-    height: 127px;
-    width: 411px;
-  }
-`;
-
 const ComputerLogo = styled.img`
   position: relative;
   object-fit: contain;
@@ -81,8 +64,7 @@ export const Display = ({ postList }) => {
     <Container>
       <Content>
         <TopContent>
-          <Logo />
-          <Navbar />
+          <Navigation />
           <Title />
         </TopContent>
         {/* lógica para exibir todos os posts, o último sem border-bottom */}

@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import app_fundo from "./Background/login_app_fundo.png";
 import site_fundo from "./Background/sitecadastro_fundo.png";
-import PluralLogo from "../../Components/PluralLogo";
 import Checklist from "./Checklist";
 import SearchBar from "./SearchBar";
 import InfoCard from "./InfoCard";
+import Navigation from "Components/Navigation"
 
 const Container = styled.div`
   width: 100%;
@@ -14,9 +14,12 @@ const Container = styled.div`
   background-position: center;
 
   display: grid;
-  grid-template-columns: minmax(5%, auto) minmax(300px, 670px) minmax(5%, auto);
-  grid-template-rows: minmax(0, 3fr) auto;
-  grid-template-areas: ". content .";
+  grid-template-columns: minmax(5%, auto) minmax(300px, 700px) minmax(5%, auto);
+  grid-template-rows: auto minmax(0, 3fr);
+  grid-template-areas:
+    "nav nav nav"
+    ". content . "
+  ;
 
   @media (max-width: 399px) {
     background-image: url(${app_fundo});
@@ -37,21 +40,6 @@ const Content = styled.div`
   align-items: center;
 `;
 
-const Logo = styled(PluralLogo)`
-  margin-right: 50px;
-  margin-top: 93.5px;
-  margin-bottom: 38.5px;
-  height: 65px;
-  width: 205px;
-
-  @media (min-width: 700px) {
-    margin-right: 130px;
-    margin-top: 140px;
-    margin-bottom: 62px;
-    height: 127px;
-    width: 411px;
-  }
-`;
 
 export const Display = ({
   onChecklistChange,
@@ -63,7 +51,7 @@ export const Display = ({
   return (
     <Container>
       <Content>
-        <Logo />
+        <Navigation />
         <Checklist onChange={onChecklistChange} />
         <SearchBar onJobsChange={onJobsChange} onClick={onSubmit} />
         {/* lógica para exibir todos os posts, o último sem border-bottom */}
@@ -75,6 +63,7 @@ export const Display = ({
                 key={item.id}
                 id={item.id}
                 nome={item.name}
+                imgUrl={item.mapping.profile_picture}
                 categoria={item.mapping.art_category}
                 hashtags={item.mapping.professional}
                 imagem={item.mapping.profile_picture}
@@ -87,6 +76,7 @@ export const Display = ({
                 key={item.id}
                 id={item.id}
                 nome={item.name}
+                imgUrl={item.mapping.profile_picture}
                 categoria={item.mapping.art_category}
                 hashtags={item.mapping.professional}
                 imagem={item.mapping.profile_picture}

@@ -7,7 +7,6 @@ const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-top: 30px;
 
     @media (min-width: 700px) {
         width: 686px;
