@@ -193,6 +193,7 @@ export const Form = ({ currentUser, ...props }) => {
       jobs,
       orientation,
       social,
+      profilePic,
     ]
   );
 

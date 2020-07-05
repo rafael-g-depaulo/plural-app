@@ -258,6 +258,12 @@ export default ({ User }, config) => {
 
         let user = await User.findOne({
           where: { id: user_id },
+          include: [
+            {
+              model: Mapping,
+              as: "mapping",
+            },
+          ],
         });
 
         console.log("FILE", req.file);
@@ -268,41 +274,40 @@ export default ({ User }, config) => {
           return res.status(400).json({ error: "user not found" + user_id });
         }
 
+        var updatedData = {
+          long_bio,
+          sexual_orientation,
+          gender_orientation,
+          professional,
+          art_category,
+          ethnicity,
+          facebook,
+          instagram,
+          linkedin,
+          youtube,
+          twitter,
+          spotify,
+          deezer,
+          tiktok,
+          tumblr,
+          vimeo,
+        };
+
         try {
           let profile_picture =
             req.file !== null && req.file !== undefined
               ? await Utils.uploadImageToGCS(req.file)
               : null;
 
-          const mapping = await Mapping.update(
-            {
-              artistic_name,
-              short_biography,
-              long_bio,
-              sexual_orientation,
-              gender_orientation,
-              professional,
-              art_category,
-              user_id,
-              profile_picture,
-              ethnicity,
-              facebook,
-              instagram,
-              linkedin,
-              youtube,
-              twitter,
-              spotify,
-              deezer,
-              tiktok,
-              tumblr,
-              vimeo,
-            },
-            {
-              where: { id: user_id },
-              returning: true,
-              plain: true,
-            }
-          );
+          if (profile_picture !== null) {
+            updatedData.profile_picture = profile_picture;
+          }
+
+          const mapping = await Mapping.update(updatedData, {
+            where: { id: user.mapping.id },
+            returning: true,
+            plain: true,
+          });
 
           user = await User.findOne({
             where: { id: user_id },
@@ -319,7 +324,7 @@ export default ({ User }, config) => {
             professional,
           };
 
-          await insertUser(user_id, data);
+          // await insertUser(user_id, data);
 
           return res.status(200).json(destructureUser(user));
         } catch (err) {
