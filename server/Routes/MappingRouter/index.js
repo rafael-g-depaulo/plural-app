@@ -9,25 +9,6 @@ import AuthMiddleware from "Middlewares/AuthMiddleware";
 import MulterMiddleware from "Middlewares/MulterMiddleware";
 import Utils from "Utils";
 
-const { Storage } = require("@google-cloud/storage");
-
-// const gc = new Storage({
-//   projectId: "plural-282215",
-//   credentials: {
-//     private_key: process.env.GCS_PRIVATE_KEY.replace(/\\n/g, "\n"),
-//     client_email: process.env.GCS_CLIENT_EMAIL,
-//   },
-// });
-
-// const multerMiddleware = multer({
-//   storage: multer.memoryStorage(),
-//   limits: {
-//     fileSize: 5 * 1024 * 1024, // no larger than 5mb
-//   },
-// });
-
-// const bucket = gc.bucket(process.env.GCS_BUCKET);
-
 const sexualOrientationMap = new Map([
   ["lésbica", 1],
   ["bissexual", 2],
@@ -67,29 +48,6 @@ const ethnicityMap = new Map([
   ["negra (preta ou parda-afro-descendente)", 3],
   ["amarela (de ascendência asiática)", 4],
 ]);
-
-// async function uploadImageToGCS(file) {
-//   return new Promise((resolve, reject) => {
-//     // Create a new blob in the bucket and upload the file data.
-//     const blob = bucket.file(file.originalname);
-//     const blobStream = blob.createWriteStream();
-
-//     blobStream.on("error", (err) => {
-//       console.log("[ERROR]", err);
-
-//       reject("Something went wrong when uploading image");
-//     });
-
-//     blobStream.on("finish", () => {
-//       const publicUrl = util.format(
-//         `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-//       );
-//       resolve(publicUrl);
-//     });
-
-//     blobStream.end(file.buffer);
-//   });
-// }
 
 function destructureUser(user) {
   const {
@@ -265,9 +223,6 @@ export default ({ User }, config) => {
             },
           ],
         });
-
-        console.log("FILE", req.file);
-
         console.log("Found the following user:", user);
 
         if (!user) {
@@ -324,7 +279,7 @@ export default ({ User }, config) => {
             professional,
           };
 
-          // await insertUser(user_id, data);
+          await insertUser(user_id, data);
 
           return res.status(200).json(destructureUser(user));
         } catch (err) {

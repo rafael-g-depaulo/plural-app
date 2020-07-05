@@ -133,12 +133,8 @@ module.exports = {
     }
   },
   async update(req, res) {
-    console.log("passwoooooooooord", req.body.password);
-
     try {
       if (req.body.password !== undefined) {
-        console.log("passwoooooooooord", req.body.password);
-
         if (req.body.password !== req.body.password_confirm) {
           res.status(400).send({
             error: "Passwords doesn't match.",

@@ -16,9 +16,7 @@ export function UserProvider(props) {
 
     async function fetchUserData() {
       !didCancel && setIsLoading(true);
-
-      console.log("Fetching current user...");
-
+      
       try {
         const response = await getCurrentUser();
 
