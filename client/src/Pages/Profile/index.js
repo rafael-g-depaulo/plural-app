@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, useHistory } from "react-router";
 import Background from "./Background";
 import Header from "./Header";
 import Footer from "./Footer";
 
 import ProfileContent from "Components/ProfileContent";
 import { getUser } from "Api/User";
+import UserContext from "Context/User";
 
 export const Profile = ({ ...props }) => {
   const { id_user } = useParams();
@@ -18,6 +19,11 @@ export const Profile = ({ ...props }) => {
       });
     }
   }, [id_user]);
+
+  // redirect user if not mapped
+  const history = useHistory()
+  const { currentUser } = useContext(UserContext)
+  if (!currentUser || !currentUser?.mapping) history.push("/")
 
   return (
     <Background>

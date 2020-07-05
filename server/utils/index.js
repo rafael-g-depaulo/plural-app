@@ -29,6 +29,7 @@ module.exports = {
       },
     });
 
+    const mailLinkUrl = `${process.env.SERVER_URL}api/user/verify-email/${token}`
     const mailOptions = {
       from: process.env.EMAIL,
       to: user.email,
@@ -36,9 +37,7 @@ module.exports = {
       text:
         "Olá,\n\n" +
         "Para utilizar o app Plural, você deve confirmar o seu email em: \n" +
-        process.env.SERVER_URL +
-        "api/user/verify-email/" +
-        token +
+        mailLinkUrl +
         "\n",
     };
     transporter.sendMail(mailOptions, function(err) {
@@ -61,6 +60,7 @@ module.exports = {
       },
     });
 
+    const mailLinkUrl = `${process.env.CLIENT_URL}password-reset/${token}`
     const mailOptions = {
       from: process.env.EMAIL,
       to: user.email,
@@ -68,9 +68,7 @@ module.exports = {
       text:
         "Olá,\n\n" +
         "Para redefinir sua senha, acesse o seguinte link: \n" +
-        process.env.CLIENT_URL +
-        "password-reset/" +
-        token +
+        mailLinkUrl +
         "\n",
     };
 
