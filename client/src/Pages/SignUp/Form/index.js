@@ -3,16 +3,16 @@ import React, { useState, useCallback, useContext } from "react";
 import Display from "./Display";
 import PopUp from "Components/PopUp";
 
-import { registerUser } from "Api/User";
-import { useHistory } from "react-router-dom";
+import { createUser, updateUser as callUpdateUser } from "Api/User";
+import { useHistory, useLocation } from "react-router-dom";
 import UserContext from "Context/User";
 
 export const Form = ({ ...props }) => {
   const history = useHistory();
-  const { setCurrentUser } = useContext(UserContext)
+  const { currentUser, setCurrentUser } = useContext(UserContext)
 
   // user and error objects
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ email: currentUser?.email });
   const [errors, setErrors] = useState({});
   const [termsAccepted, setTermsAccepted] = useState(false);
 
@@ -104,6 +104,8 @@ export const Form = ({ ...props }) => {
         };
     }
   }, []);
+
+  const location = useLocation();
 
   // update user on input change
   const updateUser = useCallback(
@@ -211,28 +213,39 @@ export const Form = ({ ...props }) => {
   );
 
   // submit form
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      setOpen(false);
+  const onSubmit = useCallback(e => {
+    e.preventDefault();
+    setOpen(false);
 
-      if (Object.values(errors).some(error => error !== "")) {
-        setStatus(422);
-        setOpen(true);
-      } else {        
-        registerUser(validateUser(user))
-          .then((res) => {
-            setCurrentUser(res.data.user)
-            history.push("/confirmation");
-          })
-          .catch((err) => {
-            setStatus(err.response?.status ?? 500);
-            setOpen(true);
-          });
-      }
-    },
-    [user, errors, validateUser, setCurrentUser, history]
-  );
+    // if there are errors, dont send
+    if (Object.values(errors).some(error => error !== "")) {
+      setStatus(422);
+      setOpen(true);
+
+    // if its a facebook/google signup, do stuff from here
+    } else if (location.state?.userFromProvider) {
+      callUpdateUser(validateUser(user))
+        .then((res) => {
+          setCurrentUser(res.data.updatedUser);
+          history.push("/")
+        })
+        .catch((err) => {
+          setStatus(err.response?.status ?? 500);
+          setOpen(true);
+        });
+    // if its a manual signup, do stuff from here
+    } else {
+      createUser(validateUser(user))
+        .then((res) => {
+          setCurrentUser(res.data.user)
+          history.push("/confirmation")
+        })
+        .catch((err) => {
+          setStatus(err.response?.status ?? 500);
+          setOpen(true);
+        });
+    }
+  }, [user, setCurrentUser, validateUser, history, errors, location.state]);
 
   const getPopUpMessage = useCallback((status) => {
     switch (status) {

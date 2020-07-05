@@ -58,7 +58,7 @@ export const Form = ({ ...props }) => {
       e.preventDefault();
 
       passwordReset(user.email)
-        .then((res) => console.log(res.data))
+        .then((res) => console.log(res.data, "coloque isso num popup!!!!!!!!!!!!!!!!!"))
         .catch((err) => console.log(err));
     },
     [user]

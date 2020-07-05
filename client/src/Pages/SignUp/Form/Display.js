@@ -69,6 +69,7 @@ export const Display = ({
           name="email"
           type="email"
           autoComplete="email"
+          defaultValue={user.email}
           onChange={updateUser}
         />
         {errors.email && <InputError>{errors.email}</InputError>}

@@ -14,7 +14,7 @@ export default function Etnia({ onEtniaChange = () => {}, ...props }) {
     return (
     <>
       <SubTitle>RAÇA / COR / ETNIA</SubTitle>
-      <GroupOut>   
+      <GroupOut onChange={onEtniaChange}>   
         <ContainerInput>
           <Label>
             <Input 
@@ -39,16 +39,16 @@ export default function Etnia({ onEtniaChange = () => {}, ...props }) {
         </ContainerInput>
       </GroupOut>
       
-      <Group>
+      <Group onChange={onEtniaChange}>
         <ContainerInput>
           <Label>
             <Input 
               name="etnia"
-              value="indigena"
+              value="indígena"
               type="radio"
             />
             <StyledCheckbox />
-            indigena
+            indígena
           </Label>
         </ContainerInput>
 

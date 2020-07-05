@@ -44,6 +44,7 @@ export const Display = ({
   genderChange,
   orientation,
   onOrientationChange,
+  etnia,
   onEtniaChange,
   atuacao,
   onAtuacaoChange,
@@ -70,15 +71,13 @@ export const Display = ({
         onOrientationChange={onOrientationChange}
       />
 
-      <Etnia onEtniaChange={onEtniaChange} />
+      <Etnia etnia={etnia} onEtniaChange={onEtniaChange} />
 
       <AreaAtuacao atuacao={atuacao} onChange={onAtuacaoChange} />
 
       <Jobs jobs={jobs} errorMsg={jobsErrMsg} onJobsChange={onJobsChange} />
 
       <AboutUser
-        name={name}
-        onUpdateName={onUpdateName}
         bio={bio}
         onInputBio={onInputBio}
       />

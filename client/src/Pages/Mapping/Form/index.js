@@ -12,17 +12,17 @@ import Jobs from "./categories/jobs";
 import AboutUser from "./categories/aboutUser";
 import RedesSociais from "./categories/redesSociais";
 
-export const Form = ({...props}) => {
+export const Form = ({onSubmit = () => {}, ...props}) => {
   const [gender, setGender] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [jobsCount, setJobsCount] = useState([])
   const [jobsErrMsg, setJobsErrMsg] = useState("")
   const [bio, setBio] = useState(null);
-  const [user, setUser] = useState(null);
   const [social, setSocial] = useState({});
   const [orientation, setOrientation] = useState(null);
   const [etnia, setEtnia] = useState(null);
-  const [atuacao, setAtuacao] = useState(null);
+  const [atuacao, setAtuacao] = useState([]);
+  const [profilePic, setProfilePic] = useState(null)
 
   const onSubmitButton = useCallback(
     (e) => {
@@ -32,8 +32,6 @@ export const Form = ({...props}) => {
         gender_orientation: gender,
         professional: jobs,
         long_bio: bio,
-        user,
-        social,
         sexual_orientation: orientation,
         etnia,
         art_category: atuacao,
@@ -46,17 +44,14 @@ export const Form = ({...props}) => {
         deezer: social.deezer,
         tiktok: social.tiktok,
         tumblr: social.tumblr,
-        vimeo: social.vimeo
+        vimeo: social.vimeo,
+        profile_picture: profilePic
       };
 
-      props.onSubmitCallback(form)
+      onSubmit(form)
     },
-    [gender, jobs, bio, user, social, orientation, etnia, atuacao, props]
+    [gender, jobs, bio, social, orientation, etnia, atuacao, profilePic, onSubmit]
   );
-
-  const onUpdateUser = useCallback((e) => {
-    setUser(e.target.value);
-  }, []);
 
   const onInputBio = useCallback((e) => {
     setBio(e.target.value);
@@ -83,7 +78,7 @@ export const Form = ({...props}) => {
 
   const onJobsChange = useCallback(jobs => {
     setJobsCount(jobs);
-    
+
     if ((jobs.length <= 6) && (jobsCount.length <= 6)) {
       setJobs(jobs);
     } 
@@ -93,6 +88,10 @@ export const Form = ({...props}) => {
     if (jobsCount.length > 6) setJobsErrMsg("Só os primeiros 6 jobs serão armazenados!")
     else setJobsErrMsg("")
   }, [jobsCount, setJobsErrMsg])
+
+  const onProfilePicChange = useCallback((pic) => {
+    setProfilePic(pic)
+  }, [])
 
   return (
     <FormContainer onSubmit={onSubmitButton}>
@@ -104,7 +103,7 @@ export const Form = ({...props}) => {
       <AreaAtuacao onChange={onAtuacaoChange} />
       <Jobs onJobsChange={onJobsChange} errorMsg={jobsErrMsg} />
 
-      <AboutUser onUpdateUser={onUpdateUser} onInputBio={onInputBio} />
+      <AboutUser onUpdateProfilePic={onProfilePicChange} onInputBio={onInputBio} />
       <RedesSociais onChange={setSocial} />
 
       <SubmitButton /> 

@@ -2,7 +2,7 @@ import { Router } from "express";
 
 export default ({ passport }, options) => {
   return Router(options)
-    .get("/", passport.authenticate("facebook", { session: false }))
+    .get("/", passport.authenticate("facebook", { scope : ['email'],  session: false }))
     .get(
       "/callback",
       passport.authenticate("facebook", {

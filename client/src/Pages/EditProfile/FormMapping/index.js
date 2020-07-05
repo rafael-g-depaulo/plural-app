@@ -6,6 +6,24 @@ import PopUp from "Components/PopUp";
 import { useHistory } from "react-router-dom";
 import { updateMapping } from "Api/Mapping";
 
+const socialList = [
+  "facebook",
+  "instagram",
+  "linkedin",
+  "youtube",
+  "twitter",
+  "spotify",
+  "deezer",
+  "tiktok",
+  "tumblr",
+  "vimeo",
+]
+const getInitialSocial = user => socialList
+  .map(social => [
+    social,
+    user?.mapping[social] === "undefined" ? "" : user?.mapping[social],
+  ])
+
 export const Form = ({ currentUser, ...props }) => {
   const history = useHistory();
 
@@ -21,7 +39,7 @@ export const Form = ({ currentUser, ...props }) => {
   };
 
   const [gender, setGender] = useState(
-    genderMap[currentUser.mapping.gender_orientation]
+    genderMap[currentUser?.mapping?.gender_orientation]
   );
 
   const sexualOrientationMap = {
@@ -36,37 +54,26 @@ export const Form = ({ currentUser, ...props }) => {
   };
 
   const [orientation, setOrientation] = useState(
-    sexualOrientationMap[currentUser.mapping.sexual_orientation]
+    sexualOrientationMap[currentUser?.mapping?.sexual_orientation]
   );
 
-  const [etnia, setEtnia] = useState(null);
+  const etniaMap = {
+    1: "branca",
+    2: "indígena",
+    3: "negra (preta ou parda-afro-descendente)",
+    4: "amarela (de ascendência asiática)",
+  };
+  
+  const [etnia, setEtnia] = useState(etniaMap[currentUser?.mapping?.ethnicity]);
+  const [atuacao, setAtuacao] = useState(currentUser?.mapping?.art_category);
 
-  const [atuacao, setAtuacao] = useState(currentUser.mapping.art_category);
-
-  const [jobs, setJobs] = useState(currentUser.mapping.professional);
+  const [jobs, setJobs] = useState(currentUser?.mapping?.professional);
   const [jobsCount, setJobsCount] = useState([]);
   const [jobsErrMsg, setJobsErrMsg] = useState("");
 
-  const [name, setName] = useState(currentUser.mapping.artistic_name);
+  const [bio, setBio] = useState(currentUser?.mapping?.long_bio);
 
-  const [bio, setBio] = useState(currentUser.mapping.long_bio);
-
-  const [social, setSocial] = useState({
-    facebook: currentUser.mapping.facebook,
-    instagram: currentUser.mapping.instagram,
-    linkedin: currentUser.mapping.linkedin,
-    youtube: currentUser.mapping.youtube,
-    twitter: currentUser.mapping.twitter,
-    spotify: currentUser.mapping.spotify,
-    deezer: currentUser.mapping.deezer,
-    tiktok: currentUser.mapping.tiktok,
-    tumblr: currentUser.mapping.tumblr,
-    vimeo: currentUser.mapping.vimeo,
-  });
-
-  const onUpdateName = useCallback((e) => {
-    setName(e.target.value);
-  }, []);
+  const [social, setSocial] = useState(Object.fromEntries(getInitialSocial(currentUser)));
 
   const onInputBio = useCallback((e) => {
     setBio(e.target.value);
@@ -120,7 +127,6 @@ export const Form = ({ currentUser, ...props }) => {
         gender_orientation: gender,
         professional: jobs,
         long_bio: bio,
-        artistic_name: name,
         social,
         sexual_orientation: orientation,
         ethnicity: etnia,
@@ -135,7 +141,7 @@ export const Form = ({ currentUser, ...props }) => {
         tiktok: social.tiktok,
         tumblr: social.tumblr,
         vimeo: social.vimeo,
-        id: currentUser.mapping.id,
+        id: currentUser?.mapping?.id,
       };
 
       updateMapping(form)
@@ -152,11 +158,10 @@ export const Form = ({ currentUser, ...props }) => {
       history,
       atuacao,
       bio,
-      currentUser.mapping.id,
+      currentUser,
       etnia,
       gender,
       jobs,
-      name,
       orientation,
       social,
     ]
@@ -190,14 +195,13 @@ export const Form = ({ currentUser, ...props }) => {
           genderChange,
           orientation,
           onOrientationChange,
+          etnia,
           onEtniaChange,
           atuacao,
           onAtuacaoChange,
           jobs,
           onJobsChange,
           jobsErrMsg,
-          name,
-          onUpdateName,
           bio,
           onInputBio,
           social,

@@ -1,15 +1,12 @@
 import React from "react"
 import styled, { css } from "styled-components";
 
-import InputLabel from '../InputLabel'
-import Input from '../Input'
-import PhotoInput from '../../../../Components/PhotoInput'
+import InputLabel from "../InputLabel";
+import PhotoInput from "Components/PhotoInput";
 
 import { inputFontSize } from "Themes/default";
 
-import {
-    Text,
-  } from "../styles";
+import { Text } from "../styles";
 
 const Group = styled.div`
   display: flex;
@@ -89,7 +86,11 @@ const StyledTextArea = styled.textarea`
   }
 `;
 
-export default function AboutUser({ onInputBio = () => {}, onUpdateUser = () => {}, ...props }) {
+export default function AboutUser({
+  onInputBio = () => {},
+  onUpdateProfilePic = () => {},
+  ...props
+}) {
   return (
     <>
       <Text style={{fontWeight: "bold", marginTop: "10px"}}>
@@ -97,22 +98,20 @@ export default function AboutUser({ onInputBio = () => {}, onUpdateUser = () => 
       </Text>
 
       <Group>
-        <InputLabel htmlFor="name">
-          Como sua pessoa quer ser chamada?
-        </InputLabel>
-        <Input id="name" name="name" type="text" onChange={onUpdateUser} />
-      </Group>
-
-      <Group>
         <InputLabel htmlFor="bio">
-            Conte nos um pouco sobre você e seu trabalho: (biografia)
+          Conte nos um pouco sobre você e seu trabalho: (biografia)
         </InputLabel>
-        <StyledTextArea id="bio" name="bio" type="textarea" onChange={onInputBio} />
+        <StyledTextArea
+          id="bio"
+          name="bio"
+          type="textarea"
+          onChange={onInputBio}
+        />
       </Group>
     
       <Group center paddingTop="20px">
         {/* <SubTitle style={{alignSelf: "flex-start"}}>Manda uma foto sua</SubTitle> */}
-        <PhotoInput />
+        <PhotoInput onFileChange={onUpdateProfilePic} />
         <TextPhoto>A imagem escolhida deve estar no formato JPG ou PNG e ter no máximo 5 MB de tamanho. Dimensões ideais: 600x600 pixels</TextPhoto>
       </Group>
       

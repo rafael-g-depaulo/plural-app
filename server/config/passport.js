@@ -3,10 +3,11 @@ var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const Utils = require("../utils");
 const User = require("../models/User");
 
-async function createUserFromProvider(providerId, provider) {
+async function createUserFromProvider(providerId, provider, email) {
   const user = await User.create({
     provider_id: providerId,
     provider: provider,
+    email: email,
     active: true
   });
 
@@ -20,7 +21,7 @@ async function getUserByProviderId(providerId) {
 
   const user = await User.findOne({ where: { provider_id: providerId } });
 
-  user == null
+  user === null
     ? console.log("\nNo records found.\n")
     : console.log(`\nFound the following user: ${JSON.stringify(user)}\n`);
 
@@ -32,6 +33,7 @@ const verifyCallback = async (req, token, refreshToken, profile, done) => {
 
   const providerId = profile.id;
   const provider = profile.provider;
+  const email = profile.emails[0].value;
 
   let user = await getUserByProviderId(providerId);
 
@@ -43,7 +45,7 @@ const verifyCallback = async (req, token, refreshToken, profile, done) => {
     return done(null, user);
   }
 
-  user = await createUserFromProvider(providerId, provider);
+  user = await createUserFromProvider(providerId, provider, email);
 
   //Check if user was created.
 
@@ -63,6 +65,7 @@ module.exports = {
           clientSecret: process.env.FACEBOOK_APP_SECRET,
           callbackURL: process.env.FACEBOOK_CALLBACK_URL,
           passReqToCallback: true,
+          profileFields: ['id', 'emails']
         },
         verifyCallback
       )

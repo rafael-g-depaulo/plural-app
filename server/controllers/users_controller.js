@@ -40,19 +40,24 @@ module.exports = {
   async showCurrentUser(req, res) {
     console.log("Decoded:", req.decoded.user.id);
 
-    const user = await User.findOne({
-      where: { id: req.decoded.user.id },
-      include: [
-        {
-          model: Mapping,
-          as: "mapping",
-        },
-      ],
-    });
-
-    return res.status(200).send({
-      current_user: destructureUser(user),
-    });
+    try {
+      const user = await User.findOne({
+        where: { id: req.decoded.user.id },
+        include: [
+          {
+            model: Mapping,
+            as: "mapping",
+          },
+        ],
+      });
+      
+      return res.status(200).send({
+        current_user: destructureUser(user),
+      });
+    } catch (err) {
+      console.log(err)
+      return res.status(500).send({ error: "error finding user" })
+    }
   },
   async getUser(req, res) {
     console.log("User ID:", req.params.id);
@@ -72,20 +77,35 @@ module.exports = {
     });
   },
   async create(req, res) {
-    const { email, password, name, birthdate, phoneNumber, city } = req.body;
+    const {
+      email,
+      email_confirm,
+      password,
+      password_confirm,
+      name,
+      birthdate,
+      phone_number,
+      city,
+    } = req.body;
 
     const hashCost = 10;
 
+    
+    if(email !== email_confirm || password !== password_confirm)
+    {
+      return res.status(400).json({message: "Email or password doesn't match."})
+    }
+    
     try {
       const passwordHash = await bcrypt.hash(password, hashCost);
 
       const user = await User.create({
-        email: email,
+        email,
         password: passwordHash,
-        name: name,
-        birthdate: birthdate,
-        phone_number: phoneNumber,
-        city: city,
+        name,
+        birthdate,
+        phone_number,
+        city,
         active: false,
       });
 
@@ -111,7 +131,26 @@ module.exports = {
     }
   },
   async update(req, res) {
+    
+    console.log('passwoooooooooord', req.body.password)
+    
     try {
+      if(req.body.password !== undefined)
+      {
+        console.log('passwoooooooooord', req.body.password)
+        
+        if(req.body.password !== req.body.password_confirm)
+        {
+          res.status(400).send({
+            error: "Passwords doesn't match."
+          });
+        }
+        else
+        {
+          req.body.password = await bcrypt.hash(req.body.password, 10);
+        }
+      }
+      
       const user = await User.update(req.body, {
         where: { id: req.decoded.user.id },
         include: [
@@ -132,7 +171,7 @@ module.exports = {
       console.log(error);
 
       res.status(422).send({
-        error: "An error occurred while updating LGBTQ status.",
+        error: "An error occurred while updating user.",
       });
     }
   },

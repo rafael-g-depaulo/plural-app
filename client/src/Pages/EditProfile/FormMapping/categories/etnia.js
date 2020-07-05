@@ -10,7 +10,7 @@ import {
   StyledCheckbox,
 } from "../styles";
 
-export default function Etnia({ onEtniaChange = () => {}, ...props }) {
+export default function Etnia({ etnia, onEtniaChange = () => {}, ...props }) {
     return (
     <>
       <SubTitle>RAÇA / COR / ETNIA</SubTitle>
@@ -21,6 +21,10 @@ export default function Etnia({ onEtniaChange = () => {}, ...props }) {
               name="etnia"
               value="negra (preta ou parda-afro-descendente)"
               type="radio"
+              onChange={onEtniaChange}
+              defaultChecked={
+                etnia === "negra (preta ou parda-afro-descendente)" ? "checked" : undefined
+              }
             />
             <StyledCheckbox />
             negra (preta ou parda-afro-descendente)
@@ -32,6 +36,10 @@ export default function Etnia({ onEtniaChange = () => {}, ...props }) {
               name="etnia"
               value="amarela (de ascendência asiática)"
               type="radio"
+              onChange={onEtniaChange}
+              defaultChecked={
+                etnia === "amarela (de ascendência asiática)" ? "checked" : undefined
+              }
             />
             <StyledCheckbox />
             amarela (de ascendência asiática)
@@ -44,8 +52,12 @@ export default function Etnia({ onEtniaChange = () => {}, ...props }) {
           <Label>
             <Input 
               name="etnia"
-              value="indigena"
+              value="indígena"
               type="radio"
+              onChange={onEtniaChange}
+              defaultChecked={
+                etnia === "indígena" ? "checked" : undefined
+              }
             />
             <StyledCheckbox />
             indigena
@@ -58,6 +70,10 @@ export default function Etnia({ onEtniaChange = () => {}, ...props }) {
               name="etnia"
               value="branca"
               type="radio"
+              onChange={onEtniaChange}
+              defaultChecked={
+                etnia === "branca" ? "checked" : undefined
+              }
             />
             <StyledCheckbox />
             branca
