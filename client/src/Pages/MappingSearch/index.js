@@ -12,7 +12,6 @@ export const MappingSearch = ({ ...props }) => {
   const onSubmit = useCallback(() => {
     search(jobs)
       .then(({ data }) => data.user_ids)
-      .then(aa => { console.log("aaa", aa); return aa})
       .then((ids) => ids.map(getUser))
       .then((promisses) => Promise.all(promisses))
       .then((userResponses) => userResponses.map(({ data }) => data?.user))

@@ -21,7 +21,7 @@ grid-template-areas:
     ;
 
     @media(min-width:1020px){
-      margin-top: 8vh;
+      margin-top: 2vh;
     }
     @media(min-width:1800px){
       margin-top: 12vh;
