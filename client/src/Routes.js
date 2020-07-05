@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   Redirect,
+  useLocation,
 } from "react-router-dom";
 import AsyncComponent from "Components/AsyncComponent";
 import UserContext from "Context/User";
@@ -24,10 +25,12 @@ const SingUpMapping = lazy(() => import("Pages/Mapping"))
 const Programming = lazy(() => import("Pages/Programming"))
 const MappingSearch = lazy(() => import("Pages/MappingSearch"))
 
-export const Routes = ({ ...props }) => {
+const MyRedirect = ({
+  children,
+  noRedirect,
+  ...props
+}) => {
   const { currentUser } = useContext(UserContext);
-
-  const shouldSignupMapping = currentUser?.isMappingParticipant && (currentUser?.mapping === null || currentUser?.mapping === undefined)
 
   const redirectTo =
     currentUser?.active === false ?
@@ -40,11 +43,21 @@ export const Routes = ({ ...props }) => {
       "/mapping"
     : ""
 
+  const { pathname } = useLocation()
+
+  return (
+    noRedirect ? children :
+    pathname === redirectTo ? children :
+    redirectTo !== "" ? <Redirect to={redirectTo} /> :
+    children
+  )
+}
+
+export const Routes = ({ ...props }) => {
+  const { currentUser } = useContext(UserContext);
+
   return (
     <Router basename="/">
-      {/* if user logged in but didn't finish signup process, redirect them */}
-      { redirectTo !== "" && <Redirect to={redirectTo} /> }
-
       {/* else, give 'em the routes */}
       <Switch>
         {/* página de login */}
@@ -66,9 +79,11 @@ export const Routes = ({ ...props }) => {
           { !currentUser || !currentUser.mapping ? (
             <Redirect to="/" />
           ) : (
-            <AsyncComponent>
-              <MyProfile />
-            </AsyncComponent>
+            <MyRedirect>
+              <AsyncComponent>
+                <MyProfile />
+              </AsyncComponent>
+            </MyRedirect>
           )}
         </Route>
 
@@ -77,9 +92,11 @@ export const Routes = ({ ...props }) => {
           { !currentUser || !currentUser.mapping ? (
             <Redirect to="/" />
           ) : (
-            <AsyncComponent>
-              <EditProfile />
-            </AsyncComponent>
+            <MyRedirect>
+              <AsyncComponent>
+                <EditProfile />
+              </AsyncComponent>
+            </MyRedirect>
           )}
         </Route>
 
@@ -95,9 +112,11 @@ export const Routes = ({ ...props }) => {
           { currentUser?.isLgbtq !== null ? (
             <Redirect to="/" />
           ) : (
-            <AsyncComponent>
-              <AreYou />
-            </AsyncComponent>
+            <MyRedirect>
+              <AsyncComponent>
+                <AreYou />
+              </AsyncComponent>
+            </MyRedirect>
           )}
         </Route>
 
@@ -106,31 +125,48 @@ export const Routes = ({ ...props }) => {
           { !currentUser?.isLgbtq || currentUser?.isMappingParticipant !== null || currentUser?.mapping !== null ? (
             <Redirect to="/" />
           ) : (
-            <AsyncComponent>
-              <MappingQuestion />
-            </AsyncComponent>
+            <MyRedirect>
+              <AsyncComponent>
+                <MappingQuestion />
+              </AsyncComponent>
+            </MyRedirect>
           )}
         </Route>
 
         {/* página de um blogpost */}
         <Route path="/blog/:id_post">
-          <AsyncComponent>
-            <Blog />
-          </AsyncComponent>
+          <MyRedirect>
+            <AsyncComponent>
+              <Blog />
+            </AsyncComponent>
+          </MyRedirect>
         </Route>
 
         {/* página de listagem dos blogposts */}
         <Route path="/blog">
-          <AsyncComponent>
-            <BlogList />
-          </AsyncComponent>
+          <MyRedirect>
+            <AsyncComponent>
+              <BlogList />
+            </AsyncComponent>
+          </MyRedirect>
         </Route>
 
         {/* página de um evento individual */}
         <Route path="/event/:id_event">
-          <AsyncComponent>
-            <Event />
-          </AsyncComponent>
+          <MyRedirect>
+            <AsyncComponent>
+              <Event />
+            </AsyncComponent>
+          </MyRedirect>
+        </Route>
+
+        {/* página de listagem da programação */}
+        <Route path="/event">
+          <MyRedirect>
+            <AsyncComponent>
+              <Programming />
+            </AsyncComponent>
+          </MyRedirect>
         </Route>
 
         {/* página de cadastro no mapeamento */}
@@ -138,17 +174,12 @@ export const Routes = ({ ...props }) => {
           { !currentUser?.isMappingParticipant || (!!currentUser?.mapping)  ? (
             <Redirect to="/" />
           ) : (
-            <AsyncComponent>
-              <SingUpMapping />
-            </AsyncComponent>
+            <MyRedirect>
+              <AsyncComponent>
+                <SingUpMapping />
+              </AsyncComponent>
+            </MyRedirect>
           )}
-        </Route>
-
-        {/* página de listagem da programação */}
-        <Route path="/event">
-          <AsyncComponent>
-            <Programming />
-          </AsyncComponent>
         </Route>
 
         {/* página de aviso da confirmação de email */}
@@ -156,9 +187,11 @@ export const Routes = ({ ...props }) => {
           { currentUser?.active ? (
             <Redirect to="/" />
           ) : (
-            <AsyncComponent>
-              <Confirmation />
-            </AsyncComponent>
+            <MyRedirect>
+              <AsyncComponent>
+                <Confirmation />
+              </AsyncComponent>
+            </MyRedirect>
           )}
         </Route>
 
@@ -167,9 +200,11 @@ export const Routes = ({ ...props }) => {
           { !currentUser || !currentUser?.mapping ? (
             <Redirect to="/" />
           ) : (
-            <AsyncComponent>
-              <MappingSearch />
-            </AsyncComponent>
+            <MyRedirect>
+              <AsyncComponent>
+                <MappingSearch />
+              </AsyncComponent>
+            </MyRedirect>
           )}
         </Route>
         
@@ -184,10 +219,14 @@ export const Routes = ({ ...props }) => {
         <Route exact path="/">
           {
             currentUser === null ? <Redirect to="/login" /> :
-            shouldSignupMapping ? <Redirect to="/mapping" /> :
-            <Redirect to="/event" />
+            <MyRedirect>
+              <Redirect to="/event" />
+            </MyRedirect>
           }
         </Route>
+
+        {/* catch all route */}
+        <Route><Redirect to="/" /></Route>
       </Switch>
     </Router> 
   );
