@@ -88,7 +88,8 @@ module.exports = {
       .replace(/_BEGIN___KEY_/g, "-----BEGIN PRIVATE KEY-----")
       .replace(/_BARRA_BARRA_N_/g, "\\n")
       .replace(/\\n/g, "\n")
-
+    
+    console.log("key:", key)
     const gc = new Storage({
       projectId: "plural-282215",
       credentials: {
