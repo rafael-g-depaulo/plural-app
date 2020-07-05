@@ -36,11 +36,10 @@ module.exports = {
       from: process.env.EMAIL,
       to: user.email,
       subject: "Verifique sua conta no Plural!",
-      text:
-        "Olá,\n\n" +
-        "Para utilizar o app Plural, você deve confirmar o seu email em: \n" +
-        mailLinkUrl +
-        "\n",
+      html:
+        "<p>Olá,</p>" +
+        `<p>Para utilizar o app Plural, você deve confirmar o seu email clicando no link a seguir: <a href="${mailLinkUrl}">Clique em mim para confirmar a sua conta!</a></p>`
+        ,
     };
     transporter.sendMail(mailOptions, function(err) {
       if (err) {
@@ -67,11 +66,9 @@ module.exports = {
       from: process.env.EMAIL,
       to: user.email,
       subject: "Alteração de senha - App Plural",
-      text:
-        "Olá,\n\n" +
-        "Para redefinir sua senha, acesse o seguinte link: \n" +
-        mailLinkUrl +
-        "\n",
+      html:
+        "<p>Olá,</p>" +
+        `<p>Para redefinir sua senha, acesse o seguinte link: <a href="${mailLinkUrl}">Clique aqui para escolher uma senha nova</a></p>`
     };
 
     await transporter.sendMail(mailOptions, function(err) {
