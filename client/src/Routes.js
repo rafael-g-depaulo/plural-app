@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import AsyncComponent from "Components/AsyncComponent";
 import UserContext from "Context/User";
-import { UserProvider } from "Context/User/Provider";
 
 const PasswordReset = lazy(() => import("Pages/PasswordReset"))
 const Confirmation = lazy(() => import("Pages/Confirmation"))
