@@ -16,6 +16,8 @@ const Container = styled.div`
   @media (min-width: 500px) {
     padding: 75px 0;
   }
+
+  width: auto;
 `;
 
 const Logo = styled(PluralLogo)`
@@ -27,6 +29,7 @@ const MobileLogo = styled(Logo)`
   max-width: 100%;
 `;
 
+
 export const Header = ({ ...props }) => {
   const width = useWidth();
 
@@ -35,7 +38,7 @@ export const Header = ({ ...props }) => {
   return (
     <Container>
       {isMobile ? <MobileLogo /> : <Logo height="95px" width="305px" />}
-      <Navbar />
+      <Navbar addMargin />
     </Container>
   );
 };

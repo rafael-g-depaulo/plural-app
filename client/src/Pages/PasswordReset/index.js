@@ -1,13 +1,15 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
+
 import Background from "./Background";
 import Header from "./Header";
 import Form from "./Form";
 import NewPasswordForm from "./Form/NewPassword";
+
 import Footer from "Components/ComputerAsset";
-import { withRouter } from "react-router-dom";
 
 export const PasswordReset = ({ ...props }) => {
-  return (
+  return (<>
     <Background>
       <Header />
       {props.match.params.token === undefined ? (
@@ -17,7 +19,7 @@ export const PasswordReset = ({ ...props }) => {
       )}
       <Footer />
     </Background>
-  );
+  </>);
 };
 
 export default withRouter(PasswordReset);

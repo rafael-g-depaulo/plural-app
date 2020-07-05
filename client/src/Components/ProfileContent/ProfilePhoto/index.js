@@ -32,7 +32,7 @@ const Photo = styled.img`
 
 export const ProfilePhoto = ({ photoSrc, ...props }) => {
   return (
-    <Container>
+    <Container {...props}>
       {photoSrc ? <Photo src={photoSrc} /> : <FallbackIcon />}
     </Container>
   );

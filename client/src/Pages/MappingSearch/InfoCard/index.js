@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Description from "./description";
-import Image from "./image";
+import ProfilePhoto from "Components/ProfileContent/ProfilePhoto";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 344px;
@@ -18,7 +19,8 @@ const Container = styled.div`
   }
 `;
 
-const Background = styled.div`
+const Background = styled(Link)`
+  text-decoration: none;
   width: 344px;
   height: auto;
   background-color: rgb(255, 254, 251, 0.1);
@@ -34,11 +36,11 @@ const Background = styled.div`
   }
 `;
 
-export const InfoCard = ({nome, imgUrl, categoria, hashtags, ...props }) => {
+export const InfoCard = ({nome, imgUrl, categoria, hashtags, id, ...props }) => {
   return (
     <Container borderbottom={props.borderbottom}>
-      <Background>
-        <Image image={imgUrl} />
+      <Background to={`/profile/${id}`} >
+        <ProfilePhoto photoSrc={imgUrl}/>
         <Description name={nome} category={categoria} hashtags={hashtags} />
       </Background>
     </Container>

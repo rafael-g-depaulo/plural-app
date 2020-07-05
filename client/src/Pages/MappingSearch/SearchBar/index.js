@@ -40,8 +40,21 @@ const ButtonSearch = styled.button`
   border: solid 1px #fffdfd;
   text-transform: uppercase;
   text-align: center;
-  :focus {
+  
+  &:hover {
+    background-color: #222222;
+    border: solid 1px #fffdfd;
+  }
+
+  &:active {
     outline: none;
+    background-color: #303030;
+    border: solid 1px #fffdfd;
+  }
+
+  &:focus {
+    outline: none;
+    border: solid 2px #fffdfd;
   }
 
   @media(min-width: 700px) {

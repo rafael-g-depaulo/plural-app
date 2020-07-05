@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "Context/User";
@@ -10,6 +10,12 @@ const Container = styled.div`
   width: 100%;
   align-items: center;
   justify-content: ${props => props.leftAlign ? "flex-start" : "space-around"};
+
+  ${props => (props.leftAlign || props.addMargin) && css`
+    *:not(:last-child) {
+      margin-right: 18px;
+    }
+  `}
 `;
 
 const Text = styled(Link)`
@@ -48,7 +54,7 @@ export const Navbar = ({ ...props }) => {
   const returnTo = pathname.replace("/", "")
 
   return (
-    <Container leftAlign={!isLogged}>
+    <Container leftAlign={!isLogged} {...props}>
       <Text to="/blog">blog</Text>
       { isMapped && <Text to="/me">perfil</Text> }
       <Text to="/event">programação</Text>
