@@ -44,8 +44,12 @@ const verifyCallback = async (req, token, refreshToken, profile, done) => {
 
     return done(null, user);
   }
-
-  user = await createUserFromProvider(providerId, provider, email);
+  try {
+    user = await createUserFromProvider(providerId, provider, email);
+  }
+  catch (err) {
+    return done(null)
+  }
 
   //Check if user was created.
 

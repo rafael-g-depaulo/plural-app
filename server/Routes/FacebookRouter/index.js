@@ -6,7 +6,7 @@ export default ({ passport }, options) => {
     .get(
       "/callback",
       passport.authenticate("facebook", {
-        failureRedirect: "/",
+        failureRedirect: process.env.CLIENT_URL,
         session: false,
       }),
       (req, res) => {

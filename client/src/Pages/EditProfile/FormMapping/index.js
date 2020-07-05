@@ -17,12 +17,12 @@ const socialList = [
   "tiktok",
   "tumblr",
   "vimeo",
-]
-const getInitialSocial = user => socialList
-  .map(social => [
+];
+const getInitialSocial = (user) =>
+  socialList.map((social) => [
     social,
     user?.mapping[social] === "undefined" ? "" : user?.mapping[social],
-  ])
+  ]);
 
 export const Form = ({ currentUser, ...props }) => {
   const history = useHistory();
@@ -63,7 +63,7 @@ export const Form = ({ currentUser, ...props }) => {
     3: "negra (preta ou parda-afro-descendente)",
     4: "amarela (de ascendência asiática)",
   };
-  
+
   const [etnia, setEtnia] = useState(etniaMap[currentUser?.mapping?.ethnicity]);
   const [atuacao, setAtuacao] = useState(currentUser?.mapping?.art_category);
 
@@ -71,9 +71,13 @@ export const Form = ({ currentUser, ...props }) => {
   const [jobsCount, setJobsCount] = useState([]);
   const [jobsErrMsg, setJobsErrMsg] = useState("");
 
+  const [profilePic, setProfilePic] = useState(null);
+
   const [bio, setBio] = useState(currentUser?.mapping?.long_bio);
 
-  const [social, setSocial] = useState(Object.fromEntries(getInitialSocial(currentUser)));
+  const [social, setSocial] = useState(
+    Object.fromEntries(getInitialSocial(currentUser))
+  );
 
   const onInputBio = useCallback((e) => {
     setBio(e.target.value);
@@ -108,6 +112,10 @@ export const Form = ({ currentUser, ...props }) => {
     [setJobs, jobsCount]
   );
 
+  const onProfilePicChange = useCallback((pic) => {
+    setProfilePic(pic);
+  }, []);
+
   useEffect(() => {
     if (jobsCount.length > 6)
       setJobsErrMsg("Só os primeiros 6 jobs serão armazenados!");
@@ -123,28 +131,49 @@ export const Form = ({ currentUser, ...props }) => {
     (e) => {
       e.preventDefault();
 
-      const form = {
-        gender_orientation: gender,
-        professional: jobs,
-        long_bio: bio,
-        social,
-        sexual_orientation: orientation,
-        ethnicity: etnia,
-        art_category: atuacao,
-        facebook: social.facebook,
-        twitter: social.twitter,
-        instagram: social.instagram,
-        youtube: social.youtube,
-        linkedin: social.linkedin,
-        spotify: social.spotify,
-        deezer: social.deezer,
-        tiktok: social.tiktok,
-        tumblr: social.tumblr,
-        vimeo: social.vimeo,
-        id: currentUser?.mapping?.id,
-      };
+      const formData = new FormData();
 
-      updateMapping(form)
+      formData.append("file", profilePic);
+      formData.append("sexual_orientation", orientation);
+      formData.append("ethnicity", etnia);
+      formData.append("gender_orientation", gender);
+      formData.append("facebook", social.facebook);
+      formData.append("twitter", social.twitter);
+      formData.append("instagram", social.instagram);
+      formData.append("art_category", atuacao);
+      formData.append("spotify", social.spotify);
+      formData.append("deezer", social.deezer);
+      formData.append("linkedin", social.linkedin);
+      formData.append("tiktok", social.tiktok);
+      formData.append("tumblr", social.tumblr);
+      formData.append("vimeo", social.vimeo);
+      formData.append("youtube", social.youtube);
+      formData.append("long_bio", bio);
+      formData.append("professional", jobs);
+      formData.append("id", currentUser?.mapping?.id);
+
+      // const form = {
+      //   gender_orientation: gender,
+      //   professional: jobs,
+      //   long_bio: bio,
+      //   social,
+      //   sexual_orientation: orientation,
+      //   ethnicity: etnia,
+      //   art_category: atuacao,
+      //   facebook: social.facebook,
+      //   twitter: social.twitter,
+      //   instagram: social.instagram,
+      //   youtube: social.youtube,
+      //   linkedin: social.linkedin,
+      //   spotify: social.spotify,
+      //   deezer: social.deezer,
+      //   tiktok: social.tiktok,
+      //   tumblr: social.tumblr,
+      //   vimeo: social.vimeo,
+      //   id: currentUser?.mapping?.id,
+      // };
+
+      updateMapping(formData)
         .then((res) => {
           history.push("/me");
           window.location.reload();
@@ -164,6 +193,7 @@ export const Form = ({ currentUser, ...props }) => {
       jobs,
       orientation,
       social,
+      profilePic,
     ]
   );
 
@@ -206,6 +236,8 @@ export const Form = ({ currentUser, ...props }) => {
           onInputBio,
           social,
           setSocial,
+          profilePic,
+          onProfilePicChange,
           onSubmit,
         }}
         {...props}

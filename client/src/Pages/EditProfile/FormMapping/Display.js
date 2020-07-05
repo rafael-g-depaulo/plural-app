@@ -57,6 +57,8 @@ export const Display = ({
   onInputBio,
   social,
   setSocial,
+  profilePic,
+  onProfilePicChange,
   onSubmit,
   ...props
 }) => {
@@ -80,6 +82,7 @@ export const Display = ({
       <AboutUser
         bio={bio}
         onInputBio={onInputBio}
+        onProfilePicChange={onProfilePicChange}
       />
 
       <RedesSociais social={social} onChange={setSocial} />

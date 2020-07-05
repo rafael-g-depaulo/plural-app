@@ -1,10 +1,12 @@
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const { Storage } = require("@google-cloud/storage");
+const util = require("util");
 
 module.exports = {
-  signToken(id, email) {  
+  signToken(id, email) {
     const token = jwt.sign(
-      { user: { id, email} },
+      { user: { id, email } },
       process.env.TOKEN_SECRET_KEY,
       { expiresIn: parseInt(process.env.TOKEN_EXPIRATION_TIME) }
     );
@@ -29,7 +31,7 @@ module.exports = {
       },
     });
 
-    const mailLinkUrl = `${process.env.SERVER_URL}api/user/verify-email/${token}`
+    const mailLinkUrl = `${process.env.SERVER_URL}api/user/verify-email/${token}`;
     const mailOptions = {
       from: process.env.EMAIL,
       to: user.email,
@@ -60,7 +62,7 @@ module.exports = {
       },
     });
 
-    const mailLinkUrl = `${process.env.CLIENT_URL}password-reset/${token}`
+    const mailLinkUrl = `${process.env.CLIENT_URL}password-reset/${token}`;
     const mailOptions = {
       from: process.env.EMAIL,
       to: user.email,
@@ -82,6 +84,38 @@ module.exports = {
       console.log("Password reset email sent!");
 
       return true;
+    });
+  },
+  async uploadImageToGCS(file) {
+    const gc = new Storage({
+      projectId: "plural-282215",
+      credentials: {
+        private_key: process.env.GCS_PRIVATE_KEY.replace(/\\n/g, "\n"),
+        client_email: process.env.GCS_CLIENT_EMAIL,
+      },
+    });
+
+    const bucket = gc.bucket(process.env.GCS_BUCKET);
+
+    return new Promise((resolve, reject) => {
+      // Create a new blob in the bucket and upload the file data.
+      const blob = bucket.file(file.originalname);
+      const blobStream = blob.createWriteStream();
+
+      blobStream.on("error", (err) => {
+        console.log("[ERROR]", err);
+
+        reject("Something went wrong when uploading image");
+      });
+
+      blobStream.on("finish", () => {
+        const publicUrl = util.format(
+          `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+        );
+        resolve(publicUrl);
+      });
+
+      blobStream.end(file.buffer);
     });
   },
 };

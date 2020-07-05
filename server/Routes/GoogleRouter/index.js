@@ -15,7 +15,7 @@ export default ({ passport }, options) => {
     .get(
       "/callback",
       passport.authenticate("google", {
-        failureRedirect: "/",
+        failureRedirect: process.env.CLIENT_URL,
         session: false,
       }),
       (req, res) => {
