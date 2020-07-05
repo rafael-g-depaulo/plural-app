@@ -217,19 +217,6 @@ export const Form = ({ ...props }) => {
     e.preventDefault();
     setOpen(false);
 
-    const birthdate = `${user.month}/${user.day}/${user.year}`;
-
-    const formattedUser = {
-      email: user.email,
-      email_confirm: user.email_confirm,
-      password: user.password,
-      password_confirm: user.password_confirm,
-      name: user.name,
-      birthdate,
-      phone_number: user.phone,
-      city: user.city,
-    }
-
     // if there are errors, dont send
     if (Object.values(errors).some(error => error !== "")) {
       setStatus(422);
@@ -237,7 +224,7 @@ export const Form = ({ ...props }) => {
 
     // if its a facebook/google signup, do stuff from here
     } else if (location.state?.userFromProvider) {
-      callUpdateUser(validateUser(formattedUser))
+      callUpdateUser(validateUser(user))
         .then((res) => {
           setCurrentUser(res.data.updatedUser);
           history.push("/")
@@ -248,7 +235,7 @@ export const Form = ({ ...props }) => {
         });
     // if its a manual signup, do stuff from here
     } else {
-      createUser(validateUser(formattedUser))
+      createUser(validateUser(user))
         .then((res) => {
           setCurrentUser(res.data.user)
           history.push("/confirmation")

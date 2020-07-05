@@ -12,7 +12,7 @@ import Jobs from "./categories/jobs";
 import AboutUser from "./categories/aboutUser";
 import RedesSociais from "./categories/redesSociais";
 
-export const Form = ({...props}) => {
+export const Form = ({onSubmit = () => {}, ...props}) => {
   const [gender, setGender] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [jobsCount, setJobsCount] = useState([])
@@ -22,7 +22,7 @@ export const Form = ({...props}) => {
   const [social, setSocial] = useState({});
   const [orientation, setOrientation] = useState(null);
   const [etnia, setEtnia] = useState(null);
-  const [atuacao, setAtuacao] = useState(null);
+  const [atuacao, setAtuacao] = useState([]);
   const [profilePic, setProfilePic] = useState(null)
 
   const onSubmitButton = useCallback(
@@ -34,7 +34,6 @@ export const Form = ({...props}) => {
         professional: jobs,
         long_bio: bio,
         user,
-        social,
         sexual_orientation: orientation,
         etnia,
         art_category: atuacao,
@@ -51,9 +50,9 @@ export const Form = ({...props}) => {
         profile_picture: profilePic
       };
 
-      props.onSubmitCallback(form)
+      onSubmit(form)
     },
-    [gender, jobs, bio, user, social, orientation, etnia, atuacao, profilePic, props]
+    [gender, jobs, bio, user, social, orientation, etnia, atuacao, profilePic, onSubmit]
   );
 
   const onUpdateUser = useCallback((e) => {
@@ -73,8 +72,6 @@ export const Form = ({...props}) => {
   }, []);
 
   const onEtniaChange = useCallback((e) => {
-    console.log(e.target.value)
-    
     setEtnia(e.target.value);
   }, []);
 
@@ -87,7 +84,7 @@ export const Form = ({...props}) => {
 
   const onJobsChange = useCallback(jobs => {
     setJobsCount(jobs);
-    
+
     if ((jobs.length <= 6) && (jobsCount.length <= 6)) {
       setJobs(jobs);
     } 

@@ -29,6 +29,7 @@ export const Mapping = () => {
     formData.append('vimeo', data.vimeo)
     formData.append('youtube', data.youtube)
     formData.append('long_bio', data.long_bio)
+    formData.append('professional', data.professional)
 
     createMapping(formData)
       .then((res) => {
@@ -41,7 +42,7 @@ export const Mapping = () => {
   return (
     <Background>
       <Header />
-      <Form onSubmitCallback={submitMapping} />
+      <Form onSubmit={submitMapping} />
     </Background>
   );
 };

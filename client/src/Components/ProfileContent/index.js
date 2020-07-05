@@ -7,6 +7,19 @@ import About from "./About";
 import ProfilePhoto from "./ProfilePhoto";
 import SocialMedia from "./SocialMedia";
 
+const artCategoryMap = {
+  1: "Artes Cênicas",
+  2: "Artes Visuais",
+  3: "Comunicação",
+  4: "Cinema e Fotografia",
+  5: "Dança",
+  6: "Produção e Equipes Técnicas para Projetos Culturais",
+  7: "Jogos Eletrônicos, APPs e Sites",
+  8: "Litetura, Influencers e Youtubers",
+  9: "Moda",
+  10: "Música",
+}
+
 export const ProfileContent = ({ user, ...props }) => {
   return (
     <>
@@ -28,7 +41,7 @@ export const ProfileContent = ({ user, ...props }) => {
         <Areas
           items={
             Array.isArray(user.mapping.art_category)
-              ? user.mapping.art_category
+              ? user.mapping.art_category.map(x => artCategoryMap[x])
               : []
           }
         />

@@ -29,7 +29,7 @@ const multerMiddleware = multer({
 const bucket = gc.bucket(process.env.GCS_BUCKET);
 
 const sexualOrientationMap = new Map([
-  ["lesbica", 1],
+  ["lésbica", 1],
   ["bissexual", 2],
   ["gay", 3],
   ["heterossexual", 4],
@@ -157,7 +157,7 @@ export default ({ User }, config) => {
 
         sexual_orientation = sexualOrientationMap.get(sexual_orientation);
         gender_orientation = genderMap.get(gender_orientation);
-        art_category = artCategoryMap.get(art_category);
+        art_category = art_category?.split(",").map(category => artCategoryMap.get(category))
         ethnicity = ethnicityMap.get(ethnicity);
 
         let user = await User.findOne({
@@ -182,7 +182,7 @@ export default ({ User }, config) => {
             long_bio,
             sexual_orientation,
             gender_orientation,
-            professional,
+            professional: professional?.split(","),
             art_category,
             user_id,
             profile_picture,
