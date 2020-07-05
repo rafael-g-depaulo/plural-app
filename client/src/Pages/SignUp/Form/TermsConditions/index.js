@@ -59,7 +59,7 @@ const StyledCheckbox = styled.span`
     background-color: #222222;
   }
 
-  //Checked dot
+  /* Checked dot */
   ${Input}:checked + & {
     &:after {
       display: block;
@@ -73,25 +73,56 @@ const StyledCheckbox = styled.span`
       border-radius: 50%;
     }
   }
+
+  ${Input}:focus + & {
+    border: 3px solid #ffffff;
+  }
 `;
 
 const MyLink = styled.a`
   color: #f26522;
   text-decoration: none;
 
-  &:hover, &:active {
+  &:hover,
+  &:active {
     color: #ebce8b;
   }
-`
+`;
 
-export const TermsConditions = ({ ...props }) => {
+export const TermsConditions = ({
+  termsAccepted,
+  setTermsAccepted = () => {},
+  ...props
+}) => {
   return (
     <Container>
       <Label>
-        <Input />
+        <Input
+          checked={termsAccepted}
+          onChange={() => setTermsAccepted(!termsAccepted)}
+        />
         <StyledCheckbox />
-        Eu concordo com os <b><MyLink href="https://www.google.com" target="_blanc" rel="noopener noreferrer">Termos e Condições</MyLink></b> e com a{" "}
-        <b><MyLink href="https://www.google.com" target="_blanc" rel="noopener noreferrer">Política de Privacidade</MyLink></b> do Plural
+        Eu concordo com os{" "}
+        <b>
+          <MyLink
+            href="https://www.google.com"
+            target="_blanc"
+            rel="noopener noreferrer"
+          >
+            Termos e Condições
+          </MyLink>
+        </b>{" "}
+        e com a{" "}
+        <b>
+          <MyLink
+            href="https://www.google.com"
+            target="_blanc"
+            rel="noopener noreferrer"
+          >
+            Política de Privacidade
+          </MyLink>
+        </b>{" "}
+        do Plural
       </Label>
     </Container>
   );

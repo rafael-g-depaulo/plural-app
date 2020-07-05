@@ -4,7 +4,7 @@ const dbConfig = require("./database");
 const User = require("../models/User");
 const Mapping = require("../models/Mapping");
 
-const connection = new Sequelize(dbConfig);
+const connection = new Sequelize(process.env.DATABASE_URL ?? dbConfig);
 
 User.init(connection);
 Mapping.init(connection);

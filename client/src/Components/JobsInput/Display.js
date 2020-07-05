@@ -1,5 +1,5 @@
-import React from 'react'
-import ChipInput from 'material-ui-chip-input'
+import React from "react";
+import ChipInput from "material-ui-chip-input";
 
 export const Display = ({
   onChange = () => {},
@@ -9,22 +9,23 @@ export const Display = ({
   return (
     <ChipInput
       style={{
-        color: 'white',
-        paddingTop: 2,
+        color: "white",
+        paddingTop: 5,
         paddingBottom: 2,
         paddingLeft: 30,
         paddingRight: 30,
-        background: '#FFFF',
-        width: '100%', 
-        border: '2px solid #00000',
+        background: "#FFFF",
+        width: "100%",
+        border: "2px solid #00000",
         borderRadius: 50,
       }}
+      disableUnderline={true}
       newChipKeyCodes={[32, 13]}
       onChange={onChange}
       onDelete={onDelete}
       {...props}
     />
-  )
-}
+  );
+};
 
-export default Display
+export default Display;

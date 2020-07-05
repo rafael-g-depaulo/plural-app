@@ -54,6 +54,8 @@ export const Display = ({
   onSubmit,
   updateUser,
   updateUserFormattedInput,
+  termsAccepted,
+  setTermsAccepted,
   ...props
 }) => {
   return (
@@ -62,7 +64,14 @@ export const Display = ({
 
       <Group>
         <InputLabel htmlFor="email">Qual seu email?</InputLabel>
-        <Input id="email" name="email" type="email" defaultValue={user.email} onInput={updateUser} />
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          defaultValue={user.email}
+          onChange={updateUser}
+        />
         {errors.email && <InputError>{errors.email}</InputError>}
       </Group>
 
@@ -72,7 +81,8 @@ export const Display = ({
           id="email-confirm"
           name="email_confirm"
           type="email"
-          onInput={updateUser}
+          autoComplete="email"
+          onChange={updateUser}
         />
         {errors.email_confirm && (
           <InputError>{errors.email_confirm}</InputError>
@@ -85,7 +95,8 @@ export const Display = ({
           id="password"
           name="password"
           type="password"
-          onInput={updateUser}
+          autoComplete="new-password"
+          onChange={updateUser}
         />
         {errors.password && <InputError>{errors.password}</InputError>}
       </Group>
@@ -96,7 +107,8 @@ export const Display = ({
           id="password-confirm"
           name="password_confirm"
           type="password"
-          onInput={updateUser}
+          autoComplete="new-password"
+          onChange={updateUser}
         />
         {errors.password_confirm && (
           <InputError>{errors.password_confirm}</InputError>
@@ -107,12 +119,14 @@ export const Display = ({
         <InputLabel htmlFor="name">
           Como sua pessoa quer ser chamada?
         </InputLabel>
-        <Input id="name" name="name" type="text" onInput={updateUser} />
+        <Input id="name" name="name" type="text" onChange={updateUser} />
+        {errors.name && <InputError>{errors.name}</InputError>}
       </Group>
 
       <Group>
         <InputLabel htmlFor="city">Em qual cidade do DF você mora?</InputLabel>
-        <Input id="city" name="city" type="text" onInput={updateUser} />
+        <Input id="city" name="city" type="text" onChange={updateUser} />
+        {errors.city && <InputError>{errors.city}</InputError>}
       </Group>
 
       <Group>
@@ -134,7 +148,7 @@ export const Display = ({
           <MonthSelect
             id="month"
             name="month"
-            onInput={updateUser}
+            onChange={updateUser}
             width="40%"
           />
           <FormattedInput
@@ -152,29 +166,36 @@ export const Display = ({
           />
         </Row>
         {errors.day && <InputError>{errors.day}</InputError>}
+        {errors.month && <InputError>{errors.month}</InputError>}
         {errors.year && <InputError>{errors.year}</InputError>}
       </Group>
 
       <Group>
-        <InputLabel htmlFor="phone">
+        <InputLabel htmlFor="phone_number">
           Quer nos passar seu Whatsapp? (opcional)
         </InputLabel>
         <FormattedInput
           customInput={Input}
           onValueChange={(values) => {
             const { formattedValue } = values;
-            updateUserFormattedInput("phone", formattedValue);
+            updateUserFormattedInput("phone_number", formattedValue);
           }}
           format="(##) #####-####"
           isNumericString={true}
           mask="_"
-          id="phone"
-          name="phone"
+          id="phone_number"
+          name="phone_number"
           type="tel"
         />
+        {errors.phone_number && <InputError>{errors.phone_number}</InputError>}
       </Group>
 
-      <TermsConditions />
+      <TermsConditions
+        {...{
+          termsAccepted,
+          setTermsAccepted,
+        }}
+      />
 
       <SubmitButton />
     </Form>

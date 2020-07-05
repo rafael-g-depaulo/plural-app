@@ -59,6 +59,23 @@ module.exports = {
       return res.status(500).send({ error: "error finding user" })
     }
   },
+  async getUser(req, res) {
+    console.log("User ID:", req.params.id);
+
+    const user = await User.findOne({
+      where: { id: req.params.id },
+      include: [
+        {
+          model: Mapping,
+          as: "mapping",
+        },
+      ],
+    });
+
+    return res.status(200).send({
+      user: destructureUser(user),
+    });
+  },
   async create(req, res) {
     const {
       email,
@@ -92,11 +109,20 @@ module.exports = {
         active: false,
       });
 
-      const token = utils.signToken(user.dataValues.id, user.dataValues.email);
+      const token = await utils.signToken(user.dataValues.id, user.dataValues.email);
 
       utils.sendConfirmationEmail(user.dataValues, token);
 
-      res.status(200).send({ message: "The user was successfully created." });
+      const userObject = user.dataValues
+      delete userObject.password
+
+      return res
+        .status(200)
+        .cookie("token", token, {
+          httpOnly: true
+        })
+        .json({ user: userObject })
+
     } catch (error) {
       console.log(error);
       res.status(422).send({
@@ -209,6 +235,28 @@ module.exports = {
         });
       }
     });
+  },
+  async passwordChange(req, res) {
+    const { password } = req.body;
+
+    const hashCost = 10;
+
+    try {
+      const passwordHash = await bcrypt.hash(password, hashCost);
+
+      const user = await User.update(
+        { password: passwordHash },
+        { where: { id: req.decoded.user.id } }
+      );
+
+      res
+        .status(200)
+        .json({ message: "The user's password was successfully updated." });
+    } catch (err) {
+      res.status(422).json({
+        message: "An error occurred while updating password. Try again. ",
+      });
+    }
   },
   /*
     This method generates a simplified token with the user's email, and send it via email.

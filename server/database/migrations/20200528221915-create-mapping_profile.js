@@ -37,7 +37,7 @@ module.exports = {
         type: Sequelize.ARRAY(Sequelize.STRING),
       },
       art_category: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       ethnicity: {
         type: Sequelize.INTEGER,

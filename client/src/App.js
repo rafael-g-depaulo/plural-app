@@ -7,8 +7,10 @@ const App = () => {
   return (
     <>
       <Fonts />
-      <GlobalStyles />
-      <Routes />
+      <GlobalStyles />    
+      <UserProvider>
+        <Routes />
+      </UserProvider>
     </>
   );
 };

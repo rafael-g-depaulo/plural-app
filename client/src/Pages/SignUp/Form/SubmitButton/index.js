@@ -17,16 +17,13 @@ const StyledInput = styled.input.attrs({ type: "submit" })`
   border: 2px solid #ffffff;
   border-radius: 50px;
 
-  &:focus {
-    outline: none;
-  }
-
   &:hover {
     background-color: #222222;
   }
 
-  &:active {
-    background-color: #222222;
+  &:active, &:focus {
+    outline: none;
+    background-color: #303030;
   }
 `;
 

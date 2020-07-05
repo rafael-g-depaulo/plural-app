@@ -1,6 +1,10 @@
 import Router from "express";
 import Mapping from "models/Mapping";
-import { insertUser, searchUsers } from "elasticsearch/User/userActions";
+import {
+  insertUser,
+  updateUser,
+  searchUsers,
+} from "elasticsearch/User/userActions";
 import AuthMiddleware from "Middlewares/AuthMiddleware";
 import multer from "multer";
 import util from "util";

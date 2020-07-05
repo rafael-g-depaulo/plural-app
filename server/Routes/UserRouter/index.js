@@ -6,6 +6,7 @@ export default ({}, options) => {
   return Router(options)
     .post("/register", UsersController.create)
     .get("/verify-email/:token", UsersController.verifyEmail)
+    .get("/id/:id", AuthMiddleware.verifyToken, UsersController.getUser)
     .get(
       "/current",
       AuthMiddleware.verifyToken,
@@ -17,6 +18,11 @@ export default ({}, options) => {
       UsersController.updateIsLgbtq
     )
     .put("/update", AuthMiddleware.verifyToken, UsersController.update)
+    .put(
+      "/password-change",
+      AuthMiddleware.verifyToken,
+      UsersController.passwordChange
+    )
     .post("/password-reset", UsersController.passwordReset)
     .post(
       "/password-reset/callback",

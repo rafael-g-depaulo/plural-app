@@ -4,10 +4,12 @@ import Header from "./Header";
 import Form from "./Form";
 import { createMapping } from "Api/Mapping";
 import UserContext from "Context/User/";
+import { useHistory } from "react-router-dom";
 
 export const Mapping = () => {
   const userContext = useContext(UserContext);
-  
+  const history = useHistory()
+
   function submitMapping(data) {
     const formData = new FormData();
 
@@ -31,6 +33,7 @@ export const Mapping = () => {
     createMapping(formData)
       .then((res) => {
         userContext.setCurrentUser(res.data);
+        history.push("/")
       })
       .catch((err) => console.log(err));
   }

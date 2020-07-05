@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 
 import { FormContainer, Title } from "./styles";
 
@@ -15,6 +15,8 @@ import RedesSociais from "./categories/redesSociais";
 export const Form = ({...props}) => {
   const [gender, setGender] = useState(null);
   const [jobs, setJobs] = useState([]);
+  const [jobsCount, setJobsCount] = useState([])
+  const [jobsErrMsg, setJobsErrMsg] = useState("")
   const [bio, setBio] = useState(null);
   const [user, setUser] = useState(null);
   const [social, setSocial] = useState({});
@@ -76,15 +78,25 @@ export const Form = ({...props}) => {
     setEtnia(e.target.value);
   }, []);
 
-  const onAtuacaoChange = useCallback((e) => {
-    setAtuacao(e.target.value);
+  const onAtuacaoChange = useCallback((areas) => {
+    const listaAreas = Object.entries(areas)
+      .filter(area => area[1])
+      .map(([areaName]) => areaName)
+    setAtuacao(listaAreas);
   }, []);
 
   const onJobsChange = useCallback(jobs => {
-    if (jobs.length !== 6) {
+    setJobsCount(jobs);
+    
+    if ((jobs.length <= 6) && (jobsCount.length <= 6)) {
       setJobs(jobs);
-    }
-  }, [setJobs]);
+    } 
+  }, [ setJobs, jobsCount]);
+
+  useEffect(() => {
+    if (jobsCount.length > 6) setJobsErrMsg("Só os primeiros 6 jobs serão armazenados!")
+    else setJobsErrMsg("")
+  }, [jobsCount, setJobsErrMsg])
 
   const onProfilePicChange = useCallback((pic) => {
     setProfilePic(pic)
@@ -97,13 +109,13 @@ export const Form = ({...props}) => {
       <Gender onGenderChange={genderChange} />
       <Orientation onOrientationChange={onOrientationChange} />
       <Etnia onEtniaChange={onEtniaChange} />
-      <AreaAtuacao onAtuacaoChange={onAtuacaoChange} />
-      <Jobs onJobsChange={onJobsChange} />
+      <AreaAtuacao onChange={onAtuacaoChange} />
+      <Jobs onJobsChange={onJobsChange} errorMsg={jobsErrMsg} />
 
       <AboutUser onUpdateProfilePic={onProfilePicChange} onUpdateUser={onUpdateUser} onInputBio={onInputBio} />
       <RedesSociais onChange={setSocial} />
 
-      <SubmitButton />
+      <SubmitButton /> 
     </FormContainer>
   );
 };

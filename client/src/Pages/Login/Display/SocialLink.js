@@ -21,7 +21,7 @@ const SocialButton = styled(Button)`
 const Link = styled.a`
   width: 48%;
   text-decoration: none;
-  &:hover, &:active {
+  &, &:hover, &:active {
     text-decoration: none;
   }
 `

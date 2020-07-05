@@ -10,15 +10,20 @@
     "start:dev": "nodemon --exec babel-node --ignore './client/' -r ./node_modules/dotenv/config --presets @babel/env ./server/index.js",
     "start:prod": "yarn serve",
     "serve": "node -r dotenv/config build",
-    "build": "yarn build:client && yarn build:server",
+    "build": "yarn build:client && yarn build:server && yarn build:db",
     "build:client": "yarn install:client && cd client && yarn build && cd ..",
     "build:server": "yarn install:server && ./node_modules/.bin/babel ./server -d ./build -s",
+    "build:db": "yarn install:server && yarn db:migrate",
     "install-deps": "yarn install:client && yarn install:server",
     "install:client": "cd client && yarn install --production=true && cd ..",
     "install:server": "yarn install --production=true",
     "clean": "yarn clean:client && yarn clean:server",
     "clean:server": "rm -rf build && mkdir build",
-    "clean:client": "cd client && rm -rf ./build && cd .."
+    "clean:client": "cd client && rm -rf ./build && cd ..",
+    "db:drop": "./node_modules/.bin/sequelize db:drop",
+    "db:migrate" : "./node_modules/.bin/sequelize db:migrate",
+    "db:setup": "./node_modules/.bin/sequelize db:create && yarn db:migrate",
+    "db:reset": "yarn db:drop && yarn db:setup"
   },
   "dependencies": {
     "@babel/cli": "^7.8",
@@ -43,13 +48,13 @@
     "pg": "^8.0.2",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.6",
+    "sequelize-cli": "^6.1.0",
     "storybook": "^5.3.19"
   },
   "devDependencies": {
     "@babel/core": "^7.8",
     "@babel/node": "^7.8",
-    "nodemon": "^2.0.2",
-    "sequelize-cli": "^5.5.1"
+    "nodemon": "^2.0.2"
   },
   "engines": {
     "node": ">= 12.x",
