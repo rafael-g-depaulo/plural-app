@@ -44,11 +44,11 @@ export default function Etnia({ onEtniaChange = () => {}, ...props }) {
           <Label>
             <Input 
               name="etnia"
-              value="indigena"
+              value="indígena"
               type="radio"
             />
             <StyledCheckbox />
-            indigena
+            indígena
           </Label>
         </ContainerInput>
 

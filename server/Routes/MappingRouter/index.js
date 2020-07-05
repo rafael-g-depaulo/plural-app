@@ -59,7 +59,7 @@ const artCategoryMap = new Map([
 
 const ethnicityMap = new Map([
   ["branca", 1],
-  ["indigena", 2],
+  ["indígena", 2],
   ["negra (preta ou parda-afro-descendente)", 3],
   ["amarela (de ascendência asiática)", 4],
 ]);

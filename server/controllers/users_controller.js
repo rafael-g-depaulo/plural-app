@@ -18,7 +18,7 @@ function destructureUser(user) {
     provider_id: providerId,
     mapping,
     is_mapping_participant: isMappingParticipant,
-  } = user;
+  } = user ?? {};
 
   return {
     id,
@@ -40,19 +40,24 @@ module.exports = {
   async showCurrentUser(req, res) {
     console.log("Decoded:", req.decoded.user.id);
 
-    const user = await User.findOne({
-      where: { id: req.decoded.user.id },
-      include: [
-        {
-          model: Mapping,
-          as: "mapping",
-        },
-      ],
-    });
-
-    return res.status(200).send({
-      current_user: destructureUser(user),
-    });
+    try {
+      const user = await User.findOne({
+        where: { id: req.decoded.user.id },
+        include: [
+          {
+            model: Mapping,
+            as: "mapping",
+          },
+        ],
+      });
+      
+      return res.status(200).send({
+        current_user: destructureUser(user),
+      });
+    } catch (err) {
+      console.log(err)
+      return res.status(500).send({ error: "error finding user" })
+    }
   },
   async create(req, res) {
     const {

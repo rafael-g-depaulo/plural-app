@@ -95,7 +95,7 @@ export function UserProvider(props) {
   }, []);
 
   if (error) console.warn("UserProvider Error:", error);
-
+  
   return isLoading === true ? (
     <Loading />
   ) : (

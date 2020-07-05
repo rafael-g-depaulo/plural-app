@@ -139,7 +139,7 @@ export const Form = ({ ...props }) => {
         );
       }
     },
-    [user]
+    [user, history, location.state, userContext]
   );
 
   return (
