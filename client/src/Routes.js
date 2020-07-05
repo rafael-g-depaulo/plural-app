@@ -27,6 +27,8 @@ const MappingSearch = lazy(() => import("Pages/MappingSearch"))
 export const Routes = ({ ...props }) => {
   const { currentUser } = useContext(UserContext);
 
+  const shouldSignupMapping = currentUser?.isMappingParticipant && (currentUser?.mapping === null || currentUser?.mapping === undefined)
+
   const redirectTo =
     currentUser?.active === false ?
       "/confirmation"
@@ -60,7 +62,6 @@ export const Routes = ({ ...props }) => {
         </Route>
 
         {/* página de perfil -- current user */}
-
         <Route path={["/me", "/eu", "/meu-perfil"]}>
           { !currentUser || !currentUser.mapping ? (
             <Redirect to="/" />
@@ -181,7 +182,11 @@ export const Routes = ({ ...props }) => {
 
         {/* Home page */}
         <Route exact path="/">
-          {currentUser === null ? <Redirect to="/login" /> : <Redirect to="/event" />}
+          {
+            currentUser === null ? <Redirect to="/login" /> :
+            shouldSignupMapping ? <Redirect to="/mapping" /> :
+            <Redirect to="/event" />
+          }
         </Route>
       </Switch>
     </Router> 
