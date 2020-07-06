@@ -12,6 +12,7 @@ const Container = styled.div`
 // fallback in case of missing photo
 const FallbackIcon = styled(PersonIcon)`
   background-color: #ffffff;
+  color: black;
   width: ${props => props.smallSize ?? "150px"} !important;
   height: ${props => props.smallSize ?? "150px"} !important;
 
@@ -23,10 +24,12 @@ const FallbackIcon = styled(PersonIcon)`
 
 const Photo = styled.img`
   height: 150px;
-  object-fit: contain;
+  width: 150px;
+  object-fit: cover;
 
   @media (min-width: 500px) {
     height: 200px;
+    width: 200px;
   }
 `;
 
