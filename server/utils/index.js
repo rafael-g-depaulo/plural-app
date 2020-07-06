@@ -90,6 +90,7 @@ module.exports = {
       .replace(/\\n/g, "\n")
     
     console.log("key:", key)
+    console.log(`Time: ${new Date()}`)
     const gc = new Storage({
       projectId: "plural-282215",
       credentials: {
@@ -106,7 +107,7 @@ module.exports = {
       const blobStream = blob.createWriteStream();
 
       blobStream.on("error", (err) => {
-        console.log("[ERROR]", err);
+        console.log(`[ERROR] @ ${new Date()}:`, err);
 
         reject("Something went wrong when uploading image");
       });

@@ -65,5 +65,5 @@ if (NODE_ENV === "production") {
 
 // make the server listen to requests
 app.listen(PORT, () => {
-  console.log(`Server running at: http://localhost:${PORT}/`);
+  console.log(`Server running at: http://localhost:${PORT}/. Time: ${new Date()}`);
 });
