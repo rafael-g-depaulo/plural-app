@@ -4,8 +4,8 @@ import Description from "./description";
 import ProfilePhoto from "Components/ProfileContent/ProfilePhoto";
 import { Link } from "react-router-dom";
 
-// import PersonIcon from "@material-ui/icons/Person";
-import PersonIcon from "@material-ui/icons/AcUnitSharp";
+import PersonIcon from "@material-ui/icons/Person";
+// import PersonIcon from "@material-ui/icons/AcUnitSharp";
 
 const Container = styled.div`
   width: 344px;
@@ -39,18 +39,18 @@ const Background = styled(Link)`
   }
 `;
 
-const Pic = styled(ProfilePhoto)`
-  color: black;
-  margin-top: 10px;
-  margin-left: -30px;
+// const Pic = styled(ProfilePhoto)`
+//   color: black;
+//   margin-top: 10px;
+//   margin-left: -30px;
 
-  @media (max-width: 699px) {
-    width: 100px;
-    height: 100px;
-    margin-top: 5px;
-    margin-left: 0px;
-  }
-`
+//   @media (max-width: 699px) {
+//     width: 100px;
+//     height: 100px;
+//     margin-top: 5px;
+//     margin-left: 0px;
+//   }
+// `
 
 // fallback in case of missing photo
 const FallbackIcon = styled(PersonIcon)`
@@ -65,11 +65,42 @@ const FallbackIcon = styled(PersonIcon)`
   }
 `;
 
+const Photo = styled.img`
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+
+  @media (min-width: 500px) {
+    height: 200px;
+    width: 200px;
+  }
+`;
+
+const PicBox = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+  
+  color: black;
+  margin-top: 30px;
+  margin-left: -50px;
+
+  @media (max-width: 699px) {
+    width: 100px;
+    height: 100px;
+    margin-top: 15px;
+    margin-left: 0px;
+  }
+`;
+
+
 export const InfoCard = ({nome, imgUrl, categoria, hashtags, id, ...props }) => {
   return (
     <Container borderbottom={props.borderbottom}>
       <Background to={`/profile/${id}`} >
-        <Pic Fallback={FallbackIcon} photoSrc={imgUrl}/>
+        <PicBox>
+          { imgUrl && imgUrl !== "" ? <Photo src={imgUrl} /> : <FallbackIcon /> }
+        </PicBox>
         <Description name={nome} category={categoria} hashtags={hashtags} />
       </Background>
     </Container>
