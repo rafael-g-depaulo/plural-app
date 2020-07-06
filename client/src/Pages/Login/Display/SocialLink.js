@@ -16,13 +16,18 @@ const SocialButton = styled(Button)`
   &:active {
     background-color: ${props => props.acolor};
   }
+  &:focus {
+    background-color: ${props => props.hcolor};
+    outline: none;
+  }
 `
 
 const Link = styled.a`
   width: 48%;
   text-decoration: none;
-  &, &:hover, &:active {
+  &, &:hover, &:active, &:focus {
     text-decoration: none;
+    outline: none;
   }
 `
 

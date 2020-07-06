@@ -32,8 +32,9 @@ const MyRedirect = ({
 }) => {
   const { currentUser } = useContext(UserContext);
 
-  const redirectTo =
-    currentUser?.active === false ?
+  const redirectTo = currentUser.provider && !currentUser.name ?
+      "/signup"
+    : currentUser?.active === false ?
       "/confirmation"
     : currentUser?.isLgbtq === null ?
       "/areyouLGBTQIA"

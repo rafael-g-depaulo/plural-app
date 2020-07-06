@@ -212,6 +212,8 @@ export const Form = ({ ...props }) => {
     [errors, termsAccepted, checkInputs, countErrors]
   );
 
+  console.log(location)
+
   // submit form
   const onSubmit = useCallback(e => {
     e.preventDefault();
@@ -223,7 +225,7 @@ export const Form = ({ ...props }) => {
       setOpen(true);
 
     // if its a facebook/google signup, do stuff from here
-    } else if (location.state?.userFromProvider) {
+    } else if (location.state?.userFromProvider || currentUser.provider) {
       callUpdateUser(validateUser(user))
         .then((res) => {
           setCurrentUser(res.data.updatedUser);
@@ -245,7 +247,7 @@ export const Form = ({ ...props }) => {
           setOpen(true);
         });
     }
-  }, [user, setCurrentUser, validateUser, history, errors, location.state]);
+  }, [user, setCurrentUser, currentUser.provider, validateUser, history, errors, location.state]);
 
   const getPopUpMessage = useCallback((status) => {
     switch (status) {

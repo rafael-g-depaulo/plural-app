@@ -14,9 +14,15 @@ const MyButton = styled.button`
   
   &:hover {
     background-color: #111111;
+    cursor: pointer;
   }
   &:active {
     background-color: #222222;
+  }
+  &:focus {
+    outline: none;
+    border: solid 3px #fffdfd;
+    background-color: #0f0f0f;
   }
 `
 

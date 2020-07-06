@@ -16,6 +16,14 @@ const MyInput = styled.input`
   &:hover {
     background-color: #111111;
   }
+  &:active {
+    background-color: #222222;
+  }
+  &:focus {
+    outline: none;
+    border: solid 3px #fffdfd;
+    background-color: #0f0f0f;
+  }
 `
 
 export const Input = ({
