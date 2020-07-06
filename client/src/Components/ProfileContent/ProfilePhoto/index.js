@@ -33,10 +33,10 @@ const Photo = styled.img`
   }
 `;
 
-export const ProfilePhoto = ({ photoSrc, ...props }) => {
+export const ProfilePhoto = ({ photoSrc, Fallback = FallbackIcon, ...props }) => {
   return (
     <Container {...props}>
-      {photoSrc ? <Photo src={photoSrc} /> : <FallbackIcon {...props} />}
+      {photoSrc ? <Photo src={photoSrc} /> : <Fallback {...props} />}
     </Container>
   );
 };

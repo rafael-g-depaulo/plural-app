@@ -4,6 +4,8 @@ import Description from "./description";
 import ProfilePhoto from "Components/ProfileContent/ProfilePhoto";
 import { Link } from "react-router-dom";
 
+import PersonIcon from "@material-ui/icons/Person";
+
 const Container = styled.div`
   width: 344px;
   height: auto;
@@ -49,11 +51,24 @@ const Pic = styled(ProfilePhoto)`
   }
 `
 
+// fallback in case of missing photo
+const FallbackIcon = styled(PersonIcon)`
+  background-color: #ffffff;
+  color: black;
+  width: 100px !important;
+  height: 100px !important;
+
+  @media (min-width: 700px) {
+    height: 150px !important;
+    width: 150px !important;
+  }
+`;
+
 export const InfoCard = ({nome, imgUrl, categoria, hashtags, id, ...props }) => {
   return (
     <Container borderbottom={props.borderbottom}>
       <Background to={`/profile/${id}`} >
-        <Pic bigSize="150px" smallSize="100px" break="700px" photoSrc={imgUrl}/>
+        <Pic Fallback={FallbackIcon} photoSrc={imgUrl}/>
         <Description name={nome} category={categoria} hashtags={hashtags} />
       </Background>
     </Container>
