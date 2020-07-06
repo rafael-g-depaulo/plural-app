@@ -4,7 +4,8 @@ import Description from "./description";
 import ProfilePhoto from "Components/ProfileContent/ProfilePhoto";
 import { Link } from "react-router-dom";
 
-import PersonIcon from "@material-ui/icons/Person";
+// import PersonIcon from "@material-ui/icons/Person";
+import PersonIcon from "@material-ui/icons/AcUnitSharp";
 
 const Container = styled.div`
   width: 344px;
