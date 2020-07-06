@@ -12,12 +12,12 @@ const Container = styled.div`
 // fallback in case of missing photo
 const FallbackIcon = styled(PersonIcon)`
   background-color: #ffffff;
-  width: 150px !important;
-  height: 150px !important;
+  width: ${props => props.smallSize ?? "150px"} !important;
+  height: ${props => props.smallSize ?? "150px"} !important;
 
-  @media (min-width: 500px) {
-    height: 200px !important;
-    width: 200px !important;
+  @media (min-width: ${props => props.break ?? "500px"}) {
+    height: ${props => props.bigSize ?? "200px"} !important;
+    width: ${props => props.bigSize ?? "200px"} !important;
   }
 `;
 
@@ -33,7 +33,7 @@ const Photo = styled.img`
 export const ProfilePhoto = ({ photoSrc, ...props }) => {
   return (
     <Container {...props}>
-      {photoSrc ? <Photo src={photoSrc} /> : <FallbackIcon />}
+      {photoSrc ? <Photo src={photoSrc} /> : <FallbackIcon {...props} />}
     </Container>
   );
 };

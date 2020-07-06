@@ -31,7 +31,7 @@ const Container = styled.div`
 const Box = styled.div`
   width: 100%;
   max-width: 900px;
-  margin: auto;
+  margin: 0 auto;
   ${props => props.grid && css`grid-area: ${props.grid};`}
 
   @media (max-width: 699px) {

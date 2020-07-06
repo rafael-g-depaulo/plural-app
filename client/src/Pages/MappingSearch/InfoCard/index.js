@@ -36,11 +36,26 @@ const Background = styled(Link)`
   }
 `;
 
+const Pic = styled(ProfilePhoto)`
+  color: black;
+  /* margin-top: 30px;
+  margin-left: -40px; */
+  margin-top: 10px;
+  margin-left: -30px;
+
+  @media (max-width: 699px) {
+    width: 100px;
+    height: 100px;
+    margin-top: 5px;
+    margin-left: 0px;
+  }
+`
+
 export const InfoCard = ({nome, imgUrl, categoria, hashtags, id, ...props }) => {
   return (
     <Container borderbottom={props.borderbottom}>
       <Background to={`/profile/${id}`} >
-        <ProfilePhoto photoSrc={imgUrl}/>
+        <Pic bigSize="150px" smallSize="100px" break="700px" photoSrc={imgUrl}/>
         <Description name={nome} category={categoria} hashtags={hashtags} />
       </Background>
     </Container>
