@@ -38,8 +38,6 @@ const Background = styled(Link)`
 
 const Pic = styled(ProfilePhoto)`
   color: black;
-  /* margin-top: 30px;
-  margin-left: -40px; */
   margin-top: 10px;
   margin-left: -30px;
 

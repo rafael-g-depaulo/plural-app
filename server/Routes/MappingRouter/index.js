@@ -127,10 +127,12 @@ export default ({ User }, config) => {
         }
 
         try {
-          let profile_picture =
-            req.file !== null && req.file !== undefined
-              ? await Utils.uploadImageToGCS(req.file)
-              : null;
+          let profile_picturePromise = Utils.uploadImageToGCS(req.file).catch(err => { console.log(`[${new Date()}] ERROR IN GCS UPLOAD: ${err}`); return "" })
+          let profile_picture = req.file !== null && req.file !== undefined
+            ? await profile_picturePromise
+            : "";
+
+          console.log("profile picture", profile_picture)
 
           const mapping = await Mapping.create({
             artistic_name,
