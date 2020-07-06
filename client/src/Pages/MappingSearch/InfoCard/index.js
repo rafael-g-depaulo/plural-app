@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Description from "./description";
-import ProfilePhoto from "Components/ProfileContent/ProfilePhoto";
+// import ProfilePhoto from "Components/ProfileContent/ProfilePhoto";
 import { Link } from "react-router-dom";
 
-import PersonIcon from "@material-ui/icons/Person";
+// import PersonIcon from "@material-ui/icons/Person";
 // import PersonIcon from "@material-ui/icons/AcUnitSharp";
 
 const Container = styled.div`
@@ -52,10 +52,12 @@ const Background = styled(Link)`
 //   }
 // `
 
+const Icon = (props) => (
+  <svg className="MuiSvgIcon-root" {...props} focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+)
 // fallback in case of missing photo
-const FallbackIcon = styled(PersonIcon)`
+const FallbackIcon = styled(Icon)`
   background-color: #ffffff;
-  color: black;
   width: 100px !important;
   height: 100px !important;
 
@@ -93,8 +95,8 @@ const PicBox = styled.div`
   }
 `;
 
-
 export const InfoCard = ({nome, imgUrl, categoria, hashtags, id, ...props }) => {
+  console.log("imgUrl is", imgUrl)
   return (
     <Container borderbottom={props.borderbottom}>
       <Background to={`/profile/${id}`} >
