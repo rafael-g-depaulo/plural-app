@@ -99,7 +99,7 @@ export const Area = ({
   info,
   ...props
 }) => {
-  const { capa, title, body, photo_credit } = info
+  const { capa, title, body, photo_credit, horario } = info
   const imgSrc = capa?.url
   
   return (
@@ -107,7 +107,7 @@ export const Area = ({
       {...props}
     >
       <Title source={title}></Title>
-      <Date datatime={info?.created_at} />
+      <Date datatime={horario ?? info.created_at} />
       <Capa>
         <BlockImg src={imgSrc} />
         <Credit>{ photo_credit }</Credit>
