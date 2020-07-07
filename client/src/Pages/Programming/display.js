@@ -66,31 +66,34 @@ export const Display = ({eventList}) => {
           <Title />
         </TopContent>
         {/* lógica para exibir todos os posts, o último sem border-bottom */}
-        {eventList.map((item) => {
-          if (item === eventList[eventList.length - 1]) {
-            return (
-              <EventCard
-                borderbottom="none"
-                key={item.id}
-                id={item.id}
-                titulo={item.title}
-                descricao={item.body}
-                imagem={`${item.capa.url}`}
-              />
-            );
-          } else {
-            return (
-              <EventCard
-                borderbottom="1px solid #ffffff"
-                key={item.id}
-                id={item.id}
-                titulo={item.title}
-                descricao={item.body}
-                imagem={`${item.capa.url}`}
-              />
-            );
-          }
-        })}
+        {eventList
+          .sort((a, b) => a?.prioridade ?? 1000000 - b?.prioridade ?? 0)
+          .map((item) => {
+            if (item === eventList[eventList.length - 1]) {
+              return (
+                <EventCard
+                  borderbottom="none"
+                  key={item.id}
+                  id={item.id}
+                  titulo={item.title}
+                  descricao={item.body}
+                  imagem={`${item?.capa?.url}`}
+                />
+              );
+            } else {
+              return (
+                <EventCard
+                  borderbottom="1px solid #ffffff"
+                  key={item.id}
+                  id={item.id}
+                  titulo={item.title}
+                  descricao={item.body}
+                  imagem={`${item?.capa?.url}`}
+                />
+              );
+            }
+          })
+        }
         <ComputerLogo src={ComputerAsset} alt="computador" />
       </Content>
     </Container>

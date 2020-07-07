@@ -1,12 +1,12 @@
 {
-  "short_name": "Plural App",
+  "short_name": "Festival Plural",
   "name": "Festival Plural",
   "theme_color": "#f32127",
   "background_color": "#216ff3",
   "display": "standalone",
   "orientation": "portrait",
-  "Scope": "http://localhost:3000/",
-  "start_url": "/login",
+  "Scope": "https://www.festivalplural.com.br/",
+  "start_url": "/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
