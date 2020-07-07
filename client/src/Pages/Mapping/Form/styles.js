@@ -5,6 +5,8 @@ export const FormContainer = styled.form`
   flex-direction: column;
   padding-bottom: 30px;
 
+  ${props => props.isLoading && "pointer-events: none;"}
+
   #columnOut {
     display: flex;
     flex-direction: column;

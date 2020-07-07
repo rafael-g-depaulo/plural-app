@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import Background from "./Background";
 import Header from "./Header";
 import Form from "./Form";
@@ -9,6 +9,8 @@ import { useHistory } from "react-router-dom";
 export const Mapping = () => {
   const userContext = useContext(UserContext);
   const history = useHistory()
+
+  const [isLoading, setIsLoading] = useState(false)
 
   function submitMapping(data) {
     const formData = new FormData();
@@ -31,18 +33,23 @@ export const Mapping = () => {
     formData.append('long_bio', data.long_bio)
     formData.append('professional', data.professional)
 
+    setIsLoading(true)
     createMapping(formData)
       .then((res) => {
+        setIsLoading(false)
         userContext.setCurrentUser(res.data);
         history.push("/")
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        setIsLoading(false)
+      })
   }
 
   return (
     <Background>
       <Header />
-      <Form onSubmit={submitMapping} />
+      <Form onSubmit={submitMapping} isLoading={isLoading}/>
     </Background>
   );
 };

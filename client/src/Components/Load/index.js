@@ -56,6 +56,7 @@ const Container = styled.div`
 const DotContainer = styled.div`
     display: flex;
     height:100%;
+    min-height: 25px;
     width: 100%;
 `;
 
@@ -64,7 +65,7 @@ export const LoadDots = ({
     ...props
   }) => {
     return (
-        <Container>
+        <Container {...props}>
             <DotContainer>
         <Dota/>
         <Dotb/>

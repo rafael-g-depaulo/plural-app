@@ -66,18 +66,16 @@ export const Form = ({ currentUser, ...props }) => {
 
   const [etnia, setEtnia] = useState(etniaMap[currentUser?.mapping?.ethnicity]);
   const [atuacao, setAtuacao] = useState(currentUser?.mapping?.art_category);
-
   const [jobs, setJobs] = useState(currentUser?.mapping?.professional);
   const [jobsCount, setJobsCount] = useState([]);
   const [jobsErrMsg, setJobsErrMsg] = useState("");
-
   const [profilePic, setProfilePic] = useState(null);
-
   const [bio, setBio] = useState(currentUser?.mapping?.long_bio);
-
   const [social, setSocial] = useState(
     Object.fromEntries(getInitialSocial(currentUser))
   );
+  
+  const [isLoading, setIsLoading] = useState(false)
 
   const onInputBio = useCallback((e) => {
     setBio(e.target.value);
@@ -173,13 +171,16 @@ export const Form = ({ currentUser, ...props }) => {
       //   id: currentUser?.mapping?.id,
       // };
 
+      setIsLoading(true)
       updateMapping(formData)
         .then((res) => {
+          setIsLoading(false)
           history.push("/me");
           window.location.reload();
         })
         .catch((err) => {
           setStatus(err.response?.status ?? 500);
+          setIsLoading(false)
           setOpen(true);
         });
     },
@@ -239,6 +240,7 @@ export const Form = ({ currentUser, ...props }) => {
           profilePic,
           onProfilePicChange,
           onSubmit,
+          isLoading,
         }}
         {...props}
       />

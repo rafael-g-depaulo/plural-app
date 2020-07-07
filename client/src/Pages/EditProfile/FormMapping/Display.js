@@ -9,6 +9,8 @@ import AreaAtuacao from "./categories/areaAtuacao";
 import Jobs from "./categories/jobs";
 import AboutUser from "./categories/aboutUser";
 import RedesSociais from "./categories/redesSociais";
+import Shadow from "Components/Shadow";
+import Loading from "Components/Loading";
 
 const Form = styled.form`
   display: flex;
@@ -60,9 +62,11 @@ export const Display = ({
   profilePic,
   onProfilePicChange,
   onSubmit,
+  isLoading,
   ...props
 }) => {
-  return (
+  return (<>
+    <Shadow isLoading={isLoading} />
     <Form onSubmit={onSubmit} autocomplete="off">
       <Title>Editar Mapeamento</Title>
 
@@ -88,8 +92,9 @@ export const Display = ({
       <RedesSociais social={social} onChange={setSocial} />
 
       <SubmitButton />
+      <Loading isLoading={isLoading} />
     </Form>
-  );
+  </>);
 };
 
 export default Display;

@@ -265,7 +265,7 @@ module.exports = {
     }
 
     //If the user is valid, sign password reset token and send the recovery link via email
-    console.log(`\nFound the following user: ${JSON.stringify(user)}\n`);
+    console.log(`\nFound the following user: ${JSON.stringify(user?.dataValues)}\n`);
 
     const token = utils.signPasswordResetToken(user.id, user.email);
 

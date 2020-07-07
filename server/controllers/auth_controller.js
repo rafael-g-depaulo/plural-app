@@ -19,7 +19,7 @@ async function getUserFromEmail(email) {
 
   user === null
     ? console.log("\nNo records found.\n")
-    : console.log(`\nFound the following user: ${JSON.stringify(user)}\n`);
+    : console.log(`\nFound the following user: ${JSON.stringify(user?.dataValues)}\n`);
 
   return user;
 }

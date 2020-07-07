@@ -120,7 +120,7 @@ export default ({ User }, config) => {
           where: { id: user_id },
         });
 
-        console.log("Found the following user:", user);
+        console.log("Found the following user:", user?.dataValues);
 
         if (!user) {
           return res.status(400).json({ error: "user not found" + user_id });
@@ -229,7 +229,7 @@ export default ({ User }, config) => {
             },
           ],
         });
-        console.log("Found the following user:", user);
+        console.log("Found the following user:", user?.dataValues);
 
         if (!user) {
           return res.status(400).json({ error: "user not found" + user_id });

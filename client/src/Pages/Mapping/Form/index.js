@@ -12,7 +12,10 @@ import Jobs from "./categories/jobs";
 import AboutUser from "./categories/aboutUser";
 import RedesSociais from "./categories/redesSociais";
 
-export const Form = ({onSubmit = () => {}, ...props}) => {
+import Loading from "Components/Loading";
+import Shadow from "Components/Shadow";
+
+export const Form = ({ isLoading, onSubmit = () => {}, ...props}) => {
   const [gender, setGender] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [jobsCount, setJobsCount] = useState([])
@@ -47,7 +50,6 @@ export const Form = ({onSubmit = () => {}, ...props}) => {
         vimeo: social.vimeo,
         profile_picture: profilePic
       };
-
       onSubmit(form)
     },
     [gender, jobs, bio, social, orientation, etnia, atuacao, profilePic, onSubmit]
@@ -93,22 +95,24 @@ export const Form = ({onSubmit = () => {}, ...props}) => {
     setProfilePic(pic)
   }, [])
 
-  return (
+  return (<>
+    <Shadow isLoading={isLoading} />
     <FormContainer onSubmit={onSubmitButton}>
-      <Title>mapeamento CULTURAL LGBTQI+ DO DISTRITO FEDErAL</Title>
+        <Title>mapeamento CULTURAL LGBTQI+ DO DISTRITO FEDErAL</Title>
 
-      <Gender onGenderChange={genderChange} />
-      <Orientation onOrientationChange={onOrientationChange} />
-      <Etnia onEtniaChange={onEtniaChange} />
-      <AreaAtuacao onChange={onAtuacaoChange} />
-      <Jobs onJobsChange={onJobsChange} errorMsg={jobsErrMsg} />
+        <Gender onGenderChange={genderChange} />
+        <Orientation onOrientationChange={onOrientationChange} />
+        <Etnia onEtniaChange={onEtniaChange} />
+        <AreaAtuacao onChange={onAtuacaoChange} />
+        <Jobs onJobsChange={onJobsChange} errorMsg={jobsErrMsg} />
 
-      <AboutUser onUpdateProfilePic={onProfilePicChange} onInputBio={onInputBio} />
-      <RedesSociais onChange={setSocial} />
+        <AboutUser onUpdateProfilePic={onProfilePicChange} onInputBio={onInputBio} />
+        <RedesSociais onChange={setSocial} />
 
-      <SubmitButton /> 
+        <SubmitButton /> 
+        <Loading isLoading={isLoading} />
     </FormContainer>
-  );
+  </>);
 };
 
 export default Form;

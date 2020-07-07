@@ -33,7 +33,7 @@ export const LoadRainbow = ({
     ...props
   }) => {
     return (
-        <Container>
+        <Container {...props}>
             <DotContainer>
         <Rainbow/>
         </DotContainer>
