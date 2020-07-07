@@ -6,7 +6,7 @@ import {
   searchUsers,
 } from "elasticsearch/User/userActions";
 import AuthMiddleware from "Middlewares/AuthMiddleware";
-import MulterMiddleware from "Middlewares/MulterMiddleware";
+import MulterMiddleware, { S3Middleware } from "Middlewares/MulterMiddleware";
 import Utils from "utils";
 
 const sexualOrientationMap = new Map([
@@ -127,10 +127,14 @@ export default ({ User }, config) => {
         }
 
         try {
-          let profile_picturePromise = Utils.uploadImageToGCS(req.file).catch(err => { console.log(`[${new Date()}] ERROR IN GCS UPLOAD: ${err}`); return "" })
+          let profile_picturePromise = Utils
+            .uploadImage(req)
+            .catch(err => { console.log(`[${new Date()}] ERROR IN GCS UPLOAD: ${err}`); return "" })
           let profile_picture = req.file !== null && req.file !== undefined
             ? await profile_picturePromise
             : "";
+
+          if (!profile_picture || profile_picture === "") return res.status(402).json({err: "error with image"})
 
           console.log("profile picture", profile_picture)
 
@@ -253,7 +257,7 @@ export default ({ User }, config) => {
         try {
           let profile_picture =
             req.file !== null && req.file !== undefined
-              ? await Utils.uploadImageToGCS(req.file)
+              ? await Utils.uploadImage(req)
               : null;
 
           if (profile_picture !== null) {

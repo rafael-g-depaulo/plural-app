@@ -225,7 +225,7 @@ export const Form = ({ ...props }) => {
       setOpen(true);
 
     // if its a facebook/google signup, do stuff from here
-    } else if (location.state?.userFromProvider || currentUser.provider) {
+    } else if (location.state?.userFromProvider || currentUser?.provider) {
       callUpdateUser(validateUser(user))
         .then((res) => {
           setCurrentUser(res.data.updatedUser);
@@ -247,7 +247,7 @@ export const Form = ({ ...props }) => {
           setOpen(true);
         });
     }
-  }, [user, setCurrentUser, currentUser.provider, validateUser, history, errors, location.state]);
+  }, [user, setCurrentUser, currentUser, validateUser, history, errors, location.state]);
 
   const getPopUpMessage = useCallback((status) => {
     switch (status) {

@@ -21,14 +21,14 @@
     "clean:server": "rm -rf build && mkdir build",
     "clean:client": "cd client && rm -rf ./build && cd ..",
     "db:drop": "./node_modules/.bin/sequelize db:drop",
-    "db:migrate" : "./node_modules/.bin/sequelize db:migrate",
+    "db:migrate": "./node_modules/.bin/sequelize db:migrate",
     "db:setup": "./node_modules/.bin/sequelize db:create && yarn db:migrate",
     "db:reset": "yarn db:drop && yarn db:setup"
   },
   "dependencies": {
     "@babel/cli": "^7.8",
     "@babel/preset-env": "^7.8",
-    "@google-cloud/storage": "^5.1.1",
+    "aws-sdk": "^2.710.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
@@ -49,7 +49,8 @@
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.6",
     "sequelize-cli": "^6.1.0",
-    "storybook": "^5.3.19"
+    "storybook": "^5.3.19",
+    "streamifier": "^0.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8",

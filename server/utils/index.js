@@ -1,7 +1,14 @@
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-const { Storage } = require("@google-cloud/storage");
+const aws = require("aws-sdk")
 const util = require("util");
+
+aws.config.update({
+  secretAccessKey: process.env.AWS_SECRET,
+  accessKeyId: process.env.AWS_KEY,
+  region: 'sa-east-1'
+});
+const s3 = new aws.S3();
 
 module.exports = {
   signToken(id, email) {
@@ -83,43 +90,23 @@ module.exports = {
       return true;
     });
   },
-  async uploadImageToGCS(file) {
-    const key = process.env.GCS_PRIVATE_KEY
-      .replace(/_BEGIN___KEY_/g, "-----BEGIN PRIVATE KEY-----")
-      .replace(/_BARRA_BARRA_N_/g, "\\n")
-      .replace(/\\n/g, "\n")
-    
-    console.log("key:", key)
-    console.log(`Time: ${new Date()}`)
-    const gc = new Storage({
-      projectId: "plural-282215",
-      credentials: {
-        private_key: key,
-        client_email: process.env.GCS_CLIENT_EMAIL,
-      },
-    });
+  uploadImage(req) {
+    return new Promise((resolve, reject) => {      
+      var base64data = new Buffer(req.file.buffer, 'binary');
+      
+      const extension = /\.[0-9a-z]+$/i.exec(req.file.originalname)[0]
+      
+      const params = {
+        ACL: 'public-read',
+        Bucket: process.env.AWS_BUCKET,
+        Body: base64data,
+        Key: `userAvatar/${req.file.originalname}-${new Date()}${extension}`
+      }
 
-    const bucket = gc.bucket(process.env.GCS_BUCKET);
-
-    return new Promise((resolve, reject) => {
-      // Create a new blob in the bucket and upload the file data.
-      const blob = bucket.file(file.originalname);
-      const blobStream = blob.createWriteStream();
-
-      blobStream.on("error", (err) => {
-        console.log(`[ERROR] @ ${new Date()}:`, err);
-
-        reject("Something went wrong when uploading image");
-      });
-
-      blobStream.on("finish", () => {
-        const publicUrl = util.format(
-          `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-        );
-        resolve(publicUrl);
-      });
-
-      blobStream.end(file.buffer);
-    });
-  },
+      s3.upload(params, (err, data) => {
+        if (err) reject(err)
+        else resolve(data.Location)
+      })
+    })
+  }
 };
