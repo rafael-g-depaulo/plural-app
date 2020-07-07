@@ -94,6 +94,12 @@ export const TermsConditions = ({
   setTermsAccepted = () => {},
   ...props
 }) => {
+  console.log(process.env.PUBLIC_URL)
+  console.log(process.env.PUBLIC_URL)
+  console.log(process.env.PUBLIC_URL)
+  console.log(process.env.PUBLIC_URL)
+  console.log(process.env.PUBLIC_URL)
+  console.log(process.env.PUBLIC_URL)
   return (
     <Container>
       <Label>
@@ -105,7 +111,7 @@ export const TermsConditions = ({
         Eu concordo com os{" "}
         <b>
           <MyLink
-            href="https://www.google.com"
+            href={`${process.env.PUBLIC_URL}/Plural-termos-e-condicoes.pdf`}
             target="_blanc"
             rel="noopener noreferrer"
           >
@@ -115,7 +121,7 @@ export const TermsConditions = ({
         e com a{" "}
         <b>
           <MyLink
-            href="https://www.google.com"
+            href={`${process.env.PUBLIC_URL}/Plural-politicas-de-privacidade.pdf`}
             target="_blanc"
             rel="noopener noreferrer"
           >
