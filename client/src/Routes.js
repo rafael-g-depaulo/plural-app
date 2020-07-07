@@ -32,7 +32,7 @@ const MyRedirect = ({
 }) => {
   const { currentUser } = useContext(UserContext);
 
-  const redirectTo = currentUser.provider && !currentUser.name ?
+  const redirectTo = currentUser?.provider && !currentUser?.name ?
       "/signup"
     : currentUser?.active === false ?
       "/confirmation"
