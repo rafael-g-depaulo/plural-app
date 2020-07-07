@@ -68,13 +68,14 @@ const FallbackIcon = styled(Icon)`
 `;
 
 const Photo = styled.img`
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
   object-fit: cover;
 
-  @media (min-width: 500px) {
+  @media (min-width: 700px) {
     height: 200px;
     width: 200px;
+    margin-left: 45px;
   }
 `;
 
