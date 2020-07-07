@@ -17,7 +17,7 @@ const Container = styled.div`
   grid-template-columns: minmax(5%, auto) minmax(300px, 700px) minmax(5%, auto);
   grid-template-rows: auto minmax(0, 3fr);
   grid-template-areas:
-    "nav nav nav"
+    ". nav ."
     ". content . "
   ;
 
@@ -40,6 +40,11 @@ const Content = styled.div`
   align-items: center;
 `;
 
+const MyNavigation = styled(Navigation)`
+  @media (max-width: 699px) {
+    max-width: 450px;
+  }
+`
 
 export const Display = ({
   onChecklistChange,
@@ -51,7 +56,7 @@ export const Display = ({
   return (
     <Container>
       <Content>
-        <Navigation />
+        <MyNavigation />
         <Checklist onChange={onChecklistChange} />
         <SearchBar onJobsChange={onJobsChange} onClick={onSubmit} />
         {/* lógica para exibir todos os posts, o último sem border-bottom */}
