@@ -77,7 +77,7 @@ export const Display = ({ postList }) => {
                 id={item.id}
                 titulo={item.title}
                 descricao={item.body}
-                imagem={`${process.env.REACT_APP_STRAPI_URL}${item.capa.url}`}
+                imagem={`${item.capa.url}`}
               />
             );
           } else {
@@ -88,7 +88,7 @@ export const Display = ({ postList }) => {
                 id={item.id}
                 titulo={item.title}
                 descricao={item.body}
-                imagem={`${process.env.REACT_APP_STRAPI_URL}${item.capa.url}`}
+                imagem={`${item.capa.url}`}
               />
             );
           }

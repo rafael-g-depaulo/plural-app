@@ -1,5 +1,4 @@
 import React from 'react'
-import { StrapiBaseUrl } from 'GlobalConfig'
 
 export const Image = ({
   src,
@@ -8,7 +7,7 @@ export const Image = ({
 }) => {
   return (
     <img
-      src={StrapiBaseUrl+src}
+      src={src}
       alt={alt}
       {...props}
     />
