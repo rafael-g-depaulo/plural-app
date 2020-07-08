@@ -19,6 +19,7 @@ export default ({ passport }, options) => {
         session: false,
       }),
       (req, res) => {
+        console.log("google auth ok")
         return res
           .status(200)
           .cookie("token", req.token, {
