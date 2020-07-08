@@ -156,7 +156,7 @@ export const Display = ({
           <br />
           SUAS REDES SOCIAIS:
         </Text>
-        <Social>
+        {/* <Social>
           <SocialLink
             href="/api/auth/facebook"
             color="#003172"
@@ -173,7 +173,7 @@ export const Display = ({
           >
             Entre com <Icon icon={faGooglePlus} />
           </SocialLink>
-        </Social>
+        </Social> */}
         <Parceiros />
       </Content>
     </Container>
