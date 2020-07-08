@@ -3,7 +3,10 @@ import { Router } from "express";
 export default ({ passport }, options) => {
   return Router(options)
     .get(
-      "/",
+      "/", (req, res, next) => {
+        console.log("google auth attempt")
+        next()
+      }, 
       passport.authenticate("google", {
         session: false,
         scope: [
