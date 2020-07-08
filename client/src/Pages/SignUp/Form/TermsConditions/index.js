@@ -94,12 +94,6 @@ export const TermsConditions = ({
   setTermsAccepted = () => {},
   ...props
 }) => {
-  console.log(process.env.PUBLIC_URL)
-  console.log(process.env.PUBLIC_URL)
-  console.log(process.env.PUBLIC_URL)
-  console.log(process.env.PUBLIC_URL)
-  console.log(process.env.PUBLIC_URL)
-  console.log(process.env.PUBLIC_URL)
   return (
     <Container>
       <Label>
