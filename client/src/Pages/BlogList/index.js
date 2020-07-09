@@ -14,8 +14,8 @@ export const Blog = ({ ...props }) => {
   const { title, message } =
     status === 404 ? { title: "Erro de conexão", message: "Por favor tente de novo mais tarde" } :
     status === 500 ? { title: "Erro de conexão", message: "Por favor tente de novo mais tarde" } :
-    { title: "Erro", message: "Houve um erro. Tente de novo mais tarde" }
-
+    { title: "Carregando", message: "Carregando o blog" }
+    
   const onClose = useCallback(() => {
   }, [])
   

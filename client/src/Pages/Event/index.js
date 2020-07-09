@@ -36,25 +36,25 @@ export const Event = ({ ...props }) => {
   const { data, status } = useAPICache(`event/${id_event}`, null, apiCall)
 
   // error handling
-  const open = status !== 200
+  const open = status !== 200 || status === undefined
   const { title, message } =
     status === 404 ? { title: "Atividade não existe", message: "Essa atividade não existe" } :
     status === 500 ? { title: "Erro de conexão", message: "Por favor tente de novo mais tarde" } :
-    { title: "Erro", message: "Houve um erro. Tente de novo mais tarde" }
+    { title: "Carregando", message: "Carregando o evento. Por favor espere" }
 
   // redirect to blog list on popup close
   const history = useHistory()
   const onClose = useCallback(() => {
-    history.push("/event")
-  }, [history])
+    if (status === 404) history.push("/event")
+  }, [history, status])
 
   return (<>
     <Back>
       <Container>
         <Navigation mbSmall="0" mbLarge="0" grid="nav"/>
         {
-          data === null || status !== 200 ?
-            <LoadDots />
+          data === null || open ?
+            (status !== 404 ? <LoadDots /> : <></>)
             :
             <Area info={data} />
 
