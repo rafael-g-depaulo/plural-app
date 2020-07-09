@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faGooglePlus } from "@fortawesome/free-brands-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faFacebook, faGooglePlus } from "@fortawesome/free-brands-svg-icons";
+// import SocialLink from "./SocialLink";
 
 import { accentFontSize } from "Themes/default";
 import PluralLogo from "Components/PluralLogo";
@@ -10,7 +11,6 @@ import Input from "./Input";
 import Label from "./Label";
 import Parceiros from "./Parceiros";
 import Button from "./Button";
-import SocialLink from "./SocialLink";
 
 import { Link } from 'react-router-dom'
 
@@ -94,17 +94,17 @@ const Text = styled.span`
   margin-bottom: 20px;
 `;
 
-const Social = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
+// const Social = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   margin-bottom: 20px;
+// `;
 
-const Icon = styled(FontAwesomeIcon)`
-  font-size: 18px;
-  margin-top: 2px;
-  margin-left: 5px;
-`;
+// const Icon = styled(FontAwesomeIcon)`
+//   font-size: 18px;
+//   margin-top: 2px;
+//   margin-left: 5px;
+// `;
 
 const MyLink = styled(Link)`
   &, &:hover, &:active {
