@@ -11,14 +11,16 @@ export const Programming = ({ ...props }) => {
   const { data, status } = useAPICache(`events`, [], listAllEvents)
 
   // error handling
-  const open = status !== 200
+  const open = status !== 200 || status === undefined
   const { title, message } =
     status === 404 ? { title: "Erro de conexão", message: "Por favor tente de novo mais tarde" } :
     status === 500 ? { title: "Erro de conexão", message: "Por favor tente de novo mais tarde" } :
-    { title: "Erro", message: "Houve um erro. Tente de novo mais tarde" }
+    { title: "Carregando", message: "Carregando a programação" }
 
   const onClose = useCallback(() => {
   }, [])
+
+  console.log("status", status, "data", data, "title", title, "message", message)
 
   return (<>
     <Display eventList={data} />
