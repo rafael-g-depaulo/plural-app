@@ -97,7 +97,6 @@ const PicBox = styled.div`
 `;
 
 export const InfoCard = ({nome, imgUrl, categoria, hashtags, id, ...props }) => {
-  console.log("imgUrl is", imgUrl)
   return (
     <Container borderbottom={props.borderbottom}>
       <Background to={`/profile/${id}`} >

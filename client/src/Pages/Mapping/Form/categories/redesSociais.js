@@ -19,7 +19,6 @@ export default function RedesSociais({ onChange = () => {}, ...props }) {
   
     const onInput = useCallback(e => {
       setRedesSociais(r => ({ ...r, [e.target.name]: e.target.value }))
-      console.log(redesSociais);
     }, [setRedesSociais, redesSociais])
   
     useEffect(() => { onChange(redesSociais) }, [redesSociais, onChange])

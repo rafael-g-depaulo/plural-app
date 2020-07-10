@@ -20,8 +20,6 @@ export const Programming = ({ ...props }) => {
   const onClose = useCallback(() => {
   }, [])
 
-  console.log("status", status, "data", data, "title", title, "message", message)
-
   return (<>
     <Display eventList={data} />
     <PopUp {...{ open, title, message, onClose }} />
