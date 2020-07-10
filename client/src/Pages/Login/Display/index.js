@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faFacebook, faGooglePlus } from "@fortawesome/free-brands-svg-icons";
@@ -47,11 +47,12 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  ${({ mTop }) => mTop && css`margin-top: ${mTop};`}
 `;
 
 const Logo = styled(PluralLogo)`
   margin-left: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 `;
 
 const MyInput = styled(Input)`
@@ -112,6 +113,40 @@ const MyLink = styled(Link)`
   }
 `
 
+const Text = styled.p`
+  font-family: "Town Text";
+  font-size: 18px;
+  font-weight: 700;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: justify;
+  color: #fff;
+  margin-bottom: 3px;
+  margin-top: 0;
+
+  @media (min-width: 700px) {
+    font-size: 20px;
+  }
+`
+
+const ColouredLink = styled(Link)`
+  color: #f3763b;
+  text-decoration: none;
+  &:hover {
+    color: #ffdb88;
+  }
+  &:focus {
+    color: #f5ce63;
+  }
+  &:active {
+    color: #ffcf4a;
+  }
+
+  transition: ease-in-out 0.1s;
+`
+
 export const Display = ({
   email = "",
   onChangeEmail = () => {},
@@ -125,8 +160,10 @@ export const Display = ({
       <Content>
         {/* conteúdo do display da página de login */}
         <Logo />
+        <Text>Bem vinde ao Festival Plural!</Text>
+        <Text>Acesse a <ColouredLink to="/event">programação do festival</ColouredLink>, ou cadastre-se em nossas plataformas digitais.</Text>
         {/* <form onSubmit={onSubmit}> */}
-        <Content as="form" onSubmit={onSubmit}>
+        <Content mTop="15px" as="form" onSubmit={onSubmit}>
           <Label htmlFor="email">EMAIL</Label>
           <MyInput
             value={email}
