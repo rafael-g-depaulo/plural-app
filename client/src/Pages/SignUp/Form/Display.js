@@ -124,7 +124,7 @@ export const Display = ({
       </Group>
 
       <Group>
-        <InputLabel htmlFor="city">Em qual cidade do DF você mora?</InputLabel>
+        <InputLabel htmlFor="city">Em qual cidade você mora?</InputLabel>
         <Input id="city" name="city" type="text" onChange={updateUser} />
         {errors.city && <InputError>{errors.city}</InputError>}
       </Group>

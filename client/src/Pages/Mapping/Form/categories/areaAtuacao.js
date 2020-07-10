@@ -151,7 +151,7 @@ export default function AreaAtuacao({ onChange = () => {}, ...props }) {
           <Text>
           Categoria no guia cultural para profissionais envolvidos com todos os 
           tipos de dança, como vogue, ballet, break dance, jazz, danças regionais, 
-          danças contemporâneas, dança afro, vogue, improvisação e contato, entre outros.
+          danças contemporâneas, dança afro, improvisação e contato, entre outros.
           </Text>
         </Container>
       </GroupOut>
