@@ -81,18 +81,17 @@ const MyButton = styled(Button)`
   margin-bottom: 20px;
 `;
 
-const Text = styled.span`
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.5;
-  letter-spacing: normal;
-  text-align: justify;
-  color: #ffffff;
-
-  margin-bottom: 20px;
-`;
+// const Text = styled.span`
+//   font-size: 16px;
+//   font-weight: normal;
+//   font-stretch: normal;
+//   font-style: normal;
+//   line-height: 1.5;
+//   letter-spacing: normal;
+//   text-align: justify;
+//   color: #ffffff;
+//   margin-bottom: 20px;
+// `;
 
 // const Social = styled.div`
 //   display: flex;
@@ -151,11 +150,11 @@ export const Display = ({
           <MyButton type="submit">ENTRAR</MyButton>
         </Content>
         {/* </form> */}
-        <Text>
+        {/* <Text>
           OU ENTRE COM
           <br />
           SUAS REDES SOCIAIS:
-        </Text>
+        </Text> */}
         {/* <Social>
           <SocialLink
             href="/api/auth/facebook"
