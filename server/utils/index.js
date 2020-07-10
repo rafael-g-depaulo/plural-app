@@ -91,7 +91,10 @@ module.exports = {
     });
   },
   uploadImage(req) {
-    return new Promise((resolve, reject) => {      
+    return new Promise((resolve, reject) => {   
+      // add case for empty file in form
+      if (!req.file) return reject(new Error("no file provided in request"))
+      
       var base64data = new Buffer(req.file.buffer, 'binary');
       
       const extension = /\.[0-9a-z]+$/i.exec(req.file.originalname)[0]

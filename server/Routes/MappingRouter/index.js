@@ -88,6 +88,7 @@ export default ({ User }, config) => {
       MulterMiddleware.single("file"),
       AuthMiddleware.verifyToken,
       async (req, res) => {
+        console.log("got here")
         const user_id = req.decoded.user.id;
 
         let {
@@ -127,16 +128,18 @@ export default ({ User }, config) => {
         }
 
         try {
-          let profile_picturePromise = Utils
+          const getProfilePicPromise = () => Utils
             .uploadImage(req)
-            .catch(err => { console.log(`[${new Date()}] ERROR IN GCS UPLOAD: ${err}`); return "" })
-          let profile_picture = req.file !== null && req.file !== undefined
-            ? await profile_picturePromise
+            .catch(err => { console.log(`[${new Date()}] ERROR IN FILE UPLOAD: ${err}`); return "" })
+
+          const profile_picture = !!req.file
+            ? await getProfilePicPromise()
             : "";
+            
+          console.log("profile picture is |", profile_picture, "|")
 
-          if (!profile_picture || profile_picture === "") return res.status(402).json({err: "error with image"})
+          // if (!profile_picture) return res.status(402).json({err: "error with image"})
 
-          console.log("profile picture", profile_picture)
 
           const mapping = await Mapping.create({
             artistic_name,
