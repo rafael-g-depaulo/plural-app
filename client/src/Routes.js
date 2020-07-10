@@ -198,7 +198,7 @@ export const Routes = ({ ...props }) => {
 
         {/* página de busca no mapeamento*/}
         <Route path="/search">
-          { !currentUser || !currentUser?.mapping ? (
+          { !currentUser ? (
             <Redirect to="/" />
           ) : (
             <MyRedirect>
