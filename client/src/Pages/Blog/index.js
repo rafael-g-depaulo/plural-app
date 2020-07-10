@@ -46,7 +46,7 @@ export const Blog = ({ ...props }) => {
   const history = useHistory()
   const onClose = useCallback(() => {
     if (status === 404) history.push("/blog")
-  }, [history])
+  }, [history, status])
   
   return (<>
     <Back>
