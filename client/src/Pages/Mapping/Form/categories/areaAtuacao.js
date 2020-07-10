@@ -195,8 +195,8 @@ export default function AreaAtuacao({ onChange = () => {}, ...props }) {
 
         <Container>
           <Text>
-          Categoria no guia cultural para escritores, youtubers e influencers de redes sociais, 
-          profissionais envolvidos com a publicação de livros, canais de conteúdo, editoras, jornalistas e blogueiros.
+            Categoria no guia cultural para profissionais envolvidos em tecnologia,
+            que participam de processos dedesenvolvimento de jogos eletrônicos, aplicativos e sites.
           </Text>
         </Container>
       </GroupOut>
