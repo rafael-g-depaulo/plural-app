@@ -41,8 +41,27 @@ const Content = styled.div`
 `;
 
 const MyNavigation = styled(Navigation)`
+  margin-bottom: 20px;
   @media (max-width: 699px) {
     max-width: 450px;
+  }
+`
+
+const Text = styled.p`
+  font-family: "Town Text";
+  font-size: 16px;
+  font-weight: 700;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: justify;
+  color: #fff;
+  margin-bottom: 20px;
+  margin-top: 0;
+
+  @media (min-width: 700px) {
+    font-size: 24px;
   }
 `
 
@@ -57,6 +76,7 @@ export const Display = ({
     <Container>
       <Content>
         <MyNavigation />
+        <Text>Pesquise aqui profissionais da cultura na área LGBTQIA+ do Distrito Federal e região.</Text>
         <Checklist onChange={onChecklistChange} />
         <SearchBar onJobsChange={onJobsChange} onClick={onSubmit} />
         {/* lógica para exibir todos os posts, o último sem border-bottom */}
