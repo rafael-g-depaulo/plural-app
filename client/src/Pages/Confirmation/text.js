@@ -7,8 +7,7 @@ const Text = styled.p`
   font-weight: ${props => props.weight ?? "400"};
   font-size: ${props => props.size ?? "1em"};
 
-
-
+  margin-bottom: 20px;
 `
 export const TextField = ({
   ...props
