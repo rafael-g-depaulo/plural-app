@@ -45,7 +45,7 @@ module.exports = {
       subject: "Verifique sua conta no Plural!",
       html:
         "<p>Olá,</p>" +
-        `<p>Para utilizar o app Plural, você deve confirmar o seu email clicando no link a seguir: <a href="${mailLinkUrl}">Clique em mim para confirmar a sua conta!</a></p>`
+        `<p>Para utilizar o app Plural, você deve confirmar o seu email clicando no link a seguir: <a href="${mailLinkUrl}">Clique aqui para confirmar a sua conta!</a></p>`
         ,
     };
     transporter.sendMail(mailOptions, function(err) {
