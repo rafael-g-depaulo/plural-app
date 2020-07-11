@@ -36,7 +36,7 @@ module.exports = {
     const user = await getUserFromEmail(email);
 
     // Testar
-    if (user === undefined) {
+    if (!user) {
       console.log("[ERROR]", errorMessage);
 
       return res.status(401).json({ error: errorMessage });
