@@ -188,7 +188,7 @@ export const Routes = ({ ...props }) => {
 
         {/* página de aviso da confirmação de email */}
         <Route path="/confirmation">
-          { currentUser?.active ? (
+          { !currentUser || currentUser?.active ? (
             <Redirect to="/" />
           ) : (
             <MyRedirect>
