@@ -30,6 +30,8 @@ const Text = styled(Link)`
   text-transform: uppercase;
   text-decoration: none;
 
+  min-width: fit-content;
+
   &:not(:last-child) {
     /* padding-right: 17px; */
   }
