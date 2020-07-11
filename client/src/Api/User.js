@@ -53,3 +53,6 @@ export const passwordResetCallback = (password, token) => {
     }
   );
 };
+
+export const resendConfirmation = () => api
+  .post(`/api/user/resend-confirmation-email`, { withCredentials: true })
