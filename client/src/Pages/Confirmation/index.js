@@ -6,6 +6,7 @@ import TextBox from './textbox'
 import TextField from './text'
 import { useContext } from 'react';
 import UserContext from 'Context/User';
+import { resendConfirmation } from 'Api/User';
 
 const MainDiv = styled.div`
     height:100vh;
@@ -61,6 +62,53 @@ const LogoDiv = styled.div`
 
 `
 
+const ButtonBox = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 5rem;
+  font-family: Town Text;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0);
+
+  &:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  @media (max-width: 599px) {
+    border: 1px #fffdfd solid;
+    font-size: 16px;
+  }
+
+  @media (min-width: 600px) and (max-width: 1023px) {
+    border: 2px #fffdfd solid;
+    font-size: 18px;
+  }
+
+  @media (min-width: 1024px) {
+    border: 2px #fffdfd solid;
+    font-size: 20px;
+  }
+`;
+
+
 
 
 export const Confirmation = ({
@@ -80,7 +128,7 @@ export const Confirmation = ({
                 </LogoDiv>
                 <TextBox>
                     <TextField><span style={{fontWeight:900}}>OI, { displayName }</span> <br/>CONFIRME SEU EMAIL <br />PRA FINALIZAR A CRIAÇÃO <br />DO SEU CADASTRO</TextField>
-
+                    <ButtonBox onClick={resendConfirmation}>Re-enviar email de confirmação</ButtonBox>
                 </TextBox>
             </Grid>
             <GridLateral />

@@ -50,6 +50,11 @@ const ButtonBox = styled.button`
   color: #ffffff;
   background-color: rgba(255, 255, 255, 0);
 
+  &:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
