@@ -52,6 +52,11 @@ const ButtonBox = styled.button`
   border-radius: 5rem;
   width: 100%;
 
+  &:focus {
+    outline: none;
+    background-color: ${props => props.cover ? "#5a1ee5" : "#f3756c"};
+  }
+
   &:hover {
     background-color: ${props => props.cover ? "#5a1ee5" : "#f3756c"};
   }
