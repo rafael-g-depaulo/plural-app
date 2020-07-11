@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "Context/User";
 
-const Container = styled.div`
+const Container = styled.nav`
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -58,7 +58,7 @@ export const Navbar = ({ ...props }) => {
       <Text to="/blog">blog</Text>
       { isMapped && <Text to="/me">perfil</Text> }
       <Text to="/event">programação</Text>
-      { isMapped && <Text to="/search">mapeamento</Text> }
+      { isLogged && <Text to="/search">busca no guia</Text> }
       <Text to={"/login" + (isLogged ? "" : `?redirectTo=${returnTo}`)}>{ isLogged ? "sair" : "entrar" }</Text>
     </Container>
   );
