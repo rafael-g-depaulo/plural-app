@@ -1,4 +1,4 @@
-import React, { lazy, useContext } from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,22 +8,25 @@ import {
 } from "react-router-dom";
 import AsyncComponent from "Components/AsyncComponent";
 import UserContext from "Context/User";
+import MinWaitLazy from "Utils/MinWaitLazy";
 
-const PasswordReset = lazy(() => import("Pages/PasswordReset"))
-const Confirmation = lazy(() => import("Pages/Confirmation"))
-const SignUp = lazy(() => import("Pages/SignUp"))
-const Login = lazy(() => import("Pages/Login"))
-const MyProfile = lazy(() => import("Pages/MyProfile"))
-const EditProfile = lazy(() => import("Pages/EditProfile"))
-const Profile = lazy(() => import("Pages/Profile"))
-const AreYou = lazy(() => import("Pages/AreYouLGBTQIA"))
-const MappingQuestion = lazy(() => import("Pages/MappingQuestion"))
-const BlogList = lazy(() => import("Pages/BlogList"))
-const Blog = lazy(() => import("Pages/Blog"))
-const Event = lazy(() => import("Pages/Event"))
-const SingUpMapping = lazy(() => import("Pages/Mapping"))
-const Programming = lazy(() => import("Pages/Programming"))
-const MappingSearch = lazy(() => import("Pages/MappingSearch"))
+const minWait = 500
+
+const PasswordReset   = MinWaitLazy(0, () => import("Pages/PasswordReset"))
+const Confirmation    = MinWaitLazy(0, () => import("Pages/Confirmation"))
+const SignUp          = MinWaitLazy(0, () => import("Pages/SignUp"))
+const Login           = MinWaitLazy(0, () => import("Pages/Login"))
+const AreYou          = MinWaitLazy(0, () => import("Pages/AreYouLGBTQIA"))
+const MappingQuestion = MinWaitLazy(0, () => import("Pages/MappingQuestion"))
+const EditProfile     = MinWaitLazy(0, () => import("Pages/EditProfile"))
+const MyProfile       = MinWaitLazy(minWait, () => import("Pages/MyProfile"))
+const Profile         = MinWaitLazy(minWait, () => import("Pages/Profile"))
+const BlogList        = MinWaitLazy(minWait, () => import("Pages/BlogList"))
+const Blog            = MinWaitLazy(minWait, () => import("Pages/Blog"))
+const Event           = MinWaitLazy(minWait, () => import("Pages/Event"))
+const SingUpMapping   = MinWaitLazy(minWait, () => import("Pages/Mapping"))
+const Programming     = MinWaitLazy(minWait, () => import("Pages/Programming"))
+const MappingSearch   = MinWaitLazy(minWait, () => import("Pages/MappingSearch"))
 
 const MyRedirect = ({
   children,
@@ -198,7 +201,7 @@ export const Routes = ({ ...props }) => {
 
         {/* página de busca no mapeamento*/}
         <Route path="/search">
-          { !currentUser || !currentUser?.mapping ? (
+          { !currentUser ? (
             <Redirect to="/" />
           ) : (
             <MyRedirect>

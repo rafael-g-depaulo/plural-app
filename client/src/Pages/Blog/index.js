@@ -36,25 +36,25 @@ export const Blog = ({ ...props }) => {
   const { data, status } = useAPICache(`blog/${id_post}`, null, getBlog)
 
   // error handling
-  const open = status !== 200
+  const open = status !== 200 || status === undefined
   const { title, message } =
     status === 404 ? { title: "Post não existe", message: "Esse post não existe" } :
     status === 500 ? { title: "Erro de conexão", message: "Por favor tente de novo mais tarde" } :
-    { title: "Erro", message: "Houve um erro. Tente de novo mais tarde" }
+    { title: "Carregando", message: "Carregando o post. Por favor espere" }
 
   // redirect to blog list on popup close
   const history = useHistory()
   const onClose = useCallback(() => {
-    history.push("/blog")
-  }, [history])
+    if (status === 404) history.push("/blog")
+  }, [history, status])
   
   return (<>
     <Back>
       <Container>
         <Navigation mbSmall="0" mbLarge="0" grid="nav"/>
         {
-          data === null || status !== 200 ?
-            <LoadDots />
+          data === null || open ?
+            (status !== 404 ? <LoadDots /> : <></>)
             :
             <Area info={data} />
         };

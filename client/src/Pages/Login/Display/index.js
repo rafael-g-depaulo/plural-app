@@ -1,8 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faGooglePlus } from "@fortawesome/free-brands-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faFacebook, faGooglePlus } from "@fortawesome/free-brands-svg-icons";
+// import SocialLink from "./SocialLink";
 
 import { accentFontSize } from "Themes/default";
 import PluralLogo from "Components/PluralLogo";
@@ -10,7 +11,6 @@ import Input from "./Input";
 import Label from "./Label";
 import Parceiros from "./Parceiros";
 import Button from "./Button";
-import SocialLink from "./SocialLink";
 
 import { Link } from 'react-router-dom'
 
@@ -47,11 +47,12 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  ${({ mTop }) => mTop && css`margin-top: ${mTop};`}
 `;
 
 const Logo = styled(PluralLogo)`
   margin-left: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 `;
 
 const MyInput = styled(Input)`
@@ -81,36 +82,69 @@ const MyButton = styled(Button)`
   margin-bottom: 20px;
 `;
 
-const Text = styled.span`
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.5;
-  letter-spacing: normal;
-  text-align: justify;
-  color: #ffffff;
+// const Text = styled.span`
+//   font-size: 16px;
+//   font-weight: normal;
+//   font-stretch: normal;
+//   font-style: normal;
+//   line-height: 1.5;
+//   letter-spacing: normal;
+//   text-align: justify;
+//   color: #ffffff;
+//   margin-bottom: 20px;
+// `;
 
-  margin-bottom: 20px;
-`;
+// const Social = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   margin-bottom: 20px;
+// `;
 
-const Social = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
-
-const Icon = styled(FontAwesomeIcon)`
-  font-size: 18px;
-  margin-top: 2px;
-  margin-left: 5px;
-`;
+// const Icon = styled(FontAwesomeIcon)`
+//   font-size: 18px;
+//   margin-top: 2px;
+//   margin-left: 5px;
+// `;
 
 const MyLink = styled(Link)`
-  &, &:hover, &:active {
+  &, &:hover, &:focus, &:active {
     text-decoration: none;
     color: #ffffff;
   }
+`
+
+const Text = styled.p`
+  font-family: "Town Text";
+  font-size: 18px;
+  font-weight: 700;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: justify;
+  color: #fff;
+  margin-bottom: 3px;
+  margin-top: 0;
+
+  @media (min-width: 700px) {
+    font-size: 20px;
+  }
+`
+
+const ColouredLink = styled(Link)`
+  color: #f3763b;
+  text-decoration: none;
+  &:hover {
+    color: #ffdb88;
+  }
+  &:focus {
+    color: #f5ce63;
+  }
+  &:active {
+    color: #ffcf4a;
+  }
+
+  transition: ease-in-out 0.1s;
 `
 
 export const Display = ({
@@ -126,8 +160,10 @@ export const Display = ({
       <Content>
         {/* conteúdo do display da página de login */}
         <Logo />
+        <Text>Bem vinde ao Festival Plural!</Text>
+        <Text>Acesse a <ColouredLink to="/event">programação do festival</ColouredLink>, ou cadastre-se em nossas plataformas digitais.</Text>
         {/* <form onSubmit={onSubmit}> */}
-        <Content as="form" onSubmit={onSubmit}>
+        <Content mTop="15px" as="form" onSubmit={onSubmit}>
           <Label htmlFor="email">EMAIL</Label>
           <MyInput
             value={email}
@@ -151,11 +187,11 @@ export const Display = ({
           <MyButton type="submit">ENTRAR</MyButton>
         </Content>
         {/* </form> */}
-        <Text>
+        {/* <Text>
           OU ENTRE COM
           <br />
           SUAS REDES SOCIAIS:
-        </Text>
+        </Text> */}
         {/* <Social>
           <SocialLink
             href="/api/auth/facebook"
