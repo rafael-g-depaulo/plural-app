@@ -8,14 +8,18 @@ export const MappingSearch = ({ ...props }) => {
   const [renderedUsers, setRenderedUsers] = useState([]);
   const [checklist, setChecklist] = useState(false);
   const [jobs, setJobs] = useState([]);
+  const [isLoading, setLoading] = useState(false)
 
   const onSubmit = useCallback(() => {
+    setLoading(true)
     search(jobs)
       .then(({ data }) => data.user_ids)
       .then((ids) => ids.map(getUser))
       .then((promisses) => Promise.all(promisses))
       .then((userResponses) => userResponses.map(({ data }) => data?.user))
-      .then((users) => setUsers(users));
+      .then((users) => setUsers(users))
+      .then(() => setLoading(false))
+      .catch(err => { console.log("error while fetching users", err); setLoading(false) })
   }, [ jobs ]);
 
   useEffect(() => {
@@ -31,6 +35,7 @@ export const MappingSearch = ({ ...props }) => {
       onChecklistChange={setChecklist}
       onJobsChange={setJobs}
       onSubmit={onSubmit}
+      isLoading={isLoading}
       data={renderedUsers}
     />
   );

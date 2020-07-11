@@ -16,7 +16,7 @@ export const Loading = ({
   ...props
 }) => {
   return ( !isLoading ? <></> :
-    <LoadingIcon />
+    <LoadingIcon {...props}/>
   )
 }
 

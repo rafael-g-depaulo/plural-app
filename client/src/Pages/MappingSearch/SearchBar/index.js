@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import JobInputs from "../../../Components/JobsInput";
+import JobInputs from "Components/JobsInput";
+import Loading from "Components/Loading";
 
 const Container = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const Container = styled.div`
 
   @media(min-width: 700px) {
     width: 610px;
-    margin: 30px 0 40px 0;
+    margin: 30px 0 ${({ mBot }) => mBot ?? "40px"} 0;
   }
 `;
 
@@ -41,10 +42,14 @@ const ButtonSearch = styled.button`
   text-transform: uppercase;
   text-align: center;
   
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: #222222;
     border: solid 1px #fffdfd;
   }
+  &:hover:disabled {
+    cursor: wait;
+  }
+
 
   &:active {
     outline: none;
@@ -65,15 +70,21 @@ const ButtonSearch = styled.button`
   }
 `;
 
-export const SearchBar = ({ onJobsChange, onClick, ...props }) => {
-  return (
-    <Container>
+const MyLoading = styled(Loading)`
+  margin-top: 0;
+  margin-bottom: 15px;
+`
+
+export const SearchBar = ({ onJobsChange, onClick, disabled, ...props }) => {
+  return (<>
+    <Container mBot={disabled && "25px"}>
       <SearchInput>
         <JobInputs onJobsChange={onJobsChange} />
       </SearchInput>
-      <ButtonSearch onClick={onClick}>pesquisar</ButtonSearch>
+      <ButtonSearch disabled={disabled} onClick={onClick}>pesquisar</ButtonSearch>
     </Container>
-  );
+    <MyLoading isLoading={disabled}/>
+  </>);
 };
 
 export default SearchBar;

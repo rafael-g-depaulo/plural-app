@@ -6,6 +6,7 @@ import Checklist from "./Checklist";
 import SearchBar from "./SearchBar";
 import InfoCard from "./InfoCard";
 import Navigation from "Components/Navigation"
+import Shadow from "Components/Shadow";
 
 const Container = styled.div`
   width: 100%;
@@ -69,16 +70,18 @@ export const Display = ({
   onChecklistChange,
   onJobsChange,
   onSubmit,
+  isLoading = true,
   data,
   ...props
 }) => {
-  return (
+  return (<>
+    <Shadow isLoading={isLoading} />
     <Container>
       <Content>
         <MyNavigation />
         <Text>Pesquise aqui profissionais da cultura na área LGBTQIA+ do Distrito Federal e região.</Text>
         <Checklist onChange={onChecklistChange} />
-        <SearchBar onJobsChange={onJobsChange} onClick={onSubmit} />
+        <SearchBar onJobsChange={onJobsChange} disabled={isLoading} onClick={onSubmit} />
         {/* lógica para exibir todos os posts, o último sem border-bottom */}
         {data.map((item) => {
           if (item === data[data.length - 1]) {
@@ -111,7 +114,7 @@ export const Display = ({
         })}
       </Content>
     </Container>
-  );
+  </>);
 };
 
 export default Display;
