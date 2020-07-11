@@ -107,7 +107,7 @@ const MyButton = styled(Button)`
 // `;
 
 const MyLink = styled(Link)`
-  &, &:hover, &:active {
+  &, &:hover, &:focus, &:active {
     text-decoration: none;
     color: #ffffff;
   }
