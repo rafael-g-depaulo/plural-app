@@ -67,7 +67,7 @@ export const Display = ({eventList}) => {
         </TopContent>
         {/* lógica para exibir todos os posts, o último sem border-bottom */}
         {eventList
-          .sort((a, b) => a?.prioridade ?? 1000000 - b?.prioridade ?? 0)
+          .sort((a, b) => a?.prioridade - b?.prioridade)
           .map((item) => {
             if (item === eventList[eventList.length - 1]) {
               return (
