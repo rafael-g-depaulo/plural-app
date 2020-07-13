@@ -1,0 +1,5 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "br.com.festivalplural.www",
+               "sha256_cert_fingerprints": ["CF:51:6E:7F:57:1C:4E:05:FC:E9:2E:D0:E5:78:AD:C1:81:B7:A7:AE:2D:1E:12:81:5A:88:18:A9:9C:57:53:FA"] }
+}]
